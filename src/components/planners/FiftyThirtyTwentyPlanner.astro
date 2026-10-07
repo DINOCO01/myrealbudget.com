@@ -4,8 +4,8 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
 
 <div id="fifty-thirty-twenty-planner" class="w-full">
   <!-- Privacy & Quick Action strip -->
-  <div class="mb-6 flex flex-wrap items-center justify-between gap-3 text-xs">
-    <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-[#ebebeb] text-[#4d4d4d] shadow-whisper">
+  <div class="mb-4 sm:mb-6 flex flex-wrap items-center justify-between gap-2.5 sm:gap-3 text-[11px] sm:text-xs">
+    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-white border border-[#ebebeb] text-[#4d4d4d] shadow-whisper">
       <span class="w-2 h-2 rounded-full bg-[#50e3c2]"></span>
       <span>Autosaved locally to this device</span>
     </div>
@@ -13,147 +13,236 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
       <button
         type="button"
         id="f3020-reset-btn"
-        class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[6px] border border-[#ebebeb] bg-white text-[#8f8f8f] hover:text-[#ee0000] font-medium hover:bg-neutral-50 transition shadow-whisper focus-visible:outline-none"
+        class="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-[6px] border border-[#ebebeb] bg-white text-[#8f8f8f] hover:text-[#ee0000] font-medium hover:bg-neutral-50 transition shadow-whisper focus-visible:outline-none"
       >
         Reset Defaults
       </button>
     </div>
   </div>
 
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-start">
     <!-- LEFT: Inputs (7 cols on lg) -->
-    <div class="lg:col-span-7 xl:col-span-8 space-y-6">
+    <div class="lg:col-span-7 xl:col-span-8 space-y-4 sm:space-y-6">
       
       <!-- 1. Take-Home Pay Input -->
-      <div class="bg-white rounded-[12px] border border-[#ebebeb] p-6 shadow-whisper">
-        <label for="f3020-income-input" class="block text-sm font-semibold text-[#171717] mb-1">
+      <div class="bg-white rounded-[12px] border border-[#ebebeb] p-3.5 sm:p-6 shadow-whisper">
+        <label for="f3020-income-input" class="block text-xs sm:text-sm font-semibold text-[#171717] mb-0.5 sm:mb-1">
           Monthly Take-Home Pay (After Taxes)
         </label>
-        <p class="text-xs text-[#8f8f8f] mb-4">
+        <p class="text-[11px] sm:text-xs text-[#8f8f8f] mb-3 sm:mb-4">
           Enter your total net monthly income. If paid biweekly, multiply your paycheck by 26 and divide by 12.
         </p>
         <div class="relative max-w-sm">
-          <span class="absolute left-3.5 top-2.5 text-[#8f8f8f] font-mono text-base">$</span>
+          <span class="absolute left-3 top-2 sm:left-3.5 sm:top-2.5 text-[#8f8f8f] font-mono text-sm sm:text-base">$</span>
           <input
             type="number"
             id="f3020-income-input"
             min="0"
             step="50"
             value="5000"
-            class="w-full pl-8 pr-4 py-2.5 rounded-[6px] bg-white border border-[#ebebeb] text-[#171717] font-mono text-lg font-semibold focus:outline-none focus:border-[#171717] shadow-whisper"
+            class="w-full pl-7 pr-3 py-2 sm:pl-8 sm:pr-4 sm:py-2.5 rounded-[6px] bg-white border border-[#ebebeb] text-[#171717] font-mono text-base sm:text-lg font-semibold focus:outline-none focus:border-[#171717] shadow-whisper"
             placeholder="5000"
           />
         </div>
       </div>
 
+      <!-- Mobile Quick Snapshot (Visible only on mobile/tablet < lg) -->
+      <div class="lg:hidden bg-white rounded-[10px] border border-[#ebebeb] p-3 shadow-whisper">
+        <div class="flex items-center justify-between pb-2 mb-2 border-b border-[#ebebeb]">
+          <div class="flex items-center gap-1.5">
+            <span class="text-xs font-semibold text-[#171717]">Unassigned:</span>
+            <span id="mobile-f3020-unassigned-val" class="font-mono text-base font-bold text-[#171717]">$0</span>
+          </div>
+          <div id="mobile-f3020-status-badge" class="px-2 py-0.5 rounded text-[11px] font-medium bg-[#f2f2f2] text-[#4d4d4d]">
+            <span id="mobile-f3020-status-text">Balanced</span>
+          </div>
+        </div>
+        <div class="grid grid-cols-3 gap-1.5 text-center text-xs font-mono">
+          <div class="bg-[#fafafa] py-1 px-1.5 rounded border border-[#ebebeb]">
+            <span class="text-[10px] text-[#8f8f8f] block truncate">Needs (50%)</span>
+            <span id="mobile-f3020-needs-val" class="font-semibold text-[#171717] text-xs block">$0</span>
+            <span id="mobile-f3020-needs-target" class="text-[9px] text-[#8f8f8f] block">/ $2,500</span>
+          </div>
+          <div class="bg-[#fafafa] py-1 px-1.5 rounded border border-[#ebebeb]">
+            <span class="text-[10px] text-[#8f8f8f] block truncate">Wants (30%)</span>
+            <span id="mobile-f3020-wants-val" class="font-semibold text-[#7928ca] text-xs block">$0</span>
+            <span id="mobile-f3020-wants-target" class="text-[9px] text-[#8f8f8f] block">/ $1,500</span>
+          </div>
+          <div class="bg-[#fafafa] py-1 px-1.5 rounded border border-[#ebebeb]">
+            <span class="text-[10px] text-[#8f8f8f] block truncate">Savings (20%)</span>
+            <span id="mobile-f3020-savings-val" class="font-semibold text-[#0070f3] text-xs block">$0</span>
+            <span id="mobile-f3020-savings-target" class="text-[9px] text-[#8f8f8f] block">/ $1,000</span>
+          </div>
+        </div>
+        <div class="flex items-center justify-between text-[11px] text-[#8f8f8f] pt-2 mt-1">
+          <span>Actual Outflow: <strong id="mobile-f3020-total-outflow" class="text-[#171717] font-mono">$0</strong></span>
+          <div class="flex sm:hidden items-center gap-1.5">
+            <button
+              type="button"
+              class="hover:text-[#171717] underline text-[11px]"
+              onclick="window._f3020.toggleAllSections(true)"
+            >
+              Expand all
+            </button>
+            <span>·</span>
+            <button
+              type="button"
+              class="hover:text-[#171717] underline text-[11px]"
+              onclick="window._f3020.toggleAllSections(false)"
+            >
+              Collapse all
+            </button>
+          </div>
+        </div>
+      </div>
+
       <!-- 2. Needs (50%) Inputs -->
-      <div class="bg-white rounded-[12px] border border-[#ebebeb] p-5 sm:p-6 shadow-whisper">
-        <div class="flex items-center justify-between pb-3 mb-3 border-b border-[#ebebeb]">
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full bg-[#171717]"></span>
-              <h3 class="text-base font-semibold text-[#171717]">Needs (Target: 50%)</h3>
-            </div>
-            <p class="text-xs text-[#8f8f8f] mt-0.5">Housing, utilities, groceries, gas/transit, insurance, minimum debt payments.</p>
-          </div>
-          <div class="text-right">
-            <span class="text-xs font-mono text-[#8f8f8f] block">Actual</span>
-            <span id="f3020-needs-actual-header" class="font-mono text-sm font-semibold text-[#171717]">$0</span>
-          </div>
-        </div>
-
-        <div id="f3020-needs-items" class="space-y-2.5">
-          <!-- Populated by JS -->
-        </div>
-
-        <button
-          type="button"
-          class="mt-3 inline-flex items-center gap-1.5 text-xs text-[#4d4d4d] hover:text-[#171717] font-medium py-1 px-2 rounded hover:bg-[#fafafa] transition"
-          onclick="window._f3020.addItem('needs')"
+      <div class="bg-white rounded-[10px] sm:rounded-[12px] border border-[#ebebeb] p-2.5 sm:p-6 shadow-whisper">
+        <div
+          class="flex items-center justify-between pb-1.5 sm:pb-3 border-b border-[#ebebeb] cursor-pointer sm:cursor-default select-none sm:select-auto gap-2"
+          onclick="if(window.innerWidth < 640) window._f3020.toggleSection('needs')"
         >
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-          Add Need Line Item
-        </button>
+          <div class="flex items-center gap-1.5 sm:gap-2 flex-1 min-w-0 pr-1 sm:pr-2">
+            <button
+              type="button"
+              id="f3020-btn-needs"
+              class="sm:hidden p-0.5 text-[#8f8f8f] hover:text-[#171717] transition-transform duration-200 shrink-0 rotate-180"
+              aria-label="Toggle Needs items"
+            >
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#171717] shrink-0"></span>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-xs sm:text-base font-semibold text-[#171717] truncate sm:whitespace-normal">Needs <span class="text-[11px] sm:text-xs font-normal text-[#8f8f8f]">(Target: 50%)</span></h3>
+              <p class="hidden sm:block text-xs text-[#8f8f8f] mt-0.5">Housing, utilities, groceries, gas/transit, insurance, minimum debt payments.</p>
+            </div>
+          </div>
+          <div class="text-right shrink-0">
+            <span class="hidden sm:block text-xs font-mono text-[#8f8f8f]">Actual</span>
+            <span id="f3020-needs-actual-header" class="font-mono text-xs sm:text-sm font-semibold text-[#171717]">$0</span>
+          </div>
+        </div>
+
+        <div id="f3020-body-needs" class="block sm:!block pt-2 sm:pt-3">
+          <div id="f3020-needs-items" class="space-y-1.5 sm:space-y-2">
+            <!-- Populated by JS -->
+          </div>
+
+          <button
+            type="button"
+            class="mt-2 inline-flex items-center gap-1.5 text-xs text-[#4d4d4d] hover:text-[#171717] font-medium py-1 px-1.5 rounded hover:bg-[#fafafa] transition"
+            onclick="window._f3020.addItem('needs')"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            Add Need Line Item
+          </button>
+        </div>
       </div>
 
       <!-- 3. Wants (30%) Inputs -->
-      <div class="bg-white rounded-[12px] border border-[#ebebeb] p-5 sm:p-6 shadow-whisper">
-        <div class="flex items-center justify-between pb-3 mb-3 border-b border-[#ebebeb]">
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full bg-[#7928ca]"></span>
-              <h3 class="text-base font-semibold text-[#171717]">Wants (Target: 30%)</h3>
-            </div>
-            <p class="text-xs text-[#8f8f8f] mt-0.5">Dining out, entertainment, shopping, subscriptions, vacations, hobbies.</p>
-          </div>
-          <div class="text-right">
-            <span class="text-xs font-mono text-[#8f8f8f] block">Actual</span>
-            <span id="f3020-wants-actual-header" class="font-mono text-sm font-semibold text-[#171717]">$0</span>
-          </div>
-        </div>
-
-        <div id="f3020-wants-items" class="space-y-2.5">
-          <!-- Populated by JS -->
-        </div>
-
-        <button
-          type="button"
-          class="mt-3 inline-flex items-center gap-1.5 text-xs text-[#4d4d4d] hover:text-[#171717] font-medium py-1 px-2 rounded hover:bg-[#fafafa] transition"
-          onclick="window._f3020.addItem('wants')"
+      <div class="bg-white rounded-[10px] sm:rounded-[12px] border border-[#ebebeb] p-2.5 sm:p-6 shadow-whisper">
+        <div
+          class="flex items-center justify-between pb-1.5 sm:pb-3 border-b border-[#ebebeb] cursor-pointer sm:cursor-default select-none sm:select-auto gap-2"
+          onclick="if(window.innerWidth < 640) window._f3020.toggleSection('wants')"
         >
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-          Add Want Line Item
-        </button>
+          <div class="flex items-center gap-1.5 sm:gap-2 flex-1 min-w-0 pr-1 sm:pr-2">
+            <button
+              type="button"
+              id="f3020-btn-wants"
+              class="sm:hidden p-0.5 text-[#8f8f8f] hover:text-[#171717] transition-transform duration-200 shrink-0"
+              aria-label="Toggle Wants items"
+            >
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#7928ca] shrink-0"></span>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-xs sm:text-base font-semibold text-[#171717] truncate sm:whitespace-normal">Wants <span class="text-[11px] sm:text-xs font-normal text-[#8f8f8f]">(Target: 30%)</span></h3>
+              <p class="hidden sm:block text-xs text-[#8f8f8f] mt-0.5">Dining out, entertainment, shopping, subscriptions, vacations, hobbies.</p>
+            </div>
+          </div>
+          <div class="text-right shrink-0">
+            <span class="hidden sm:block text-xs font-mono text-[#8f8f8f]">Actual</span>
+            <span id="f3020-wants-actual-header" class="font-mono text-xs sm:text-sm font-semibold text-[#171717]">$0</span>
+          </div>
+        </div>
+
+        <div id="f3020-body-wants" class="hidden sm:!block pt-2 sm:pt-3">
+          <div id="f3020-wants-items" class="space-y-1.5 sm:space-y-2">
+            <!-- Populated by JS -->
+          </div>
+
+          <button
+            type="button"
+            class="mt-2 inline-flex items-center gap-1.5 text-xs text-[#4d4d4d] hover:text-[#171717] font-medium py-1 px-1.5 rounded hover:bg-[#fafafa] transition"
+            onclick="window._f3020.addItem('wants')"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            Add Want Line Item
+          </button>
+        </div>
       </div>
 
       <!-- 4. Savings & Debt (20%) Inputs -->
-      <div class="bg-white rounded-[12px] border border-[#ebebeb] p-5 sm:p-6 shadow-whisper">
-        <div class="flex items-center justify-between pb-3 mb-3 border-b border-[#ebebeb]">
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full bg-[#0070f3]"></span>
-              <h3 class="text-base font-semibold text-[#171717]">Savings & Extra Debt (Target: 20%)</h3>
-            </div>
-            <p class="text-xs text-[#8f8f8f] mt-0.5">Emergency funds, 401(k)/IRA contributions, extra principal debt payoffs.</p>
-          </div>
-          <div class="text-right">
-            <span class="text-xs font-mono text-[#8f8f8f] block">Actual</span>
-            <span id="f3020-savings-actual-header" class="font-mono text-sm font-semibold text-[#171717]">$0</span>
-          </div>
-        </div>
-
-        <div id="f3020-savings-items" class="space-y-2.5">
-          <!-- Populated by JS -->
-        </div>
-
-        <button
-          type="button"
-          class="mt-3 inline-flex items-center gap-1.5 text-xs text-[#4d4d4d] hover:text-[#171717] font-medium py-1 px-2 rounded hover:bg-[#fafafa] transition"
-          onclick="window._f3020.addItem('savings')"
+      <div class="bg-white rounded-[10px] sm:rounded-[12px] border border-[#ebebeb] p-2.5 sm:p-6 shadow-whisper">
+        <div
+          class="flex items-center justify-between pb-1.5 sm:pb-3 border-b border-[#ebebeb] cursor-pointer sm:cursor-default select-none sm:select-auto gap-2"
+          onclick="if(window.innerWidth < 640) window._f3020.toggleSection('savings')"
         >
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-          Add Savings/Debt Line Item
-        </button>
+          <div class="flex items-center gap-1.5 sm:gap-2 flex-1 min-w-0 pr-1 sm:pr-2">
+            <button
+              type="button"
+              id="f3020-btn-savings"
+              class="sm:hidden p-0.5 text-[#8f8f8f] hover:text-[#171717] transition-transform duration-200 shrink-0"
+              aria-label="Toggle Savings items"
+            >
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#0070f3] shrink-0"></span>
+            <div class="flex-1 min-w-0">
+              <h3 class="text-xs sm:text-base font-semibold text-[#171717] truncate sm:whitespace-normal">Savings & Extra Debt <span class="text-[11px] sm:text-xs font-normal text-[#8f8f8f]">(Target: 20%)</span></h3>
+              <p class="hidden sm:block text-xs text-[#8f8f8f] mt-0.5">Emergency funds, 401(k)/IRA contributions, extra principal debt payoffs.</p>
+            </div>
+          </div>
+          <div class="text-right shrink-0">
+            <span class="hidden sm:block text-xs font-mono text-[#8f8f8f]">Actual</span>
+            <span id="f3020-savings-actual-header" class="font-mono text-xs sm:text-sm font-semibold text-[#171717]">$0</span>
+          </div>
+        </div>
+
+        <div id="f3020-body-savings" class="hidden sm:!block pt-2 sm:pt-3">
+          <div id="f3020-savings-items" class="space-y-1.5 sm:space-y-2">
+            <!-- Populated by JS -->
+          </div>
+
+          <button
+            type="button"
+            class="mt-2 inline-flex items-center gap-1.5 text-xs text-[#4d4d4d] hover:text-[#171717] font-medium py-1 px-1.5 rounded hover:bg-[#fafafa] transition"
+            onclick="window._f3020.addItem('savings')"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            Add Savings/Debt Line Item
+          </button>
+        </div>
       </div>
 
     </div>
 
     <!-- RIGHT: Target vs Actual Comparison Card (Sticky on Desktop) -->
-    <div class="lg:col-span-5 xl:col-span-4 lg:sticky lg:top-24 space-y-6">
+    <div class="lg:col-span-5 xl:col-span-4 lg:sticky lg:top-24 space-y-4 sm:space-y-6">
       
-      <div class="bg-white rounded-[12px] border border-[#ebebeb] p-6 shadow-whisper">
-        <span class="font-mono text-xs uppercase tracking-wider text-[#8f8f8f] block mb-1">
+      <div class="bg-white rounded-[12px] border border-[#ebebeb] p-4 sm:p-6 shadow-whisper">
+        <span class="font-mono text-[11px] sm:text-xs uppercase tracking-wider text-[#8f8f8f] block mb-0.5 sm:mb-1">
           50/30/20 Targets vs Actual
         </span>
-        <h3 class="text-lg font-semibold text-[#171717] tracking-tight mb-5">
+        <h3 class="text-base sm:text-lg font-semibold text-[#171717] tracking-tight mb-3 sm:mb-5">
           Plan Comparison
         </h3>
 
         <!-- Comparison Cards -->
-        <div class="space-y-4">
+        <div class="space-y-2.5 sm:space-y-4">
           
           <!-- Needs Row -->
-          <div class="p-3.5 rounded-[8px] bg-[#fafafa] border border-[#ebebeb]">
+          <div class="p-2.5 sm:p-3.5 rounded-[8px] bg-[#fafafa] border border-[#ebebeb]">
             <div class="flex justify-between items-center mb-1.5">
               <span class="font-semibold text-xs text-[#171717] flex items-center gap-1.5">
                 <span class="w-2 h-2 rounded-full bg-[#171717]"></span> Needs (50%)
@@ -162,17 +251,17 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
                 $0
               </span>
             </div>
-            <div class="flex justify-between text-xs text-[#8f8f8f] mb-2 font-mono">
+            <div class="flex justify-between text-[11px] sm:text-xs text-[#8f8f8f] mb-1.5 sm:mb-2 font-mono">
               <span>Target: <strong id="cmp-needs-target" class="text-[#171717]">$2,500</strong></span>
               <span>Actual: <strong id="cmp-needs-actual" class="text-[#171717]">$0</strong></span>
             </div>
-            <div class="w-full h-2 rounded-full bg-[#ebebeb] overflow-hidden">
+            <div class="w-full h-1.5 sm:h-2 rounded-full bg-[#ebebeb] overflow-hidden">
               <div id="cmp-needs-bar" class="h-full bg-[#171717] transition-all duration-300" style="width: 0%"></div>
             </div>
           </div>
 
           <!-- Wants Row -->
-          <div class="p-3.5 rounded-[8px] bg-[#fafafa] border border-[#ebebeb]">
+          <div class="p-2.5 sm:p-3.5 rounded-[8px] bg-[#fafafa] border border-[#ebebeb]">
             <div class="flex justify-between items-center mb-1.5">
               <span class="font-semibold text-xs text-[#171717] flex items-center gap-1.5">
                 <span class="w-2 h-2 rounded-full bg-[#7928ca]"></span> Wants (30%)
@@ -181,17 +270,17 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
                 $0
               </span>
             </div>
-            <div class="flex justify-between text-xs text-[#8f8f8f] mb-2 font-mono">
+            <div class="flex justify-between text-[11px] sm:text-xs text-[#8f8f8f] mb-1.5 sm:mb-2 font-mono">
               <span>Target: <strong id="cmp-wants-target" class="text-[#171717]">$1,500</strong></span>
               <span>Actual: <strong id="cmp-wants-actual" class="text-[#171717]">$0</strong></span>
             </div>
-            <div class="w-full h-2 rounded-full bg-[#ebebeb] overflow-hidden">
+            <div class="w-full h-1.5 sm:h-2 rounded-full bg-[#ebebeb] overflow-hidden">
               <div id="cmp-wants-bar" class="h-full bg-[#7928ca] transition-all duration-300" style="width: 0%"></div>
             </div>
           </div>
 
           <!-- Savings Row -->
-          <div class="p-3.5 rounded-[8px] bg-[#fafafa] border border-[#ebebeb]">
+          <div class="p-2.5 sm:p-3.5 rounded-[8px] bg-[#fafafa] border border-[#ebebeb]">
             <div class="flex justify-between items-center mb-1.5">
               <span class="font-semibold text-xs text-[#171717] flex items-center gap-1.5">
                 <span class="w-2 h-2 rounded-full bg-[#0070f3]"></span> Savings & Debt (20%)
@@ -200,11 +289,11 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
                 $0
               </span>
             </div>
-            <div class="flex justify-between text-xs text-[#8f8f8f] mb-2 font-mono">
+            <div class="flex justify-between text-[11px] sm:text-xs text-[#8f8f8f] mb-1.5 sm:mb-2 font-mono">
               <span>Target: <strong id="cmp-savings-target" class="text-[#171717]">$1,000</strong></span>
               <span>Actual: <strong id="cmp-savings-actual" class="text-[#171717]">$0</strong></span>
             </div>
-            <div class="w-full h-2 rounded-full bg-[#ebebeb] overflow-hidden">
+            <div class="w-full h-1.5 sm:h-2 rounded-full bg-[#ebebeb] overflow-hidden">
               <div id="cmp-savings-bar" class="h-full bg-[#0070f3] transition-all duration-300" style="width: 0%"></div>
             </div>
           </div>
@@ -212,32 +301,44 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
         </div>
 
         <!-- Overall Budget Net Balance -->
-        <div class="mt-5 pt-4 border-t border-[#ebebeb] flex justify-between items-baseline text-xs">
+        <div class="mt-4 sm:mt-5 pt-3 sm:pt-4 border-t border-[#ebebeb] flex justify-between items-baseline text-xs">
           <span class="text-[#8f8f8f]">Total Actual Outflow:</span>
-          <span id="cmp-total-outflow" class="font-mono font-semibold text-sm text-[#171717]">$0</span>
+          <span id="cmp-total-outflow" class="font-mono font-semibold text-xs sm:text-sm text-[#171717]">$0</span>
         </div>
         <div class="mt-1 flex justify-between items-baseline text-xs">
           <span class="text-[#8f8f8f]">Unassigned Cash Flow:</span>
-          <span id="cmp-unassigned-cash" class="font-mono font-semibold text-sm text-[#171717]">$0</span>
+          <span id="cmp-unassigned-cash" class="font-mono font-semibold text-xs sm:text-sm text-[#171717]">$0</span>
         </div>
 
-        <!-- Plain Language Interpretation -->
-        <div class="mt-6 pt-5 border-t border-[#ebebeb] space-y-3">
-          <h4 class="font-mono text-xs font-medium uppercase tracking-wider text-[#8f8f8f]">
-            Framework Assessment
-          </h4>
-          <div id="f3020-assessment-box" class="space-y-2 text-xs text-[#4d4d4d] leading-relaxed">
+        <!-- Plain Language Interpretation (Secondary Breakdown) -->
+        <details class="group mt-4 sm:mt-6 pt-3 sm:pt-5 border-t border-[#ebebeb] space-y-2">
+          <summary class="flex items-center justify-between font-mono text-[11px] sm:text-xs font-medium uppercase tracking-wider text-[#8f8f8f] cursor-pointer list-none select-none py-0.5">
+            <span>Framework Assessment</span>
+            <svg class="w-3.5 h-3.5 text-[#8f8f8f] transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div id="f3020-assessment-box" class="space-y-2 text-xs text-[#4d4d4d] leading-relaxed pt-1">
             <!-- Dynamic assessment generated by JS -->
           </div>
-        </div>
+        </details>
 
       </div>
 
-      <!-- Educational Note -->
-      <div class="bg-[#fafafa] rounded-[12px] border border-[#ebebeb] p-4 text-xs text-[#4d4d4d] space-y-1.5">
-        <p class="font-medium text-[#171717]">Remember: 50/30/20 is a guide, not a law.</p>
-        <p class="text-[12px] text-[#8f8f8f] leading-normal">
+      <!-- Educational Note (Collapsed by default) -->
+      <details class="group bg-[#fafafa] rounded-[10px] sm:rounded-[12px] border border-[#ebebeb] p-3 sm:p-4 text-xs text-[#4d4d4d] space-y-1.5">
+        <summary class="flex items-center justify-between font-medium text-[#171717] cursor-pointer list-none select-none">
+          <span>Remember: 50/30/20 is a guide, not a law</span>
+          <svg class="w-3.5 h-3.5 text-[#8f8f8f] transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <p class="text-[11px] sm:text-[12px] text-[#8f8f8f] leading-normal pt-1">
           In high-cost-of-living metropolitan areas, housing alone often consumes 35–45% of income, pushing Needs toward 60%. If your Needs are higher, look to balance by temporarily scaling back Wants rather than abandoning the plan entirely.
+        </p>
+      </details>
+
+      <!-- Quick Method Switcher -->
+      <div class="bg-[#fafafa] rounded-[10px] sm:rounded-[12px] border border-[#ebebeb] p-3 sm:p-4 text-xs text-[#4d4d4d] space-y-1.5">
+        <p class="font-medium text-[#171717]">Want to try another budgeting method?</p>
+        <p class="text-[11px] sm:text-[12px] text-[#8f8f8f]">
+          Switch to the <a href="/budget-planner/" class="text-[#0070f3] underline hover:text-[#0761d1]">General Budget</a> for flexible categories, or the <a href="/zero-based-budget/" class="text-[#0070f3] underline hover:text-[#0761d1]">Zero-Based Method</a> to allocate every dollar to zero.
         </p>
       </div>
 
@@ -330,17 +431,17 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
     if (!container) return;
 
     container.innerHTML = state[groupKey].map((item, idx) => `
-      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 p-2 rounded-[6px] bg-[#fafafa] border border-[#ebebeb] text-xs">
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-1 sm:gap-2 p-1.5 sm:p-2 rounded-[6px] bg-[#fafafa] border border-[#ebebeb] text-xs">
         <input
           type="text"
           value="${escapeHtml(item.name)}"
           aria-label="${groupKey} line item"
-          class="flex-1 px-2.5 py-1.5 rounded-[6px] bg-white border border-[#ebebeb] text-[#171717] focus:outline-none focus:border-[#171717]"
+          class="flex-1 px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-[5px] bg-white border border-[#ebebeb] text-[#171717] focus:outline-none focus:border-[#171717] text-xs"
           onchange="window._f3020.updateItem('${groupKey}', ${idx}, 'name', this.value)"
         />
-        <div class="flex items-center gap-2">
-          <div class="relative w-28">
-            <span class="absolute left-2.5 top-1.5 text-[#8f8f8f] font-mono">$</span>
+        <div class="flex items-center gap-1 sm:gap-2">
+          <div class="relative flex-1 sm:w-28 sm:flex-initial">
+            <span class="absolute left-2 top-1 sm:top-1.5 text-[#8f8f8f] font-mono text-xs">$</span>
             <input
               type="number"
               min="0"
@@ -348,13 +449,13 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
               value="${item.amount || ''}"
               placeholder="0"
               aria-label="${groupKey} amount"
-              class="w-full pl-6 pr-2 py-1.5 rounded-[6px] bg-white border border-[#ebebeb] text-[#171717] font-mono text-right focus:outline-none focus:border-[#171717]"
+              class="w-full pl-5 pr-1.5 py-1 sm:pl-6 sm:pr-2 sm:py-1.5 rounded-[5px] bg-white border border-[#ebebeb] text-[#171717] font-mono text-right focus:outline-none focus:border-[#171717] text-xs"
               oninput="window._f3020.updateItem('${groupKey}', ${idx}, 'amount', this.value)"
             />
           </div>
           <select
             aria-label="${groupKey} frequency"
-            class="px-2 py-1.5 rounded-[6px] bg-white border border-[#ebebeb] text-[#4d4d4d] focus:outline-none focus:border-[#171717] text-xs font-mono"
+            class="px-1.5 py-1 sm:px-2 sm:py-1.5 rounded-[5px] bg-white border border-[#ebebeb] text-[#4d4d4d] focus:outline-none focus:border-[#171717] text-xs font-mono shrink-0"
             onchange="window._f3020.updateItem('${groupKey}', ${idx}, 'frequency', this.value)"
           >
             ${FREQUENCY_OPTIONS.map(opt => `
@@ -365,7 +466,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
             type="button"
             title="Remove item"
             aria-label="Remove item"
-            class="p-1.5 text-[#8f8f8f] hover:text-[#ee0000] rounded hover:bg-neutral-100 transition"
+            class="p-1 sm:p-1.5 text-[#8f8f8f] hover:text-[#ee0000] rounded hover:bg-neutral-100 transition shrink-0"
             onclick="window._f3020.removeItem('${groupKey}', ${idx})"
           >
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -414,6 +515,42 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
     if (aNeeds) aNeeds.textContent = formatMoney(actualNeeds);
     if (aWants) aWants.textContent = formatMoney(actualWants);
     if (aSavings) aSavings.textContent = formatMoney(actualSavings);
+
+    // Mobile Snapshot Updates
+    const mUnassigned = document.getElementById('mobile-f3020-unassigned-val');
+    const mBadge = document.getElementById('mobile-f3020-status-badge');
+    const mText = document.getElementById('mobile-f3020-status-text');
+    const mNeedsVal = document.getElementById('mobile-f3020-needs-val');
+    const mNeedsTarget = document.getElementById('mobile-f3020-needs-target');
+    const mWantsVal = document.getElementById('mobile-f3020-wants-val');
+    const mWantsTarget = document.getElementById('mobile-f3020-wants-target');
+    const mSavingsVal = document.getElementById('mobile-f3020-savings-val');
+    const mSavingsTarget = document.getElementById('mobile-f3020-savings-target');
+    const mTotalOut = document.getElementById('mobile-f3020-total-outflow');
+
+    if (mUnassigned) {
+      mUnassigned.textContent = formatMoney(unassigned);
+      mUnassigned.className = unassigned < 0 ? 'font-mono text-base font-bold tracking-tight text-[#ee0000]' : 'font-mono text-base font-bold tracking-tight text-[#171717]';
+    }
+    if (mBadge && mText) {
+      if (unassigned < 0) {
+        mBadge.className = 'px-2 py-0.5 rounded text-[11px] font-medium bg-[#fef2f2] text-[#b91c1c] border border-[#fecaca]';
+        mText.textContent = 'Over Budget';
+      } else if (unassigned === 0) {
+        mBadge.className = 'px-2 py-0.5 rounded text-[11px] font-medium bg-[#eef6ff] text-[#0761d1] border border-[#bfdbfe]';
+        mText.textContent = 'Balanced';
+      } else {
+        mBadge.className = 'px-2 py-0.5 rounded text-[11px] font-medium bg-[#e6fbf5] text-[#047857] border border-[#a7f3d0]';
+        mText.textContent = 'Surplus';
+      }
+    }
+    if (mNeedsVal) mNeedsVal.textContent = formatMoney(actualNeeds);
+    if (mNeedsTarget) mNeedsTarget.textContent = `/ ${formatMoney(targetNeeds)}`;
+    if (mWantsVal) mWantsVal.textContent = formatMoney(actualWants);
+    if (mWantsTarget) mWantsTarget.textContent = `/ ${formatMoney(targetWants)}`;
+    if (mSavingsVal) mSavingsVal.textContent = formatMoney(actualSavings);
+    if (mSavingsTarget) mSavingsTarget.textContent = `/ ${formatMoney(targetSavings)}`;
+    if (mTotalOut) mTotalOut.textContent = formatMoney(totalOutflow);
 
     // Differences
     updateDiffEl('cmp-needs-diff', targetNeeds, actualNeeds, true);
@@ -546,6 +683,42 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
       saveState();
       renderGroup(group, `f3020-${group}-items`);
       calculateAndRender();
+    },
+    toggleSection: function(key) {
+      const body = document.getElementById(`f3020-body-${key}`);
+      const btn = document.getElementById(`f3020-btn-${key}`);
+      if (body) {
+        const isCurrentlyHidden = body.classList.contains('hidden');
+        if (isCurrentlyHidden) {
+          body.classList.remove('hidden');
+          body.classList.add('block');
+        } else {
+          body.classList.remove('block');
+          body.classList.add('hidden');
+        }
+      }
+      if (btn) {
+        btn.classList.toggle('rotate-180');
+      }
+    },
+    toggleAllSections: function(expand) {
+      ['needs', 'wants', 'savings'].forEach(key => {
+        const body = document.getElementById(`f3020-body-${key}`);
+        const btn = document.getElementById(`f3020-btn-${key}`);
+        if (body) {
+          if (expand) {
+            body.classList.remove('hidden');
+            body.classList.add('block');
+          } else {
+            body.classList.remove('block');
+            body.classList.add('hidden');
+          }
+        }
+        if (btn) {
+          if (expand) btn.classList.add('rotate-180');
+          else btn.classList.remove('rotate-180');
+        }
+      });
     },
   };
 

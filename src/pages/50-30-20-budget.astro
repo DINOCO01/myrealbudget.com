@@ -48,7 +48,7 @@ const faqSchema = {
 
 <Layout title={title} description={description} jsonLd={faqSchema}>
   <!-- HEADER INTRO -->
-  <section class="border-b border-[#ebebeb] bg-white pt-12 pb-14">
+  <section class="border-b border-[#ebebeb] bg-white pt-8 pb-10 sm:pt-12 sm:pb-14">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="max-w-3xl space-y-4">
         <Eyebrow text="Budgeting Framework" />
@@ -60,15 +60,15 @@ const faqSchema = {
         </p>
       </div>
 
-      <!-- Quick Nav Strip -->
-      <div class="mt-8 pt-6 border-t border-[#f2f2f2] flex flex-wrap items-center gap-2 text-xs">
-        <span class="text-[#8f8f8f] font-mono mr-2">Frameworks:</span>
+      <!-- Budgeting Method Switcher Bar -->
+      <div class="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-[#f2f2f2] flex flex-wrap items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs">
+        <span class="text-[#8f8f8f] font-mono mr-1 sm:mr-2">Budgeting Method:</span>
         <a href="/budget-planner/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition">
-          General Planner
+          General Budget
         </a>
-        <span class="px-3 py-1.5 rounded-full bg-[#171717] text-white font-medium">50/30/20 Rule</span>
+        <span class="px-3 py-1.5 rounded-full bg-[#171717] text-white font-medium">50/30/20 Method</span>
         <a href="/zero-based-budget/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition">
-          Zero-Based Budget
+          Zero-Based Method
         </a>
         <a href="/budget-planner-template/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition">
           Spreadsheet Templates
@@ -78,13 +78,13 @@ const faqSchema = {
   </section>
 
   <!-- INTERACTIVE PLANNER ISLAND -->
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
-    <div class="mb-10 text-center max-w-2xl mx-auto space-y-2">
+  <main class="max-w-6xl mx-auto px-3.5 sm:px-6 py-6 sm:py-12">
+    <div class="mb-6 sm:mb-10 text-center max-w-2xl mx-auto space-y-2">
       <Eyebrow text="Interactive Calculator" class="mx-auto" />
       <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717]">
         Interactive 50/30/20 Planner & Target Comparison
       </h2>
-      <p class="text-sm text-[#4d4d4d]">
+      <p class="text-xs sm:text-sm text-[#4d4d4d]">
         Enter your net income to generate automatic benchmark targets, then plug in your actual items to see how closely your real spending aligns.
       </p>
     </div>

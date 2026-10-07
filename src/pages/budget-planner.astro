@@ -40,7 +40,7 @@ const faqSchema = {
 
 <Layout title={title} description={description} jsonLd={faqSchema}>
   <!-- HEADER INTRO -->
-  <section class="border-b border-[#ebebeb] bg-white pt-12 pb-14">
+  <section class="border-b border-[#ebebeb] bg-white pt-8 pb-10 sm:pt-12 sm:pb-14">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="max-w-3xl space-y-4">
         <Eyebrow text="Interactive Tool" />
@@ -52,15 +52,15 @@ const faqSchema = {
         </p>
       </div>
 
-      <!-- Quick Method Switcher Bar -->
-      <div class="mt-8 pt-6 border-t border-[#f2f2f2] flex flex-wrap items-center gap-2 text-xs">
-        <span class="text-[#8f8f8f] font-mono mr-2">Frameworks:</span>
-        <span class="px-3 py-1.5 rounded-full bg-[#171717] text-white font-medium">General Planner</span>
+      <!-- Budgeting Method Switcher Bar -->
+      <div class="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-[#f2f2f2] flex flex-wrap items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs">
+        <span class="text-[#8f8f8f] font-mono mr-1 sm:mr-2">Budgeting Method:</span>
+        <span class="px-3 py-1.5 rounded-full bg-[#171717] text-white font-medium">General Budget</span>
         <a href="/50-30-20-budget/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition">
-          50/30/20 Rule
+          50/30/20 Method
         </a>
         <a href="/zero-based-budget/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition">
-          Zero-Based Budget
+          Zero-Based Method
         </a>
         <a href="/budget-planner-template/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition">
           Spreadsheet Templates
@@ -70,7 +70,7 @@ const faqSchema = {
   </section>
 
   <!-- INTERACTIVE PLANNER TOOL -->
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+  <main class="max-w-6xl mx-auto px-3.5 sm:px-6 py-6 sm:py-12">
     <GeneralBudgetPlanner />
   </main>
 
