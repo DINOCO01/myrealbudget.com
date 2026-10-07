@@ -71,16 +71,16 @@ export const HOME_FAQS: HomeFAQ[] = [
   {
     question: 'Why is a zero-based budget important?',
     answerHtml:
-      'A zero-based budget is important because it eliminates financial ambiguity and prevents untracked cash leaks. When unassigned money sits idly in a checking account, it tends to disappear on impulse purchases. By giving every dollar an explicit purpose—whether for groceries, utilities, emergency savings, or retirement—you maintain total command over your financial trajectory and reach savings targets much faster.',
+      'A zero-based budget is helpful because it clarifies spending intentions and helps reduce untracked cash leaks. When unassigned money sits in a checking account, it can easily drift toward impulse purchases. By giving every dollar an explicit purpose—whether for living costs, emergency savings, or retirement goals—you gain clearer visibility over your cash flow and can make deliberate financial choices.',
     answerText:
-      'A zero-based budget is important because it eliminates financial ambiguity and prevents untracked cash leaks. When unassigned money sits idly in a checking account, it tends to disappear on impulse purchases. By giving every dollar an explicit purpose—whether for groceries, utilities, emergency savings, or retirement—you maintain total command over your financial trajectory and reach savings targets much faster.',
+      'A zero-based budget is helpful because it clarifies spending intentions and helps reduce untracked cash leaks. When unassigned money sits in a checking account, it can easily drift toward impulse purchases. By giving every dollar an explicit purpose—whether for living costs, emergency savings, or retirement goals—you gain clearer visibility over your cash flow and can make deliberate financial choices.',
   },
   {
     question: 'Why is zero-based budgeting considered an effective budgeting method?',
     answerHtml:
-      'Many financial planners consider zero-based budgeting an especially effective method because it promotes complete intentionality. Unlike passive tracking methods that only observe spending after it happens, a zero-based plan encourages proactive trade-offs: if you decide to spend more in one category, you intentionally adjust funds from another. This accountability is particularly useful for eliminating high-interest debt and maximizing savings efficiency.',
+      'Zero-based budgeting is often recommended because it encourages deliberate planning rather than passive tracking. Instead of merely recording expenses after they happen, a zero-based approach prompts proactive trade-offs: when you allocate more to one category, you deliberately adjust funds elsewhere. This approach can be particularly helpful for paying down debt and building consistent savings habits.',
     answerText:
-      'Many financial planners consider zero-based budgeting an especially effective method because it promotes complete intentionality. Unlike passive tracking methods that only observe spending after it happens, a zero-based plan encourages proactive trade-offs: if you decide to spend more in one category, you intentionally adjust funds from another. This accountability is particularly useful for eliminating high-interest debt and maximizing savings efficiency.',
+      'Zero-based budgeting is often recommended because it encourages deliberate planning rather than passive tracking. Instead of merely recording expenses after they happen, a zero-based approach prompts proactive trade-offs: when you allocate more to one category, you deliberately adjust funds elsewhere. This approach can be particularly helpful for paying down debt and building consistent savings habits.',
   },
   {
     question: 'What makes a budget a zero-based budget?',
@@ -92,9 +92,9 @@ export const HOME_FAQS: HomeFAQ[] = [
   {
     question: 'What is a budget planner template for Google Sheets?',
     answerHtml:
-      'A budget planner template for Google Sheets is a pre-formatted digital worksheet hosted in cloud spreadsheets with built-in math formulas, spending categories, and summary charts. It allows you to enter your income and expenses from any internet-connected device, collaborate with a partner or spouse, and automatically calculate category totals and remaining cash balances. You can download free, pre-formatted sheets from our <a href="/budget-planner-template/" class="text-[#0e6e55] dark:text-[#10b981] font-medium underline underline-offset-2 hover:opacity-80">budget planner templates library</a>.',
+      'A budget planner template for Google Sheets is a digital worksheet you can open in cloud spreadsheets to organize personal cash flow. It allows you to enter your income and expenses from any internet-connected device, collaborate with a partner, and adapt the layout to your preferences. You can download free, structured CSV worksheets from our <a href="/budget-planner-template/" class="text-[#0e6e55] dark:text-[#10b981] font-medium underline underline-offset-2 hover:opacity-80">budget planner templates library</a> and import them directly into Google Sheets via File &gt; Import.',
     answerText:
-      'A budget planner template for Google Sheets is a pre-formatted digital worksheet hosted in cloud spreadsheets with built-in math formulas, spending categories, and summary charts. It allows you to enter your income and expenses from any internet-connected device, collaborate with a partner or spouse, and automatically calculate category totals and remaining cash balances. You can download free, pre-formatted sheets from our budget planner templates library.',
+      'A budget planner template for Google Sheets is a digital worksheet you can open in cloud spreadsheets to organize personal cash flow. It allows you to enter your income and expenses from any internet-connected device, collaborate with a partner, and adapt the layout to your preferences. You can download free, structured CSV worksheets from our budget planner templates library and import them directly into Google Sheets via File > Import.',
   },
   {
     question: 'What is a budget planner template?',
@@ -113,9 +113,9 @@ export const HOME_FAQS: HomeFAQ[] = [
   {
     question: 'What is the best budget planner template?',
     answerHtml:
-      'The best budget planner template is one that matches your recordkeeping habits and technical comfort level. For simple cash flow tracking, a clean monthly income-versus-expense worksheet is ideal. For detailed debt payoff, an automated zero-based sheet works best. Look for templates with clear category grouping, automated summation formulas, and multi-platform compatibility across Excel and Google Sheets, such as those available in our <a href="/budget-planner-template/" class="text-[#0e6e55] dark:text-[#10b981] font-medium underline underline-offset-2 hover:opacity-80">free template collection</a>.',
+      'The best budget planner template is one that matches your recordkeeping habits and preferred budgeting framework. For simple cash flow tracking, a clean monthly income-versus-expense worksheet is ideal. For detailed debt payoff, an organized zero-based worksheet helps ensure every dollar has a clear role. Look for templates with clear category grouping, organized line items, and universal compatibility across Excel and Google Sheets, such as those available in our <a href="/budget-planner-template/" class="text-[#0e6e55] dark:text-[#10b981] font-medium underline underline-offset-2 hover:opacity-80">free template collection</a>.',
     answerText:
-      'The best budget planner template is one that matches your recordkeeping habits and technical comfort level. For simple cash flow tracking, a clean monthly income-versus-expense worksheet is ideal. For detailed debt payoff, an automated zero-based sheet works best. Look for templates with clear category grouping, automated summation formulas, and multi-platform compatibility across Excel and Google Sheets, such as those available in our free template collection.',
+      'The best budget planner template is one that matches your recordkeeping habits and preferred budgeting framework. For simple cash flow tracking, a clean monthly income-versus-expense worksheet is ideal. For detailed debt payoff, an organized zero-based worksheet helps ensure every dollar has a clear role. Look for templates with clear category grouping, organized line items, and universal compatibility across Excel and Google Sheets, such as those available in our free template collection.',
   },
   {
     question: 'How do I create a budget planner?',

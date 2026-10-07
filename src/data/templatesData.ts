@@ -17,15 +17,15 @@ export const BUDGET_TEMPLATES: BudgetTemplateDef[] = [
     slug: '50-30-20-budget-template',
     name: '50/30/20 Budget Template',
     shortDescription: 'The classic framework dividing net income into 50% Needs, 30% Wants, and 20% Savings & Debt.',
-    fullDescription: 'A clean, balanced spreadsheet template built around the 50/30/20 rule. Automatically calculates targets based on your take-home pay and compares them against your actual spending across essential needs, personal lifestyle wants, and debt/savings goals.',
+    fullDescription: 'A clean, pre-structured spreadsheet worksheet organized around the 50/30/20 framework. Provides ready-to-use rows and columns to map out essential needs, personal lifestyle wants, and savings goals in your preferred spreadsheet software.',
     targetAudience: 'Beginners, professionals, and anyone seeking a high-level, low-maintenance financial plan.',
     method: '50/30/20 Rule',
     methodSlug: '/50-30-20-budget/',
     features: [
-      'Automatic calculation of 50%, 30%, and 20% monthly caps',
-      'Target vs. Actual spending variance formulas',
-      'Support for annualized and irregular expenses',
-      'Instant summaries for Needs, Wants, and Savings',
+      'Pre-categorized rows for 50% Needs, 30% Wants, and 20% Savings',
+      'Structured columns for Planned Monthly Amount, Actual Amount, and Variance',
+      'Sample line items for fixed bills, groceries, leisure, and debt payoff',
+      'Universal compatibility with Google Sheets, Microsoft Excel, and Numbers',
     ],
     csvContent: `Category,Type,Planned Monthly Amount,Actual Amount,Variance
 Primary Salary,Income,5000,5000,0
@@ -47,18 +47,18 @@ Extra Debt Payoff,Savings (20%),200,200,0`,
     id: 'zero-based-template',
     slug: 'zero-based-budget-template',
     name: 'Zero-Based Budget Template',
-    shortDescription: 'Assign every dollar a job so Income minus Allocations equals exactly zero before the month starts.',
-    fullDescription: 'The disciplined, intentional budgeting template where every dollar earned is allocated toward living expenses, debt payoff, or savings. Ensures zero unassigned money slips through the cracks unnoticed.',
-    targetAudience: 'Goal-oriented planners, individuals tackling aggressive debt payoff, and strict budgeters.',
+    shortDescription: 'Assign every dollar an intentional allocation so Income minus Allocations equals zero before the month starts.',
+    fullDescription: 'An intentional budgeting template structured for zero-based allocation. Pre-grouped categories help you plan your income across living expenses, debt payments, and savings cushions so every dollar has a clear destination.',
+    targetAudience: 'Goal-oriented planners, individuals tackling aggressive debt payoff, and detail-oriented budgeters.',
     method: 'Zero-Based Budgeting',
     methodSlug: '/zero-based-budget/',
     features: [
-      'Real-time remaining unassigned balance indicator',
-      'Detailed sinking funds for irregular yearly bills',
-      'Debt snowball and extra principal payoff tracking',
-      'Complete income-minus-outflow balancing check',
+      'Pre-structured categories for housing, living, debt reduction, and savings',
+      'Status column to track planned versus funded allocations',
+      'Designated lines for recurring bills, student loans, and emergency buffers',
+      'Ready to import into Google Sheets, Excel, or Apple Numbers',
     ],
-    csvContent: `Category,Envelope / Job,Planned Allocation,Actual Spent,Status
+    csvContent: `Category,Allocation Category,Planned Allocation,Actual Spent,Status
 Income,Primary Paycheck,4500,4500,Funded
 Income,Side Hustle / Extra,500,500,Funded
 Housing,Rent or Mortgage,1400,1400,Paid
@@ -79,15 +79,15 @@ Buffer,Miscellaneous Cushion,150,100,Active`,
     slug: 'simple-monthly-budget-template',
     name: 'Simple Monthly Budget Template',
     shortDescription: 'A straightforward, clutter-free income vs. expense planner focused on your net bottom line.',
-    fullDescription: 'Ideal for those who want an uncomplicated overview of total money coming in versus total bills and discretionary spending going out. Includes automatic payment frequency normalization.',
+    fullDescription: 'Ideal for those who want an uncomplicated overview of total money coming in versus total bills and discretionary spending going out. Includes reference columns for weekly, monthly, and annual intervals.',
     targetAudience: 'Anyone wanting a clear, no-nonsense snapshot of monthly cash flow without complex rules.',
     method: 'General Budget Planner',
     methodSlug: '/budget-planner/',
     features: [
-      'Clean breakdown of fixed vs. variable spending',
-      'Annualized frequency normalization built-in',
-      'Net monthly surplus / deficit calculation',
-      'Print-ready, single-sheet layout',
+      'Clean separation of income sources, fixed bills, and variable living expenses',
+      'Frequency reference column for weekly, monthly, and yearly items',
+      'Pre-calculated monthly reference values to guide cash flow setup',
+      'Print-ready, single-sheet layout suitable for any spreadsheet program',
     ],
     csvContent: `Section,Item Name,Frequency,Entered Amount,Normalized Monthly
 Income,Net Paycheck,Monthly,4200,4200
