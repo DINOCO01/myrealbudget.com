@@ -47,7 +47,7 @@ export const LEARN_ARTICLES: LearnArticleDef[] = [
     metaDescription: 'Explore zero-based budgeting (ZBB). Discover how assigning every dollar a specific purpose eliminates financial leaks and accelerates debt payoff and savings.',
     readTime: '5 min read',
     category: 'Budgeting Methods',
-    summary: 'Learn why Income minus Outflow equals Zero is one of the most effective strategies for debt elimination and intentional wealth building.',
+    summary: 'Learn how Income minus Outflow equals Zero creates intentional clarity for debt reduction and savings goals.',
     relatedSlugs: ['50-30-20-vs-zero-based-budget', 'how-to-create-a-monthly-budget'],
   },
   {

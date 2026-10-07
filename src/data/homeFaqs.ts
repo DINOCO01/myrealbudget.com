@@ -76,11 +76,11 @@ export const HOME_FAQS: HomeFAQ[] = [
       'A zero-based budget is important because it eliminates financial ambiguity and prevents untracked cash leaks. When unassigned money sits idly in a checking account, it tends to disappear on impulse purchases. By giving every dollar an explicit purpose—whether for groceries, utilities, emergency savings, or retirement—you maintain total command over your financial trajectory and reach savings targets much faster.',
   },
   {
-    question: 'Why is the zero-based budget the most effective type of budget?',
+    question: 'Why is zero-based budgeting considered an effective budgeting method?',
     answerHtml:
-      'Many financial planners consider zero-based budgeting the most effective system because it promotes complete intentionality. Unlike passive tracking methods that only observe spending after it happens, a zero-based plan forces proactive trade-offs: if you decide to spend more in one category, you must intentionally move funds from another. This accountability is particularly powerful for eliminating high-interest debt and maximizing savings efficiency.',
+      'Many financial planners consider zero-based budgeting an especially effective method because it promotes complete intentionality. Unlike passive tracking methods that only observe spending after it happens, a zero-based plan encourages proactive trade-offs: if you decide to spend more in one category, you intentionally adjust funds from another. This accountability is particularly useful for eliminating high-interest debt and maximizing savings efficiency.',
     answerText:
-      'Many financial planners consider zero-based budgeting the most effective system because it promotes complete intentionality. Unlike passive tracking methods that only observe spending after it happens, a zero-based plan forces proactive trade-offs: if you decide to spend more in one category, you must intentionally move funds from another. This accountability is particularly powerful for eliminating high-interest debt and maximizing savings efficiency.',
+      'Many financial planners consider zero-based budgeting an especially effective method because it promotes complete intentionality. Unlike passive tracking methods that only observe spending after it happens, a zero-based plan encourages proactive trade-offs: if you decide to spend more in one category, you intentionally adjust funds from another. This accountability is particularly useful for eliminating high-interest debt and maximizing savings efficiency.',
   },
   {
     question: 'What makes a budget a zero-based budget?',
