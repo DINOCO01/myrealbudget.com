@@ -1,0 +1,12 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Disallow standalone error pages
+Disallow: /404.html
+Disallow: /500.html
+
+# Host & Sitemaps
+Host: https://myrealbudget.com
+Sitemap: https://myrealbudget.com/sitemap-index.xml
+Sitemap: https://myrealbudget.com/sitemap.xml

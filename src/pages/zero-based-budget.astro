@@ -1,0 +1,271 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Eyebrow from '../components/ui/Eyebrow.astro';
+import ZeroBasedPlanner from '../components/planners/ZeroBasedPlanner.astro';
+
+const title = 'Zero-Based Budget: How to Give Every Dollar a Job (Free Tool)';
+const description = 'Learn zero-based budgeting (ZBB) with our free interactive planner. Discover the step-by-step process to assign every dollar a job so your monthly income minus allocations equals exactly zero.';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What does zero-based budgeting mean?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Zero-based budgeting means planning your spending so that your Total Income minus Total Allocations (expenses, debt payoff, and savings) equals exactly $0. It does NOT mean you spend all your money down to zero in your checking account; rather, every dollar is intentionally assigned a purpose before the month begins.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What do I do if I have money left over in a zero-based budget?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'If money remains unassigned, give it a specific job such as extra principal on high-interest debt, contributions to an emergency fund, or a sinking fund for future car repairs or holidays. Leaving cash unassigned leads to mindless drift.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is zero-based budgeting suitable for irregular or freelance income?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. For fluctuating income, base your starting monthly budget on your lowest projected monthly earning baseline. When higher-earning months occur, direct the extra surplus into an income buffer fund to smooth out leaner months.',
+      },
+    },
+  ],
+};
+---
+
+<Layout title={title} description={description} jsonLd={faqSchema}>
+  <!-- HEADER INTRO -->
+  <section class="border-b border-[#ebebeb] bg-white pt-12 pb-14">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="max-w-3xl space-y-4">
+        <Eyebrow text="Intentional Cash Flow" />
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-[#171717] leading-tight">
+          Zero-Based Budgeting
+        </h1>
+        <p class="text-base sm:text-lg text-[#4d4d4d] leading-relaxed">
+          "Every dollar has a job." Assign your entire income across living expenses, debt reduction, and savings goals until your unassigned balance equals exactly zero.
+        </p>
+      </div>
+
+      <!-- Quick Nav Strip -->
+      <div class="mt-8 pt-6 border-t border-[#f2f2f2] flex flex-wrap items-center gap-2 text-xs">
+        <span class="text-[#8f8f8f] font-mono mr-2">Frameworks:</span>
+        <a href="/budget-planner/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition">
+          General Planner
+        </a>
+        <a href="/50-30-20-budget/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition">
+          50/30/20 Rule
+        </a>
+        <span class="px-3 py-1.5 rounded-full bg-[#171717] text-white font-medium">Zero-Based Budget</span>
+        <a href="/budget-planner-template/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition">
+          Spreadsheet Templates
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE PLANNER TOOL -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+    <div class="mb-10 text-center max-w-2xl mx-auto space-y-2">
+      <Eyebrow text="Interactive Tool" class="mx-auto" />
+      <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717]">
+        Interactive Zero-Based Budget Builder
+      </h2>
+      <p class="text-sm text-[#4d4d4d]">
+        Enter your total net income, assign dollars to your custom category envelopes, and watch the balance meter reach zero.
+      </p>
+    </div>
+
+    <ZeroBasedPlanner />
+  </main>
+
+  <!-- DETAILED EXPLANATION (SEO Clustered Content) -->
+  <section class="border-t border-[#ebebeb] bg-white py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 space-y-16">
+      
+      <!-- 1. The Core Philosophy -->
+      <div class="space-y-4">
+        <Eyebrow text="The Core Concept" />
+        <h2 class="text-2xl font-semibold tracking-tight text-[#171717]">
+          What Is Zero-Based Budgeting?
+        </h2>
+        <p class="text-sm text-[#4d4d4d] leading-relaxed">
+          Zero-based budgeting (often abbreviated as ZBB) is a budgeting method where your <strong>monthly income minus all planned allocations equals zero</strong>:
+        </p>
+        <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] font-mono text-center text-sm font-semibold text-[#171717]">
+          Total Monthly Income − Total Allocations = $0
+        </div>
+        <p class="text-sm text-[#4d4d4d] leading-relaxed">
+          This does <em>not</em> mean your bank account balance drops to $0. Instead, it means that before the month begins, you decide intentionally what role every incoming dollar will play. If you earn $4,500, you assign all $4,500 toward living expenses, savings, investments, or debt paydown.
+        </p>
+      </div>
+
+      <!-- 2. Step-by-Step Process -->
+      <div class="space-y-5">
+        <h2 class="text-2xl font-semibold tracking-tight text-[#171717]">
+          The 5-Step Process to Build a Zero-Based Budget
+        </h2>
+        <div class="space-y-4 text-xs">
+          
+          <div class="p-5 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] flex gap-4 items-start">
+            <span class="w-6 h-6 rounded-full bg-[#171717] text-white flex items-center justify-center font-mono font-bold shrink-0">1</span>
+            <div class="space-y-1">
+              <h3 class="font-semibold text-sm text-[#171717]">Tally Total Income</h3>
+              <p class="text-[#4d4d4d] leading-relaxed">
+                Add up all reliable take-home pay, freelancing proceeds, and recurring cash flow for the upcoming month. This represents your available pool.
+              </p>
+            </div>
+          </div>
+
+          <div class="p-5 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] flex gap-4 items-start">
+            <span class="w-6 h-6 rounded-full bg-[#171717] text-white flex items-center justify-center font-mono font-bold shrink-0">2</span>
+            <div class="space-y-1">
+              <h3 class="font-semibold text-sm text-[#171717]">Fund Core Survival Needs First</h3>
+              <p class="text-[#4d4d4d] leading-relaxed">
+                Protect your four walls: food, utilities, housing (rent/mortgage), and essential transportation to work.
+              </p>
+            </div>
+          </div>
+
+          <div class="p-5 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] flex gap-4 items-start">
+            <span class="w-6 h-6 rounded-full bg-[#171717] text-white flex items-center justify-center font-mono font-bold shrink-0">3</span>
+            <div class="space-y-1">
+              <h3 class="font-semibold text-sm text-[#171717]">Build Sinking Funds for Irregular Bills</h3>
+              <p class="text-[#4d4d4d] leading-relaxed">
+                Instead of being surprised by annual car registration or biannual property taxes, divide the yearly cost into 12 monthly jobs and allocate cash into designated envelopes.
+              </p>
+            </div>
+          </div>
+
+          <div class="p-5 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] flex gap-4 items-start">
+            <span class="w-6 h-6 rounded-full bg-[#171717] text-white flex items-center justify-center font-mono font-bold shrink-0">4</span>
+            <div class="space-y-1">
+              <h3 class="font-semibold text-sm text-[#171717]">Attack Debt & Boost Savings</h3>
+              <p class="text-[#4d4d4d] leading-relaxed">
+                Assign money toward extra principal reduction on credit cards or student loans, and direct capital toward your Roth IRA or emergency reserves.
+              </p>
+            </div>
+          </div>
+
+          <div class="p-5 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] flex gap-4 items-start">
+            <span class="w-6 h-6 rounded-full bg-[#171717] text-white flex items-center justify-center font-mono font-bold shrink-0">5</span>
+            <div class="space-y-1">
+              <h3 class="font-semibold text-sm text-[#171717]">Assign Remaining Cash to Zero</h3>
+              <p class="text-[#4d4d4d] leading-relaxed">
+                Allocate any remaining dollars to personal fun money, dining, or a miscellaneous buffer until your unassigned balance equals exactly $0.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 3. Concrete Example Budget Table -->
+      <div class="space-y-4">
+        <Eyebrow text="Worked Example" />
+        <h2 class="text-2xl font-semibold tracking-tight text-[#171717]">
+          Example of a $4,500 Zero-Based Budget
+        </h2>
+        <div class="overflow-x-auto rounded-[8px] border border-[#ebebeb]">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="bg-[#fafafa] border-b border-[#ebebeb] font-mono text-[#8f8f8f]">
+                <th class="p-3">Job Category</th>
+                <th class="p-3">Line Item</th>
+                <th class="p-3">Assigned Amount</th>
+                <th class="p-3">Cumulative Balance</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[#ebebeb] font-mono">
+              <tr class="bg-neutral-50/50">
+                <td class="p-3 font-semibold text-[#171717]">Income</td>
+                <td class="p-3">Net Take-Home Pay</td>
+                <td class="p-3 text-[#047857]">+$4,500</td>
+                <td class="p-3 font-semibold">$4,500 Available</td>
+              </tr>
+              <tr>
+                <td class="p-3 text-[#4d4d4d]">Housing</td>
+                <td class="p-3">Rent & Utilities</td>
+                <td class="p-3 text-[#171717]">-$1,600</td>
+                <td class="p-3 text-[#8f8f8f]">$2,900 Left</td>
+              </tr>
+              <tr>
+                <td class="p-3 text-[#4d4d4d]">Food</td>
+                <td class="p-3">Groceries & Household Essentials</td>
+                <td class="p-3 text-[#171717]">-$500</td>
+                <td class="p-3 text-[#8f8f8f]">$2,400 Left</td>
+              </tr>
+              <tr>
+                <td class="p-3 text-[#4d4d4d]">Transportation</td>
+                <td class="p-3">Car Payment, Fuel & Insurance Sinking Fund</td>
+                <td class="p-3 text-[#171717]">-$550</td>
+                <td class="p-3 text-[#8f8f8f]">$1,850 Left</td>
+              </tr>
+              <tr>
+                <td class="p-3 text-[#4d4d4d]">Debt Elimination</td>
+                <td class="p-3">Student Loan Principal Acceleration</td>
+                <td class="p-3 text-[#171717]">-$450</td>
+                <td class="p-3 text-[#8f8f8f]">$1,400 Left</td>
+              </tr>
+              <tr>
+                <td class="p-3 text-[#4d4d4d]">Savings</td>
+                <td class="p-3">Emergency Cushion + Roth IRA</td>
+                <td class="p-3 text-[#0070f3]">-$900</td>
+                <td class="p-3 text-[#8f8f8f]">$500 Left</td>
+              </tr>
+              <tr>
+                <td class="p-3 text-[#4d4d4d]">Discretionary</td>
+                <td class="p-3">Dining Out, Entertainment & Subscriptions</td>
+                <td class="p-3 text-[#171717]">-$400</td>
+                <td class="p-3 text-[#8f8f8f]">$100 Left</td>
+              </tr>
+              <tr class="bg-[#e6fbf5]">
+                <td class="p-3 font-semibold text-[#047857]">Buffer</td>
+                <td class="p-3 font-semibold text-[#047857]">Checking Account Buffer Cushion</td>
+                <td class="p-3 font-semibold text-[#047857]">-$100</td>
+                <td class="p-3 font-bold text-[#047857]">$0 Remaining (Balanced)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 4. Zero-Based FAQ -->
+      <div class="space-y-6 pt-4 border-t border-[#ebebeb]">
+        <h2 class="text-2xl font-semibold tracking-tight text-[#171717]">
+          Frequently Asked Questions About Zero-Based Budgeting
+        </h2>
+        <div class="space-y-4 text-xs">
+          <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] space-y-1.5">
+            <h3 class="font-semibold text-sm text-[#171717]">Does zero-based budgeting mean I have $0 in my bank account?</h3>
+            <p class="text-[#4d4d4d] leading-relaxed">
+              No. Zero-based budgeting means that every dollar you earn is assigned on paper or in a spreadsheet to an envelope or category. Your actual bank account balance can hold thousands of dollars across emergency funds and checking cushions.
+            </p>
+          </div>
+          <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] space-y-1.5">
+            <h3 class="font-semibold text-sm text-[#171717]">How does zero-based budgeting compare to the 50/30/20 rule?</h3>
+            <p class="text-[#4d4d4d] leading-relaxed">
+              The 50/30/20 rule is a high-level macro guideline that separates money into three percentages. Zero-based budgeting is a micro-planning system that gives every specific dollar an envelope. Many people start with 50/30/20 and then use zero-based budgeting to execute within those three buckets.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Navigation Interlinking -->
+      <div class="pt-8 border-t border-[#ebebeb] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8f8f8f]">
+        <span>Compare with other tools:</span>
+        <div class="flex items-center gap-3">
+          <a href="/50-30-20-budget/" class="text-[#171717] font-medium underline hover:text-[#0070f3]">50/30/20 Budget Rule →</a>
+          <a href="/budget-planner/" class="text-[#171717] font-medium underline hover:text-[#0070f3]">General Budget Planner →</a>
+          <a href="/budget-planner-template/#zero-based-template" class="text-[#171717] font-medium underline hover:text-[#0070f3]">Zero-Based CSV Template →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</Layout>

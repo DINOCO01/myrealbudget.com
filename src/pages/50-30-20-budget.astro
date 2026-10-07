@@ -1,0 +1,270 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Eyebrow from '../components/ui/Eyebrow.astro';
+import FiftyThirtyTwentyPlanner from '../components/planners/FiftyThirtyTwentyPlanner.astro';
+import { formatCurrency } from '../utils/currency';
+
+const title = '50/30/20 Budget Rule: Calculator, Examples & Practical Guide';
+const description = 'Master the 50/30/20 budget rule. Calculate your Needs (50%), Wants (30%), and Savings (20%) targets with our interactive planner, see real income examples, and balance your actual spending.';
+
+const incomeExamples = [
+  { income: 3000, needs: 1500, wants: 900, savings: 600 },
+  { income: 5000, needs: 2500, wants: 1500, savings: 1000 },
+  { income: 7500, needs: 3750, wants: 2250, savings: 1500 },
+  { income: 10000, needs: 5000, wants: 3000, savings: 2000 },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What is the 50/30/20 budget rule?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The 50/30/20 budget is an intuitive personal finance rule popularized by Senator Elizabeth Warren. It allocates after-tax income into three buckets: 50% for essential needs, 30% for personal wants, and 20% for savings and extra debt repayment.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is the 50/30/20 rule realistic in high-cost-of-living areas?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'In cities where rent or mortgages are exceptionally high, needs may naturally take up 55% to 65% of net income. The framework is meant to be adaptable—users in expensive areas often adjust to a 60/25/15 or 60/20/20 ratio while keeping their total spending balanced.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do minimum debt payments count as Needs or Savings?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Minimum debt payments (such as student loans or minimum credit card payments) count as essential Needs because skipping them damages your credit score. Any extra principal payments above the minimum count toward the 20% Savings & Debt bucket.',
+      },
+    },
+  ],
+};
+---
+
+<Layout title={title} description={description} jsonLd={faqSchema}>
+  <!-- HEADER INTRO -->
+  <section class="border-b border-[#ebebeb] bg-white pt-12 pb-14">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="max-w-3xl space-y-4">
+        <Eyebrow text="Budgeting Framework" />
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-[#171717] leading-tight">
+          The 50/30/20 Budget Rule
+        </h1>
+        <p class="text-base sm:text-lg text-[#4d4d4d] leading-relaxed">
+          A clear, percentage-based framework designed to balance living essentials, personal enjoyment, and financial security without micro-managing every transaction.
+        </p>
+      </div>
+
+      <!-- Quick Nav Strip -->
+      <div class="mt-8 pt-6 border-t border-[#f2f2f2] flex flex-wrap items-center gap-2 text-xs">
+        <span class="text-[#8f8f8f] font-mono mr-2">Frameworks:</span>
+        <a href="/budget-planner/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition">
+          General Planner
+        </a>
+        <span class="px-3 py-1.5 rounded-full bg-[#171717] text-white font-medium">50/30/20 Rule</span>
+        <a href="/zero-based-budget/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition">
+          Zero-Based Budget
+        </a>
+        <a href="/budget-planner-template/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition">
+          Spreadsheet Templates
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE PLANNER ISLAND -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+    <div class="mb-10 text-center max-w-2xl mx-auto space-y-2">
+      <Eyebrow text="Interactive Calculator" class="mx-auto" />
+      <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717]">
+        Interactive 50/30/20 Planner & Target Comparison
+      </h2>
+      <p class="text-sm text-[#4d4d4d]">
+        Enter your net income to generate automatic benchmark targets, then plug in your actual items to see how closely your real spending aligns.
+      </p>
+    </div>
+
+    <FiftyThirtyTwentyPlanner />
+  </main>
+
+  <!-- COMPREHENSIVE EDUCATIONAL BREAKDOWN (SEO Clustered Content) -->
+  <section class="border-t border-[#ebebeb] bg-white py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 space-y-16">
+      
+      <!-- 1. What is the 50/30/20 Rule -->
+      <div class="space-y-4">
+        <Eyebrow text="The Breakdown" />
+        <h2 class="text-2xl font-semibold tracking-tight text-[#171717]">
+          What Is the 50/30/20 Budget?
+        </h2>
+        <p class="text-sm text-[#4d4d4d] leading-relaxed">
+          Popularized by bankruptcy expert and Harvard law professor Elizabeth Warren in her book <em>All Your Worth: The Ultimate Lifetime Money Plan</em>, the 50/30/20 rule divides your <strong>after-tax, take-home pay</strong> into three intentional categories.
+        </p>
+        <p class="text-sm text-[#4d4d4d] leading-relaxed">
+          Unlike restrictive diets that prohibit dining out or entertainment, the 50/30/20 model explicitly budgets for guilt-free personal spending, making it one of the most sustainable long-term financial routines.
+        </p>
+      </div>
+
+      <!-- 2. The Three Buckets in Detail -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Needs Card -->
+        <div class="p-6 rounded-[12px] bg-[#fafafa] border border-[#ebebeb] space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="w-8 h-8 rounded-full bg-[#171717] text-white flex items-center justify-center font-mono text-xs font-semibold">50%</span>
+            <span class="font-mono text-xs text-[#8f8f8f]">Essential</span>
+          </div>
+          <h3 class="text-lg font-semibold text-[#171717]">Needs</h3>
+          <p class="text-xs text-[#4d4d4d] leading-relaxed">
+            Expenses required to live and work. If you lost your job tomorrow, these would still be necessary.
+          </p>
+          <ul class="text-xs text-[#4d4d4d] space-y-1 pt-2 border-t border-[#ebebeb]">
+            <li>• Rent or mortgage & HOA fees</li>
+            <li>• Basic groceries & household goods</li>
+            <li>• Water, electricity & gas utilities</li>
+            <li>• Commuter transit & car insurance</li>
+            <li>• Healthcare co-pays & prescriptions</li>
+            <li>• Minimum required debt payments</li>
+          </ul>
+        </div>
+
+        <!-- Wants Card -->
+        <div class="p-6 rounded-[12px] bg-[#fafafa] border border-[#ebebeb] space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="w-8 h-8 rounded-full bg-[#7928ca] text-white flex items-center justify-center font-mono text-xs font-semibold">30%</span>
+            <span class="font-mono text-xs text-[#8f8f8f]">Lifestyle</span>
+          </div>
+          <h3 class="text-lg font-semibold text-[#171717]">Wants</h3>
+          <p class="text-xs text-[#4d4d4d] leading-relaxed">
+            Discretionary choices that enhance quality of life but are not strictly mandatory for survival.
+          </p>
+          <ul class="text-xs text-[#4d4d4d] space-y-1 pt-2 border-t border-[#ebebeb]">
+            <li>• Restaurant meals, bars & takeaway</li>
+            <li>• Streaming services (Netflix, Spotify)</li>
+            <li>• Concerts, movies & sporting events</li>
+            <li>• Vacations, weekend trips & flights</li>
+            <li>• Non-essential clothing & shoes</li>
+            <li>• Hobbies, fitness clubs & gear</li>
+          </ul>
+        </div>
+
+        <!-- Savings Card -->
+        <div class="p-6 rounded-[12px] bg-[#fafafa] border border-[#ebebeb] space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="w-8 h-8 rounded-full bg-[#0070f3] text-white flex items-center justify-center font-mono text-xs font-semibold">20%</span>
+            <span class="font-mono text-xs text-[#8f8f8f]">Future</span>
+          </div>
+          <h3 class="text-lg font-semibold text-[#171717]">Savings & Extra Debt</h3>
+          <p class="text-xs text-[#4d4d4d] leading-relaxed">
+            Investments in your future resilience and accelerated freedom from high-interest liabilities.
+          </p>
+          <ul class="text-xs text-[#4d4d4d] space-y-1 pt-2 border-t border-[#ebebeb]">
+            <li>• High-yield emergency buffer funds</li>
+            <li>• Roth IRA & brokerage investments</li>
+            <li>• Extra 401(k) retirement contributions</li>
+            <li>• Extra credit card / debt principal paydown</li>
+            <li>• Sinking funds for future home deposit</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- 3. Real Income Benchmark Table -->
+      <div class="space-y-5">
+        <Eyebrow text="Benchmarks" />
+        <h2 class="text-2xl font-semibold tracking-tight text-[#171717]">
+          Example 50/30/20 Budgets Across Different Incomes
+        </h2>
+        <p class="text-sm text-[#4d4d4d]">
+          Here is how the numbers break down across common monthly take-home pay thresholds:
+        </p>
+
+        <div class="overflow-x-auto rounded-[8px] border border-[#ebebeb]">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="bg-[#fafafa] border-b border-[#ebebeb] text-[#8f8f8f] font-mono">
+                <th class="p-3.5">Net Monthly Income</th>
+                <th class="p-3.5">Needs (50%)</th>
+                <th class="p-3.5">Wants (30%)</th>
+                <th class="p-3.5">Savings / Debt (20%)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[#ebebeb] font-mono">
+              {incomeExamples.map(row => (
+                <tr class="hover:bg-[#fafafa]/60 transition">
+                  <td class="p-3.5 font-semibold text-[#171717]">{formatCurrency(row.income)}</td>
+                  <td class="p-3.5 text-[#171717]">{formatCurrency(row.needs)}</td>
+                  <td class="p-3.5 text-[#7928ca]">{formatCurrency(row.wants)}</td>
+                  <td class="p-3.5 text-[#0070f3]">{formatCurrency(row.savings)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 4. Not a Rigid Financial Law: Nuances & Adjustments -->
+      <div class="p-6 rounded-[12px] bg-[#fafafa] border border-[#ebebeb] space-y-3">
+        <h3 class="text-base font-semibold text-[#171717]">
+          Important: 50/30/20 is a flexible guide, not a rigid law
+        </h3>
+        <p class="text-xs text-[#4d4d4d] leading-relaxed">
+          If you reside in New York, London, Toronto, or San Francisco, spending only 50% on needs may be temporarily impossible when modest rents alone claim 40% of net pay.
+        </p>
+        <p class="text-xs text-[#4d4d4d] leading-relaxed">
+          In those situations, adopt an honest ratio such as <strong>60/25/15</strong> or <strong>65/20/15</strong>. The purpose of the 50/30/20 rule is not perfection—it is providing a north-star benchmark so you can identify spending creep before it threatens your solvency.
+        </p>
+      </div>
+
+      <!-- 5. FAQ Section -->
+      <div class="space-y-6 pt-4 border-t border-[#ebebeb]">
+        <h2 class="text-2xl font-semibold tracking-tight text-[#171717]">
+          Frequently Asked Questions About the 50/30/20 Rule
+        </h2>
+        <div class="space-y-4 text-xs">
+          <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] space-y-1.5">
+            <h3 class="font-semibold text-sm text-[#171717]">Do I calculate percentages from gross or net income?</h3>
+            <p class="text-[#4d4d4d] leading-relaxed">
+              Always use <strong>net (after-tax) income</strong>. If your employer automatically deducts retirement contributions or health insurance premiums from your paycheck, you can add those back into your calculation to determine your true total gross net base, or simply budget your direct bank deposit.
+            </p>
+          </div>
+          <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] space-y-1.5">
+            <h3 class="font-semibold text-sm text-[#171717]">What if my Needs exceed 50%?</h3>
+            <p class="text-[#4d4d4d] leading-relaxed">
+              When essential costs are elevated, temporarily decrease your Wants bucket rather than halting your savings. Protecting at least a 10% emergency savings rate prevents high-interest credit card debt from snowballing when unexpected car or medical bills arise.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Template CTA & Interlinking -->
+      <div class="p-6 rounded-[12px] bg-white border border-[#ebebeb] shadow-whisper flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="space-y-1 text-center sm:text-left">
+          <h3 class="font-semibold text-sm text-[#171717]">Prefer a downloadable spreadsheet?</h3>
+          <p class="text-xs text-[#8f8f8f]">Get our free 50/30/20 CSV template ready for Excel and Google Sheets.</p>
+        </div>
+        <a
+          href="/budget-planner-template/#50-30-20-template"
+          class="inline-flex items-center justify-center h-10 px-6 rounded-full bg-[#171717] text-white text-xs font-medium hover:bg-neutral-800 transition"
+        >
+          Download 50/30/20 Template
+        </a>
+      </div>
+
+      <div class="pt-8 border-t border-[#ebebeb] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8f8f8f]">
+        <span>Explore other budgeting methodologies:</span>
+        <div class="flex items-center gap-3">
+          <a href="/zero-based-budget/" class="text-[#171717] font-medium underline hover:text-[#0070f3]">Zero-Based Budget Guide →</a>
+          <a href="/budget-planner/" class="text-[#171717] font-medium underline hover:text-[#0070f3]">General Budget Planner →</a>
+          <a href="/learn/50-30-20-vs-zero-based-budget/" class="text-[#171717] font-medium underline hover:text-[#0070f3]">50/30/20 vs Zero-Based →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</Layout>

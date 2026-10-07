@@ -1,23 +1,165 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogType?: 'website' | 'article';
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  jsonLd?: Record<string, any> | Array<Record<string, any>>;
+  noIndex?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogType = 'website',
+  ogTitle,
+  ogDescription,
+  ogImage,
+  jsonLd,
+  noIndex = false,
+} = Astro.props;
+
+const siteUrl = 'https://myrealbudget.com';
+
+// Ensure consistent canonical URL with trailing slash, non-www, and https
+let normalizedPath = Astro.url.pathname;
+if (!normalizedPath.startsWith('/')) {
+  normalizedPath = `/${normalizedPath}`;
+}
+if (!normalizedPath.endsWith('/')) {
+  normalizedPath = `${normalizedPath}/`;
+}
+
+const canonicalUrl = canonical || (normalizedPath === '/' ? `${siteUrl}/` : `${siteUrl}${normalizedPath}`);
+const resolvedOgImage = ogImage || `${siteUrl}/og-image.png`;
+const resolvedOgTitle = ogTitle || title;
+const resolvedOgDescription = ogDescription || description;
+
+const defaultJsonLd = jsonLd || {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}/#website`,
+      url: `${siteUrl}/`,
+      name: 'My Real Budget',
+      description: 'Online budget planner for monthly budgeting, the 50/30/20 rule, zero-based budgeting, and spreadsheet templates.',
+      publisher: {
+        '@id': `${siteUrl}/#organization`,
+      },
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: `${siteUrl}/budget-planner/`,
+        'query-input': 'required name=search_term_string',
+      },
+    },
+    {
+      '@type': 'Organization',
+      '@id': `${siteUrl}/#organization`,
+      name: 'My Real Budget',
+      url: `${siteUrl}/`,
+      logo: `${siteUrl}/favicon.svg`,
+    },
+    {
+      '@type': 'WebApplication',
+      '@id': `${siteUrl}/#webapp`,
+      name: 'My Real Budget Planner',
+      url: `${siteUrl}/`,
+      applicationCategory: 'FinanceApplication',
+      operatingSystem: 'All',
+      browserRequirements: 'Requires modern web browser with HTML5 and JavaScript enabled.',
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+      },
+      description: 'Free online budget planner for monthly cash flow planning, 50/30/20 budgets, and zero-based budgeting.',
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="My Real Budget" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Core -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    {noIndex ? (
+      <meta name="robots" content="noindex, nofollow" />
+    ) : (
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    )}
+
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="My Real Budget" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={resolvedOgTitle} />
+    <meta property="og:description" content={resolvedOgDescription} />
+    <meta property="og:image" content={resolvedOgImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="My Real Budget - Best Budget Planner" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={resolvedOgTitle} />
+    <meta name="twitter:description" content={resolvedOgDescription} />
+    <meta name="twitter:image" content={resolvedOgImage} />
+    <meta name="twitter:image:alt" content="My Real Budget - Best Budget Planner" />
+
+    <!-- Fonts: Geist & Geist Mono (as specified in DESIGN.md) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Anti-FOUC Theme Initialization (Light mode default, dark mode optional) -->
+    <script is:inline>
+      (function() {
+        try {
+          const stored = localStorage.getItem('myrealbudget_theme');
+          if (stored === 'dark') {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(defaultJsonLd)} />
+  </head>
+  <body class="min-h-screen flex flex-col bg-[var(--bg-page)] text-[var(--text-primary)] selection:bg-[var(--text-primary)] selection:text-[var(--bg-page)] antialiased font-sans">
+    <Header currentPath={Astro.url.pathname} />
+    <div class="flex-1 flex flex-col">
+      <slot />
+    </div>
+    <Footer />
+  </body>
+</html>

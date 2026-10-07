@@ -1,0 +1,168 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Eyebrow from '../components/ui/Eyebrow.astro';
+import GeneralBudgetPlanner from '../components/planners/GeneralBudgetPlanner.astro';
+
+const title = 'Free Online Budget Planner: Build a Realistic Monthly Budget';
+const description = 'Use our free interactive monthly budget planner with payment frequency normalization, customizable income and expense categories, and real-time cash flow analysis.';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How does payment frequency normalization work in this budget planner?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Instead of approximating weekly expenses by multiplying by 4, this planner uses annualized conversions: weekly expenses are multiplied by 52 and divided by 12, biweekly by 26/12, quarterly by 4/12, and yearly divided by 12. This ensures your monthly cash flow reflects true annual living costs.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Are my financial numbers saved securely?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. All data entered into My Real Budget is stored locally in your web browser via localStorage. Nothing is sent to or stored on external servers, and no account or login is required.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I add custom categories to the budget planner?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. You can add unlimited custom income sources, custom expense categories, and custom line items, as well as customize or remove default ones.',
+      },
+    },
+  ],
+};
+---
+
+<Layout title={title} description={description} jsonLd={faqSchema}>
+  <!-- HEADER INTRO -->
+  <section class="border-b border-[#ebebeb] bg-white pt-12 pb-14">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="max-w-3xl space-y-4">
+        <Eyebrow text="Interactive Tool" />
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-[#171717] leading-tight">
+          Online Monthly Budget Planner
+        </h1>
+        <p class="text-base sm:text-lg text-[#4d4d4d] leading-relaxed">
+          Plan your income and expenses with automatic payment frequency normalization. Understand where every dollar goes and create a budget tailored to your real life.
+        </p>
+      </div>
+
+      <!-- Quick Method Switcher Bar -->
+      <div class="mt-8 pt-6 border-t border-[#f2f2f2] flex flex-wrap items-center gap-2 text-xs">
+        <span class="text-[#8f8f8f] font-mono mr-2">Frameworks:</span>
+        <span class="px-3 py-1.5 rounded-full bg-[#171717] text-white font-medium">General Planner</span>
+        <a href="/50-30-20-budget/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition">
+          50/30/20 Rule
+        </a>
+        <a href="/zero-based-budget/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition">
+          Zero-Based Budget
+        </a>
+        <a href="/budget-planner-template/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition">
+          Spreadsheet Templates
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE PLANNER TOOL -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+    <GeneralBudgetPlanner />
+  </main>
+
+  <!-- IN-DEPTH EXPLANATION & EDUCATIONAL CONTENT (SEO Topic Cluster) -->
+  <section class="border-t border-[#ebebeb] bg-white py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 space-y-12">
+      
+      <!-- Section 1: Frequency Normalization -->
+      <div id="frequency" class="space-y-4">
+        <Eyebrow text="Core Methodology" />
+        <h2 class="text-2xl font-semibold tracking-tight text-[#171717]">
+          Why Frequency Normalization Matters in Real-Life Budgeting
+        </h2>
+        <p class="text-sm text-[#4d4d4d] leading-relaxed">
+          The number one reason traditional budgets fail is that expenses do not occur on the same calendar schedule. You might get paid biweekly, pay rent monthly, buy groceries weekly, and pay auto insurance once a year.
+        </p>
+        <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] space-y-2 text-xs text-[#4d4d4d]">
+          <p class="font-medium text-[#171717]">The math behind true annualized conversion:</p>
+          <ul class="space-y-1.5 text-[#4d4d4d]">
+            <li><strong>Weekly items:</strong> <code>Amount × 52 weeks / 12 months</code>. A $200 weekly grocery budget is not $800/month; it is actually <strong>$866.67/month</strong>. Missing this difference creates an untracked $800 annual cash leak.</li>
+            <li><strong>Biweekly paychecks:</strong> <code>Amount × 26 pay periods / 12 months</code>. There are two "three-paycheck months" each year.</li>
+            <li><strong>Yearly expenses:</strong> <code>Amount / 12 months</code>. A $1,200 annual auto insurance premium should be budgeted as <strong>$100/month</strong> so the money is set aside before the renewal arrives.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Section 2: Step-by-Step Guide -->
+      <div class="space-y-4">
+        <h2 class="text-2xl font-semibold tracking-tight text-[#171717]">
+          How to Create a Monthly Budget Step-by-Step
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+          <div class="p-4 rounded-[8px] border border-[#ebebeb] space-y-1.5">
+            <span class="font-mono font-semibold text-[#8f8f8f]">01. Identify Net Income</span>
+            <h3 class="font-semibold text-sm text-[#171717]">Start with Take-Home Pay</h3>
+            <p class="text-[#4d4d4d]">Use your net salary after taxes, health insurance deductions, and retirement contributions.</p>
+          </div>
+          <div class="p-4 rounded-[8px] border border-[#ebebeb] space-y-1.5">
+            <span class="font-mono font-semibold text-[#8f8f8f]">02. List Fixed Bills</span>
+            <h3 class="font-semibold text-sm text-[#171717]">Non-Negotiable Commitments</h3>
+            <p class="text-[#4d4d4d]">Rent/mortgage, utilities, vehicle payments, minimum debt payments, and recurring insurance.</p>
+          </div>
+          <div class="p-4 rounded-[8px] border border-[#ebebeb] space-y-1.5">
+            <span class="font-mono font-semibold text-[#8f8f8f]">03. Estimate Variable Outflows</span>
+            <h3 class="font-semibold text-sm text-[#171717]">Groceries, Gas & Dining</h3>
+            <p class="text-[#4d4d4d]">Review the past 60–90 days of bank statements to see honest averages rather than idealistic wishes.</p>
+          </div>
+          <div class="p-4 rounded-[8px] border border-[#ebebeb] space-y-1.5">
+            <span class="font-mono font-semibold text-[#8f8f8f]">04. Sinking Funds & Savings</span>
+            <h3 class="font-semibold text-sm text-[#171717]">Buffer for the Unexpected</h3>
+            <p class="text-[#4d4d4d]">Direct surplus into high-yield emergency savings and routine vehicle/medical maintenance funds.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: FAQ -->
+      <div class="space-y-6 pt-4 border-t border-[#ebebeb]">
+        <h2 class="text-2xl font-semibold tracking-tight text-[#171717]">
+          Frequently Asked Questions About Budget Planning
+        </h2>
+        <div class="space-y-4 text-xs">
+          <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] space-y-1.5">
+            <h3 class="font-semibold text-sm text-[#171717]">What should I do if my budget shows a monthly deficit?</h3>
+            <p class="text-[#4d4d4d] leading-relaxed">
+              If your planned expenses exceed your income, do not panic. Start by separating true survival essentials (housing, groceries, utilities, minimum debt payments) from discretionary wants. Look for subscription overlaps, reduce dining out, and look for immediate savings on recurring bills like internet or auto insurance quotes.
+            </p>
+          </div>
+          <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] space-y-1.5">
+            <h3 class="font-semibold text-sm text-[#171717]">How often should I review my budget?</h3>
+            <p class="text-[#4d4d4d] leading-relaxed">
+              We recommend reviewing your numbers at least once a month before payday, and conducting a deeper seasonal check every quarter when utility bills shift or annual subscriptions renew.
+            </p>
+          </div>
+          <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] space-y-1.5">
+            <h3 class="font-semibold text-sm text-[#171717]">Which budgeting method is best for beginners?</h3>
+            <p class="text-[#4d4d4d] leading-relaxed">
+              Beginners often love the <a href="/50-30-20-budget/" class="text-[#0070f3] underline">50/30/20 rule</a> because it only requires tracking three high-level buckets. If you want tighter control over every single dollar, explore <a href="/zero-based-budget/" class="text-[#0070f3] underline">zero-based budgeting</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Related Internal Navigation -->
+      <div class="pt-8 border-t border-[#ebebeb] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8f8f8f]">
+        <span>Continue exploring methods:</span>
+        <div class="flex items-center gap-3">
+          <a href="/50-30-20-budget/" class="text-[#171717] font-medium underline hover:text-[#0070f3]">50/30/20 Rule Guide →</a>
+          <a href="/zero-based-budget/" class="text-[#171717] font-medium underline hover:text-[#0070f3]">Zero-Based Method →</a>
+          <a href="/budget-planner-template/" class="text-[#171717] font-medium underline hover:text-[#0070f3]">Download Templates →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</Layout>

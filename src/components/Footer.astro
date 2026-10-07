@@ -1,0 +1,150 @@
+---
+import Logo from './Logo.astro';
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="w-full bg-[var(--surface-subtle)] border-t border-[var(--border-main)] mt-16 sm:mt-20 transition-colors">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-16">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+      <!-- Brand & Mission -->
+      <div class="md:col-span-1 space-y-3">
+        <div class="flex items-center gap-2 text-[var(--text-primary)]">
+          <Logo class="w-6 h-6 rounded-[6px] shadow-sm" />
+          <span class="font-semibold text-[16px] tracking-tight">My Real Budget</span>
+        </div>
+        <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+          Build a budget that actually works for you. Plan your cash flow with real numbers, normalized payment frequencies, and zero guesswork.
+        </p>
+        <div class="pt-2">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[6px] bg-[var(--surface)] border border-[var(--border-main)] text-[var(--text-secondary)] text-xs font-mono shadow-whisper">
+            <svg class="w-3.5 h-3.5 text-[var(--btn-primary-bg)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+            100% Private & Local
+          </span>
+        </div>
+      </div>
+
+      <!-- Budget Methods -->
+      <div class="space-y-3">
+        <h4 class="font-mono text-xs font-medium uppercase tracking-wider text-[var(--text-muted)]">
+          Budget Methods
+        </h4>
+        <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+          <li>
+            <a href="/budget-planner/" class="hover:text-[var(--text-primary)] transition-colors">
+              General Budget Planner
+            </a>
+          </li>
+          <li>
+            <a href="/50-30-20-budget/" class="hover:text-[#171717] transition-colors">
+              50/30/20 Budget Rule
+            </a>
+          </li>
+          <li>
+            <a href="/zero-based-budget/" class="hover:text-[var(--text-primary)] transition-colors">
+              Zero-Based Budget
+            </a>
+          </li>
+          <li>
+            <a href="/budget-planner/#frequency" class="hover:text-[var(--text-primary)] transition-colors">
+              Frequency Normalization
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Templates & Tools -->
+      <div class="space-y-3">
+        <h4 class="font-mono text-xs font-medium uppercase tracking-wider text-[var(--text-muted)]">
+          Templates & Tools
+        </h4>
+        <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+          <li>
+            <a href="/budget-planner-template/" class="hover:text-[var(--text-primary)] transition-colors">
+              Budget Planner Template
+            </a>
+          </li>
+          <li>
+            <a href="/budget-templates/" class="hover:text-[var(--text-primary)] transition-colors">
+              All Budget Templates
+            </a>
+          </li>
+          <li>
+            <a href="/budget-planner-template/#simple-monthly" class="hover:text-[var(--text-primary)] transition-colors">
+              Simple Monthly Template
+            </a>
+          </li>
+          <li>
+            <a href="/budget-planner-template/#student" class="hover:text-[var(--text-primary)] transition-colors">
+              Student Budget Template
+            </a>
+          </li>
+          <li>
+            <a href="/budget-planner-template/#household" class="hover:text-[var(--text-primary)] transition-colors">
+              Couples & Household Template
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Learning Center -->
+      <div class="space-y-3">
+        <h4 class="font-mono text-xs font-medium uppercase tracking-wider text-[var(--text-muted)]">
+          Learn & Guides
+        </h4>
+        <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+          <li>
+            <a href="/learn/" class="hover:text-[var(--text-primary)] transition-colors">
+              Learning Hub
+            </a>
+          </li>
+          <li>
+            <a href="/learn/what-is-a-budget/" class="hover:text-[var(--text-primary)] transition-colors">
+              What Is a Budget?
+            </a>
+          </li>
+          <li>
+            <a href="/learn/how-to-create-a-monthly-budget/" class="hover:text-[var(--text-primary)] transition-colors">
+              How to Create a Monthly Budget
+            </a>
+          </li>
+          <li>
+            <a href="/learn/50-30-20-budget-explained/" class="hover:text-[var(--text-primary)] transition-colors">
+              50/30/20 Explained
+            </a>
+          </li>
+          <li>
+            <a href="/learn/zero-based-budget-explained/" class="hover:text-[var(--text-primary)] transition-colors">
+              Zero-Based Explained
+            </a>
+          </li>
+          <li>
+            <a href="/learn/50-30-20-vs-zero-based-budget/" class="hover:text-[var(--text-primary)] transition-colors">
+              50/30/20 vs Zero-Based
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom strip -->
+    <div class="mt-12 pt-8 border-t border-[var(--border-main)] flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[var(--text-muted)]">
+      <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
+        <p>© {currentYear} My Real Budget (myrealbudget.com). All rights reserved.</p>
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <a href="/about/" class="hover:text-[var(--text-primary)] transition-colors">About Us</a>
+          <span aria-hidden="true" class="text-[var(--border-main)]">•</span>
+          <a href="/contact/" class="hover:text-[var(--text-primary)] transition-colors">Contact</a>
+          <span aria-hidden="true" class="text-[var(--border-main)]">•</span>
+          <a href="/privacy/" class="hover:text-[var(--text-primary)] transition-colors">Privacy Policy</a>
+          <span aria-hidden="true" class="text-[var(--border-main)]">•</span>
+          <a href="/terms/" class="hover:text-[var(--text-primary)] transition-colors">Terms & Conditions</a>
+        </div>
+      </div>
+      <p class="text-center md:text-right">
+        Educational budgeting tools. Not intended as formal investment, tax, or legal advisory.
+      </p>
+    </div>
+  </div>
+</footer>

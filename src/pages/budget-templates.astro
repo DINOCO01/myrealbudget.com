@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Eyebrow from '../components/ui/Eyebrow.astro';
+import { BUDGET_TEMPLATES } from '../data/templatesData';
+
+const title = 'Budget Templates Directory: Free Spreadsheets & Planners';
+const description = 'Browse our directory of free budget templates. Choose from 50/30/20, Zero-Based, Simple Monthly, Student, and Couples household budget spreadsheets.';
+---
+
+<Layout title={title} description={description}>
+  <!-- HEADER INTRO -->
+  <section class="border-b border-[#ebebeb] bg-white pt-12 pb-14">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="max-w-3xl space-y-4">
+        <Eyebrow text="Templates Catalog" />
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-[#171717] leading-tight">
+          Budget Templates Directory
+        </h1>
+        <p class="text-base sm:text-lg text-[#4d4d4d] leading-relaxed">
+          Find the right budgeting spreadsheet for your specific situation. Every template is completely free to download or use with our online planners.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIRECTORY GRID -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {BUDGET_TEMPLATES.map((template) => (
+        <article class="bg-white rounded-[12px] border border-[#ebebeb] p-6 shadow-whisper flex flex-col justify-between hover:border-[#a1a1a1] transition">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="inline-block px-2.5 py-0.5 rounded-[6px] bg-[#f2f2f2] text-xs font-mono text-[#4d4d4d]">
+                {template.method}
+              </span>
+              <span class="text-xs text-[#8f8f8f] font-mono">CSV / Sheets</span>
+            </div>
+
+            <h2 class="text-lg font-semibold text-[#171717] tracking-tight">
+              {template.name}
+            </h2>
+
+            <p class="text-xs text-[#4d4d4d] leading-relaxed">
+              {template.shortDescription}
+            </p>
+
+            <div class="pt-2 border-t border-[#f2f2f2] space-y-1">
+              <span class="text-[11px] font-mono uppercase text-[#8f8f8f] block">Who it is for:</span>
+              <p class="text-xs text-[#171717]">
+                {template.targetAudience}
+              </p>
+            </div>
+          </div>
+
+          <div class="pt-6 border-t border-[#ebebeb] mt-6 flex flex-col sm:flex-row gap-2">
+            <a
+              href={`/budget-planner-template/#${template.id}`}
+              class="flex-1 inline-flex items-center justify-center h-9 px-4 rounded-full bg-[#171717] text-white text-xs font-medium hover:bg-neutral-800 transition text-center"
+            >
+              Get Template
+            </a>
+            <a
+              href={template.methodSlug}
+              class="flex-1 inline-flex items-center justify-center h-9 px-4 rounded-full bg-white text-[#171717] border border-[#ebebeb] text-xs font-medium hover:bg-neutral-50 transition text-center shadow-whisper"
+            >
+              Online Tool
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Bottom Guidance -->
+    <div class="mt-16 p-8 rounded-[12px] bg-white border border-[#ebebeb] shadow-whisper text-center max-w-2xl mx-auto space-y-4">
+      <h3 class="text-lg font-semibold text-[#171717]">Need help picking a template?</h3>
+      <p class="text-xs text-[#4d4d4d] leading-relaxed">
+        If you are completely new to budgeting, start with the <a href="/50-30-20-budget/" class="text-[#0070f3] underline font-medium">50/30/20 template</a>. If you have aggressive debt payoff goals, choose the <a href="/zero-based-budget/" class="text-[#0070f3] underline font-medium">Zero-Based template</a>.
+      </p>
+    </div>
+  </main>
+</Layout>

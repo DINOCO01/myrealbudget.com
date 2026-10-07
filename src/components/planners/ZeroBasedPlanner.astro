@@ -1,0 +1,508 @@
+---
+import { FREQUENCY_OPTIONS } from '../../utils/frequency';
+---
+
+<div id="zero-based-planner" class="w-full">
+  <!-- Status & Quick Actions -->
+  <div class="mb-6 flex flex-wrap items-center justify-between gap-3 text-xs">
+    <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-[#ebebeb] text-[#4d4d4d] shadow-whisper">
+      <span class="w-2 h-2 rounded-full bg-[#50e3c2]"></span>
+      <span>Autosaved locally to this device</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <button
+        type="button"
+        id="zbb-reset-btn"
+        class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[6px] border border-[#ebebeb] bg-white text-[#8f8f8f] hover:text-[#ee0000] font-medium hover:bg-neutral-50 transition shadow-whisper focus-visible:outline-none"
+      >
+        Reset Defaults
+      </button>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    <!-- LEFT: Inputs (7 cols on lg) -->
+    <div class="lg:col-span-7 xl:col-span-8 space-y-6">
+      
+      <!-- 1. Total Monthly Income Available -->
+      <div class="bg-white rounded-[12px] border border-[#ebebeb] p-6 shadow-whisper">
+        <label for="zbb-income-input" class="block text-sm font-semibold text-[#171717] mb-1">
+          Total Net Monthly Income to Assign
+        </label>
+        <p class="text-xs text-[#8f8f8f] mb-4">
+          The starting pool of money for the month. Your objective is to allocate every cent until $0 remains.
+        </p>
+        <div class="relative max-w-sm">
+          <span class="absolute left-3.5 top-2.5 text-[#8f8f8f] font-mono text-base">$</span>
+          <input
+            type="number"
+            id="zbb-income-input"
+            min="0"
+            step="50"
+            value="4500"
+            class="w-full pl-8 pr-4 py-2.5 rounded-[6px] bg-white border border-[#ebebeb] text-[#171717] font-mono text-lg font-semibold focus:outline-none focus:border-[#171717] shadow-whisper"
+            placeholder="4500"
+          />
+        </div>
+      </div>
+
+      <!-- 2. Allocation Envelopes Container -->
+      <div id="zbb-groups-container" class="space-y-6">
+        <!-- Rendered by JS: Living, Debt, Savings & Investing, Lifestyle, Irregular Buffer -->
+      </div>
+
+      <!-- Add New Group Button -->
+      <div>
+        <button
+          type="button"
+          id="zbb-add-group-btn"
+          class="inline-flex items-center justify-center gap-2 w-full py-3 rounded-[12px] border border-dashed border-[#ebebeb] bg-white text-xs font-medium text-[#4d4d4d] hover:text-[#171717] hover:border-[#171717] hover:bg-[#fafafa] transition shadow-whisper"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          Add New Allocation Group
+        </button>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: Zero Balance Meter & Summary (Sticky on Desktop) -->
+    <div class="lg:col-span-5 xl:col-span-4 lg:sticky lg:top-24 space-y-6">
+      
+      <div class="bg-white rounded-[12px] border border-[#ebebeb] p-6 shadow-whisper">
+        <span class="font-mono text-xs uppercase tracking-wider text-[#8f8f8f] block mb-1">
+          Zero-Based Target
+        </span>
+        <h3 class="text-lg font-semibold text-[#171717] tracking-tight mb-4">
+          Left to Assign
+        </h3>
+
+        <!-- Big Status Display -->
+        <div id="zbb-status-box" class="p-4 rounded-[8px] mb-5 border transition-colors">
+          <div class="flex items-baseline justify-between mb-1">
+            <span class="text-xs font-medium" id="zbb-status-label">Remaining Unassigned</span>
+            <span id="zbb-remaining-val" class="font-mono text-2xl font-bold tracking-tight">$0</span>
+          </div>
+          <p id="zbb-status-message" class="text-xs leading-relaxed mt-2 font-medium">
+            <!-- Dynamic status -->
+          </p>
+        </div>
+
+        <!-- Numbers Stack -->
+        <div class="space-y-2.5 font-mono text-xs border-b border-[#ebebeb] pb-4 mb-5">
+          <div class="flex justify-between items-center">
+            <span class="text-[#8f8f8f]">Income Pool</span>
+            <span id="zbb-summary-income" class="font-semibold text-[#171717]">$0</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="text-[#8f8f8f]">Total Jobs Assigned</span>
+            <span id="zbb-summary-allocated" class="font-semibold text-[#171717]">$0</span>
+          </div>
+          <div class="flex justify-between items-center pt-1 border-t border-[#f2f2f2]">
+            <span class="text-[#8f8f8f]">Allocation Rate</span>
+            <span id="zbb-summary-pct" class="font-semibold text-[#171717]">0%</span>
+          </div>
+        </div>
+
+        <!-- Group Allocation Progress Bar -->
+        <div class="space-y-2 mb-6">
+          <div class="flex justify-between text-xs text-[#8f8f8f]">
+            <span>Assigned vs Available</span>
+            <span id="zbb-progress-label">0% assigned</span>
+          </div>
+          <div class="w-full h-2.5 rounded-full bg-[#f2f2f2] overflow-hidden">
+            <div id="zbb-progress-fill" class="h-full bg-[#171717] transition-all duration-300" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <!-- Group Breakdown List -->
+        <div class="space-y-2.5">
+          <h4 class="font-mono text-xs font-medium uppercase tracking-wider text-[#8f8f8f]">
+            Envelopes Summary
+          </h4>
+          <div id="zbb-groups-summary" class="space-y-2 text-xs">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Strategy Guidance -->
+      <div class="bg-[#fafafa] rounded-[12px] border border-[#ebebeb] p-4 text-xs text-[#4d4d4d] space-y-2">
+        <p class="font-medium text-[#171717]">How to reach Zero:</p>
+        <ul class="space-y-1.5 text-[12px] text-[#8f8f8f]">
+          <li class="flex items-start gap-1"><span>•</span><span><strong>If money is left over:</strong> Do not leave it floating. Assign it to extra debt principal, retirement, or an irregular expense sinking fund.</span></li>
+          <li class="flex items-start gap-1"><span>•</span><span><strong>If negative:</strong> You have assigned more than you make. Trim dining out, discretionary shopping, or entertainment until the balance hits $0.</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+(function() {
+  const STORAGE_KEY = 'myrealbudget_zerobased_v1';
+
+  const FREQUENCY_MULTIPLIERS = {
+    weekly: 52 / 12,
+    biweekly: 26 / 12,
+    monthly: 1,
+    quarterly: 4 / 12,
+    yearly: 1 / 12,
+  };
+
+  const FREQUENCY_OPTIONS = [
+    { id: 'monthly', label: 'Monthly' },
+    { id: 'weekly', label: 'Weekly' },
+    { id: 'biweekly', label: 'Every 2 wks' },
+    { id: 'quarterly', label: 'Quarterly' },
+    { id: 'yearly', label: 'Yearly' },
+  ];
+
+  const defaultData = {
+    income: 4500,
+    groups: [
+      {
+        id: 'g_housing_living',
+        name: 'Housing & Living Essentials',
+        items: [
+          { id: 'z1', name: 'Rent or Mortgage', amount: 1400, frequency: 'monthly' },
+          { id: 'z2', name: 'Utilities (Power/Water/Gas)', amount: 200, frequency: 'monthly' },
+          { id: 'z3', name: 'Groceries', amount: 115, frequency: 'weekly' },
+          { id: 'z4', name: 'Transportation & Gas', amount: 40, frequency: 'weekly' },
+        ],
+      },
+      {
+        id: 'g_debt',
+        name: 'Debt Elimination Jobs',
+        items: [
+          { id: 'z5', name: 'Student Loan Minimum', amount: 180, frequency: 'monthly' },
+          { id: 'z6', name: 'Accelerated Extra Principal Payoff', amount: 300, frequency: 'monthly' },
+        ],
+      },
+      {
+        id: 'g_savings',
+        name: 'Savings & Sinking Funds',
+        items: [
+          { id: 'z7', name: 'Emergency Cushion Fund', amount: 350, frequency: 'monthly' },
+          { id: 'z8', name: 'Annual Car Maintenance Sinking Fund', amount: 600, frequency: 'yearly' },
+          { id: 'z9', name: 'Roth IRA Retirement Job', amount: 400, frequency: 'monthly' },
+        ],
+      },
+      {
+        id: 'g_lifestyle',
+        name: 'Lifestyle & Fun Money',
+        items: [
+          { id: 'z10', name: 'Dining Out & Entertainment', amount: 250, frequency: 'monthly' },
+          { id: 'z11', name: 'Subscriptions & Software', amount: 45, frequency: 'monthly' },
+          { id: 'z12', name: 'Personal Care & Clothing', amount: 100, frequency: 'monthly' },
+        ],
+      },
+      {
+        id: 'g_buffer',
+        name: 'Miscellaneous Cushion Buffer',
+        items: [
+          { id: 'z13', name: 'Checking Account Buffer (Zero cushion)', amount: 105, frequency: 'monthly' },
+        ],
+      },
+    ],
+  };
+
+  let state = loadState();
+
+  function loadState() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed.income && parsed.groups) return parsed;
+      }
+    } catch (e) {
+      console.warn('LocalStorage error:', e);
+    }
+    return JSON.parse(JSON.stringify(defaultData));
+  }
+
+  function saveState() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (e) {
+      console.warn('Save state error:', e);
+    }
+  }
+
+  function normalize(amount, freq) {
+    return (Number(amount) || 0) * (FREQUENCY_MULTIPLIERS[freq] || 1);
+  }
+
+  function formatMoney(amount) {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: amount % 1 === 0 ? 0 : 2,
+    }).format(amount);
+  }
+
+  function renderGroups() {
+    const container = document.getElementById('zbb-groups-container');
+    if (!container) return;
+
+    container.innerHTML = state.groups.map((grp, grpIdx) => {
+      const groupTotal = grp.items.reduce((s, i) => s + normalize(i.amount, i.frequency), 0);
+      return `
+        <div class="bg-white rounded-[12px] border border-[#ebebeb] p-5 shadow-whisper" data-grp-idx="${grpIdx}">
+          <div class="flex items-center justify-between pb-3 mb-3 border-b border-[#ebebeb]">
+            <input
+              type="text"
+              value="${escapeHtml(grp.name)}"
+              aria-label="Group name"
+              class="font-semibold text-sm text-[#171717] bg-transparent border-b border-transparent hover:border-[#ebebeb] focus:border-[#171717] focus:outline-none py-0.5"
+              onchange="window._zbb.updateGroupName(${grpIdx}, this.value)"
+            />
+            <div class="flex items-center gap-3">
+              <span class="font-mono text-xs font-semibold text-[#171717]">
+                ${formatMoney(groupTotal)}<span class="text-[#8f8f8f] font-normal text-[11px]">/mo</span>
+              </span>
+              <button
+                type="button"
+                title="Remove group"
+                aria-label="Remove group"
+                class="text-[#8f8f8f] hover:text-[#ee0000] p-1 transition"
+                onclick="window._zbb.removeGroup(${grpIdx})"
+              >
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="space-y-2.5">
+            ${grp.items.map((item, itemIdx) => `
+              <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 p-2 rounded-[6px] bg-[#fafafa] border border-[#ebebeb] text-xs">
+                <input
+                  type="text"
+                  value="${escapeHtml(item.name)}"
+                  aria-label="Line item name"
+                  class="flex-1 px-2.5 py-1.5 rounded-[6px] bg-white border border-[#ebebeb] text-[#171717] focus:outline-none focus:border-[#171717]"
+                  onchange="window._zbb.updateItem(${grpIdx}, ${itemIdx}, 'name', this.value)"
+                />
+                <div class="flex items-center gap-2">
+                  <div class="relative w-28">
+                    <span class="absolute left-2.5 top-1.5 text-[#8f8f8f] font-mono">$</span>
+                    <input
+                      type="number"
+                      min="0"
+                      step="any"
+                      value="${item.amount || ''}"
+                      placeholder="0"
+                      aria-label="Allocated amount"
+                      class="w-full pl-6 pr-2 py-1.5 rounded-[6px] bg-white border border-[#ebebeb] text-[#171717] font-mono text-right focus:outline-none focus:border-[#171717]"
+                      oninput="window._zbb.updateItem(${grpIdx}, ${itemIdx}, 'amount', this.value)"
+                    />
+                  </div>
+                  <select
+                    aria-label="Frequency"
+                    class="px-2 py-1.5 rounded-[6px] bg-white border border-[#ebebeb] text-[#4d4d4d] focus:outline-none focus:border-[#171717] text-xs font-mono"
+                    onchange="window._zbb.updateItem(${grpIdx}, ${itemIdx}, 'frequency', this.value)"
+                  >
+                    ${FREQUENCY_OPTIONS.map(opt => `
+                      <option value="${opt.id}" ${item.frequency === opt.id ? 'selected' : ''}>${opt.label}</option>
+                    `).join('')}
+                  </select>
+                  <button
+                    type="button"
+                    title="Remove line item"
+                    aria-label="Remove item"
+                    class="p-1.5 text-[#8f8f8f] hover:text-[#ee0000] rounded hover:bg-neutral-100 transition"
+                    onclick="window._zbb.removeItem(${grpIdx}, ${itemIdx})"
+                  >
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                  </button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+
+          <button
+            type="button"
+            class="mt-3 inline-flex items-center gap-1.5 text-xs text-[#4d4d4d] hover:text-[#171717] font-medium py-1 px-2 rounded hover:bg-[#fafafa] transition"
+            onclick="window._zbb.addItem(${grpIdx})"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            Add item to ${escapeHtml(grp.name)}
+          </button>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function calculateAndRender() {
+    const income = Number(state.income) || 0;
+    let totalAllocated = 0;
+    const groupSummaries = [];
+
+    state.groups.forEach(grp => {
+      const gTot = grp.items.reduce((s, i) => s + normalize(i.amount, i.frequency), 0);
+      totalAllocated += gTot;
+      groupSummaries.push({ name: grp.name, total: gTot });
+    });
+
+    const remaining = income - totalAllocated;
+    const pct = income > 0 ? Math.min(100, Math.round((totalAllocated / income) * 100)) : 0;
+
+    // Status Box
+    const sBox = document.getElementById('zbb-status-box');
+    const sLabel = document.getElementById('zbb-status-label');
+    const sVal = document.getElementById('zbb-remaining-val');
+    const sMsg = document.getElementById('zbb-status-message');
+
+    if (sVal) sVal.textContent = formatMoney(remaining);
+
+    if (sBox && sLabel && sMsg) {
+      if (Math.abs(remaining) < 0.5) {
+        // Zero-based perfection!
+        sBox.className = 'p-4 rounded-[8px] mb-5 border bg-[#e6fbf5] border-[#a7f3d0] text-[#047857]';
+        sLabel.textContent = 'Zero-Based Perfection';
+        sMsg.innerHTML = '<strong>Goal reached!</strong> Your budget is zero-based and fully allocated. Every dollar of your income has a designated purpose.';
+      } else if (remaining > 0) {
+        sBox.className = 'p-4 rounded-[8px] mb-5 border bg-[#eef6ff] border-[#bfdbfe] text-[#0761d1]';
+        sLabel.textContent = 'Dollars Left Unassigned';
+        sMsg.innerHTML = `You still have <strong>${formatMoney(remaining)}</strong> to assign. Allocate this remainder to savings, debt payoff, or an emergency buffer until $0 remains.`;
+      } else {
+        const over = Math.abs(remaining);
+        sBox.className = 'p-4 rounded-[8px] mb-5 border bg-[#fef2f2] border-[#fecaca] text-[#b91c1c]';
+        sLabel.textContent = 'Over-Allocated';
+        sMsg.innerHTML = `You have allocated <strong class="text-[#ee0000]">${formatMoney(over)}</strong> more than your income. Reduce discretionary allocations to bring your balance to zero.`;
+      }
+    }
+
+    // Stack Numbers
+    const sumInc = document.getElementById('zbb-summary-income');
+    const sumAlloc = document.getElementById('zbb-summary-allocated');
+    const sumPct = document.getElementById('zbb-summary-pct');
+
+    if (sumInc) sumInc.textContent = formatMoney(income);
+    if (sumAlloc) sumAlloc.textContent = formatMoney(totalAllocated);
+    if (sumPct) sumPct.textContent = `${pct}%`;
+
+    // Progress Fill
+    const pFill = document.getElementById('zbb-progress-fill');
+    const pLbl = document.getElementById('zbb-progress-label');
+    if (pLbl) pLbl.textContent = `${pct}% assigned`;
+    if (pFill) {
+      pFill.style.width = `${pct}%`;
+      pFill.className = remaining < 0 ? 'h-full bg-[#ee0000] transition-all duration-300' : 'h-full bg-[#171717] transition-all duration-300';
+    }
+
+    // Envelopes List
+    const groupsContainer = document.getElementById('zbb-groups-summary');
+    if (groupsContainer) {
+      groupsContainer.innerHTML = groupSummaries.map(g => {
+        const gPct = totalAllocated > 0 ? Math.round((g.total / totalAllocated) * 100) : 0;
+        return `
+          <div class="flex justify-between items-center text-xs">
+            <span class="text-[#4d4d4d] truncate max-w-[170px]">${escapeHtml(g.name)}</span>
+            <span class="font-mono text-[#171717] font-medium">${formatMoney(g.total)} <span class="text-[#8f8f8f] font-normal">(${gPct}%)</span></span>
+          </div>
+        `;
+      }).join('');
+    }
+  }
+
+  function escapeHtml(str) {
+    return (str || '').replace(/[&<>"']/g, m => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
+    }[m]));
+  }
+
+  window._zbb = {
+    updateGroupName: function(grpIdx, name) {
+      if (!state.groups[grpIdx]) return;
+      state.groups[grpIdx].name = name;
+      saveState();
+      calculateAndRender();
+    },
+    removeGroup: function(grpIdx) {
+      if (confirm(`Delete the "${state.groups[grpIdx].name}" group?`)) {
+        state.groups.splice(grpIdx, 1);
+        saveState();
+        renderGroups();
+        calculateAndRender();
+      }
+    },
+    updateItem: function(grpIdx, itemIdx, field, value) {
+      if (!state.groups[grpIdx] || !state.groups[grpIdx].items[itemIdx]) return;
+      if (field === 'amount') {
+        state.groups[grpIdx].items[itemIdx].amount = parseFloat(value) || 0;
+      } else {
+        state.groups[grpIdx].items[itemIdx][field] = value;
+      }
+      saveState();
+      calculateAndRender();
+    },
+    removeItem: function(grpIdx, itemIdx) {
+      if (!state.groups[grpIdx]) return;
+      state.groups[grpIdx].items.splice(itemIdx, 1);
+      saveState();
+      renderGroups();
+      calculateAndRender();
+    },
+    addItem: function(grpIdx) {
+      if (!state.groups[grpIdx]) return;
+      state.groups[grpIdx].items.push({
+        id: 'z_' + Date.now(),
+        name: 'New Job Allocation',
+        amount: 0,
+        frequency: 'monthly',
+      });
+      saveState();
+      renderGroups();
+      calculateAndRender();
+    },
+  };
+
+  const incInput = document.getElementById('zbb-income-input');
+  if (incInput) {
+    incInput.addEventListener('input', (e) => {
+      state.income = parseFloat(e.target.value) || 0;
+      saveState();
+      calculateAndRender();
+    });
+  }
+
+  const addGroupBtn = document.getElementById('zbb-add-group-btn');
+  if (addGroupBtn) {
+    addGroupBtn.addEventListener('click', () => {
+      const name = prompt('Enter a name for your new allocation group:', 'Special Allocation Group');
+      if (name && name.trim()) {
+        state.groups.push({
+          id: 'grp_' + Date.now(),
+          name: name.trim(),
+          items: [{ id: 'z_' + Date.now(), name: 'First Item', amount: 0, frequency: 'monthly' }],
+        });
+        saveState();
+        renderGroups();
+        calculateAndRender();
+      }
+    });
+  }
+
+  const resetBtn = document.getElementById('zbb-reset-btn');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      if (confirm('Reset zero-based planner to default sample values?')) {
+        state = JSON.parse(JSON.stringify(defaultData));
+        if (incInput) incInput.value = state.income;
+        saveState();
+        renderGroups();
+        calculateAndRender();
+      }
+    });
+  }
+
+  // Initial Boot
+  if (incInput) incInput.value = state.income;
+  renderGroups();
+  calculateAndRender();
+})();
+</script>

@@ -1,0 +1,583 @@
+---
+import { FREQUENCY_OPTIONS } from '../../utils/frequency';
+---
+
+<div id="fifty-thirty-twenty-planner" class="w-full">
+  <!-- Privacy & Quick Action strip -->
+  <div class="mb-6 flex flex-wrap items-center justify-between gap-3 text-xs">
+    <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-[#ebebeb] text-[#4d4d4d] shadow-whisper">
+      <span class="w-2 h-2 rounded-full bg-[#50e3c2]"></span>
+      <span>Autosaved locally to this device</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <button
+        type="button"
+        id="f3020-reset-btn"
+        class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[6px] border border-[#ebebeb] bg-white text-[#8f8f8f] hover:text-[#ee0000] font-medium hover:bg-neutral-50 transition shadow-whisper focus-visible:outline-none"
+      >
+        Reset Defaults
+      </button>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    <!-- LEFT: Inputs (7 cols on lg) -->
+    <div class="lg:col-span-7 xl:col-span-8 space-y-6">
+      
+      <!-- 1. Take-Home Pay Input -->
+      <div class="bg-white rounded-[12px] border border-[#ebebeb] p-6 shadow-whisper">
+        <label for="f3020-income-input" class="block text-sm font-semibold text-[#171717] mb-1">
+          Monthly Take-Home Pay (After Taxes)
+        </label>
+        <p class="text-xs text-[#8f8f8f] mb-4">
+          Enter your total net monthly income. If paid biweekly, multiply your paycheck by 26 and divide by 12.
+        </p>
+        <div class="relative max-w-sm">
+          <span class="absolute left-3.5 top-2.5 text-[#8f8f8f] font-mono text-base">$</span>
+          <input
+            type="number"
+            id="f3020-income-input"
+            min="0"
+            step="50"
+            value="5000"
+            class="w-full pl-8 pr-4 py-2.5 rounded-[6px] bg-white border border-[#ebebeb] text-[#171717] font-mono text-lg font-semibold focus:outline-none focus:border-[#171717] shadow-whisper"
+            placeholder="5000"
+          />
+        </div>
+      </div>
+
+      <!-- 2. Needs (50%) Inputs -->
+      <div class="bg-white rounded-[12px] border border-[#ebebeb] p-5 sm:p-6 shadow-whisper">
+        <div class="flex items-center justify-between pb-3 mb-3 border-b border-[#ebebeb]">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#171717]"></span>
+              <h3 class="text-base font-semibold text-[#171717]">Needs (Target: 50%)</h3>
+            </div>
+            <p class="text-xs text-[#8f8f8f] mt-0.5">Housing, utilities, groceries, gas/transit, insurance, minimum debt payments.</p>
+          </div>
+          <div class="text-right">
+            <span class="text-xs font-mono text-[#8f8f8f] block">Actual</span>
+            <span id="f3020-needs-actual-header" class="font-mono text-sm font-semibold text-[#171717]">$0</span>
+          </div>
+        </div>
+
+        <div id="f3020-needs-items" class="space-y-2.5">
+          <!-- Populated by JS -->
+        </div>
+
+        <button
+          type="button"
+          class="mt-3 inline-flex items-center gap-1.5 text-xs text-[#4d4d4d] hover:text-[#171717] font-medium py-1 px-2 rounded hover:bg-[#fafafa] transition"
+          onclick="window._f3020.addItem('needs')"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          Add Need Line Item
+        </button>
+      </div>
+
+      <!-- 3. Wants (30%) Inputs -->
+      <div class="bg-white rounded-[12px] border border-[#ebebeb] p-5 sm:p-6 shadow-whisper">
+        <div class="flex items-center justify-between pb-3 mb-3 border-b border-[#ebebeb]">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#7928ca]"></span>
+              <h3 class="text-base font-semibold text-[#171717]">Wants (Target: 30%)</h3>
+            </div>
+            <p class="text-xs text-[#8f8f8f] mt-0.5">Dining out, entertainment, shopping, subscriptions, vacations, hobbies.</p>
+          </div>
+          <div class="text-right">
+            <span class="text-xs font-mono text-[#8f8f8f] block">Actual</span>
+            <span id="f3020-wants-actual-header" class="font-mono text-sm font-semibold text-[#171717]">$0</span>
+          </div>
+        </div>
+
+        <div id="f3020-wants-items" class="space-y-2.5">
+          <!-- Populated by JS -->
+        </div>
+
+        <button
+          type="button"
+          class="mt-3 inline-flex items-center gap-1.5 text-xs text-[#4d4d4d] hover:text-[#171717] font-medium py-1 px-2 rounded hover:bg-[#fafafa] transition"
+          onclick="window._f3020.addItem('wants')"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          Add Want Line Item
+        </button>
+      </div>
+
+      <!-- 4. Savings & Debt (20%) Inputs -->
+      <div class="bg-white rounded-[12px] border border-[#ebebeb] p-5 sm:p-6 shadow-whisper">
+        <div class="flex items-center justify-between pb-3 mb-3 border-b border-[#ebebeb]">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#0070f3]"></span>
+              <h3 class="text-base font-semibold text-[#171717]">Savings & Extra Debt (Target: 20%)</h3>
+            </div>
+            <p class="text-xs text-[#8f8f8f] mt-0.5">Emergency funds, 401(k)/IRA contributions, extra principal debt payoffs.</p>
+          </div>
+          <div class="text-right">
+            <span class="text-xs font-mono text-[#8f8f8f] block">Actual</span>
+            <span id="f3020-savings-actual-header" class="font-mono text-sm font-semibold text-[#171717]">$0</span>
+          </div>
+        </div>
+
+        <div id="f3020-savings-items" class="space-y-2.5">
+          <!-- Populated by JS -->
+        </div>
+
+        <button
+          type="button"
+          class="mt-3 inline-flex items-center gap-1.5 text-xs text-[#4d4d4d] hover:text-[#171717] font-medium py-1 px-2 rounded hover:bg-[#fafafa] transition"
+          onclick="window._f3020.addItem('savings')"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          Add Savings/Debt Line Item
+        </button>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: Target vs Actual Comparison Card (Sticky on Desktop) -->
+    <div class="lg:col-span-5 xl:col-span-4 lg:sticky lg:top-24 space-y-6">
+      
+      <div class="bg-white rounded-[12px] border border-[#ebebeb] p-6 shadow-whisper">
+        <span class="font-mono text-xs uppercase tracking-wider text-[#8f8f8f] block mb-1">
+          50/30/20 Targets vs Actual
+        </span>
+        <h3 class="text-lg font-semibold text-[#171717] tracking-tight mb-5">
+          Plan Comparison
+        </h3>
+
+        <!-- Comparison Cards -->
+        <div class="space-y-4">
+          
+          <!-- Needs Row -->
+          <div class="p-3.5 rounded-[8px] bg-[#fafafa] border border-[#ebebeb]">
+            <div class="flex justify-between items-center mb-1.5">
+              <span class="font-semibold text-xs text-[#171717] flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-[#171717]"></span> Needs (50%)
+              </span>
+              <span id="cmp-needs-diff" class="font-mono text-xs font-semibold">
+                $0
+              </span>
+            </div>
+            <div class="flex justify-between text-xs text-[#8f8f8f] mb-2 font-mono">
+              <span>Target: <strong id="cmp-needs-target" class="text-[#171717]">$2,500</strong></span>
+              <span>Actual: <strong id="cmp-needs-actual" class="text-[#171717]">$0</strong></span>
+            </div>
+            <div class="w-full h-2 rounded-full bg-[#ebebeb] overflow-hidden">
+              <div id="cmp-needs-bar" class="h-full bg-[#171717] transition-all duration-300" style="width: 0%"></div>
+            </div>
+          </div>
+
+          <!-- Wants Row -->
+          <div class="p-3.5 rounded-[8px] bg-[#fafafa] border border-[#ebebeb]">
+            <div class="flex justify-between items-center mb-1.5">
+              <span class="font-semibold text-xs text-[#171717] flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-[#7928ca]"></span> Wants (30%)
+              </span>
+              <span id="cmp-wants-diff" class="font-mono text-xs font-semibold">
+                $0
+              </span>
+            </div>
+            <div class="flex justify-between text-xs text-[#8f8f8f] mb-2 font-mono">
+              <span>Target: <strong id="cmp-wants-target" class="text-[#171717]">$1,500</strong></span>
+              <span>Actual: <strong id="cmp-wants-actual" class="text-[#171717]">$0</strong></span>
+            </div>
+            <div class="w-full h-2 rounded-full bg-[#ebebeb] overflow-hidden">
+              <div id="cmp-wants-bar" class="h-full bg-[#7928ca] transition-all duration-300" style="width: 0%"></div>
+            </div>
+          </div>
+
+          <!-- Savings Row -->
+          <div class="p-3.5 rounded-[8px] bg-[#fafafa] border border-[#ebebeb]">
+            <div class="flex justify-between items-center mb-1.5">
+              <span class="font-semibold text-xs text-[#171717] flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-[#0070f3]"></span> Savings & Debt (20%)
+              </span>
+              <span id="cmp-savings-diff" class="font-mono text-xs font-semibold">
+                $0
+              </span>
+            </div>
+            <div class="flex justify-between text-xs text-[#8f8f8f] mb-2 font-mono">
+              <span>Target: <strong id="cmp-savings-target" class="text-[#171717]">$1,000</strong></span>
+              <span>Actual: <strong id="cmp-savings-actual" class="text-[#171717]">$0</strong></span>
+            </div>
+            <div class="w-full h-2 rounded-full bg-[#ebebeb] overflow-hidden">
+              <div id="cmp-savings-bar" class="h-full bg-[#0070f3] transition-all duration-300" style="width: 0%"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Overall Budget Net Balance -->
+        <div class="mt-5 pt-4 border-t border-[#ebebeb] flex justify-between items-baseline text-xs">
+          <span class="text-[#8f8f8f]">Total Actual Outflow:</span>
+          <span id="cmp-total-outflow" class="font-mono font-semibold text-sm text-[#171717]">$0</span>
+        </div>
+        <div class="mt-1 flex justify-between items-baseline text-xs">
+          <span class="text-[#8f8f8f]">Unassigned Cash Flow:</span>
+          <span id="cmp-unassigned-cash" class="font-mono font-semibold text-sm text-[#171717]">$0</span>
+        </div>
+
+        <!-- Plain Language Interpretation -->
+        <div class="mt-6 pt-5 border-t border-[#ebebeb] space-y-3">
+          <h4 class="font-mono text-xs font-medium uppercase tracking-wider text-[#8f8f8f]">
+            Framework Assessment
+          </h4>
+          <div id="f3020-assessment-box" class="space-y-2 text-xs text-[#4d4d4d] leading-relaxed">
+            <!-- Dynamic assessment generated by JS -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Educational Note -->
+      <div class="bg-[#fafafa] rounded-[12px] border border-[#ebebeb] p-4 text-xs text-[#4d4d4d] space-y-1.5">
+        <p class="font-medium text-[#171717]">Remember: 50/30/20 is a guide, not a law.</p>
+        <p class="text-[12px] text-[#8f8f8f] leading-normal">
+          In high-cost-of-living metropolitan areas, housing alone often consumes 35–45% of income, pushing Needs toward 60%. If your Needs are higher, look to balance by temporarily scaling back Wants rather than abandoning the plan entirely.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+(function() {
+  const STORAGE_KEY = 'myrealbudget_503020_v1';
+
+  const FREQUENCY_MULTIPLIERS = {
+    weekly: 52 / 12,
+    biweekly: 26 / 12,
+    monthly: 1,
+    quarterly: 4 / 12,
+    yearly: 1 / 12,
+  };
+
+  const FREQUENCY_OPTIONS = [
+    { id: 'monthly', label: 'Monthly' },
+    { id: 'weekly', label: 'Weekly' },
+    { id: 'biweekly', label: 'Every 2 wks' },
+    { id: 'quarterly', label: 'Quarterly' },
+    { id: 'yearly', label: 'Yearly' },
+  ];
+
+  const defaultData = {
+    income: 5000,
+    needs: [
+      { id: 'n1', name: 'Rent / Mortgage', amount: 1600, frequency: 'monthly' },
+      { id: 'n2', name: 'Groceries & Essentials', amount: 125, frequency: 'weekly' },
+      { id: 'n3', name: 'Utilities & Internet', amount: 240, frequency: 'monthly' },
+      { id: 'n4', name: 'Car Loan & Insurance', amount: 420, frequency: 'monthly' },
+      { id: 'n5', name: 'Health & Prescriptions', amount: 65, frequency: 'monthly' },
+    ],
+    wants: [
+      { id: 'w1', name: 'Dining Out & Takeaway', amount: 60, frequency: 'weekly' },
+      { id: 'w2', name: 'Entertainment & Hobbies', amount: 120, frequency: 'monthly' },
+      { id: 'w3', name: 'Streaming & Subscriptions', amount: 55, frequency: 'monthly' },
+      { id: 'w4', name: 'Shopping & Personal Care', amount: 150, frequency: 'monthly' },
+    ],
+    savings: [
+      { id: 's1', name: 'Emergency Savings Account', amount: 400, frequency: 'monthly' },
+      { id: 's2', name: 'Roth IRA / Retirement', amount: 350, frequency: 'monthly' },
+      { id: 's3', name: 'Extra Student Debt Paydown', amount: 200, frequency: 'monthly' },
+    ],
+  };
+
+  let state = loadState();
+
+  function loadState() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed.income && parsed.needs && parsed.wants && parsed.savings) {
+          return parsed;
+        }
+      }
+    } catch (e) {
+      console.warn('LocalStorage error:', e);
+    }
+    return JSON.parse(JSON.stringify(defaultData));
+  }
+
+  function saveState() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (e) {
+      console.warn('Failed to save to localStorage:', e);
+    }
+  }
+
+  function normalize(amount, freq) {
+    return (Number(amount) || 0) * (FREQUENCY_MULTIPLIERS[freq] || 1);
+  }
+
+  function formatMoney(amount) {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: amount % 1 === 0 ? 0 : 2,
+    }).format(amount);
+  }
+
+  function renderGroup(groupKey, containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    container.innerHTML = state[groupKey].map((item, idx) => `
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 p-2 rounded-[6px] bg-[#fafafa] border border-[#ebebeb] text-xs">
+        <input
+          type="text"
+          value="${escapeHtml(item.name)}"
+          aria-label="${groupKey} line item"
+          class="flex-1 px-2.5 py-1.5 rounded-[6px] bg-white border border-[#ebebeb] text-[#171717] focus:outline-none focus:border-[#171717]"
+          onchange="window._f3020.updateItem('${groupKey}', ${idx}, 'name', this.value)"
+        />
+        <div class="flex items-center gap-2">
+          <div class="relative w-28">
+            <span class="absolute left-2.5 top-1.5 text-[#8f8f8f] font-mono">$</span>
+            <input
+              type="number"
+              min="0"
+              step="any"
+              value="${item.amount || ''}"
+              placeholder="0"
+              aria-label="${groupKey} amount"
+              class="w-full pl-6 pr-2 py-1.5 rounded-[6px] bg-white border border-[#ebebeb] text-[#171717] font-mono text-right focus:outline-none focus:border-[#171717]"
+              oninput="window._f3020.updateItem('${groupKey}', ${idx}, 'amount', this.value)"
+            />
+          </div>
+          <select
+            aria-label="${groupKey} frequency"
+            class="px-2 py-1.5 rounded-[6px] bg-white border border-[#ebebeb] text-[#4d4d4d] focus:outline-none focus:border-[#171717] text-xs font-mono"
+            onchange="window._f3020.updateItem('${groupKey}', ${idx}, 'frequency', this.value)"
+          >
+            ${FREQUENCY_OPTIONS.map(opt => `
+              <option value="${opt.id}" ${item.frequency === opt.id ? 'selected' : ''}>${opt.label}</option>
+            `).join('')}
+          </select>
+          <button
+            type="button"
+            title="Remove item"
+            aria-label="Remove item"
+            class="p-1.5 text-[#8f8f8f] hover:text-[#ee0000] rounded hover:bg-neutral-100 transition"
+            onclick="window._f3020.removeItem('${groupKey}', ${idx})"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function calculateAndRender() {
+    const income = Number(state.income) || 0;
+    const targetNeeds = income * 0.50;
+    const targetWants = income * 0.30;
+    const targetSavings = income * 0.20;
+
+    const actualNeeds = state.needs.reduce((s, i) => s + normalize(i.amount, i.frequency), 0);
+    const actualWants = state.wants.reduce((s, i) => s + normalize(i.amount, i.frequency), 0);
+    const actualSavings = state.savings.reduce((s, i) => s + normalize(i.amount, i.frequency), 0);
+
+    const totalOutflow = actualNeeds + actualWants + actualSavings;
+    const unassigned = income - totalOutflow;
+
+    // Headers
+    const hNeeds = document.getElementById('f3020-needs-actual-header');
+    const hWants = document.getElementById('f3020-wants-actual-header');
+    const hSavings = document.getElementById('f3020-savings-actual-header');
+
+    if (hNeeds) hNeeds.textContent = formatMoney(actualNeeds);
+    if (hWants) hWants.textContent = formatMoney(actualWants);
+    if (hSavings) hSavings.textContent = formatMoney(actualSavings);
+
+    // Targets
+    const tNeeds = document.getElementById('cmp-needs-target');
+    const tWants = document.getElementById('cmp-wants-target');
+    const tSavings = document.getElementById('cmp-savings-target');
+
+    if (tNeeds) tNeeds.textContent = formatMoney(targetNeeds);
+    if (tWants) tWants.textContent = formatMoney(targetWants);
+    if (tSavings) tSavings.textContent = formatMoney(targetSavings);
+
+    // Actuals
+    const aNeeds = document.getElementById('cmp-needs-actual');
+    const aWants = document.getElementById('cmp-wants-actual');
+    const aSavings = document.getElementById('cmp-savings-actual');
+
+    if (aNeeds) aNeeds.textContent = formatMoney(actualNeeds);
+    if (aWants) aWants.textContent = formatMoney(actualWants);
+    if (aSavings) aSavings.textContent = formatMoney(actualSavings);
+
+    // Differences
+    updateDiffEl('cmp-needs-diff', targetNeeds, actualNeeds, true);
+    updateDiffEl('cmp-wants-diff', targetWants, actualWants, true);
+    updateDiffEl('cmp-savings-diff', targetSavings, actualSavings, false);
+
+    // Progress Bars
+    updateBar('cmp-needs-bar', targetNeeds, actualNeeds);
+    updateBar('cmp-wants-bar', targetWants, actualWants);
+    updateBar('cmp-savings-bar', targetSavings, actualSavings);
+
+    // Totals
+    const tOut = document.getElementById('cmp-total-outflow');
+    const uCash = document.getElementById('cmp-unassigned-cash');
+    if (tOut) tOut.textContent = formatMoney(totalOutflow);
+    if (uCash) {
+      uCash.textContent = formatMoney(unassigned);
+      uCash.className = unassigned < 0 ? 'font-mono font-semibold text-sm text-[#ee0000]' : 'font-mono font-semibold text-sm text-[#047857]';
+    }
+
+    // Assessment
+    renderAssessment(income, targetNeeds, actualNeeds, targetWants, actualWants, targetSavings, actualSavings, unassigned);
+  }
+
+  function updateDiffEl(id, target, actual, isExpense) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const diff = actual - target;
+    if (Math.abs(diff) < 1) {
+      el.textContent = 'On Target';
+      el.className = 'font-mono text-xs font-semibold text-[#047857]';
+    } else if (diff > 0) {
+      const label = `+${formatMoney(diff)}`;
+      el.textContent = `${label} over`;
+      el.className = isExpense ? 'font-mono text-xs font-semibold text-[#ee0000]' : 'font-mono text-xs font-semibold text-[#047857]';
+    } else {
+      const label = `-${formatMoney(Math.abs(diff))}`;
+      el.textContent = `${label} under`;
+      el.className = isExpense ? 'font-mono text-xs font-semibold text-[#047857]' : 'font-mono text-xs font-semibold text-[#8f8f8f]';
+    }
+  }
+
+  function updateBar(id, target, actual) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const pct = target > 0 ? Math.min(100, Math.round((actual / target) * 100)) : 0;
+    el.style.width = `${pct}%`;
+  }
+
+  function renderAssessment(income, tNeeds, aNeeds, tWants, aWants, tSavings, aSavings, unassigned) {
+    const box = document.getElementById('f3020-assessment-box');
+    if (!box) return;
+
+    if (income === 0) {
+      box.innerHTML = '<p class="text-[#8f8f8f]">Enter your monthly take-home pay to calculate your 50/30/20 benchmark.</p>';
+      return;
+    }
+
+    const needsPct = Math.round((aNeeds / income) * 100);
+    const wantsPct = Math.round((aWants / income) * 100);
+    const savingsPct = Math.round((aSavings / income) * 100);
+    const bullets = [];
+
+    // Needs
+    if (aNeeds > tNeeds) {
+      const over = aNeeds - tNeeds;
+      bullets.push(`Your Needs take up <strong>${needsPct}%</strong> (${formatMoney(over)} over the 50% ideal). If housing or essentials are high in your city, look to trim Wants to keep your overall cash flow in balance.`);
+    } else {
+      bullets.push(`Your Needs are comfortably at <strong>${needsPct}%</strong> of net income (below the 50% ceiling).`);
+    }
+
+    // Wants
+    if (aWants > tWants) {
+      const overW = aWants - tWants;
+      bullets.push(`Your Wants are <strong>${wantsPct}%</strong> (${formatMoney(overW)} over target). Reducing dining out or recurring subscriptions can bring this closer to the 30% guideline.`);
+    } else {
+      bullets.push(`Your Wants sit at <strong>${wantsPct}%</strong>, staying within your 30% lifestyle budget.`);
+    }
+
+    // Savings
+    if (aSavings >= tSavings) {
+      bullets.push(`Great job: You are saving/investing <strong>${savingsPct}%</strong> of your net pay, meeting or exceeding the 20% benchmark.`);
+    } else {
+      const underS = tSavings - aSavings;
+      bullets.push(`Your savings rate is currently <strong>${savingsPct}%</strong> (${formatMoney(underS)} under target). Aim to gradually increase this as debts or temporary costs clear.`);
+    }
+
+    // Net balance
+    if (unassigned < 0) {
+      bullets.push(`<span class="text-[#ee0000] font-medium">Notice: Your actual combined outflows exceed your monthly take-home pay by ${formatMoney(Math.abs(unassigned))}.</span>`);
+    } else if (unassigned > 0) {
+      bullets.push(`You still have <strong>${formatMoney(unassigned)}</strong> in unallocated income each month.`);
+    }
+
+    box.innerHTML = bullets.map(b => `<p class="flex items-start gap-1.5"><span>•</span><span>${b}</span></p>`).join('');
+  }
+
+  function escapeHtml(str) {
+    return (str || '').replace(/[&<>"']/g, m => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
+    }[m]));
+  }
+
+  window._f3020 = {
+    updateItem: function(group, idx, field, value) {
+      if (!state[group] || !state[group][idx]) return;
+      if (field === 'amount') {
+        state[group][idx].amount = parseFloat(value) || 0;
+      } else {
+        state[group][idx][field] = value;
+      }
+      saveState();
+      calculateAndRender();
+    },
+    removeItem: function(group, idx) {
+      if (!state[group]) return;
+      state[group].splice(idx, 1);
+      saveState();
+      renderGroup(group, `f3020-${group}-items`);
+      calculateAndRender();
+    },
+    addItem: function(group) {
+      if (!state[group]) return;
+      state[group].push({
+        id: 'item_' + Date.now(),
+        name: 'New ' + (group === 'needs' ? 'Need' : group === 'wants' ? 'Want' : 'Savings Goal'),
+        amount: 0,
+        frequency: 'monthly',
+      });
+      saveState();
+      renderGroup(group, `f3020-${group}-items`);
+      calculateAndRender();
+    },
+  };
+
+  const incomeInput = document.getElementById('f3020-income-input');
+  if (incomeInput) {
+    incomeInput.addEventListener('input', (e) => {
+      state.income = parseFloat(e.target.value) || 0;
+      saveState();
+      calculateAndRender();
+    });
+  }
+
+  const resetBtn = document.getElementById('f3020-reset-btn');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      if (confirm('Reset 50/30/20 planner to sample numbers?')) {
+        state = JSON.parse(JSON.stringify(defaultData));
+        if (incomeInput) incomeInput.value = state.income;
+        saveState();
+        renderGroup('needs', 'f3020-needs-items');
+        renderGroup('wants', 'f3020-wants-items');
+        renderGroup('savings', 'f3020-savings-items');
+        calculateAndRender();
+      }
+    });
+  }
+
+  // Initial Boot
+  if (incomeInput) incomeInput.value = state.income;
+  renderGroup('needs', 'f3020-needs-items');
+  renderGroup('wants', 'f3020-wants-items');
+  renderGroup('savings', 'f3020-savings-items');
+  calculateAndRender();
+})();
+</script>

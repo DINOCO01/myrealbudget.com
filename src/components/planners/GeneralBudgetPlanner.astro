@@ -1,0 +1,804 @@
+---
+import { DEFAULT_INCOME_ITEMS, DEFAULT_EXPENSE_CATEGORIES } from '../../data/budgetCategories';
+import { FREQUENCY_OPTIONS } from '../../utils/frequency';
+---
+
+<div id="general-budget-planner" class="w-full">
+  <!-- Privacy Badge & Quick Controls -->
+  <div class="mb-6 flex flex-wrap items-center justify-between gap-3 text-xs">
+    <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-[#ebebeb] text-[#4d4d4d] shadow-whisper">
+      <span class="w-2 h-2 rounded-full bg-[#50e3c2]"></span>
+      <span>Autosaved locally to this device</span>
+    </div>
+    <div class="flex items-center gap-2">
+      <button
+        type="button"
+        id="btn-export-csv"
+        class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[6px] border border-[#ebebeb] bg-white text-[#171717] font-medium hover:bg-neutral-50 transition shadow-whisper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0070f3]"
+      >
+        <svg class="w-3.5 h-3.5 text-[#4d4d4d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+        </svg>
+        Export CSV
+      </button>
+      <button
+        type="button"
+        id="btn-reset-budget"
+        class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[6px] border border-[#ebebeb] bg-white text-[#8f8f8f] hover:text-[#ee0000] font-medium hover:bg-neutral-50 transition shadow-whisper focus-visible:outline-none"
+      >
+        Reset Defaults
+      </button>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    <!-- LEFT: Inputs (8 cols on lg) -->
+    <div class="lg:col-span-7 xl:col-span-8 space-y-8">
+      
+      <!-- 1. INCOME SECTION -->
+      <section class="bg-white rounded-[12px] border border-[#ebebeb] p-5 sm:p-6 shadow-whisper">
+        <div class="flex items-center justify-between pb-4 mb-4 border-b border-[#ebebeb]">
+          <div>
+            <h2 class="text-lg font-semibold text-[#171717] tracking-tight">1. Monthly Income</h2>
+            <p class="text-xs text-[#8f8f8f]">Enter all income streams. Choose how often you get paid.</p>
+          </div>
+          <div class="text-right">
+            <span class="text-xs font-mono text-[#8f8f8f] block">Normalized Total</span>
+            <span id="income-header-total" class="font-mono text-base font-semibold text-[#171717]">$4,200</span>
+          </div>
+        </div>
+
+        <div id="income-items-container" class="space-y-3">
+          <!-- Rendered via Client JS / initial markup -->
+        </div>
+
+        <button
+          type="button"
+          id="btn-add-income-item"
+          class="mt-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[6px] border border-dashed border-[#ebebeb] text-xs font-medium text-[#4d4d4d] hover:text-[#171717] hover:border-[#171717] hover:bg-[#fafafa] transition w-full justify-center"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+          Add Income Stream
+        </button>
+      </section>
+
+      <!-- 2. EXPENSES SECTION -->
+      <section class="space-y-6">
+        <div class="flex items-center justify-between px-1">
+          <div>
+            <h2 class="text-lg font-semibold text-[#171717] tracking-tight">2. Planned Expenses</h2>
+            <p class="text-xs text-[#8f8f8f]">Set amounts and select frequencies. Yearly and weekly items are annualized to monthly.</p>
+          </div>
+          <div class="text-right">
+            <span class="text-xs font-mono text-[#8f8f8f] block">Normalized Expenses</span>
+            <span id="expenses-header-total" class="font-mono text-base font-semibold text-[#171717]">$0</span>
+          </div>
+        </div>
+
+        <!-- Categories Container -->
+        <div id="expense-categories-container" class="space-y-5">
+          <!-- Dynamically populated from DEFAULT_EXPENSE_CATEGORIES -->
+        </div>
+
+        <!-- Add Custom Category -->
+        <div class="pt-2">
+          <button
+            type="button"
+            id="btn-add-custom-category"
+            class="inline-flex items-center justify-center gap-2 w-full py-3 rounded-[12px] border border-dashed border-[#ebebeb] bg-white text-xs font-medium text-[#4d4d4d] hover:text-[#171717] hover:border-[#171717] hover:bg-[#fafafa] transition shadow-whisper"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+            Add Custom Expense Category
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <!-- RIGHT: Results & Interpretation (Sticky on Desktop) -->
+    <div class="lg:col-span-5 xl:col-span-4 lg:sticky lg:top-24 space-y-6">
+      
+      <!-- Summary Result Card -->
+      <div class="bg-white rounded-[12px] border border-[#ebebeb] p-6 shadow-whisper">
+        <div class="border-b border-[#ebebeb] pb-4 mb-5">
+          <span class="font-mono text-xs uppercase tracking-wider text-[#8f8f8f] block mb-1">
+            Budget Balance
+          </span>
+          <div class="flex items-baseline justify-between">
+            <span id="summary-balance-label" class="text-sm font-medium text-[#4d4d4d]">Remaining Cash</span>
+            <span id="summary-balance-value" class="font-mono text-2xl font-bold tracking-tight text-[#171717]">
+              $0
+            </span>
+          </div>
+        </div>
+
+        <!-- Balance Status Banner -->
+        <div id="balance-status-banner" class="p-3.5 rounded-[6px] mb-5 text-xs transition-colors">
+          <p id="balance-status-text" class="font-medium leading-relaxed">
+            Enter your monthly income and expenses to balance your budget.
+          </p>
+        </div>
+
+        <!-- Breakdown Numbers -->
+        <div class="space-y-3 font-mono text-sm border-b border-[#ebebeb] pb-5 mb-5">
+          <div class="flex justify-between items-center text-xs">
+            <span class="text-[#8f8f8f]">Monthly Income</span>
+            <span id="summary-total-income" class="font-semibold text-[#171717]">$0</span>
+          </div>
+          <div class="flex justify-between items-center text-xs">
+            <span class="text-[#8f8f8f]">Planned Outflows</span>
+            <span id="summary-total-expenses" class="font-semibold text-[#171717]">$0</span>
+          </div>
+          <div class="flex justify-between items-center text-xs pt-1 border-t border-[#f2f2f2]">
+            <span class="text-[#8f8f8f]">Income Spent</span>
+            <span id="summary-spent-pct" class="font-semibold text-[#171717]">0%</span>
+          </div>
+          <div class="flex justify-between items-center text-xs">
+            <span class="text-[#8f8f8f]">Income Remaining</span>
+            <span id="summary-remaining-pct" class="font-semibold text-[#171717]">0%</span>
+          </div>
+          <div class="flex justify-between items-center text-xs">
+            <span class="text-[#8f8f8f]">Savings & Investments</span>
+            <span id="summary-savings-amount" class="font-semibold text-[#0070f3]">$0 (0%)</span>
+          </div>
+        </div>
+
+        <!-- Visual Progress Bar -->
+        <div class="space-y-2 mb-6">
+          <div class="flex justify-between text-xs text-[#8f8f8f]">
+            <span>Income Allocation</span>
+            <span id="progress-allocation-label">0% spent</span>
+          </div>
+          <div class="w-full h-2.5 rounded-full bg-[#f2f2f2] overflow-hidden flex">
+            <div id="progress-bar-spent" class="h-full bg-[#171717] transition-all duration-300" style="width: 0%"></div>
+            <div id="progress-bar-savings" class="h-full bg-[#0070f3] transition-all duration-300" style="width: 0%"></div>
+            <div id="progress-bar-surplus" class="h-full bg-[#50e3c2] transition-all duration-300" style="width: 0%"></div>
+          </div>
+          <div class="flex items-center gap-3 text-[11px] text-[#8f8f8f] pt-1 font-mono">
+            <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-[#171717]"></span> Expenses</span>
+            <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-[#0070f3]"></span> Savings</span>
+            <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-[#50e3c2]"></span> Remaining</span>
+          </div>
+        </div>
+
+        <!-- Plain Language Interpretation -->
+        <div class="space-y-3">
+          <h3 class="font-mono text-xs font-medium uppercase tracking-wider text-[#8f8f8f]">
+            Practical Interpretation
+          </h3>
+          <div id="interpretation-box" class="space-y-2.5 text-xs text-[#4d4d4d] leading-relaxed">
+            <!-- Dynamic insights based on real numbers -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Largest Spending Categories Card -->
+      <div class="bg-white rounded-[12px] border border-[#ebebeb] p-5 shadow-whisper">
+        <h3 class="font-mono text-xs font-medium uppercase tracking-wider text-[#8f8f8f] mb-3">
+          Top Spending Categories
+        </h3>
+        <div id="top-categories-list" class="space-y-2.5 text-xs">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <!-- Quick Method Switcher -->
+      <div class="bg-[#fafafa] rounded-[12px] border border-[#ebebeb] p-4 text-xs text-[#4d4d4d] space-y-2">
+        <p class="font-medium text-[#171717]">Looking for a structured framework?</p>
+        <p class="text-[12px] text-[#8f8f8f]">
+          Try the <a href="/50-30-20-budget/" class="text-[#0070f3] underline hover:text-[#0761d1]">50/30/20 Rule</a> for simple percentages, or <a href="/zero-based-budget/" class="text-[#0070f3] underline hover:text-[#0761d1]">Zero-Based Budget</a> to assign every single dollar a job.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+(function() {
+  const STORAGE_KEY = 'myrealbudget_general_budget_v1';
+
+  const FREQUENCY_MULTIPLIERS = {
+    weekly: 52 / 12,
+    biweekly: 26 / 12,
+    monthly: 1,
+    quarterly: 4 / 12,
+    yearly: 1 / 12,
+  };
+
+  const FREQUENCY_OPTIONS = [
+    { id: 'monthly', label: 'Monthly' },
+    { id: 'weekly', label: 'Weekly' },
+    { id: 'biweekly', label: 'Every 2 wks' },
+    { id: 'quarterly', label: 'Quarterly' },
+    { id: 'yearly', label: 'Yearly' },
+  ];
+
+  const defaultData = {
+    income: [
+      { id: 'inc_salary', name: 'Primary Salary (Take-home)', amount: 4200, frequency: 'monthly' },
+      { id: 'inc_side', name: 'Side Income', amount: 300, frequency: 'monthly' },
+      { id: 'inc_freelance', name: 'Freelance & Contract', amount: 0, frequency: 'monthly' },
+    ],
+    categories: [
+      {
+        id: 'cat_housing',
+        name: 'Housing',
+        items: [
+          { id: 'h1', name: 'Rent or Mortgage', amount: 1400, frequency: 'monthly' },
+          { id: 'h2', name: 'Maintenance & Repairs', amount: 100, frequency: 'monthly' },
+        ],
+      },
+      {
+        id: 'cat_utilities',
+        name: 'Utilities',
+        items: [
+          { id: 'u1', name: 'Electricity & Gas', amount: 120, frequency: 'monthly' },
+          { id: 'u2', name: 'Water & Trash', amount: 60, frequency: 'monthly' },
+          { id: 'u3', name: 'Internet & Mobile Plan', amount: 130, frequency: 'monthly' },
+        ],
+      },
+      {
+        id: 'cat_food',
+        name: 'Food & Groceries',
+        items: [
+          { id: 'f1', name: 'Groceries & Essentials', amount: 110, frequency: 'weekly' },
+          { id: 'f2', name: 'Dining Out & Coffee', amount: 45, frequency: 'weekly' },
+        ],
+      },
+      {
+        id: 'cat_transportation',
+        name: 'Transportation',
+        items: [
+          { id: 't1', name: 'Car Loan / Transit Pass', amount: 280, frequency: 'monthly' },
+          { id: 't2', name: 'Gas / Fuel', amount: 40, frequency: 'weekly' },
+          { id: 't3', name: 'Auto Maintenance & Tires', amount: 600, frequency: 'yearly' },
+        ],
+      },
+      {
+        id: 'cat_insurance',
+        name: 'Insurance & Healthcare',
+        items: [
+          { id: 'i1', name: 'Auto Insurance', amount: 1200, frequency: 'yearly' },
+          { id: 'i2', name: 'Renters / Home Insurance', amount: 240, frequency: 'yearly' },
+          { id: 'i3', name: 'Medical Co-pays & Prescriptions', amount: 45, frequency: 'monthly' },
+        ],
+      },
+      {
+        id: 'cat_debt',
+        name: 'Debt Payments',
+        items: [
+          { id: 'd1', name: 'Student Loan Payment', amount: 180, frequency: 'monthly' },
+          { id: 'd2', name: 'Credit Card Minimum', amount: 0, frequency: 'monthly' },
+        ],
+      },
+      {
+        id: 'cat_subscriptions',
+        name: 'Subscriptions & Lifestyle',
+        items: [
+          { id: 's1', name: 'Streaming & Apps', amount: 40, frequency: 'monthly' },
+          { id: 's2', name: 'Gym / Fitness Membership', amount: 45, frequency: 'monthly' },
+          { id: 's3', name: 'Entertainment & Fun Money', amount: 120, frequency: 'monthly' },
+        ],
+      },
+      {
+        id: 'cat_savings',
+        name: 'Savings & Investments',
+        items: [
+          { id: 'sa1', name: 'Emergency Fund', amount: 250, frequency: 'monthly' },
+          { id: 'sa2', name: 'Roth IRA / Retirement', amount: 250, frequency: 'monthly' },
+        ],
+      },
+    ],
+  };
+
+  let state = loadState();
+
+  function loadState() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed.income && parsed.categories) {
+          return parsed;
+        }
+      }
+    } catch (e) {
+      console.warn('LocalStorage error:', e);
+    }
+    return JSON.parse(JSON.stringify(defaultData));
+  }
+
+  function saveState() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (e) {
+      console.warn('Failed to save to localStorage:', e);
+    }
+  }
+
+  function normalize(amount, freq) {
+    const mult = FREQUENCY_MULTIPLIERS[freq] || 1;
+    return (Number(amount) || 0) * mult;
+  }
+
+  function formatMoney(amount) {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: amount % 1 === 0 ? 0 : 2,
+    }).format(amount);
+  }
+
+  function renderIncome() {
+    const container = document.getElementById('income-items-container');
+    if (!container) return;
+
+    container.innerHTML = state.income.map((item, idx) => `
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 p-2.5 rounded-[6px] bg-[#fafafa] border border-[#ebebeb] text-xs" data-income-idx="${idx}">
+        <input
+          type="text"
+          value="${escapeHtml(item.name)}"
+          aria-label="Income source name"
+          class="flex-1 px-2.5 py-1.5 rounded-[6px] bg-white border border-[#ebebeb] text-[#171717] focus:outline-none focus:border-[#171717] font-medium"
+          onchange="window._gbp.updateIncomeItem(${idx}, 'name', this.value)"
+        />
+        <div class="flex items-center gap-2">
+          <div class="relative w-28">
+            <span class="absolute left-2.5 top-1.5 text-[#8f8f8f] font-mono">$</span>
+            <input
+              type="number"
+              min="0"
+              step="any"
+              value="${item.amount || ''}"
+              placeholder="0"
+              aria-label="Income amount"
+              class="w-full pl-6 pr-2 py-1.5 rounded-[6px] bg-white border border-[#ebebeb] text-[#171717] font-mono text-right focus:outline-none focus:border-[#171717]"
+              oninput="window._gbp.updateIncomeItem(${idx}, 'amount', this.value)"
+            />
+          </div>
+          <select
+            aria-label="Income payment frequency"
+            class="px-2 py-1.5 rounded-[6px] bg-white border border-[#ebebeb] text-[#4d4d4d] focus:outline-none focus:border-[#171717] text-xs font-mono"
+            onchange="window._gbp.updateIncomeItem(${idx}, 'frequency', this.value)"
+          >
+            ${FREQUENCY_OPTIONS.map(opt => `
+              <option value="${opt.id}" ${item.frequency === opt.id ? 'selected' : ''}>${opt.label}</option>
+            `).join('')}
+          </select>
+          <button
+            type="button"
+            title="Remove item"
+            aria-label="Remove income item"
+            class="p-1.5 text-[#8f8f8f] hover:text-[#ee0000] rounded hover:bg-neutral-100 transition"
+            onclick="window._gbp.removeIncomeItem(${idx})"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function renderCategories() {
+    const container = document.getElementById('expense-categories-container');
+    if (!container) return;
+
+    container.innerHTML = state.categories.map((cat, catIdx) => {
+      const catTotal = cat.items.reduce((sum, item) => sum + normalize(item.amount, item.frequency), 0);
+      return `
+        <div class="bg-white rounded-[12px] border border-[#ebebeb] p-5 shadow-whisper" data-cat-idx="${catIdx}">
+          <div class="flex items-center justify-between pb-3 mb-3 border-b border-[#ebebeb]">
+            <div class="flex items-center gap-2">
+              <input
+                type="text"
+                value="${escapeHtml(cat.name)}"
+                aria-label="Category name"
+                class="font-semibold text-sm text-[#171717] bg-transparent border-b border-transparent hover:border-[#ebebeb] focus:border-[#171717] focus:outline-none py-0.5"
+                onchange="window._gbp.updateCategoryName(${catIdx}, this.value)"
+              />
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="font-mono text-xs font-semibold text-[#171717]">
+                ${formatMoney(catTotal)}<span class="text-[#8f8f8f] font-normal text-[11px]">/mo</span>
+              </span>
+              <button
+                type="button"
+                title="Remove entire category"
+                aria-label="Remove category ${cat.name}"
+                class="text-[#8f8f8f] hover:text-[#ee0000] p-1 transition"
+                onclick="window._gbp.removeCategory(${catIdx})"
+              >
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="space-y-2.5">
+            ${cat.items.map((item, itemIdx) => `
+              <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 p-2 rounded-[6px] bg-[#fafafa] border border-[#ebebeb] text-xs">
+                <input
+                  type="text"
+                  value="${escapeHtml(item.name)}"
+                  aria-label="Expense item name"
+                  class="flex-1 px-2.5 py-1.5 rounded-[6px] bg-white border border-[#ebebeb] text-[#171717] focus:outline-none focus:border-[#171717]"
+                  onchange="window._gbp.updateItem(${catIdx}, ${itemIdx}, 'name', this.value)"
+                />
+                <div class="flex items-center gap-2">
+                  <div class="relative w-28">
+                    <span class="absolute left-2.5 top-1.5 text-[#8f8f8f] font-mono">$</span>
+                    <input
+                      type="number"
+                      min="0"
+                      step="any"
+                      value="${item.amount || ''}"
+                      placeholder="0"
+                      aria-label="Expense amount"
+                      class="w-full pl-6 pr-2 py-1.5 rounded-[6px] bg-white border border-[#ebebeb] text-[#171717] font-mono text-right focus:outline-none focus:border-[#171717]"
+                      oninput="window._gbp.updateItem(${catIdx}, ${itemIdx}, 'amount', this.value)"
+                    />
+                  </div>
+                  <select
+                    aria-label="Expense frequency"
+                    class="px-2 py-1.5 rounded-[6px] bg-white border border-[#ebebeb] text-[#4d4d4d] focus:outline-none focus:border-[#171717] text-xs font-mono"
+                    onchange="window._gbp.updateItem(${catIdx}, ${itemIdx}, 'frequency', this.value)"
+                  >
+                    ${FREQUENCY_OPTIONS.map(opt => `
+                      <option value="${opt.id}" ${item.frequency === opt.id ? 'selected' : ''}>${opt.label}</option>
+                    `).join('')}
+                  </select>
+                  <button
+                    type="button"
+                    title="Remove item"
+                    aria-label="Remove item"
+                    class="p-1.5 text-[#8f8f8f] hover:text-[#ee0000] rounded hover:bg-neutral-100 transition"
+                    onclick="window._gbp.removeItem(${catIdx}, ${itemIdx})"
+                  >
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                  </button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+
+          <button
+            type="button"
+            class="mt-3 inline-flex items-center gap-1.5 text-xs text-[#4d4d4d] hover:text-[#171717] font-medium py-1 px-2 rounded hover:bg-[#fafafa] transition"
+            onclick="window._gbp.addItem(${catIdx})"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            Add item to ${escapeHtml(cat.name)}
+          </button>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function calculateAndRenderResults() {
+    const totalIncome = state.income.reduce((sum, item) => sum + normalize(item.amount, item.frequency), 0);
+    
+    let totalExpenses = 0;
+    let savingsTotal = 0;
+    const categoryTotals = [];
+
+    state.categories.forEach(cat => {
+      const catTotal = cat.items.reduce((sum, item) => sum + normalize(item.amount, item.frequency), 0);
+      totalExpenses += catTotal;
+      categoryTotals.push({ name: cat.name, total: catTotal });
+      
+      const lower = cat.name.toLowerCase();
+      if (lower.includes('saving') || lower.includes('invest') || lower.includes('emergency')) {
+        savingsTotal += catTotal;
+      }
+    });
+
+    const remaining = totalIncome - totalExpenses;
+    const spentPct = totalIncome > 0 ? Math.min(100, Math.round((totalExpenses / totalIncome) * 100)) : 0;
+    const remainingPct = totalIncome > 0 ? Math.round((remaining / totalIncome) * 100) : 0;
+    const savingsPct = totalIncome > 0 ? Math.round((savingsTotal / totalIncome) * 100) : 0;
+
+    // Headers
+    const incHeader = document.getElementById('income-header-total');
+    if (incHeader) incHeader.textContent = formatMoney(totalIncome);
+
+    const expHeader = document.getElementById('expenses-header-total');
+    if (expHeader) expHeader.textContent = formatMoney(totalExpenses);
+
+    // Summary Card
+    const balanceVal = document.getElementById('summary-balance-value');
+    const balanceLabel = document.getElementById('summary-balance-label');
+    const statusBanner = document.getElementById('balance-status-banner');
+    const statusText = document.getElementById('balance-status-text');
+
+    if (balanceVal) balanceVal.textContent = formatMoney(remaining);
+
+    if (statusBanner && statusText && balanceLabel) {
+      if (totalIncome === 0 && totalExpenses === 0) {
+        statusBanner.className = 'p-3.5 rounded-[6px] mb-5 text-xs bg-[#f2f2f2] text-[#4d4d4d]';
+        statusText.textContent = 'Enter your monthly income and planned expenses to see your balance.';
+        balanceLabel.textContent = 'Net Cash Flow';
+      } else if (remaining > 0) {
+        statusBanner.className = 'p-3.5 rounded-[6px] mb-5 text-xs bg-[#e6fbf5] text-[#047857] border border-[#a7f3d0]';
+        statusText.textContent = `Surplus: You have ${formatMoney(remaining)} left after planned expenses each month.`;
+        balanceLabel.textContent = 'Monthly Surplus';
+      } else if (remaining === 0) {
+        statusBanner.className = 'p-3.5 rounded-[6px] mb-5 text-xs bg-[#eef6ff] text-[#0761d1] border border-[#bfdbfe]';
+        statusText.textContent = 'Balanced: Every dollar of your income is allocated.';
+        balanceLabel.textContent = 'Net Balance';
+      } else {
+        const deficit = Math.abs(remaining);
+        statusBanner.className = 'p-3.5 rounded-[6px] mb-5 text-xs bg-[#fef2f2] text-[#b91c1c] border border-[#fecaca]';
+        statusText.textContent = `Deficit: Your planned expenses are ${formatMoney(deficit)} higher than your income.`;
+        balanceLabel.textContent = 'Monthly Deficit';
+      }
+    }
+
+    // Breakdown
+    const sIncome = document.getElementById('summary-total-income');
+    const sExpenses = document.getElementById('summary-total-expenses');
+    const sSpentPct = document.getElementById('summary-spent-pct');
+    const sRemPct = document.getElementById('summary-remaining-pct');
+    const sSavings = document.getElementById('summary-savings-amount');
+
+    if (sIncome) sIncome.textContent = formatMoney(totalIncome);
+    if (sExpenses) sExpenses.textContent = formatMoney(totalExpenses);
+    if (sSpentPct) sSpentPct.textContent = `${spentPct}%`;
+    if (sRemPct) sRemPct.textContent = `${remainingPct}%`;
+    if (sSavings) sSavings.textContent = `${formatMoney(savingsTotal)} (${savingsPct}%)`;
+
+    // Progress Bar
+    const allocLabel = document.getElementById('progress-allocation-label');
+    const barSpent = document.getElementById('progress-bar-spent');
+    const barSavings = document.getElementById('progress-bar-savings');
+    const barSurplus = document.getElementById('progress-bar-surplus');
+
+    if (allocLabel) allocLabel.textContent = `${spentPct}% spent`;
+    if (barSpent && barSavings && barSurplus) {
+      if (totalIncome > 0) {
+        const nonSavingsExpenses = Math.max(0, totalExpenses - savingsTotal);
+        const spentWidth = Math.min(100, (nonSavingsExpenses / totalIncome) * 100);
+        const savingsWidth = Math.min(100 - spentWidth, (savingsTotal / totalIncome) * 100);
+        const surplusWidth = remaining > 0 ? Math.min(100 - spentWidth - savingsWidth, (remaining / totalIncome) * 100) : 0;
+
+        barSpent.style.width = `${spentWidth}%`;
+        barSavings.style.width = `${savingsWidth}%`;
+        barSurplus.style.width = `${surplusWidth}%`;
+      } else {
+        barSpent.style.width = '0%';
+        barSavings.style.width = '0%';
+        barSurplus.style.width = '0%';
+      }
+    }
+
+    // Dynamic Interpretation
+    renderInterpretation(totalIncome, totalExpenses, remaining, categoryTotals, savingsTotal);
+
+    // Top Categories
+    renderTopCategories(categoryTotals, totalExpenses);
+  }
+
+  function renderInterpretation(income, expenses, remaining, categoryTotals, savings) {
+    const box = document.getElementById('interpretation-box');
+    if (!box) return;
+
+    if (income === 0) {
+      box.innerHTML = '<p class="text-[#8f8f8f]">Start by entering your monthly take-home salary or wages above.</p>';
+      return;
+    }
+
+    const sorted = [...categoryTotals].sort((a, b) => b.total - a.total).filter(c => c.total > 0);
+    const largest = sorted[0];
+    const insights = [];
+
+    // 1. Bottom-line state
+    if (remaining > 0) {
+      const remPct = Math.round((remaining / income) * 100);
+      insights.push(`You have <strong>${formatMoney(remaining)}</strong> unallocated each month (${remPct}% of net income). Consider directing this into an emergency fund or higher debt payments.`);
+    } else if (remaining === 0) {
+      insights.push('Your budget balances to exactly zero. Every dollar has an assigned role before the month begins.');
+    } else {
+      const deficit = Math.abs(remaining);
+      insights.push(`Your planned expenses exceed your income by <strong class="text-[#ee0000]">${formatMoney(deficit)}</strong> per month. Review non-essential categories to bring spending back in line.`);
+    }
+
+    // 2. Largest Category
+    if (largest) {
+      const largestPct = expenses > 0 ? Math.round((largest.total / expenses) * 100) : 0;
+      const largestIncomePct = Math.round((largest.total / income) * 100);
+      insights.push(`<strong>${escapeHtml(largest.name)}</strong> is your largest category at ${formatMoney(largest.total)}/month (${largestPct}% of expenses, ${largestIncomePct}% of income).`);
+    }
+
+    // 3. Savings health
+    const savingsPct = Math.round((savings / income) * 100);
+    if (savingsPct >= 20) {
+      insights.push(`Solid savings rate: You are putting away <strong>${savingsPct}%</strong> of your income into savings & investments.`);
+    } else if (savingsPct > 0) {
+      insights.push(`You are currently allocating <strong>${savingsPct}%</strong> to savings. A common benchmark is to aim for 15–20% as high-interest debt is cleared.`);
+    } else {
+      insights.push('You do not currently have any funds allocated toward savings or an emergency cushion.');
+    }
+
+    box.innerHTML = insights.map(i => `<p class="flex items-start gap-1.5"><span>•</span><span>${i}</span></p>`).join('');
+  }
+
+  function renderTopCategories(categoryTotals, totalExpenses) {
+    const list = document.getElementById('top-categories-list');
+    if (!list) return;
+
+    const sorted = [...categoryTotals].sort((a, b) => b.total - a.total).filter(c => c.total > 0).slice(0, 5);
+
+    if (sorted.length === 0) {
+      list.innerHTML = '<p class="text-[#8f8f8f]">No expense categories with values yet.</p>';
+      return;
+    }
+
+    list.innerHTML = sorted.map((cat, idx) => {
+      const pct = totalExpenses > 0 ? Math.round((cat.total / totalExpenses) * 100) : 0;
+      return `
+        <div class="space-y-1">
+          <div class="flex justify-between items-center text-xs">
+            <span class="text-[#171717] font-medium">${idx + 1}. ${escapeHtml(cat.name)}</span>
+            <span class="font-mono text-[#4d4d4d]">${formatMoney(cat.total)} (${pct}%)</span>
+          </div>
+          <div class="w-full h-1.5 rounded-full bg-[#f2f2f2] overflow-hidden">
+            <div class="h-full bg-[#171717]" style="width: ${pct}%"></div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function escapeHtml(str) {
+    return (str || '').replace(/[&<>"']/g, m => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
+    }[m]));
+  }
+
+  // Global handler object for inline event handlers
+  window._gbp = {
+    updateIncomeItem: function(idx, field, value) {
+      if (!state.income[idx]) return;
+      if (field === 'amount') {
+        state.income[idx].amount = parseFloat(value) || 0;
+      } else {
+        state.income[idx][field] = value;
+      }
+      saveState();
+      calculateAndRenderResults();
+    },
+    removeIncomeItem: function(idx) {
+      state.income.splice(idx, 1);
+      saveState();
+      renderIncome();
+      calculateAndRenderResults();
+    },
+    updateItem: function(catIdx, itemIdx, field, value) {
+      if (!state.categories[catIdx] || !state.categories[catIdx].items[itemIdx]) return;
+      if (field === 'amount') {
+        state.categories[catIdx].items[itemIdx].amount = parseFloat(value) || 0;
+      } else {
+        state.categories[catIdx].items[itemIdx][field] = value;
+      }
+      saveState();
+      calculateAndRenderResults();
+    },
+    removeItem: function(catIdx, itemIdx) {
+      if (!state.categories[catIdx]) return;
+      state.categories[catIdx].items.splice(itemIdx, 1);
+      saveState();
+      renderCategories();
+      calculateAndRenderResults();
+    },
+    addItem: function(catIdx) {
+      if (!state.categories[catIdx]) return;
+      state.categories[catIdx].items.push({
+        id: 'item_' + Date.now(),
+        name: 'New Item',
+        amount: 0,
+        frequency: 'monthly',
+      });
+      saveState();
+      renderCategories();
+      calculateAndRenderResults();
+    },
+    updateCategoryName: function(catIdx, name) {
+      if (!state.categories[catIdx]) return;
+      state.categories[catIdx].name = name;
+      saveState();
+      calculateAndRenderResults();
+    },
+    removeCategory: function(catIdx) {
+      if (confirm(`Remove the "${state.categories[catIdx].name}" category and its items?`)) {
+        state.categories.splice(catIdx, 1);
+        saveState();
+        renderCategories();
+        calculateAndRenderResults();
+      }
+    },
+  };
+
+  // DOM Events
+  const addIncomeBtn = document.getElementById('btn-add-income-item');
+  if (addIncomeBtn) {
+    addIncomeBtn.addEventListener('click', () => {
+      state.income.push({
+        id: 'inc_' + Date.now(),
+        name: 'New Income Source',
+        amount: 0,
+        frequency: 'monthly',
+      });
+      saveState();
+      renderIncome();
+      calculateAndRenderResults();
+    });
+  }
+
+  const addCatBtn = document.getElementById('btn-add-custom-category');
+  if (addCatBtn) {
+    addCatBtn.addEventListener('click', () => {
+      const name = prompt('Enter a name for your custom category:', 'Custom Category');
+      if (name && name.trim()) {
+        state.categories.push({
+          id: 'cat_' + Date.now(),
+          name: name.trim(),
+          items: [
+            { id: 'item_' + Date.now(), name: 'First Item', amount: 0, frequency: 'monthly' },
+          ],
+        });
+        saveState();
+        renderCategories();
+        calculateAndRenderResults();
+      }
+    });
+  }
+
+  const resetBtn = document.getElementById('btn-reset-budget');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      if (confirm('Reset all values to default sample numbers? Any custom items will be cleared.')) {
+        state = JSON.parse(JSON.stringify(defaultData));
+        saveState();
+        renderIncome();
+        renderCategories();
+        calculateAndRenderResults();
+      }
+    });
+  }
+
+  const exportBtn = document.getElementById('btn-export-csv');
+  if (exportBtn) {
+    exportBtn.addEventListener('click', () => {
+      let csv = 'Section,Category,Item Name,Frequency,Entered Amount,Normalized Monthly\n';
+      state.income.forEach(item => {
+        csv += `Income,Income,${csvClean(item.name)},${item.frequency},${item.amount},${normalize(item.amount, item.frequency).toFixed(2)}\n`;
+      });
+      state.categories.forEach(cat => {
+        cat.items.forEach(item => {
+          csv += `Expense,${csvClean(cat.name)},${csvClean(item.name)},${item.frequency},${item.amount},${normalize(item.amount, item.frequency).toFixed(2)}\n`;
+        });
+      });
+      
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `myrealbudget-planner-${new Date().toISOString().split('T')[0]}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  }
+
+  function csvClean(str) {
+    return '"' + (str || '').replace(/"/g, '""') + '"';
+  }
+
+  // Initial Boot
+  renderIncome();
+  renderCategories();
+  calculateAndRenderResults();
+})();
+</script>

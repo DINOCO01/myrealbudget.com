@@ -1,0 +1,123 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Eyebrow from '../../components/ui/Eyebrow.astro';
+
+const title = '50/30/20 vs Zero-Based Budget: Which Method Is Right for You?';
+const description = 'Compare the 50/30/20 rule and Zero-Based budgeting head-to-head. Compare flexibility, daily effort, mindset, and discover which method fits your lifestyle.';
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description: description,
+  author: { '@type': 'Organization', name: 'My Real Budget' },
+  publisher: { '@type': 'Organization', name: 'My Real Budget' },
+};
+---
+
+<Layout title={title} description={description} ogType="article" jsonLd={articleSchema}>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-14">
+    <!-- Breadcrumb -->
+    <div class="mb-6 flex items-center gap-2 text-xs text-[#8f8f8f] font-mono">
+      <a href="/learn/" class="hover:text-[#171717] underline">Learn</a>
+      <span>/</span>
+      <span>Comparisons</span>
+    </div>
+
+    <Eyebrow text="6 Min Read • Method Comparison" class="mb-3" />
+
+    <h1 class="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-[#171717] leading-tight mb-6">
+      50/30/20 vs Zero-Based Budget: Which Method Is Right for You?
+    </h1>
+
+    <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] text-xs text-[#4d4d4d] mb-10 leading-relaxed">
+      <strong>Quick Answer:</strong> Choose <strong>50/30/20</strong> if you want a flexible, high-level percentage guideline with minimal bookkeeping. Choose <strong>Zero-Based Budgeting</strong> if you want tight control to aggressively eliminate debt or optimize every single dollar.
+    </div>
+
+    <div class="prose max-w-none text-sm text-[#4d4d4d] space-y-6 leading-relaxed">
+      <h2 class="text-xl font-semibold text-[#171717] tracking-tight">The Core Difference in Mindset</h2>
+      <p>
+        Both the 50/30/20 rule and zero-based budgeting are proven personal finance frameworks, but they approach human behavior from very different psychological angles:
+      </p>
+      <ul class="list-disc list-inside space-y-2 pl-2">
+        <li><strong>50/30/20 is a Macro System:</strong> It establishes three broad boundaries (Needs, Wants, Savings). Within those boundaries, you have total freedom.</li>
+        <li><strong>Zero-Based Budgeting is a Micro System:</strong> It demands that every incoming dollar has a specific assigned envelope or job before you spend it.</li>
+      </ul>
+
+      <!-- Comparison Matrix Table -->
+      <h2 class="text-xl font-semibold text-[#171717] tracking-tight">Head-to-Head Comparison Table</h2>
+      <div class="overflow-x-auto rounded-[8px] border border-[#ebebeb] not-prose my-6">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead>
+            <tr class="bg-[#fafafa] border-b border-[#ebebeb] text-[#8f8f8f] font-mono">
+              <th class="p-3">Feature</th>
+              <th class="p-3">50/30/20 Budget</th>
+              <th class="p-3">Zero-Based Budget</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[#ebebeb]">
+            <tr>
+              <td class="p-3 font-medium text-[#171717]">Complexity</td>
+              <td class="p-3 text-[#4d4d4d]">Low (3 categories)</td>
+              <td class="p-3 text-[#4d4d4d]">Moderate to High (10–25 envelopes)</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-medium text-[#171717]">Time Commitment</td>
+              <td class="p-3 text-[#4d4d4d]">15 minutes / month</td>
+              <td class="p-3 text-[#4d4d4d]">30–60 minutes / month</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-medium text-[#171717]">Best For</td>
+              <td class="p-3 text-[#4d4d4d]">Beginners, steady earners, lifestyle balance</td>
+              <td class="p-3 text-[#4d4d4d]">Aggressive debt payoff, detail-oriented planners</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-medium text-[#171717]">Flexibility</td>
+              <td class="p-3 text-[#4d4d4d]">High (spend wants freely)</td>
+              <td class="p-3 text-[#4d4d4d]">Rigid (must rebalance if category overflows)</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-medium text-[#171717]">Primary Formula</td>
+              <td class="p-3 font-mono text-xs">50% Needs / 30% Wants / 20% Savings</td>
+              <td class="p-3 font-mono text-xs">Income − All Allocations = $0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl font-semibold text-[#171717] tracking-tight">When to Choose 50/30/20</h2>
+      <p>
+        The 50/30/20 rule is best if:
+      </p>
+      <ul class="list-disc list-inside space-y-1.5 pl-2">
+        <li>You dislike tracking individual receipts or micro-categories.</li>
+        <li>You have steady income and low-to-moderate high-interest debt.</li>
+        <li>You want to ensure you are consistently saving 20% without feeling guilty about spending the rest.</li>
+      </ul>
+
+      <h2 class="text-xl font-semibold text-[#171717] tracking-tight">When to Choose Zero-Based Budgeting</h2>
+      <p>
+        Zero-based budgeting is best if:
+      </p>
+      <ul class="list-disc list-inside space-y-1.5 pl-2">
+        <li>You are carrying high-interest credit card balances and want to eliminate them as fast as humanly possible.</li>
+        <li>You notice cash constantly disappearing from your checking account with nothing to show for it.</li>
+        <li>You want precision control over sinking funds for upcoming annual expenses.</li>
+      </ul>
+
+      <h2 class="text-xl font-semibold text-[#171717] tracking-tight">Can You Combine Both?</h2>
+      <p>
+        Yes! In fact, many successful planners use the 50/30/20 rule to determine their overall quarterly targets, and then use a zero-based budget each month to allocate individual paychecks within those targets.
+      </p>
+
+      <div class="not-prose pt-6 border-t border-[#ebebeb] flex flex-col sm:flex-row gap-3">
+        <a href="/50-30-20-budget/" class="inline-flex items-center justify-center h-10 px-6 rounded-full bg-[#171717] text-white text-xs font-medium hover:bg-neutral-800 transition">
+          Try 50/30/20 Planner
+        </a>
+        <a href="/zero-based-budget/" class="inline-flex items-center justify-center h-10 px-6 rounded-full bg-white text-[#171717] border border-[#ebebeb] text-xs font-medium hover:bg-neutral-50 transition shadow-whisper">
+          Try Zero-Based Planner
+        </a>
+      </div>
+    </div>
+  </article>
+</Layout>

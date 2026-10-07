@@ -1,0 +1,249 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Eyebrow from '../components/ui/Eyebrow.astro';
+
+const title = 'Privacy Policy | My Real Budget — 100% Private & Local';
+const description = 'Read the My Real Budget privacy policy. We protect your financial privacy through local browser storage, zero bank account linking, and no data selling.';
+const canonical = 'https://myrealbudget.com/privacy/';
+
+const privacySchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Privacy Policy',
+  url: canonical,
+  description: description,
+  publisher: {
+    '@type': 'Organization',
+    name: 'My Real Budget',
+    url: 'https://myrealbudget.com/',
+    logo: 'https://myrealbudget.com/favicon.svg',
+  },
+};
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={privacySchema}>
+  <!-- HERO INTRO -->
+  <section class="border-b border-[#e5e0d8] dark:border-[#1e293b] bg-[#faf8f5] dark:bg-[#0b1220] py-14 sm:py-20 transition-colors">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="space-y-4">
+        <!-- Breadcrumb -->
+        <nav class="flex items-center gap-2 text-xs font-mono text-[#64748b] dark:text-[#94a3b8]" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-[#0e6e55] dark:hover:text-[#10b981] transition-colors">Home</a>
+          <span aria-hidden="true">/</span>
+          <span class="text-[#0f172a] dark:text-[#f8fafc] font-medium">Privacy Policy</span>
+        </nav>
+
+        <Eyebrow text="Transparency & Security" />
+
+        <h1 class="text-3xl sm:text-5xl font-semibold tracking-[-0.035em] text-[#0f172a] dark:text-[#f8fafc] leading-[1.15]">
+          Privacy Policy
+        </h1>
+
+        <p class="text-sm font-mono text-[#64748b] dark:text-[#94a3b8]">
+          Last Updated: October 2026 • Effective Date: October 2026
+        </p>
+
+        <p class="text-base sm:text-lg text-[#475569] dark:text-[#94a3b8] leading-relaxed max-w-2xl">
+          At <strong>My Real Budget</strong> (accessible at <a href="https://myrealbudget.com" class="text-[#0e6e55] dark:text-[#10b981] underline">myrealbudget.com</a>), your financial privacy is our foundational commitment. We believe your personal money calculations should remain yours alone.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN BODY -->
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-12">
+    <!-- HIGHLIGHT SUMMARY BOX -->
+    <div class="bg-white dark:bg-[#111827] rounded-[16px] border border-[#e5e0d8] dark:border-[#1e293b] p-6 sm:p-8 shadow-whisper space-y-4">
+      <div class="flex items-center gap-2 text-[#0e6e55] dark:text-[#10b981]">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+        <h2 class="text-base font-semibold text-[#0f172a] dark:text-[#f8fafc] tracking-tight">
+          Privacy at a Glance
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 text-xs text-[#475569] dark:text-[#94a3b8]">
+        <div class="p-3.5 rounded-[10px] bg-[#f8f7f4] dark:bg-[#172033] border border-[#e5e0d8] dark:border-[#1e293b] space-y-1">
+          <strong class="text-[#0f172a] dark:text-[#f8fafc] block">No Bank Linking</strong>
+          We never ask for, collect, or store your bank logins, checking account numbers, or credit card passwords.
+        </div>
+        <div class="p-3.5 rounded-[10px] bg-[#f8f7f4] dark:bg-[#172033] border border-[#e5e0d8] dark:border-[#1e293b] space-y-1">
+          <strong class="text-[#0f172a] dark:text-[#f8fafc] block">Local Storage Only</strong>
+          Your income, expenses, and budget numbers remain saved in your browser's private local memory.
+        </div>
+        <div class="p-3.5 rounded-[10px] bg-[#f8f7f4] dark:bg-[#172033] border border-[#e5e0d8] dark:border-[#1e293b] space-y-1">
+          <strong class="text-[#0f172a] dark:text-[#f8fafc] block">Zero Data Selling</strong>
+          We do not sell, rent, license, or broker your personal financial records or contact information to data aggregators.
+        </div>
+        <div class="p-3.5 rounded-[10px] bg-[#f8f7f4] dark:bg-[#172033] border border-[#e5e0d8] dark:border-[#1e293b] space-y-1">
+          <strong class="text-[#0f172a] dark:text-[#f8fafc] block">Total Data Deletion</strong>
+          Clear your browser cache, click the reset button on any planner, or erase site data to instantly remove all stored numbers.
+        </div>
+      </div>
+    </div>
+
+    <!-- DETAILED ARTICLES -->
+    <article class="prose max-w-none text-sm text-[#475569] dark:text-[#94a3b8] space-y-10 leading-relaxed">
+      <!-- Section 1 -->
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold text-[#0f172a] dark:text-[#f8fafc] tracking-tight">
+          1. Information We Do Not Collect
+        </h2>
+        <p>
+          Unlike conventional financial applications that require linking your bank account through aggregation APIs (such as Plaid or MX), My Real Budget operates entirely on a <strong>client-side calculation model</strong>. We strictly do not collect, request, or retain:
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5">
+          <li>Bank account credentials, routing numbers, account numbers, or passwords.</li>
+          <li>Credit card, debit card, or payment instrument details.</li>
+          <li>Social Security Numbers (SSN), national ID numbers, or government identifiers.</li>
+          <li>Credit scores, loan balance histories, or investment brokerage accounts.</li>
+          <li>Personal financial numbers entered into our online calculators or templates.</li>
+        </ul>
+      </section>
+
+      <!-- Section 2 -->
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold text-[#0f172a] dark:text-[#f8fafc] tracking-tight">
+          2. Information Stored Locally on Your Device (Web Storage)
+        </h2>
+        <p>
+          To make our budgeting calculators and site preferences convenient to use between browser sessions, our website utilizes standard HTML5 Web Storage (<code class="font-mono text-xs bg-[#f4f0ea] dark:bg-[#172033] px-1.5 py-0.5 rounded">localStorage</code>):
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5">
+          <li>
+            <strong class="text-[#0f172a] dark:text-[#f8fafc]">Theme Preference:</strong> The key <code class="font-mono text-xs bg-[#f4f0ea] dark:bg-[#172033] px-1.5 py-0.5 rounded">myrealbudget_theme</code> stores your light or dark mode choice to prevent flickering upon page reload.
+          </li>
+          <li>
+            <strong class="text-[#0f172a] dark:text-[#f8fafc]">Budget Entries:</strong> Your entered salary, expenses, categories, and frequency selections are stored in your device's browser memory so your planner does not erase when you refresh the tab.
+          </li>
+        </ul>
+        <p>
+          This data exists <strong>only on your device</strong>. It is not transmitted to, backed up on, or viewable by our web servers or any external party. You can clear this data at any time by clicking "Reset" inside the planner or by clearing site data in your browser settings.
+        </p>
+      </section>
+
+      <!-- Section 3 -->
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold text-[#0f172a] dark:text-[#f8fafc] tracking-tight">
+          3. Information Collected Automatically (Server Logs & Telemetry)
+        </h2>
+        <p>
+          When you access any page on <a href="https://myrealbudget.com" class="text-[#0e6e55] dark:text-[#10b981] underline">myrealbudget.com</a>, our web servers and content delivery network (CDN) automatically record standard technical log entries typical across the internet. These logs may contain:
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5">
+          <li>Internet Protocol (IP) address.</li>
+          <li>Browser type, engine version, and operating system.</li>
+          <li>Referring URL and requested page paths.</li>
+          <li>Date, time stamp, and HTTP response status code.</li>
+        </ul>
+        <p>
+          These technical server logs are used exclusively for security diagnostics, mitigating DDoS and malicious attacks, optimizing CDN performance, and identifying server errors. Server log files are systematically rotated and permanently deleted according to industry security standards.
+        </p>
+      </section>
+
+      <!-- Section 4 -->
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold text-[#0f172a] dark:text-[#f8fafc] tracking-tight">
+          4. Information You Voluntarily Provide
+        </h2>
+        <p>
+          If you choose to contact us directly via our <a href="/contact/" class="text-[#0e6e55] dark:text-[#10b981] underline">contact form</a> or by emailing <a href="mailto:support@myrealbudget.com" class="text-[#0e6e55] dark:text-[#10b981] underline">support@myrealbudget.com</a>, we receive the details you choose to send:
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5">
+          <li>Your name and email address.</li>
+          <li>The subject line and message content (e.g. feedback, template requests, or bug reports).</li>
+        </ul>
+        <p>
+          We use this communication information solely to respond to your specific inquiry, address technical feedback, and improve the website. We never add your email address to marketing distribution lists without explicit opt-in consent.
+        </p>
+      </section>
+
+      <!-- Section 5 -->
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold text-[#0f172a] dark:text-[#f8fafc] tracking-tight">
+          5. Third-Party Services & Infrastructure
+        </h2>
+        <p>
+          To deliver a fast, reliable, and secure web experience globally, we rely on vetted, industry-standard infrastructure providers:
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5">
+          <li>
+            <strong class="text-[#0f172a] dark:text-[#f8fafc]">Hosting & CDN:</strong> Our static pages are distributed globally via high-security cloud edge networks ensuring fast page loads and SSL/TLS encryption.
+          </li>
+          <li>
+            <strong class="text-[#0f172a] dark:text-[#f8fafc]">Google Fonts:</strong> We reference typography from Google Fonts to deliver consistent typography. Google may receive standard HTTP requests for font asset files.
+          </li>
+        </ul>
+        <p>
+          We do not sell user data to data brokers, advertising networks, or third-party lead generation companies.
+        </p>
+      </section>
+
+      <!-- Section 6 -->
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold text-[#0f172a] dark:text-[#f8fafc] tracking-tight">
+          6. Data Security
+        </h2>
+        <p>
+          We take appropriate technical measures to safeguard the integrity of our platform:
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5">
+          <li><strong>Universal HTTPS:</strong> All traffic to and from myrealbudget.com is encrypted in transit using Transport Layer Security (TLS/HTTPS).</li>
+          <li><strong>Static Architecture:</strong> Because our site is generated as static HTML with client-side calculations, there is no centralized database holding user passwords, banking credentials, or personal budget sheets.</li>
+        </ul>
+      </section>
+
+      <!-- Section 7 -->
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold text-[#0f172a] dark:text-[#f8fafc] tracking-tight">
+          7. Your Privacy Rights (GDPR, CCPA/CPRA)
+        </h2>
+        <p>
+          Depending on your jurisdiction (such as the European Economic Area, United Kingdom, or California), you are entitled to specific statutory privacy rights:
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5">
+          <li><strong>Right to Access & Knowledge:</strong> You have the right to know what personal data is processed.</li>
+          <li><strong>Right to Deletion / Erasure:</strong> Because your budget data is stored solely in your browser, you can exercise immediate erasure simply by clearing your browser's local storage. For any email correspondence deletion requests, contact us.</li>
+          <li><strong>Right to Non-Discrimination:</strong> We do not discriminate against users who exercise their privacy rights.</li>
+          <li><strong>Do Not Sell or Share My Personal Information:</strong> We do not sell or share personal information as defined by California Consumer Privacy Act (CCPA/CPRA).</li>
+        </ul>
+      </section>
+
+      <!-- Section 8 -->
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold text-[#0f172a] dark:text-[#f8fafc] tracking-tight">
+          8. Children's Privacy (COPPA Compliance)
+        </h2>
+        <p>
+          My Real Budget is intended for general audiences interested in personal budgeting. We do not knowingly solicit or collect personal information from children under the age of 13 (or under 16 in applicable jurisdictions). If you believe a child has provided us with personal information, please contact us immediately for deletion.
+        </p>
+      </section>
+
+      <!-- Section 9 -->
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold text-[#0f172a] dark:text-[#f8fafc] tracking-tight">
+          9. Changes to This Policy
+        </h2>
+        <p>
+          We may periodically update this Privacy Policy to reflect improvements to our tools, legal requirements, or security best practices. Any revisions will be published on this page with an updated "Last Updated" date at the top. We encourage you to review this page periodically.
+        </p>
+      </section>
+
+      <!-- Section 10 -->
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold text-[#0f172a] dark:text-[#f8fafc] tracking-tight">
+          10. Contacting Us About Privacy
+        </h2>
+        <p>
+          If you have questions, inquiries, or requests regarding this Privacy Policy or your data, please contact our team:
+        </p>
+        <div class="p-4 rounded-[12px] bg-[#f8f7f4] dark:bg-[#172033] border border-[#e5e0d8] dark:border-[#1e293b] space-y-1 text-xs font-mono">
+          <p><strong>Email:</strong> <a href="mailto:privacy@myrealbudget.com" class="text-[#0e6e55] dark:text-[#10b981] underline">privacy@myrealbudget.com</a></p>
+          <p><strong>General Support:</strong> <a href="/contact/" class="text-[#0e6e55] dark:text-[#10b981] underline">https://myrealbudget.com/contact/</a></p>
+          <p><strong>Website:</strong> <a href="https://myrealbudget.com" class="text-[#0e6e55] dark:text-[#10b981] underline">myrealbudget.com</a></p>
+        </div>
+      </section>
+    </article>
+  </div>
+</Layout>

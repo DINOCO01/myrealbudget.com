@@ -1,0 +1,415 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* ==========================================================================
+     LIGHT THEME (Warm Editorial Fintech)
+     Background:       warm off-white (#faf8f5)
+     Surface:          pure white (#ffffff)
+     Primary / Accent: refined botanical emerald (#0e6e55)
+     Primary-soft:     pale sage wash (#e8f5f1)
+     Text Primary:     deep navy/charcoal (#0f172a)
+     Text Secondary:   muted slate (#475569)
+     Border:           subtle warm hairline (#e5e0d8)
+     Success:          botanical green (#0e6e55)
+     Danger:           red (#dc2626)
+     ========================================================================== */
+  --bg-page: #faf8f5;
+  --surface: #ffffff;
+  --surface-elevated: #ffffff;
+  --surface-subtle: #f4f0ea;
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --text-faint: #94a3b8;
+
+  --border-main: #e5e0d8;
+  --border-subtle: #ede9e1;
+
+  --btn-primary-bg: #0e6e55;
+  --btn-primary-fg: #ffffff;
+  --btn-primary-hover: #0a5240;
+
+  --btn-secondary-bg: #ffffff;
+  --btn-secondary-fg: #0f172a;
+  --btn-secondary-border: #e5e0d8;
+  --btn-secondary-hover: #f4f0ea;
+
+  --primary-soft: #e8f5f1;
+
+  --input-bg: #ffffff;
+  --input-border: #d6d0c4;
+  --focus-ring: #0e6e55;
+
+  /* Financial Semantics */
+  --status-success: #0e6e55;
+  --status-success-bg: #e8f5f1;
+  --status-success-border: #bbf0dd;
+
+  --status-warning: #d97706;
+  --status-warning-bg: #fffbeb;
+  --status-warning-border: #fde68a;
+
+  --status-danger: #dc2626;
+  --status-danger-bg: #fef2f2;
+  --status-danger-border: #fecaca;
+
+  --status-info: #2563eb;
+  --status-info-bg: #eff6ff;
+  --status-info-border: #bfdbfe;
+
+  --link-blue: #2563eb;
+  --link-blue-hover: #1d4ed8;
+
+  --progress-track: #e5e0d8;
+  --card-shadow: 0 1px 3px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(15, 23, 42, 0.02);
+}
+
+html.dark {
+  /* ==========================================================================
+     DARK THEME (Deep Navy & Accessible Emerald)
+     Background:       deep navy (#0b1220)
+     Surface:          dark slate (#111827)
+     Elevated surface: lifted modules (#172033)
+     Primary / Accent: accessible botanical emerald (#10b981)
+     Primary-soft:     emerald wash (rgba(16, 185, 129, 0.15))
+     Text Primary:     near-white (#f8fafc)
+     Secondary text:   muted blue-gray (#94a3b8)
+     Border:           dark slate (#1e293b)
+     Success:          accessible emerald (#10b981)
+     Danger:           accessible red (#f87171)
+     ========================================================================== */
+  --bg-page: #0b1220;
+  --surface: #111827;
+  --surface-elevated: #172033;
+  --surface-subtle: #0e1626;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-faint: #475569;
+
+  --border-main: #1e293b;
+  --border-subtle: #141e30;
+
+  --btn-primary-bg: #10b981;
+  --btn-primary-fg: #042f24;
+  --btn-primary-hover: #34d399;
+
+  --btn-secondary-bg: #111827;
+  --btn-secondary-fg: #f8fafc;
+  --btn-secondary-border: #1e293b;
+  --btn-secondary-hover: #172033;
+
+  --primary-soft: rgba(16, 185, 129, 0.15);
+
+  --input-bg: #0e1626;
+  --input-border: #1e293b;
+  --focus-ring: #10b981;
+
+  --status-success: #10b981;
+  --status-success-bg: rgba(16, 185, 129, 0.15);
+  --status-success-border: rgba(16, 185, 129, 0.3);
+
+  --status-warning: #fbbf24;
+  --status-warning-bg: rgba(251, 191, 36, 0.15);
+  --status-warning-border: rgba(251, 191, 36, 0.3);
+
+  --status-danger: #f87171;
+  --status-danger-bg: rgba(248, 113, 113, 0.15);
+  --status-danger-border: rgba(248, 113, 113, 0.3);
+
+  --status-info: #38bdf8;
+  --status-info-bg: rgba(56, 189, 248, 0.15);
+  --status-info-border: rgba(56, 189, 248, 0.3);
+
+  --link-blue: #60a5fa;
+  --link-blue-hover: #93c5fd;
+
+  --progress-track: #172033;
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+@theme {
+  --color-canvas: var(--bg-page);
+  --color-canvas-elevated: var(--surface);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-surface-subtle: var(--surface-subtle);
+
+  --color-ink: var(--text-primary);
+  --color-body: var(--text-secondary);
+  --color-mute: var(--text-muted);
+  --color-faint: var(--text-faint);
+
+  --color-hairline: var(--border-main);
+  --color-hairline-soft: var(--border-subtle);
+
+  --color-primary: var(--btn-primary-bg);
+  --color-on-primary: var(--btn-primary-fg);
+  --color-btn-hover: var(--btn-primary-hover);
+
+  --color-sec-bg: var(--btn-secondary-bg);
+  --color-sec-fg: var(--btn-secondary-fg);
+  --color-sec-border: var(--btn-secondary-border);
+  --color-sec-hover: var(--btn-secondary-hover);
+
+  --color-primary-soft: var(--primary-soft);
+
+  --color-input-bg: var(--input-bg);
+  --color-input-border: var(--input-border);
+  --color-focus: var(--focus-ring);
+
+  --color-success: var(--status-success);
+  --color-success-bg: var(--status-success-bg);
+  --color-success-border: var(--status-success-border);
+
+  --color-warning: var(--status-warning);
+  --color-warning-bg: var(--status-warning-bg);
+  --color-warning-border: var(--status-warning-border);
+
+  --color-danger: var(--status-danger);
+  --color-danger-bg: var(--status-danger-bg);
+  --color-danger-border: var(--status-danger-border);
+
+  --color-info: var(--status-info);
+  --color-info-bg: var(--status-info-bg);
+  --color-info-border: var(--status-info-border);
+
+  --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-pill-category: 24px;
+  --radius-pill: 9999px;
+}
+
+@layer base {
+  body {
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+
+  ::selection {
+    background-color: var(--btn-primary-bg);
+    color: #ffffff;
+  }
+
+  input, select, textarea {
+    color-scheme: light dark;
+  }
+}
+
+/* Subtle micro-shadow specified in DESIGN.md Level 1 */
+.shadow-whisper {
+  box-shadow: var(--card-shadow);
+}
+
+/* Floating shadow Level 2 */
+.shadow-floating {
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+html.dark .shadow-floating {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+/* ==========================================================================
+   GLOBAL THEME ADAPTATIONS
+   ========================================================================== */
+
+/* Universal Surface & Canvas Mapping */
+.bg-white {
+  background-color: var(--surface) !important;
+}
+
+.bg-\[\#fafafa\] {
+  background-color: var(--surface-subtle) !important;
+}
+
+/* Borders */
+.border-\[\#ebebeb\],
+.border-slate-200 {
+  border-color: var(--border-main) !important;
+}
+
+.border-\[\#f2f2f2\],
+.border-slate-100 {
+  border-color: var(--border-subtle) !important;
+}
+
+/* Typography across both themes */
+.text-\[\#171717\] {
+  color: var(--text-primary) !important;
+}
+
+.text-\[\#4d4d4d\] {
+  color: var(--text-secondary) !important;
+}
+
+.text-\[\#8f8f8f\] {
+  color: var(--text-muted) !important;
+}
+
+/* Primary Action Buttons & Badges (Strong Blue in Light, Brighter Blue in Dark) */
+.bg-\[\#171717\],
+.bg-primary {
+  background-color: var(--btn-primary-bg) !important;
+  color: var(--btn-primary-fg) !important;
+}
+
+.bg-\[\#171717\]:hover,
+.hover\:bg-neutral-800:hover,
+.hover\:bg-\[\#171717\]:hover {
+  background-color: var(--btn-primary-hover) !important;
+}
+
+.hover\:border-\[\#171717\]:hover {
+  border-color: var(--btn-primary-bg) !important;
+}
+
+/* Primary-Soft (Pale Blue in Light, Dark Blue Tint in Dark) */
+.bg-primary-soft,
+.bg-blue-50,
+.bg-\[\#eff6ff\],
+.bg-\[\#eef6ff\] {
+  background-color: var(--primary-soft) !important;
+}
+
+/* Secondary Links & Interactive Blue States */
+.text-\[\#0070f3\],
+.text-\[\#0761d1\],
+.text-link-blue {
+  color: var(--link-blue) !important;
+}
+
+.hover\:text-\[\#0070f3\]:hover,
+.hover\:text-\[\#0761d1\]:hover {
+  color: var(--link-blue-hover) !important;
+}
+
+.bg-\[\#0070f3\] {
+  background-color: var(--link-blue) !important;
+}
+
+.border-\[\#0070f3\] {
+  border-color: var(--link-blue) !important;
+}
+
+/* Progress bar background tracks */
+.bg-\[\#f2f2f2\] {
+  background-color: var(--progress-track) !important;
+}
+
+/* Financial Status Semantics: Success (Green in Light, Accessible Green in Dark) */
+.bg-\[\#e6fbf5\],
+.bg-emerald-50,
+.bg-green-50 {
+  background-color: var(--status-success-bg) !important;
+}
+
+.text-\[\#047857\],
+.text-emerald-700,
+.text-green-700 {
+  color: var(--status-success) !important;
+}
+
+.border-\[\#a7f3d0\],
+.border-emerald-200,
+.border-green-200 {
+  border-color: var(--status-success-border) !important;
+}
+
+.bg-\[\#50e3c2\] {
+  background-color: var(--status-success) !important;
+}
+
+/* Financial Status Semantics: Danger (Red in Light, Accessible Red in Dark) */
+.bg-\[\#fef2f2\],
+.bg-red-50 {
+  background-color: var(--status-danger-bg) !important;
+}
+
+.text-\[\#b91c1c\],
+.text-\[\#ee0000\],
+.text-red-700,
+.text-red-600 {
+  color: var(--status-danger) !important;
+}
+
+.border-\[\#fecaca\],
+.border-red-200 {
+  border-color: var(--status-danger-border) !important;
+}
+
+/* Form controls */
+input[type="text"],
+input[type="number"],
+select {
+  background-color: var(--input-bg);
+  border-color: var(--input-border);
+  color: var(--text-primary);
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+  border-color: var(--focus-ring) !important;
+  outline: 2px solid var(--focus-ring) !important;
+  outline-offset: -1px;
+}
+
+/* ==========================================================================
+   DARK THEME SPECIFIC ELEVATIONS & SURFACES
+   ========================================================================== */
+html.dark .bg-white {
+  background-color: var(--surface) !important;
+}
+
+/* Elevated container surfaces in Dark Mode (#172033) */
+html.dark .bg-\[\#fafafa\] {
+  background-color: var(--surface-elevated) !important;
+}
+
+html.dark footer.bg-\[\#fafafa\],
+html.dark footer {
+  background-color: #0d1527 !important;
+}
+
+html.dark .hover\:bg-neutral-50:hover,
+html.dark .hover\:bg-\[\#fafafa\]:hover,
+html.dark .hover\:bg-\[\#f2f2f2\]:hover {
+  background-color: var(--surface-elevated) !important;
+}
+
+/* Tables in dark mode */
+html.dark thead tr {
+  background-color: var(--surface-subtle) !important;
+}
+
+html.dark tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+}
+
+/* Code & Pre blocks */
+html.dark pre {
+  background-color: var(--surface-subtle) !important;
+  border-color: var(--border-main) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Wants 30% indicator in Dark mode */
+html.dark .bg-\[\#7928ca\] {
+  background-color: #a855f7 !important;
+}
+
+html.dark .text-\[\#7928ca\] {
+  color: #c084fc !important;
+}

@@ -1,0 +1,194 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Eyebrow from '../components/ui/Eyebrow.astro';
+
+const title = 'Terms & Conditions | My Real Budget';
+const description = 'Review the Terms & Conditions of using My Real Budget, including acceptable use of our free calculators, spreadsheet templates, and educational budgeting guides.';
+const canonical = 'https://myrealbudget.com/terms/';
+
+const termsSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Terms & Conditions',
+  url: canonical,
+  description: description,
+  publisher: {
+    '@type': 'Organization',
+    name: 'My Real Budget',
+    url: 'https://myrealbudget.com/',
+    logo: 'https://myrealbudget.com/favicon.svg',
+  },
+};
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={termsSchema}>
+  <!-- HERO INTRO -->
+  <section class="border-b border-[#e5e0d8] dark:border-[#1e293b] bg-[#faf8f5] dark:bg-[#0b1220] py-14 sm:py-20 transition-colors">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="space-y-4">
+        <!-- Breadcrumb -->
+        <nav class="flex items-center gap-2 text-xs font-mono text-[#64748b] dark:text-[#94a3b8]" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-[#0e6e55] dark:hover:text-[#10b981] transition-colors">Home</a>
+          <span aria-hidden="true">/</span>
+          <span class="text-[#0f172a] dark:text-[#f8fafc] font-medium">Terms & Conditions</span>
+        </nav>
+
+        <Eyebrow text="Agreement & Disclaimers" />
+
+        <h1 class="text-3xl sm:text-5xl font-semibold tracking-[-0.035em] text-[#0f172a] dark:text-[#f8fafc] leading-[1.15]">
+          Terms & Conditions
+        </h1>
+
+        <p class="text-sm font-mono text-[#64748b] dark:text-[#94a3b8]">
+          Last Updated: October 2026 • Effective Date: October 2026
+        </p>
+
+        <p class="text-base sm:text-lg text-[#475569] dark:text-[#94a3b8] leading-relaxed max-w-2xl">
+          Please read these Terms & Conditions carefully before using <strong>My Real Budget</strong> (myrealbudget.com). By accessing or using our websites, online calculators, and templates, you agree to be bound by these terms.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN BODY -->
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-12">
+    <!-- IMPORTANT FINANCIAL ADVISORY NOTICE BANNER -->
+    <div class="bg-white dark:bg-[#111827] rounded-[16px] border border-[#e5e0d8] dark:border-[#1e293b] p-6 sm:p-8 shadow-whisper space-y-3">
+      <div class="flex items-center gap-2 text-[#d97706] dark:text-[#fbbf24]">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+        <h2 class="text-base font-semibold text-[#0f172a] dark:text-[#f8fafc] tracking-tight">
+          Important Notice: Educational & Informational Purpose Only
+        </h2>
+      </div>
+      <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+        My Real Budget provides self-directed mathematical calculators, budgeting templates, and educational personal finance materials. <strong>We are not a certified financial planner, registered investment advisor, certified public accountant (CPA), broker, or legal counsel.</strong> Nothing on this website constitutes personalized financial, investment, tax, or legal advice. You are solely responsible for evaluating your financial circumstances and verifying all calculations prior to making financial decisions.
+      </p>
+    </div>
+
+    <!-- DETAILED TERMS SECTIONS -->
+    <article class="prose max-w-none text-sm text-[#475569] dark:text-[#94a3b8] space-y-10 leading-relaxed">
+      <!-- Section 1 -->
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold text-[#0f172a] dark:text-[#f8fafc] tracking-tight">
+          1. Acceptance of Terms
+        </h2>
+        <p>
+          By visiting, accessing, or using any feature on <a href="https://myrealbudget.com" class="text-[#0e6e55] dark:text-[#10b981] underline">myrealbudget.com</a>, including our interactive budget planners, frequency normalizers, downloadable CSV templates, and learning articles, you acknowledge that you have read, understood, and agree to comply with these Terms & Conditions and our <a href="/privacy/" class="text-[#0e6e55] dark:text-[#10b981] underline">Privacy Policy</a>. If you do not agree with any part of these terms, please discontinue use of the website.
+        </p>
+      </section>
+
+      <!-- Section 2 -->
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold text-[#0f172a] dark:text-[#f8fafc] tracking-tight">
+          2. Permitted Use & Free License
+        </h2>
+        <p>
+          My Real Budget grants you a limited, non-exclusive, revocable, non-transferable license to access and use our web-based tools and download our free budget templates subject to the following rules:
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5">
+          <li><strong>Personal & Household Use:</strong> You may freely use our calculators, customize our templates, and export CSV spreadsheets for your personal, family, or internal household financial planning.</li>
+          <li><strong>No Resale or Commercial Bundling:</strong> You may not sell, rent, license, repackage, or distribute our templates, calculators, or software code as a paid product or paid service.</li>
+          <li><strong>No Malicious Scraping:</strong> You agree not to use automated crawlers, scrapers, bots, or extraction scripts to harvest data, overburden our server infrastructure, or circumvent our security controls.</li>
+        </ul>
+      </section>
+
+      <!-- Section 3 -->
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold text-[#0f172a] dark:text-[#f8fafc] tracking-tight">
+          3. Nature of Online Tools & Mathematical Estimates
+        </h2>
+        <p>
+          The calculators on this site (including the 50/30/20 calculator, zero-based budget planner, and cash flow normalizer) perform mathematical calculations based strictly on the figures, intervals, and payment frequencies you input. Please note:
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5">
+          <li>Results are mathematical representations and estimations, not guaranteed projections or bank statements.</li>
+          <li>Calculations do not account for external real-world variables unless specified, such as sudden inflation, variable bank interest rates, state tax bracket variances, or employer-specific pre-tax deductions.</li>
+          <li>You are encouraged to cross-reference budget results with your official bank statements, pay stubs, and utility statements.</li>
+        </ul>
+      </section>
+
+      <!-- Section 4 -->
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold text-[#0f172a] dark:text-[#f8fafc] tracking-tight">
+          4. Intellectual Property Rights
+        </h2>
+        <p>
+          All content, visual interfaces, website design, brand wordmarks, logos, interactive components, software code, and editorial learning guides on My Real Budget are the proprietary intellectual property of My Real Budget and are protected under applicable copyright, trademark, and unfair competition laws.
+        </p>
+        <p>
+          You may not copy, reproduce, rehost, or create derivative commercial works from our editorial articles or interactive codebases without express prior written authorization.
+        </p>
+      </section>
+
+      <!-- Section 5 -->
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold text-[#0f172a] dark:text-[#f8fafc] tracking-tight">
+          5. Third-Party Trademarks & Platforms
+        </h2>
+        <p>
+          Our site mentions third-party software applications such as <em>Google Sheets</em> (trademark of Google LLC), <em>Microsoft Excel</em> (trademark of Microsoft Corporation), and <em>Apple Numbers</em> (trademark of Apple Inc.). These references are solely descriptive to explain compatibility for our downloadable CSV files. My Real Budget is an independent project and is not affiliated with, endorsed by, or sponsored by Google, Microsoft, or Apple.
+        </p>
+      </section>
+
+      <!-- Section 6 -->
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold text-[#0f172a] dark:text-[#f8fafc] tracking-tight">
+          6. Disclaimer of Warranties
+        </h2>
+        <p>
+          MY REAL BUDGET, INCLUDING ALL SPREADSHEETS, CALCULATORS, ARTICLES, AND RELATED SERVICES, IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. TO THE MAXIMUM EXTENT PERMITTED BY LAW, WE DISCLAIM ALL WARRANTIES, INCLUDING IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+        </p>
+        <p>
+          We do not guarantee that the website will always be uninterrupted, error-free, immune to technical glitches, or compatible with every legacy browser.
+        </p>
+      </section>
+
+      <!-- Section 7 -->
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold text-[#0f172a] dark:text-[#f8fafc] tracking-tight">
+          7. Limitation of Liability
+        </h2>
+        <p>
+          TO THE FULLEST EXTENT PERMITTED UNDER APPLICABLE LAW, IN NO EVENT SHALL MY REAL BUDGET, ITS FOUNDERS, OPERATORS, OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, CONSEQUENTIAL, SPECIAL, OR EXEMPLARY DAMAGES (INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF SAVINGS, LOST PROFITS, FINANCIAL SHORTFALLS, OR DATA LOSS) ARISING OUT OF OR IN CONNECTION WITH YOUR USE OR INABILITY TO USE THE TOOLS, TEMPLATES, OR ADVICE ON THIS SITE.
+        </p>
+      </section>
+
+      <!-- Section 8 -->
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold text-[#0f172a] dark:text-[#f8fafc] tracking-tight">
+          8. User Responsibility for Device Security
+        </h2>
+        <p>
+          Because your budget data is stored directly in your browser's local storage for your privacy, you are responsible for maintaining the physical and digital security of your own computers, phones, or shared devices. We recommend using private browsing windows or clearing local site data when using shared public library or workplace computers.
+        </p>
+      </section>
+
+      <!-- Section 9 -->
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold text-[#0f172a] dark:text-[#f8fafc] tracking-tight">
+          9. Modifications to the Website and Terms
+        </h2>
+        <p>
+          We reserve the right to modify, enhance, suspend, or discontinue any feature, template, or calculator on My Real Budget at any time without notice. We may also revise these Terms & Conditions periodically. Changes take effect immediately upon posting to this page. Continued use of the site following updates signifies your acceptance of the revised terms.
+        </p>
+      </section>
+
+      <!-- Section 10 -->
+      <section class="space-y-3">
+        <h2 class="text-xl font-semibold text-[#0f172a] dark:text-[#f8fafc] tracking-tight">
+          10. Contacting Us Regarding Terms
+        </h2>
+        <p>
+          If you have any questions or feedback regarding these Terms & Conditions, please contact us:
+        </p>
+        <div class="p-4 rounded-[12px] bg-[#f8f7f4] dark:bg-[#172033] border border-[#e5e0d8] dark:border-[#1e293b] space-y-1 text-xs font-mono">
+          <p><strong>Email:</strong> <a href="mailto:support@myrealbudget.com" class="text-[#0e6e55] dark:text-[#10b981] underline">support@myrealbudget.com</a></p>
+          <p><strong>Contact Page:</strong> <a href="/contact/" class="text-[#0e6e55] dark:text-[#10b981] underline">https://myrealbudget.com/contact/</a></p>
+          <p><strong>Website:</strong> <a href="https://myrealbudget.com" class="text-[#0e6e55] dark:text-[#10b981] underline">myrealbudget.com</a></p>
+        </div>
+      </section>
+    </article>
+  </div>
+</Layout>
