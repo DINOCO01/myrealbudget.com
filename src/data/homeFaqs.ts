@@ -43,9 +43,9 @@ export const HOME_FAQS: HomeFAQ[] = [
   {
     question: 'What is the 50/30/20 rule?',
     answerHtml:
-      'The 50/30/20 rule is a popular percentage-based budgeting guideline designed to create financial balance without micro-tracking every individual purchase. By splitting after-tax income into 50% essentials, 30% lifestyle wants, and 20% savings and debt reduction, it provides an intuitive benchmark for evaluating whether your fixed overhead is sustainable and ensures you consistently prioritize future financial security.',
+      'The 50/30/20 rule is a popular percentage-based budgeting guideline designed to create financial balance without micro-tracking every individual purchase. By splitting after-tax income into 50% essentials, 30% lifestyle wants, and 20% savings and debt reduction, it provides an intuitive benchmark for evaluating whether your fixed overhead is sustainable and helps you intentionally allocate money toward savings and debt repayment.',
     answerText:
-      'The 50/30/20 rule is a popular percentage-based budgeting guideline designed to create financial balance without micro-tracking every individual purchase. By splitting after-tax income into 50% essentials, 30% lifestyle wants, and 20% savings and debt reduction, it provides an intuitive benchmark for evaluating whether your fixed overhead is sustainable and ensures you consistently prioritize future financial security.',
+      'The 50/30/20 rule is a popular percentage-based budgeting guideline designed to create financial balance without micro-tracking every individual purchase. By splitting after-tax income into 50% essentials, 30% lifestyle wants, and 20% savings and debt reduction, it provides an intuitive benchmark for evaluating whether your fixed overhead is sustainable and helps you intentionally allocate money toward savings and debt repayment.',
   },
   {
     question: 'When might the 50/30/20 rule not be the best saving strategy to use?',

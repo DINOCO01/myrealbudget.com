@@ -12,11 +12,11 @@ const description = 'Browse our directory of free budget templates. Choose from 
   <section class="border-b border-[#ebebeb] bg-white pt-12 pb-14">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="max-w-3xl space-y-4">
-        <Eyebrow text="Templates Catalog" />
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-[#171717] leading-tight">
+        <Eyebrow text="Templates Catalog" tKey="templates.eyebrow" />
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-[#171717] leading-tight" data-mrb-t="templates.heading">
           Budget Templates Directory
         </h1>
-        <p class="text-base sm:text-lg text-[#4d4d4d] leading-relaxed">
+        <p class="text-base sm:text-lg text-[#4d4d4d] leading-relaxed" data-mrb-t="templates.desc">
           Find the right budgeting spreadsheet for your specific situation. Every template is completely free to download or use with our online planners.
         </p>
       </div>
@@ -45,7 +45,7 @@ const description = 'Browse our directory of free budget templates. Choose from 
             </p>
 
             <div class="pt-2 border-t border-[#f2f2f2] space-y-1">
-              <span class="text-[11px] font-mono uppercase text-[#8f8f8f] block">Who it is for:</span>
+              <span class="text-[11px] font-mono uppercase text-[#8f8f8f] block" data-mrb-t="templates.who_for">Who it is for:</span>
               <p class="text-xs text-[#171717]">
                 {template.targetAudience}
               </p>
@@ -56,12 +56,14 @@ const description = 'Browse our directory of free budget templates. Choose from 
             <a
               href={`/budget-planner-template/#${template.id}`}
               class="flex-1 inline-flex items-center justify-center h-9 px-4 rounded-full bg-[#171717] text-white text-xs font-medium hover:bg-neutral-800 transition text-center"
+              data-mrb-t="templates.get_template"
             >
               Get Template
             </a>
             <a
               href={template.methodSlug}
               class="flex-1 inline-flex items-center justify-center h-9 px-4 rounded-full bg-white text-[#171717] border border-[#ebebeb] text-xs font-medium hover:bg-neutral-50 transition text-center shadow-whisper"
+              data-mrb-t="templates.online_tool"
             >
               Online Tool
             </a>
@@ -72,7 +74,7 @@ const description = 'Browse our directory of free budget templates. Choose from 
 
     <!-- Bottom Guidance -->
     <div class="mt-16 p-8 rounded-[12px] bg-white border border-[#ebebeb] shadow-whisper text-center max-w-2xl mx-auto space-y-4">
-      <h3 class="text-lg font-semibold text-[#171717]">Need help picking a template?</h3>
+      <h3 class="text-lg font-semibold text-[#171717]" data-mrb-t="templates.help_title">Need help picking a template?</h3>
       <p class="text-xs text-[#4d4d4d] leading-relaxed">
         If you are completely new to budgeting, start with the <a href="/50-30-20-budget/" class="text-[#0070f3] underline font-medium">50/30/20 template</a>. If you have aggressive debt payoff goals, choose the <a href="/zero-based-budget/" class="text-[#0070f3] underline font-medium">Zero-Based template</a>.
       </p>

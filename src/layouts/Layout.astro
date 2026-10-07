@@ -138,7 +138,7 @@ const defaultJsonLd = jsonLd || {
       rel="stylesheet"
     />
 
-    <!-- Anti-FOUC Theme Initialization (Light mode default, dark mode optional) -->
+    <!-- Anti-FOUC Theme & Language Initialization -->
     <script is:inline>
       (function() {
         try {
@@ -147,6 +147,10 @@ const defaultJsonLd = jsonLd || {
             document.documentElement.classList.add('dark');
           } else {
             document.documentElement.classList.remove('dark');
+          }
+          const storedLang = localStorage.getItem('myrealbudget_language');
+          if (storedLang) {
+            document.documentElement.lang = storedLang;
           }
         } catch (e) {}
       })();
@@ -161,5 +165,61 @@ const defaultJsonLd = jsonLd || {
       <slot />
     </div>
     <Footer />
+
+    <!-- Global Currency & Language Controller -->
+    <script>
+      import {
+        initCurrency,
+        getSelectedCurrency,
+        setSelectedCurrency,
+        formatCurrency,
+        getCurrencySymbol,
+        getCurrencyConfig,
+        updateDocumentCurrencies,
+        SUPPORTED_CURRENCIES,
+      } from '../utils/currency';
+      import {
+        initLanguage,
+        getSelectedLanguage,
+        setSelectedLanguage,
+        t,
+        translateCategoryName,
+        translateItemName,
+        getFrequencyLabel,
+        updateDocumentTranslations,
+        SUPPORTED_LANGUAGES,
+      } from '../utils/i18n';
+
+      (window as any)._mrb_currency = {
+        get: getSelectedCurrency,
+        set: setSelectedCurrency,
+        format: formatCurrency,
+        symbol: getCurrencySymbol,
+        config: getCurrencyConfig,
+        update: updateDocumentCurrencies,
+        currencies: SUPPORTED_CURRENCIES,
+      };
+
+      (window as any)._mrb_i18n = {
+        get: getSelectedLanguage,
+        set: setSelectedLanguage,
+        t: t,
+        translateCategory: translateCategoryName,
+        translateItem: translateItemName,
+        getFrequencyLabel: getFrequencyLabel,
+        update: updateDocumentTranslations,
+        languages: SUPPORTED_LANGUAGES,
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+          initCurrency();
+          initLanguage();
+        });
+      } else {
+        initCurrency();
+        initLanguage();
+      }
+    </script>
   </body>
 </html>

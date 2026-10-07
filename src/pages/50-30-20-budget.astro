@@ -51,26 +51,26 @@ const faqSchema = {
   <section class="border-b border-[#ebebeb] bg-white pt-8 pb-10 sm:pt-12 sm:pb-14">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="max-w-3xl space-y-4">
-        <Eyebrow text="Budgeting Framework" />
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-[#171717] leading-tight">
+        <Eyebrow text="Budgeting Framework" tKey="f3020.eyebrow" />
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-[#171717] leading-tight" data-mrb-t="f3020.heading">
           The 50/30/20 Budget Rule
         </h1>
-        <p class="text-base sm:text-lg text-[#4d4d4d] leading-relaxed">
+        <p class="text-base sm:text-lg text-[#4d4d4d] leading-relaxed" data-mrb-t="f3020.subtitle">
           A clear, percentage-based framework designed to balance living essentials, personal enjoyment, and financial security without micro-managing every transaction.
         </p>
       </div>
 
       <!-- Budgeting Method Switcher Bar -->
       <div class="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-[#f2f2f2] flex flex-wrap items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs">
-        <span class="text-[#8f8f8f] font-mono mr-1 sm:mr-2">Budgeting Method:</span>
-        <a href="/budget-planner/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition">
+        <span class="text-[#8f8f8f] font-mono mr-1 sm:mr-2" data-mrb-t="common.method">Budgeting Method:</span>
+        <a href="/budget-planner/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition" data-mrb-t="common.general_budget">
           General Budget
         </a>
-        <span class="px-3 py-1.5 rounded-full bg-[#171717] text-white font-medium">50/30/20 Method</span>
-        <a href="/zero-based-budget/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition">
+        <span class="px-3 py-1.5 rounded-full bg-[#171717] text-white font-medium" data-mrb-t="common.f3020_method">50/30/20 Method</span>
+        <a href="/zero-based-budget/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition" data-mrb-t="common.zero_based_method">
           Zero-Based Method
         </a>
-        <a href="/budget-planner-template/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition">
+        <a href="/budget-planner-template/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition" data-mrb-t="common.spreadsheet_templates">
           Spreadsheet Templates
         </a>
       </div>
@@ -80,11 +80,11 @@ const faqSchema = {
   <!-- INTERACTIVE PLANNER ISLAND -->
   <main class="max-w-6xl mx-auto px-3.5 sm:px-6 py-6 sm:py-12">
     <div class="mb-6 sm:mb-10 text-center max-w-2xl mx-auto space-y-2">
-      <Eyebrow text="Interactive Calculator" class="mx-auto" />
-      <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717]">
+      <Eyebrow text="Interactive Calculator" tKey="f3020.calc_eyebrow" class="mx-auto" />
+      <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717]" data-mrb-t="f3020.calc_title">
         Interactive 50/30/20 Planner & Target Comparison
       </h2>
-      <p class="text-xs sm:text-sm text-[#4d4d4d]">
+      <p class="text-xs sm:text-sm text-[#4d4d4d]" data-mrb-t="f3020.calc_desc">
         Enter your net income to generate automatic benchmark targets, then plug in your actual items to see how closely your real spending aligns.
       </p>
     </div>
@@ -106,7 +106,7 @@ const faqSchema = {
           Popularized by bankruptcy expert and Harvard law professor Elizabeth Warren in her book <em>All Your Worth: The Ultimate Lifetime Money Plan</em>, the 50/30/20 rule divides your <strong>after-tax, take-home pay</strong> into three intentional categories.
         </p>
         <p class="text-sm text-[#4d4d4d] leading-relaxed">
-          Unlike restrictive diets that prohibit dining out or entertainment, the 50/30/20 model explicitly budgets for guilt-free personal spending, making it one of the most sustainable long-term financial routines.
+          Unlike restrictive diets that prohibit dining out or entertainment, the 50/30/20 model explicitly budgets for guilt-free personal spending, providing a straightforward framework for organizing essential spending, discretionary spending, and savings.
         </p>
       </div>
 
@@ -188,19 +188,19 @@ const faqSchema = {
           <table class="w-full text-left text-xs border-collapse">
             <thead>
               <tr class="bg-[#fafafa] border-b border-[#ebebeb] text-[#8f8f8f] font-mono">
-                <th class="p-3.5">Net Monthly Income</th>
-                <th class="p-3.5">Needs (50%)</th>
-                <th class="p-3.5">Wants (30%)</th>
-                <th class="p-3.5">Savings / Debt (20%)</th>
+                <th class="p-3.5" data-mrb-t="f3020.net_monthly_income">Net Monthly Income</th>
+                <th class="p-3.5" data-mrb-t="f3020.needs_title">Needs (50%)</th>
+                <th class="p-3.5" data-mrb-t="f3020.wants_title">Wants (30%)</th>
+                <th class="p-3.5" data-mrb-t="f3020.savings_title">Savings / Debt (20%)</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-[#ebebeb] font-mono">
               {incomeExamples.map(row => (
                 <tr class="hover:bg-[#fafafa]/60 transition">
-                  <td class="p-3.5 font-semibold text-[#171717]">{formatCurrency(row.income)}</td>
-                  <td class="p-3.5 text-[#171717]">{formatCurrency(row.needs)}</td>
-                  <td class="p-3.5 text-[#7928ca]">{formatCurrency(row.wants)}</td>
-                  <td class="p-3.5 text-[#0070f3]">{formatCurrency(row.savings)}</td>
+                  <td class="p-3.5 font-semibold text-[#171717]" data-mrb-currency-val={row.income}>{formatCurrency(row.income)}</td>
+                  <td class="p-3.5 text-[#171717]" data-mrb-currency-val={row.needs}>{formatCurrency(row.needs)}</td>
+                  <td class="p-3.5 text-[#7928ca]" data-mrb-currency-val={row.wants}>{formatCurrency(row.wants)}</td>
+                  <td class="p-3.5 text-[#0070f3]" data-mrb-currency-val={row.savings}>{formatCurrency(row.savings)}</td>
                 </tr>
               ))}
             </tbody>

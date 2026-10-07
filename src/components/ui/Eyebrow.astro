@@ -2,12 +2,13 @@
 interface Props {
   text: string;
   class?: string;
+  tKey?: string;
 }
 
-const { text, class: className = '' } = Astro.props;
+const { text, class: className = '', tKey } = Astro.props;
 ---
 
 <div class={`inline-flex items-center gap-1.5 font-mono text-[11px] sm:text-xs uppercase tracking-wider text-[var(--text-muted)] font-medium ${className}`}>
   <span class="w-1.5 h-1.5 rounded-full bg-[var(--btn-primary-bg)]"></span>
-  <span>{text}</span>
+  <span data-mrb-t={tKey}>{text}</span>
 </div>

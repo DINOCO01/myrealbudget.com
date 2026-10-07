@@ -1,5 +1,6 @@
 ---
 import { FREQUENCY_OPTIONS } from '../../utils/frequency';
+import CurrencyLanguageControls from '../ui/CurrencyLanguageControls.astro';
 ---
 
 <div id="zero-based-planner" class="w-full">
@@ -7,12 +8,14 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
   <div class="mb-4 sm:mb-6 flex flex-wrap items-center justify-between gap-2.5 sm:gap-3 text-[11px] sm:text-xs">
     <div class="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-white border border-[#ebebeb] text-[#4d4d4d] shadow-whisper">
       <span class="w-2 h-2 rounded-full bg-[#50e3c2]"></span>
-      <span>Autosaved locally to this device</span>
+      <span data-mrb-t="common.autosaved">Autosaved locally to this device</span>
     </div>
     <div class="flex items-center gap-2">
+      <CurrencyLanguageControls idPrefix="zbb" />
       <button
         type="button"
         id="zbb-reset-btn"
+        data-mrb-t="common.reset_defaults"
         class="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-[6px] border border-[#ebebeb] bg-white text-[#8f8f8f] hover:text-[#ee0000] font-medium hover:bg-neutral-50 transition shadow-whisper focus-visible:outline-none"
       >
         Reset Defaults
@@ -26,14 +29,14 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
       
       <!-- 1. Total Monthly Income Available -->
       <div class="bg-white rounded-[12px] border border-[#ebebeb] p-3.5 sm:p-6 shadow-whisper">
-        <label for="zbb-income-input" class="block text-xs sm:text-sm font-semibold text-[#171717] mb-0.5 sm:mb-1">
+        <label for="zbb-income-input" class="block text-xs sm:text-sm font-semibold text-[#171717] mb-0.5 sm:mb-1" data-mrb-t="zbb.income_label">
           Total Net Monthly Income to Assign
         </label>
-        <p class="text-[11px] sm:text-xs text-[#8f8f8f] mb-3 sm:mb-4">
+        <p class="text-[11px] sm:text-xs text-[#8f8f8f] mb-3 sm:mb-4" data-mrb-t="zbb.income_sub">
           The starting pool of money for the month. Your objective is to allocate every cent until $0 remains.
         </p>
         <div class="relative max-w-sm">
-          <span class="absolute left-3 top-2 sm:left-3.5 sm:top-2.5 text-[#8f8f8f] font-mono text-sm sm:text-base">$</span>
+          <span class="currency-symbol absolute left-3 top-2 sm:left-3.5 sm:top-2.5 text-[#8f8f8f] font-mono text-sm sm:text-base">$</span>
           <input
             type="number"
             id="zbb-income-input"
@@ -50,34 +53,35 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
       <div class="lg:hidden bg-white rounded-[10px] border border-[#ebebeb] p-3 shadow-whisper">
         <div class="flex items-center justify-between pb-2 mb-2 border-b border-[#ebebeb]">
           <div class="flex items-center gap-1.5">
-            <span class="text-xs font-semibold text-[#171717]">Left to Assign:</span>
-            <span id="mobile-zbb-remaining-val" class="font-mono text-base font-bold text-[#171717]">$0</span>
+            <span class="text-xs font-semibold text-[#171717]" data-mrb-t="zbb.left_to_assign">Left to Assign:</span>
+            <span id="mobile-zbb-remaining-val" class="font-mono text-base font-bold text-[#171717]" data-mrb-currency-val="0">$0</span>
           </div>
           <div id="mobile-zbb-status-badge" class="px-2 py-0.5 rounded text-[11px] font-medium bg-[#f2f2f2] text-[#4d4d4d]">
-            <span id="mobile-zbb-status-badge-text">Every Dollar Assigned</span>
+            <span id="mobile-zbb-status-badge-text" data-mrb-t="zbb.budget_balanced">Every Dollar Assigned</span>
           </div>
         </div>
         <div class="grid grid-cols-3 gap-1.5 text-center text-xs font-mono">
           <div class="bg-[#fafafa] py-1 px-1.5 rounded border border-[#ebebeb]">
-            <span class="text-[10px] text-[#8f8f8f] block">Income Pool</span>
-            <span id="mobile-zbb-summary-income" class="font-semibold text-[#171717] text-xs block">$0</span>
+            <span class="text-[10px] text-[#8f8f8f] block" data-mrb-t="zbb.income_pool">Income Pool</span>
+            <span id="mobile-zbb-summary-income" class="font-semibold text-[#171717] text-xs block" data-mrb-currency-val="0">$0</span>
           </div>
           <div class="bg-[#fafafa] py-1 px-1.5 rounded border border-[#ebebeb]">
-            <span class="text-[10px] text-[#8f8f8f] block">Allocated</span>
-            <span id="mobile-zbb-summary-allocated" class="font-semibold text-[#171717] text-xs block">$0</span>
+            <span class="text-[10px] text-[#8f8f8f] block" data-mrb-t="zbb.total_allocated">Allocated</span>
+            <span id="mobile-zbb-summary-allocated" class="font-semibold text-[#171717] text-xs block" data-mrb-currency-val="0">$0</span>
           </div>
           <div class="bg-[#fafafa] py-1 px-1.5 rounded border border-[#ebebeb]">
-            <span class="text-[10px] text-[#8f8f8f] block">Allocated %</span>
+            <span class="text-[10px] text-[#8f8f8f] block" data-mrb-t="zbb.allocation_rate">Allocated %</span>
             <span id="mobile-zbb-summary-pct" class="font-semibold text-[#171717] text-xs block">0%</span>
           </div>
         </div>
         <div class="flex items-center justify-between text-[11px] text-[#8f8f8f] pt-2 mt-1">
-          <span id="mobile-zbb-status-subtext" class="truncate pr-2 font-mono text-[10px] text-[#8f8f8f]">Assign until $0 remains</span>
+          <span id="mobile-zbb-status-subtext" class="truncate pr-2 font-mono text-[10px] text-[#8f8f8f]" data-mrb-t="zbb.sub_left">Assign until 0 remains</span>
           <div class="flex items-center gap-1.5 shrink-0">
             <button
               type="button"
               class="hover:text-[#171717] underline text-[11px]"
               onclick="window._zbb.toggleAllGroups(true)"
+              data-mrb-t="common.expand_all"
             >
               Expand all
             </button>
@@ -86,6 +90,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
               type="button"
               class="hover:text-[#171717] underline text-[11px]"
               onclick="window._zbb.toggleAllGroups(false)"
+              data-mrb-t="common.collapse_all"
             >
               Collapse all
             </button>
@@ -106,7 +111,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
           class="inline-flex items-center justify-center gap-2 w-full py-2.5 sm:py-3 rounded-[10px] sm:rounded-[12px] border border-dashed border-[#ebebeb] bg-white text-xs font-medium text-[#4d4d4d] hover:text-[#171717] hover:border-[#171717] hover:bg-[#fafafa] transition shadow-whisper"
         >
           <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-          Add New Allocation Group
+          <span data-mrb-t="zbb.add_group">Add New Allocation Group</span>
         </button>
       </div>
 
@@ -117,12 +122,12 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
       
       <div class="bg-white rounded-[12px] border border-[#ebebeb] p-4 sm:p-6 shadow-whisper">
         <div class="border-b border-[#ebebeb] pb-3 mb-4">
-          <span class="font-mono text-[11px] sm:text-xs uppercase tracking-wider text-[#8f8f8f] block mb-0.5">
+          <span class="font-mono text-[11px] sm:text-xs uppercase tracking-wider text-[#8f8f8f] block mb-0.5" data-mrb-t="zbb.zero_balance_title">
             Zero-Based Balance
           </span>
           <div class="flex items-baseline justify-between">
-            <span id="zbb-status-label" class="text-sm font-semibold text-[#171717]">Left to Assign</span>
-            <span id="zbb-remaining-val" class="font-mono text-xl sm:text-2xl font-bold tracking-tight text-[#171717]">$0</span>
+            <span id="zbb-status-label" class="text-sm font-semibold text-[#171717]" data-mrb-t="zbb.left_to_assign">Left to Assign</span>
+            <span id="zbb-remaining-val" class="font-mono text-xl sm:text-2xl font-bold tracking-tight text-[#171717]" data-mrb-currency-val="0">$0</span>
           </div>
         </div>
 
@@ -136,15 +141,15 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
         <!-- Numbers Stack -->
         <div class="space-y-2 sm:space-y-2.5 font-mono text-xs border-b border-[#ebebeb] pb-3 sm:pb-4 mb-3 sm:mb-5">
           <div class="flex justify-between items-center">
-            <span class="text-[#8f8f8f]">Income Pool</span>
-            <span id="zbb-summary-income" class="font-semibold text-[#171717]">$0</span>
+            <span class="text-[#8f8f8f]" data-mrb-t="zbb.income_pool">Income Pool</span>
+            <span id="zbb-summary-income" class="font-semibold text-[#171717]" data-mrb-currency-val="0">$0</span>
           </div>
           <div class="flex justify-between items-center">
-            <span class="text-[#8f8f8f]">Total Allocated</span>
-            <span id="zbb-summary-allocated" class="font-semibold text-[#171717]">$0</span>
+            <span class="text-[#8f8f8f]" data-mrb-t="zbb.total_allocated">Total Allocated</span>
+            <span id="zbb-summary-allocated" class="font-semibold text-[#171717]" data-mrb-currency-val="0">$0</span>
           </div>
           <div class="flex justify-between items-center pt-1 border-t border-[#f2f2f2]">
-            <span class="text-[#8f8f8f]">Allocation Rate</span>
+            <span class="text-[#8f8f8f]" data-mrb-t="zbb.allocation_rate">Allocation Rate</span>
             <span id="zbb-summary-pct" class="font-semibold text-[#171717]">0%</span>
           </div>
         </div>
@@ -152,7 +157,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
         <!-- Group Allocation Progress Bar -->
         <div class="space-y-1.5 sm:space-y-2 mb-4 sm:mb-6">
           <div class="flex justify-between text-[11px] sm:text-xs text-[#8f8f8f]">
-            <span>Assigned vs Available</span>
+            <span data-mrb-t="zbb.assigned_vs_available">Assigned vs Available</span>
             <span id="zbb-progress-label">0% assigned</span>
           </div>
           <div class="w-full h-2 sm:h-2.5 rounded-full bg-[#f2f2f2] overflow-hidden">
@@ -163,7 +168,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
         <!-- Budget Summary (Secondary Breakdown - Collapsed by default) -->
         <details class="group space-y-2">
           <summary class="flex items-center justify-between font-mono text-[11px] sm:text-xs font-medium uppercase tracking-wider text-[#8f8f8f] cursor-pointer list-none select-none py-0.5">
-            <span>Budget Summary</span>
+            <span data-mrb-t="summary.budget_summary">Budget Summary</span>
             <svg class="w-3.5 h-3.5 text-[#8f8f8f] transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </summary>
           <div id="zbb-groups-summary" class="space-y-2 text-xs pt-1">
@@ -176,19 +181,19 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
       <!-- Strategy Guidance (Collapsed by default) -->
       <details class="group bg-[#fafafa] rounded-[10px] sm:rounded-[12px] border border-[#ebebeb] p-3 sm:p-4 text-xs text-[#4d4d4d] space-y-1.5">
         <summary class="flex items-center justify-between font-medium text-[#171717] cursor-pointer list-none select-none">
-          <span>How to reach Zero:</span>
+          <span data-mrb-t="zbb.strategy_title">How to reach Zero:</span>
           <svg class="w-3.5 h-3.5 text-[#8f8f8f] transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
         </summary>
         <ul class="space-y-1.5 text-[11px] sm:text-[12px] text-[#8f8f8f] pt-1">
-          <li class="flex items-start gap-1"><span>•</span><span><strong>If money is left over:</strong> Do not leave it floating. Assign it to extra debt principal, retirement, or an irregular expense sinking fund.</span></li>
-          <li class="flex items-start gap-1"><span>•</span><span><strong>If negative:</strong> You have assigned more than you make. Trim dining out, discretionary shopping, or entertainment until the balance hits $0.</span></li>
+          <li class="flex items-start gap-1"><span>•</span><span data-mrb-t="zbb.strategy_leftover"><strong>If money is left over:</strong> Do not leave it floating. Assign it to extra debt principal, retirement, or an irregular expense sinking fund.</span></li>
+          <li class="flex items-start gap-1"><span>•</span><span data-mrb-t="zbb.strategy_negative"><strong>If negative:</strong> You have assigned more than you make. Trim dining out, discretionary shopping, or entertainment until the balance hits $0.</span></li>
         </ul>
       </details>
 
       <!-- Quick Method Switcher -->
       <div class="bg-[#fafafa] rounded-[10px] sm:rounded-[12px] border border-[#ebebeb] p-3 sm:p-4 text-xs text-[#4d4d4d] space-y-1.5">
-        <p class="font-medium text-[#171717]">Want to try another budgeting method?</p>
-        <p class="text-[11px] sm:text-[12px] text-[#8f8f8f]">
+        <p class="font-medium text-[#171717]" data-mrb-t="common.try_another_method">Want to try another budgeting method?</p>
+        <p class="text-[11px] sm:text-[12px] text-[#8f8f8f]" data-mrb-t-html="zbb.switch_methods_desc">
           Switch to the <a href="/budget-planner/" class="text-[#0070f3] underline hover:text-[#0761d1]">General Budget</a> for flexible categories, or the <a href="/50-30-20-budget/" class="text-[#0070f3] underline hover:text-[#0761d1]">50/30/20 Method</a> for percentage-based targets.
         </p>
       </div>
@@ -293,13 +298,35 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
     return (Number(amount) || 0) * (FREQUENCY_MULTIPLIERS[freq] || 1);
   }
 
+  function t(k, vars) {
+    if (window._mrb_i18n && typeof window._mrb_i18n.t === 'function') {
+      return window._mrb_i18n.t(k, vars);
+    }
+    return k;
+  }
+
+  function getCurrencySymbol() {
+    if (window._mrb_currency && typeof window._mrb_currency.symbol === 'function') {
+      return window._mrb_currency.symbol();
+    }
+    const curr = (typeof localStorage !== 'undefined' && localStorage.getItem('myrealbudget_currency')) || 'USD';
+    const syms = { USD: '$', EUR: '€', GBP: '£', INR: '₹', CAD: 'C$', AUD: 'A$' };
+    return syms[curr] || '$';
+  }
+
   function formatMoney(amount) {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: amount % 1 === 0 ? 0 : 2,
-    }).format(amount);
+    if (window._mrb_currency && typeof window._mrb_currency.format === 'function') {
+      return window._mrb_currency.format(amount);
+    }
+    const curr = (typeof localStorage !== 'undefined' && localStorage.getItem('myrealbudget_currency')) || 'USD';
+    const sym = getCurrencySymbol();
+    const locale = curr === 'INR' ? 'en-IN' : 'en-US';
+    const hasCents = amount % 1 !== 0;
+    const formatted = new Intl.NumberFormat(locale, {
+      minimumFractionDigits: hasCents ? 2 : 0,
+      maximumFractionDigits: hasCents ? 2 : 0,
+    }).format(Math.abs(amount));
+    return (amount < 0 ? '-' : '') + sym + formatted;
   }
 
   let openGroups = new Set([0]); // Default first group open on mobile
@@ -311,6 +338,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
     container.innerHTML = state.groups.map((grp, grpIdx) => {
       const groupTotal = grp.items.reduce((s, i) => s + normalize(i.amount, i.frequency), 0);
       const isOpen = openGroups.has(grpIdx);
+      const groupDisplayName = window._mrb_i18n ? window._mrb_i18n.translateCategory(grp.name) : grp.name;
       return `
         <div class="bg-white rounded-[10px] sm:rounded-[12px] border border-[#ebebeb] p-2.5 sm:p-5 shadow-whisper" data-grp-idx="${grpIdx}">
           <!-- Compact Group Header -->
@@ -323,14 +351,14 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
                 type="button"
                 id="zbb-grp-btn-${grpIdx}"
                 class="sm:hidden p-0.5 text-[#8f8f8f] hover:text-[#171717] transition-transform duration-200 shrink-0 ${isOpen ? 'rotate-180' : ''}"
-                aria-label="Toggle group items"
+                aria-label="${t('aria.toggle_category') || 'Toggle group items'}"
               >
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
               </button>
               <input
                 type="text"
-                value="${escapeHtml(grp.name)}"
-                aria-label="Group name"
+                value="${escapeHtml(groupDisplayName)}"
+                aria-label="${t('aria.category_name') || 'Group name'}"
                 class="font-semibold text-xs sm:text-sm text-[#171717] bg-transparent border-b border-transparent hover:border-[#ebebeb] focus:border-[#171717] focus:outline-none py-0.5 flex-1 min-w-0"
                 onclick="event.stopPropagation()"
                 onchange="window._zbb.updateGroupName(${grpIdx}, this.value)"
@@ -338,12 +366,12 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
             </div>
             <div class="flex items-center gap-1.5 sm:gap-3 shrink-0" onclick="event.stopPropagation()">
               <span class="font-mono text-xs sm:text-sm font-semibold text-[#171717]">
-                ${formatMoney(groupTotal)}<span class="text-[#8f8f8f] font-normal text-[10px] sm:text-[11px]">/mo</span>
+                ${formatMoney(groupTotal)}<span class="text-[#8f8f8f] font-normal text-[10px] sm:text-[11px]">${t('common.per_month') || '/mo'}</span>
               </span>
               <button
                 type="button"
-                title="Remove group"
-                aria-label="Remove group"
+                title="${t('actions.delete') || 'Remove group'}"
+                aria-label="${t('actions.delete') || 'Remove group'}"
                 class="text-[#8f8f8f] hover:text-[#ee0000] p-0.5 sm:p-1 transition"
                 onclick="window._zbb.removeGroup(${grpIdx})"
               >
@@ -355,42 +383,45 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
           <!-- Group Line Items (Collapsible on mobile < sm, always visible on sm+) -->
           <div id="zbb-grp-body-${grpIdx}" class="${isOpen ? 'block' : 'hidden'} sm:!block pt-2 sm:pt-3">
             <div class="space-y-1.5 sm:space-y-2">
-              ${grp.items.map((item, itemIdx) => `
+              ${grp.items.map((item, itemIdx) => {
+                const itemDisplayName = window._mrb_i18n ? window._mrb_i18n.translateItem(item.name) : item.name;
+                return `
                 <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-1 sm:gap-2 p-1.5 sm:p-2 rounded-[6px] bg-[#fafafa] border border-[#ebebeb] text-xs">
                   <input
                     type="text"
-                    value="${escapeHtml(item.name)}"
-                    aria-label="Line item name"
+                    value="${escapeHtml(itemDisplayName)}"
+                    aria-label="${t('aria.expense_item_name') || 'Line item name'}"
                     class="flex-1 px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-[5px] bg-white border border-[#ebebeb] text-[#171717] focus:outline-none focus:border-[#171717] text-xs"
                     onchange="window._zbb.updateItem(${grpIdx}, ${itemIdx}, 'name', this.value)"
                   />
                   <div class="flex items-center gap-1 sm:gap-2">
                     <div class="relative flex-1 sm:w-28 sm:flex-initial">
-                      <span class="absolute left-2 top-1 sm:top-1.5 text-[#8f8f8f] font-mono text-xs">$</span>
+                      <span class="currency-symbol absolute left-2 top-1 sm:top-1.5 text-[#8f8f8f] font-mono text-xs">${getCurrencySymbol()}</span>
                       <input
                         type="number"
                         min="0"
                         step="any"
                         value="${item.amount || ''}"
                         placeholder="0"
-                        aria-label="Allocated amount"
+                        aria-label="${t('aria.expense_amount') || 'Allocated amount'}"
                         class="w-full pl-5 pr-1.5 py-1 sm:pl-6 sm:pr-2 sm:py-1.5 rounded-[5px] bg-white border border-[#ebebeb] text-[#171717] font-mono text-right focus:outline-none focus:border-[#171717] text-xs"
                         oninput="window._zbb.updateItem(${grpIdx}, ${itemIdx}, 'amount', this.value)"
                       />
                     </div>
                     <select
-                      aria-label="Frequency"
+                      aria-label="${t('aria.expense_frequency') || 'Frequency'}"
                       class="px-1.5 py-1 sm:px-2 sm:py-1.5 rounded-[5px] bg-white border border-[#ebebeb] text-[#4d4d4d] focus:outline-none focus:border-[#171717] text-xs font-mono shrink-0"
                       onchange="window._zbb.updateItem(${grpIdx}, ${itemIdx}, 'frequency', this.value)"
                     >
-                      ${FREQUENCY_OPTIONS.map(opt => `
-                        <option value="${opt.id}" ${item.frequency === opt.id ? 'selected' : ''}>${opt.label}</option>
-                      `).join('')}
+                      ${FREQUENCY_OPTIONS.map(opt => {
+                        const freqLabel = window._mrb_i18n ? window._mrb_i18n.getFrequencyLabel(opt.id) : opt.label;
+                        return `<option value="${opt.id}" ${item.frequency === opt.id ? 'selected' : ''}>${freqLabel}</option>`;
+                      }).join('')}
                     </select>
                     <button
                       type="button"
-                      title="Remove line item"
-                      aria-label="Remove item"
+                      title="${t('actions.delete') || 'Remove line item'}"
+                      aria-label="${t('actions.delete') || 'Remove line item'}"
                       class="p-1 sm:p-1.5 text-[#8f8f8f] hover:text-[#ee0000] rounded hover:bg-neutral-100 transition shrink-0"
                       onclick="window._zbb.removeItem(${grpIdx}, ${itemIdx})"
                     >
@@ -398,7 +429,8 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
                     </button>
                   </div>
                 </div>
-              `).join('')}
+              `;
+              }).join('')}
             </div>
 
             <button
@@ -407,7 +439,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
               onclick="window._zbb.addItem(${grpIdx})"
             >
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-              Add item to ${escapeHtml(grp.name)}
+              ${t('zbb.add_item_to', { group: escapeHtml(groupDisplayName) }) || ('Add item to ' + escapeHtml(groupDisplayName))}
             </button>
           </div>
         </div>
@@ -456,34 +488,34 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
     if (sBox && sLabel && sMsg) {
       if (isBalanced) {
         sBox.className = 'p-4 rounded-[8px] mb-5 border bg-[#e6fbf5] border-[#a7f3d0] text-[#047857]';
-        sLabel.textContent = 'Zero-Based Perfection';
-        sMsg.innerHTML = '<strong>Goal reached!</strong> Your budget is zero-based and fully allocated. Every dollar of your income has a designated purpose.';
+        sLabel.textContent = t('zbb.budget_balanced');
+        sMsg.innerHTML = t('zbb.goal_reached_msg');
       } else if (isUnder) {
         sBox.className = 'p-4 rounded-[8px] mb-5 border bg-[#eef6ff] border-[#bfdbfe] text-[#0761d1]';
-        sLabel.textContent = 'Dollars Left Unassigned';
-        sMsg.innerHTML = `You still have <strong>${formatMoney(remaining)}</strong> to assign. Allocate this remainder to savings, debt payoff, or an emergency buffer until $0 remains.`;
+        sLabel.textContent = t('zbb.left_to_assign');
+        sMsg.innerHTML = t('zbb.left_to_assign_msg', { amount: formatMoney(remaining), zero: formatMoney(0) });
       } else {
         const over = Math.abs(remaining);
         sBox.className = 'p-4 rounded-[8px] mb-5 border bg-[#fef2f2] border-[#fecaca] text-[#b91c1c]';
-        sLabel.textContent = 'Over-Allocated';
-        sMsg.innerHTML = `You have allocated <strong class="text-[#ee0000]">${formatMoney(over)}</strong> more than your income. Reduce discretionary allocations to bring your balance to zero.`;
+        sLabel.textContent = t('zbb.over_allocated');
+        sMsg.innerHTML = t('zbb.over_allocated_msg', { amount: formatMoney(over) });
       }
     }
 
     if (mBadge && mBadgeText && mSubText) {
       if (isBalanced) {
         mBadge.className = 'px-2 py-0.5 rounded text-[11px] font-medium bg-[#e6fbf5] text-[#047857] border border-[#a7f3d0]';
-        mBadgeText.textContent = 'Balanced to $0';
-        mSubText.textContent = 'All income allocated to zero.';
+        mBadgeText.textContent = t('zbb.badge_balanced', { zero: formatMoney(0) });
+        mSubText.textContent = t('zbb.sub_balanced');
       } else if (isUnder) {
         mBadge.className = 'px-2 py-0.5 rounded text-[11px] font-medium bg-[#eef6ff] text-[#0761d1] border border-[#bfdbfe]';
-        mBadgeText.textContent = `${formatMoney(remaining)} Unassigned`;
-        mSubText.textContent = 'Assign remainder until $0.';
+        mBadgeText.textContent = t('zbb.badge_left', { amount: formatMoney(remaining) });
+        mSubText.textContent = t('zbb.sub_left', { zero: formatMoney(0) });
       } else {
         const over = Math.abs(remaining);
         mBadge.className = 'px-2 py-0.5 rounded text-[11px] font-medium bg-[#fef2f2] text-[#b91c1c] border border-[#fecaca]';
-        mBadgeText.textContent = `${formatMoney(over)} Over Budget`;
-        mSubText.textContent = 'Reduce allocations to hit $0.';
+        mBadgeText.textContent = t('zbb.badge_over', { amount: formatMoney(over) });
+        mSubText.textContent = t('zbb.sub_over');
       }
     }
 
@@ -499,7 +531,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
     // Progress Fill
     const pFill = document.getElementById('zbb-progress-fill');
     const pLbl = document.getElementById('zbb-progress-label');
-    if (pLbl) pLbl.textContent = `${pct}% assigned`;
+    if (pLbl) pLbl.textContent = t('zbb.pct_assigned', { pct });
     if (pFill) {
       pFill.style.width = `${pct}%`;
       pFill.className = remaining < 0 ? 'h-full bg-[#ee0000] transition-all duration-300' : 'h-full bg-[#171717] transition-all duration-300';
@@ -510,9 +542,10 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
     if (groupsContainer) {
       groupsContainer.innerHTML = groupSummaries.map(g => {
         const gPct = totalAllocated > 0 ? Math.round((g.total / totalAllocated) * 100) : 0;
+        const gDisplayName = window._mrb_i18n ? window._mrb_i18n.translateCategory(g.name) : g.name;
         return `
           <div class="flex justify-between items-center text-xs">
-            <span class="text-[#4d4d4d] truncate max-w-[170px]">${escapeHtml(g.name)}</span>
+            <span class="text-[#4d4d4d] truncate max-w-[170px]">${escapeHtml(gDisplayName)}</span>
             <span class="font-mono text-[#171717] font-medium">${formatMoney(g.total)} <span class="text-[#8f8f8f] font-normal">(${gPct}%)</span></span>
           </div>
         `;
@@ -534,7 +567,8 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
       calculateAndRender();
     },
     removeGroup: function(grpIdx) {
-      if (confirm(`Delete the "${state.groups[grpIdx].name}" group?`)) {
+      const grpName = state.groups[grpIdx] ? state.groups[grpIdx].name : '';
+      if (confirm(t('confirm.delete_group', { name: grpName }))) {
         state.groups.splice(grpIdx, 1);
         saveState();
         renderGroups();
@@ -562,7 +596,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
       if (!state.groups[grpIdx]) return;
       state.groups[grpIdx].items.push({
         id: 'z_' + Date.now(),
-        name: 'New Allocation',
+        name: t('common.new_allocation') || 'New Allocation',
         amount: 0,
         frequency: 'monthly',
       });
@@ -630,7 +664,9 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
   const addGroupBtn = document.getElementById('zbb-add-group-btn');
   if (addGroupBtn) {
     addGroupBtn.addEventListener('click', () => {
-      const name = prompt('Enter a name for your new allocation group:', 'Special Allocation Group');
+      const defaultName = t('prompt.new_group_default') || 'Special Allocation Group';
+      const promptText = t('prompt.new_group_name') || 'Enter a name for your new allocation group:';
+      const name = prompt(promptText, defaultName);
       if (name && name.trim()) {
         state.groups.push({
           id: 'grp_' + Date.now(),
@@ -647,7 +683,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
   const resetBtn = document.getElementById('zbb-reset-btn');
   if (resetBtn) {
     resetBtn.addEventListener('click', () => {
-      if (confirm('Reset zero-based planner to default sample values?')) {
+      if (confirm(t('confirm.reset_zbb'))) {
         state = JSON.parse(JSON.stringify(defaultData));
         if (incInput) incInput.value = state.income;
         saveState();
@@ -657,7 +693,24 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
     });
   }
 
+  // Listen for global currency and language updates
+  window.addEventListener('myrealbudget:currency-change', () => {
+    document.querySelectorAll('#zero-based-planner .currency-symbol').forEach(el => {
+      el.textContent = getCurrencySymbol();
+    });
+    renderGroups();
+    calculateAndRender();
+  });
+
+  window.addEventListener('myrealbudget:language-change', () => {
+    renderGroups();
+    calculateAndRender();
+  });
+
   // Initial Boot
+  document.querySelectorAll('#zero-based-planner .currency-symbol').forEach(el => {
+    el.textContent = getCurrencySymbol();
+  });
   if (incInput) incInput.value = state.income;
   renderGroups();
   calculateAndRender();

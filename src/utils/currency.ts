@@ -1,10 +1,81 @@
 /**
- * Currency utility helpers for My Real Budget
- * Designed for US default ($) while architected for multi-currency extensibility.
+ * Currency configuration and formatting for My Real Budget.
+ * Supports USD ($), EUR (€), GBP (£), INR (₹), CAD (C$), and AUD (A$).
+ * Default: USD ($).
+ * NOTE: This is NOT a currency converter. Numeric values are preserved.
  */
+
+export interface CurrencyConfig {
+  code: string;
+  symbol: string;
+  label: string;
+  narrowSymbol: string;
+}
+
+export const SUPPORTED_CURRENCIES: Record<string, CurrencyConfig> = {
+  USD: { code: 'USD', symbol: '$', label: 'USD ($)', narrowSymbol: '$' },
+  EUR: { code: 'EUR', symbol: '€', label: 'EUR (€)', narrowSymbol: '€' },
+  GBP: { code: 'GBP', symbol: '£', label: 'GBP (£)', narrowSymbol: '£' },
+  INR: { code: 'INR', symbol: '₹', label: 'INR (₹)', narrowSymbol: '₹' },
+  CAD: { code: 'CAD', symbol: 'C$', label: 'CAD (C$)', narrowSymbol: 'C$' },
+  AUD: { code: 'AUD', symbol: 'A$', label: 'AUD (A$)', narrowSymbol: 'A$' },
+};
+
+export const DEFAULT_CURRENCY = 'USD';
+export const CURRENCY_STORAGE_KEY = 'myrealbudget_currency';
+
+export function getCurrencyConfig(code?: string): CurrencyConfig {
+  if (!code) return SUPPORTED_CURRENCIES[DEFAULT_CURRENCY];
+  const upper = code.toUpperCase();
+  return SUPPORTED_CURRENCIES[upper] || SUPPORTED_CURRENCIES[DEFAULT_CURRENCY];
+}
+
+export function getCurrencySymbol(code?: string): string {
+  return getCurrencyConfig(code).symbol;
+}
+
+export function getSelectedCurrency(): string {
+  if (typeof window === 'undefined') return DEFAULT_CURRENCY;
+  try {
+    const saved = localStorage.getItem(CURRENCY_STORAGE_KEY);
+    if (saved && SUPPORTED_CURRENCIES[saved.toUpperCase()]) {
+      return saved.toUpperCase();
+    }
+  } catch (e) {}
+  return DEFAULT_CURRENCY;
+}
+
+function getActiveLanguage(): string {
+  if (typeof window !== 'undefined') {
+    try {
+      const saved = localStorage.getItem('myrealbudget_language');
+      if (saved) return saved.toLowerCase();
+    } catch (e) {}
+  }
+  return 'en';
+}
+
+export function setSelectedCurrency(code: string): void {
+  const upper = code.toUpperCase();
+  if (!SUPPORTED_CURRENCIES[upper]) return;
+  if (typeof window !== 'undefined') {
+    try {
+      localStorage.setItem(CURRENCY_STORAGE_KEY, upper);
+    } catch (e) {}
+    // Update live DOM currency representations
+    updateDocumentCurrencies(upper);
+    // Dispatch custom event for reactive UI updates
+    window.dispatchEvent(
+      new CustomEvent('myrealbudget:currency-change', {
+        detail: { currency: upper, config: SUPPORTED_CURRENCIES[upper] },
+      })
+    );
+  }
+}
 
 export interface CurrencyFormatOptions {
   currency?: string;
+  lang?: string;
   minimumFractionDigits?: number;
   maximumFractionDigits?: number;
   compact?: boolean;
@@ -14,33 +85,51 @@ export function formatCurrency(
   amount: number,
   options: CurrencyFormatOptions = {}
 ): string {
-  const {
-    currency = 'USD',
-    minimumFractionDigits = 0,
-    maximumFractionDigits = 2,
-    compact = false,
-  } = options;
-
   if (isNaN(amount) || amount === null || amount === undefined) {
-    return '$0';
+    const sym = getCurrencySymbol(options.currency);
+    return `${sym}0`;
   }
 
-  // If amount has no cents and no explicit fraction digits specified, display integer
+  const currencyCode = options.currency || getSelectedCurrency();
+  const config = getCurrencyConfig(currencyCode);
+  const lang = options.lang || getActiveLanguage();
+
   const hasCents = amount % 1 !== 0;
-  const minDigits = options.minimumFractionDigits !== undefined 
-    ? options.minimumFractionDigits 
+  const minDigits = options.minimumFractionDigits !== undefined
+    ? options.minimumFractionDigits
     : (hasCents ? 2 : 0);
-  const maxDigits = options.maximumFractionDigits !== undefined 
-    ? options.maximumFractionDigits 
+  const maxDigits = options.maximumFractionDigits !== undefined
+    ? options.maximumFractionDigits
     : (hasCents ? 2 : 0);
 
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency,
+  // Determine locale for number formatting based on language and currency
+  let locale = 'en-US';
+  if (currencyCode === 'INR' && lang === 'en') {
+    locale = 'en-IN';
+  } else {
+    switch (lang) {
+      case 'es': locale = 'es-ES'; break;
+      case 'fr': locale = 'fr-FR'; break;
+      case 'de': locale = 'de-DE'; break;
+      case 'pt': locale = 'pt-BR'; break;
+      default: locale = 'en-US'; break;
+    }
+  }
+
+  const formattedNumber = new Intl.NumberFormat(locale, {
     minimumFractionDigits: minDigits,
     maximumFractionDigits: maxDigits,
-    notation: compact ? 'compact' : 'standard',
-  }).format(amount);
+  }).format(Math.abs(amount));
+
+  const sign = amount < 0 ? '-' : '';
+
+  // In French and German, currency symbols are positioned after the number with a space
+  if (lang === 'fr' || lang === 'de') {
+    return `${sign}${formattedNumber}\u00A0${config.symbol}`;
+  }
+
+  // In English, Spanish, Portuguese, symbol is placed before
+  return `${sign}${config.symbol}${formattedNumber}`;
 }
 
 export function parseCurrencyInput(value: string | number): number {
@@ -51,4 +140,71 @@ export function parseCurrencyInput(value: string | number): number {
   const cleaned = value.toString().replace(/[^0-9.-]/g, '');
   const parsed = parseFloat(cleaned);
   return isNaN(parsed) ? 0 : parsed;
+}
+
+/**
+ * Updates all DOM elements with currency-related data attributes:
+ * - [data-mrb-currency-val]: updates to formatted number
+ * - [data-mrb-currency-prefix-val]: updates to prefix + formatted number
+ * - .currency-symbol, [data-mrb-currency-symbol]: updates to currency symbol
+ */
+export function updateDocumentCurrencies(currencyCode?: string): void {
+  if (typeof document === 'undefined') return;
+  const curr = currencyCode || getSelectedCurrency();
+  const lang = getActiveLanguage();
+  const sym = getCurrencySymbol(curr);
+
+  // 1. Elements with numeric data attribute
+  document.querySelectorAll<HTMLElement>('[data-mrb-currency-val]').forEach((el) => {
+    const raw = el.getAttribute('data-mrb-currency-val');
+    if (raw !== null) {
+      const val = parseFloat(raw);
+      el.textContent = formatCurrency(val, { currency: curr, lang });
+    }
+  });
+
+  // 2. Elements with prefix + numeric data attribute
+  document.querySelectorAll<HTMLElement>('[data-mrb-currency-prefix-val]').forEach((el) => {
+    const raw = el.getAttribute('data-mrb-currency-prefix-val');
+    if (raw !== null) {
+      const val = parseFloat(raw);
+      const prefix = el.getAttribute('data-mrb-currency-prefix') || '/ ';
+      el.textContent = `${prefix}${formatCurrency(val, { currency: curr, lang })}`;
+    }
+  });
+
+  // 3. Plain currency symbol decorators
+  document.querySelectorAll<HTMLElement>('.currency-symbol, [data-mrb-currency-symbol]').forEach((el) => {
+    el.textContent = sym;
+  });
+}
+
+export function initCurrency(): void {
+  if (typeof window === 'undefined') return;
+  const current = getSelectedCurrency();
+
+  // Sync all select elements on page
+  const selects = document.querySelectorAll<HTMLSelectElement>('[data-mrb-currency-select]');
+  selects.forEach((sel) => {
+    sel.value = current;
+    sel.addEventListener('change', (e) => {
+      const target = e.target as HTMLSelectElement;
+      setSelectedCurrency(target.value);
+    });
+  });
+
+  window.addEventListener('myrealbudget:currency-change', (e: any) => {
+    const curr = e.detail?.currency || current;
+    document.querySelectorAll<HTMLSelectElement>('[data-mrb-currency-select]').forEach((sel) => {
+      if (sel.value !== curr) sel.value = curr;
+    });
+    updateDocumentCurrencies(curr);
+  });
+
+  window.addEventListener('myrealbudget:language-change', () => {
+    updateDocumentCurrencies();
+  });
+
+  // Initial update for static elements on page
+  updateDocumentCurrencies(current);
 }

@@ -15,7 +15,7 @@ const faqSchema = {
       name: 'How does payment frequency normalization work in this budget planner?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Instead of approximating weekly expenses by multiplying by 4, this planner uses annualized conversions: weekly expenses are multiplied by 52 and divided by 12, biweekly by 26/12, quarterly by 4/12, and yearly divided by 12. This ensures your monthly cash flow reflects true annual living costs.',
+        text: 'Instead of approximating weekly expenses by multiplying by 4, this planner uses annualized conversions: weekly expenses are multiplied by 52 and divided by 12, biweekly by 26/12, quarterly by 4/12, and yearly divided by 12. This helps your monthly cash flow reflect true annual living costs.',
       },
     },
     {
@@ -43,26 +43,26 @@ const faqSchema = {
   <section class="border-b border-[#ebebeb] bg-white pt-8 pb-10 sm:pt-12 sm:pb-14">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="max-w-3xl space-y-4">
-        <Eyebrow text="Interactive Tool" />
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-[#171717] leading-tight">
+        <Eyebrow text="Interactive Tool" tKey="templates.online_tool" />
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-[#171717] leading-tight" data-mrb-t="gbp.heading">
           Online Monthly Budget Planner
         </h1>
-        <p class="text-base sm:text-lg text-[#4d4d4d] leading-relaxed">
+        <p class="text-base sm:text-lg text-[#4d4d4d] leading-relaxed" data-mrb-t="gbp.subtitle">
           Plan your income and expenses with automatic payment frequency normalization. Understand where every dollar goes and create a budget tailored to your real life.
         </p>
       </div>
 
       <!-- Budgeting Method Switcher Bar -->
       <div class="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-[#f2f2f2] flex flex-wrap items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs">
-        <span class="text-[#8f8f8f] font-mono mr-1 sm:mr-2">Budgeting Method:</span>
-        <span class="px-3 py-1.5 rounded-full bg-[#171717] text-white font-medium">General Budget</span>
-        <a href="/50-30-20-budget/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition">
+        <span class="text-[#8f8f8f] font-mono mr-1 sm:mr-2" data-mrb-t="common.method">Budgeting Method:</span>
+        <span class="px-3 py-1.5 rounded-full bg-[#171717] text-white font-medium" data-mrb-t="common.general_budget">General Budget</span>
+        <a href="/50-30-20-budget/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition" data-mrb-t="common.f3020_method">
           50/30/20 Method
         </a>
-        <a href="/zero-based-budget/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition">
+        <a href="/zero-based-budget/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition" data-mrb-t="common.zero_based_method">
           Zero-Based Method
         </a>
-        <a href="/budget-planner-template/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition">
+        <a href="/budget-planner-template/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition" data-mrb-t="common.spreadsheet_templates">
           Spreadsheet Templates
         </a>
       </div>

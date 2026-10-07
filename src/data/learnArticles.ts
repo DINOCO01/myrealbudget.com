@@ -44,7 +44,7 @@ export const LEARN_ARTICLES: LearnArticleDef[] = [
     slug: 'zero-based-budget-explained',
     title: 'Zero-Based Budget Explained: How to Give Every Dollar a Job',
     metaTitle: 'Zero-Based Budget Explained: Meaning, Steps & Examples | My Real Budget',
-    metaDescription: 'Explore zero-based budgeting (ZBB). Discover how assigning every dollar a specific purpose eliminates financial leaks and accelerates debt payoff and savings.',
+    metaDescription: 'Explore zero-based budgeting (ZBB). Discover how assigning every dollar a specific purpose helps reduce financial leaks and accelerates debt payoff and savings.',
     readTime: '5 min read',
     category: 'Budgeting Methods',
     summary: 'Learn how Income minus Outflow equals Zero creates intentional clarity for debt reduction and savings goals.',

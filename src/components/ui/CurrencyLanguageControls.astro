@@ -1,0 +1,72 @@
+---
+import { SUPPORTED_CURRENCIES, DEFAULT_CURRENCY } from '../../utils/currency';
+import { SUPPORTED_LANGUAGES, DEFAULT_LANGUAGE } from '../../utils/i18n';
+
+interface Props {
+  class?: string;
+  idPrefix?: string;
+  compact?: boolean;
+}
+
+const { class: className = '', idPrefix = 'global', compact = false } = Astro.props;
+
+const compactLangLabels: Record<string, string> = {
+  en: 'EN',
+  es: 'ES',
+  fr: 'FR',
+  de: 'DE',
+  pt: 'PT',
+};
+---
+
+<div class={`inline-flex items-center gap-1 sm:gap-2 ${className}`}>
+  <!-- Currency Selector -->
+  <div class="relative inline-flex items-center">
+    <label for={`${idPrefix}-currency-select`} class="sr-only" data-mrb-t="common.currency">Currency</label>
+    <select
+      id={`${idPrefix}-currency-select`}
+      data-mrb-currency-select
+      aria-label="Select Budget Currency"
+      data-mrb-t-aria="aria.select_currency"
+      class={`rounded-[6px] bg-white dark:bg-[#111827] border border-[#ebebeb] dark:border-[#1e293b] text-[#171717] dark:text-[#f8fafc] font-mono font-medium focus:outline-none focus:ring-1 focus:ring-[var(--focus-ring)] transition cursor-pointer appearance-none shadow-whisper ${
+        compact
+          ? 'h-7 px-1.5 pr-4.5 text-[11px]'
+          : 'h-7 sm:h-8 px-2 pr-5 text-[11px] sm:text-xs'
+      }`}
+    >
+      {Object.values(SUPPORTED_CURRENCIES).map((curr) => (
+        <option value={curr.code} selected={curr.code === DEFAULT_CURRENCY}>
+          {curr.label}
+        </option>
+      ))}
+    </select>
+    <div class="pointer-events-none absolute right-1 text-[#8f8f8f] dark:text-[#64748b]">
+      <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+  </div>
+
+  <!-- Language Selector -->
+  <div class="relative inline-flex items-center">
+    <label for={`${idPrefix}-language-select`} class="sr-only" data-mrb-t="common.language">Language</label>
+    <select
+      id={`${idPrefix}-language-select`}
+      data-mrb-lang-select
+      aria-label="Select Interface Language"
+      data-mrb-t-aria="aria.select_language"
+      class={`rounded-[6px] bg-white dark:bg-[#111827] border border-[#ebebeb] dark:border-[#1e293b] text-[#171717] dark:text-[#f8fafc] font-medium focus:outline-none focus:ring-1 focus:ring-[var(--focus-ring)] transition cursor-pointer appearance-none shadow-whisper ${
+        compact
+          ? 'h-7 px-1.5 pr-4 text-[11px] font-mono'
+          : 'h-7 sm:h-8 px-2 pr-5 text-[11px] sm:text-xs'
+      }`}
+    >
+      {Object.values(SUPPORTED_LANGUAGES).map((lang) => (
+        <option value={lang.code} selected={lang.code === DEFAULT_LANGUAGE}>
+          {compact ? (compactLangLabels[lang.code] || lang.code.toUpperCase()) : lang.label}
+        </option>
+      ))}
+    </select>
+    <div class="pointer-events-none absolute right-1 text-[#8f8f8f] dark:text-[#64748b]">
+      <svg class="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+  </div>
+</div>

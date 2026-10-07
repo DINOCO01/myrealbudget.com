@@ -1,6 +1,7 @@
 ---
 import { DEFAULT_INCOME_ITEMS, DEFAULT_EXPENSE_CATEGORIES } from '../../data/budgetCategories';
 import { FREQUENCY_OPTIONS } from '../../utils/frequency';
+import CurrencyLanguageControls from '../ui/CurrencyLanguageControls.astro';
 ---
 
 <div id="general-budget-planner" class="w-full">
@@ -8,12 +9,14 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
   <div class="mb-4 sm:mb-6 flex flex-wrap items-center justify-between gap-2.5 text-xs">
     <div class="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-white border border-[#ebebeb] text-[#4d4d4d] shadow-whisper text-[11px] sm:text-xs">
       <span class="w-2 h-2 rounded-full bg-[#50e3c2]"></span>
-      <span>Autosaved locally to this device</span>
+      <span data-mrb-t="common.autosaved">Autosaved locally to this device</span>
     </div>
     <div class="flex items-center gap-1.5 sm:gap-2">
+      <CurrencyLanguageControls idPrefix="gbp" />
       <button
         type="button"
         id="btn-export-csv"
+        data-mrb-t="common.export_csv"
         class="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-[6px] border border-[#ebebeb] bg-white text-[#171717] font-medium hover:bg-neutral-50 transition shadow-whisper text-[11px] sm:text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0070f3]"
       >
         <svg class="w-3.5 h-3.5 text-[#4d4d4d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -24,6 +27,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
       <button
         type="button"
         id="btn-reset-budget"
+        data-mrb-t="common.reset_defaults"
         class="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-[6px] border border-[#ebebeb] bg-white text-[#8f8f8f] hover:text-[#ee0000] font-medium hover:bg-neutral-50 transition shadow-whisper text-[11px] sm:text-xs focus-visible:outline-none"
       >
         Reset Defaults
@@ -39,12 +43,12 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
       <section class="bg-white rounded-[10px] sm:rounded-[12px] border border-[#ebebeb] p-3.5 sm:p-6 shadow-whisper">
         <div class="flex items-center justify-between pb-2.5 mb-2.5 sm:pb-4 sm:mb-4 border-b border-[#ebebeb]">
           <div>
-            <h2 class="text-base sm:text-lg font-semibold text-[#171717] tracking-tight">1. Monthly Income</h2>
-            <p class="text-[11px] sm:text-xs text-[#8f8f8f]">Enter all income streams. Choose how often you get paid.</p>
+            <h2 class="text-base sm:text-lg font-semibold text-[#171717] tracking-tight" data-mrb-t="gbp.income_section">1. Monthly Income</h2>
+            <p class="text-[11px] sm:text-xs text-[#8f8f8f]" data-mrb-t="gbp.income_desc">Enter all income streams. Choose how often you get paid.</p>
           </div>
           <div class="text-right">
-            <span class="text-[10px] sm:text-xs font-mono text-[#8f8f8f] block">Normalized Total</span>
-            <span id="income-header-total" class="font-mono text-sm sm:text-base font-semibold text-[#171717]">$4,200</span>
+            <span class="text-[10px] sm:text-xs font-mono text-[#8f8f8f] block" data-mrb-t="gbp.normalized_total">Normalized Total</span>
+            <span id="income-header-total" class="font-mono text-sm sm:text-base font-semibold text-[#171717]" data-mrb-currency-val="4200">$4,200</span>
           </div>
         </div>
 
@@ -60,7 +64,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
           </svg>
-          Add Income Stream
+          <span data-mrb-t="common.add_income">Add Income Stream</span>
         </button>
       </section>
 
@@ -68,25 +72,25 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
       <div class="lg:hidden bg-white rounded-[10px] border border-[#ebebeb] p-3 shadow-whisper">
         <div class="flex items-center justify-between pb-2 mb-2 border-b border-[#ebebeb]">
           <div class="flex items-center gap-1.5">
-            <span class="text-xs font-semibold text-[#171717]">Net Cash Flow:</span>
-            <span id="mobile-summary-balance-value" class="font-mono text-base font-bold text-[#171717]">$0</span>
+            <span class="text-xs font-semibold text-[#171717]" data-mrb-t="summary.net_balance">Net Cash Flow:</span>
+            <span id="mobile-summary-balance-value" class="font-mono text-base font-bold text-[#171717]" data-mrb-currency-val="0">$0</span>
           </div>
           <div id="mobile-balance-status-badge" class="px-2 py-0.5 rounded text-[11px] font-medium bg-[#f2f2f2] text-[#4d4d4d]">
-            <span id="mobile-balance-status-text">Balanced</span>
+            <span id="mobile-balance-status-text" data-mrb-t="summary.balanced">Balanced</span>
           </div>
         </div>
         <div class="grid grid-cols-3 gap-1.5 text-center text-xs font-mono">
           <div class="bg-[#fafafa] py-1 px-1.5 rounded border border-[#ebebeb]">
-            <span class="text-[10px] text-[#8f8f8f] block">Income</span>
-            <span id="mobile-summary-income" class="font-semibold text-[#171717] text-xs block">$0</span>
+            <span class="text-[10px] text-[#8f8f8f] block" data-mrb-t="summary.monthly_income">Income</span>
+            <span id="mobile-summary-income" class="font-semibold text-[#171717] text-xs block" data-mrb-currency-val="0">$0</span>
           </div>
           <div class="bg-[#fafafa] py-1 px-1.5 rounded border border-[#ebebeb]">
-            <span class="text-[10px] text-[#8f8f8f] block">Outflows</span>
-            <span id="mobile-summary-expenses" class="font-semibold text-[#171717] text-xs block">$0</span>
+            <span class="text-[10px] text-[#8f8f8f] block" data-mrb-t="summary.outflows">Outflows</span>
+            <span id="mobile-summary-expenses" class="font-semibold text-[#171717] text-xs block" data-mrb-currency-val="0">$0</span>
           </div>
           <div class="bg-[#fafafa] py-1 px-1.5 rounded border border-[#ebebeb]">
-            <span class="text-[10px] text-[#8f8f8f] block">Remaining</span>
-            <span id="mobile-summary-remaining" class="font-semibold text-[#171717] text-xs block">$0</span>
+            <span class="text-[10px] text-[#8f8f8f] block" data-mrb-t="summary.remaining">Remaining</span>
+            <span id="mobile-summary-remaining" class="font-semibold text-[#171717] text-xs block" data-mrb-currency-val="0">$0</span>
           </div>
         </div>
       </div>
@@ -95,8 +99,8 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
       <section class="space-y-3 sm:space-y-6">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 px-1">
           <div>
-            <h2 class="text-base sm:text-lg font-semibold text-[#171717] tracking-tight">2. Planned Expenses</h2>
-            <p class="text-[11px] sm:text-xs text-[#8f8f8f]">Set amounts and select frequencies. Yearly and weekly items are annualized to monthly.</p>
+            <h2 class="text-base sm:text-lg font-semibold text-[#171717] tracking-tight" data-mrb-t="gbp.expenses_section">2. Planned Expenses</h2>
+            <p class="text-[11px] sm:text-xs text-[#8f8f8f]" data-mrb-t="gbp.expenses_desc">Set amounts and select frequencies. Yearly and weekly items are annualized to monthly.</p>
           </div>
           <div class="flex items-center justify-between sm:justify-end gap-3 pt-1 sm:pt-0">
             <div class="flex sm:hidden items-center gap-1.5 text-xs text-[#8f8f8f]">
@@ -104,6 +108,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
                 type="button"
                 class="hover:text-[#171717] underline text-[11px]"
                 onclick="window._gbp.toggleAllCategories(true)"
+                data-mrb-t="common.expand_all"
               >
                 Expand all
               </button>
@@ -112,13 +117,14 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
                 type="button"
                 class="hover:text-[#171717] underline text-[11px]"
                 onclick="window._gbp.toggleAllCategories(false)"
+                data-mrb-t="common.collapse_all"
               >
                 Collapse all
               </button>
             </div>
             <div class="text-right">
-              <span class="hidden sm:block text-xs font-mono text-[#8f8f8f]">Normalized Expenses</span>
-              <span id="expenses-header-total" class="font-mono text-sm sm:text-base font-semibold text-[#171717]">$0</span>
+              <span class="hidden sm:block text-xs font-mono text-[#8f8f8f]" data-mrb-t="gbp.normalized_expenses">Normalized Expenses</span>
+              <span id="expenses-header-total" class="font-mono text-sm sm:text-base font-semibold text-[#171717]" data-mrb-currency-val="0">$0</span>
             </div>
           </div>
         </div>
@@ -138,7 +144,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
             </svg>
-            Add Custom Expense Category
+            <span data-mrb-t="common.add_category">Add Custom Expense Category</span>
           </button>
         </div>
       </section>
@@ -150,12 +156,12 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
       <!-- Summary Result Card -->
       <div class="bg-white rounded-[12px] border border-[#ebebeb] p-4 sm:p-6 shadow-whisper">
         <div class="border-b border-[#ebebeb] pb-3 sm:pb-4 mb-3 sm:mb-5">
-          <span class="font-mono text-[11px] sm:text-xs uppercase tracking-wider text-[#8f8f8f] block mb-0.5 sm:mb-1">
+          <span class="font-mono text-[11px] sm:text-xs uppercase tracking-wider text-[#8f8f8f] block mb-0.5 sm:mb-1" data-mrb-t="summary.budget_summary">
             Budget Balance
           </span>
           <div class="flex items-baseline justify-between">
-            <span id="summary-balance-label" class="text-xs sm:text-sm font-medium text-[#4d4d4d]">Remaining Cash</span>
-            <span id="summary-balance-value" class="font-mono text-xl sm:text-2xl font-bold tracking-tight text-[#171717]">
+            <span id="summary-balance-label" class="text-xs sm:text-sm font-medium text-[#4d4d4d]" data-mrb-t="summary.remaining_cash">Remaining Cash</span>
+            <span id="summary-balance-value" class="font-mono text-xl sm:text-2xl font-bold tracking-tight text-[#171717]" data-mrb-currency-val="0">
               $0
             </span>
           </div>
@@ -163,7 +169,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
 
         <!-- Balance Status Banner -->
         <div id="balance-status-banner" class="p-2.5 sm:p-3.5 rounded-[6px] mb-3 sm:mb-5 text-xs transition-colors">
-          <p id="balance-status-text" class="font-medium leading-relaxed">
+          <p id="balance-status-text" class="font-medium leading-relaxed" data-mrb-t="interpret.general_empty">
             Enter your monthly income and expenses to balance your budget.
           </p>
         </div>
@@ -171,23 +177,23 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
         <!-- Breakdown Numbers -->
         <div class="space-y-2 sm:space-y-3 font-mono text-sm border-b border-[#ebebeb] pb-3 sm:pb-5 mb-3 sm:mb-5">
           <div class="flex justify-between items-center text-xs">
-            <span class="text-[#8f8f8f]">Monthly Income</span>
-            <span id="summary-total-income" class="font-semibold text-[#171717]">$0</span>
+            <span class="text-[#8f8f8f]" data-mrb-t="summary.monthly_income">Monthly Income</span>
+            <span id="summary-total-income" class="font-semibold text-[#171717]" data-mrb-currency-val="0">$0</span>
           </div>
           <div class="flex justify-between items-center text-xs">
-            <span class="text-[#8f8f8f]">Planned Outflows</span>
-            <span id="summary-total-expenses" class="font-semibold text-[#171717]">$0</span>
+            <span class="text-[#8f8f8f]" data-mrb-t="summary.planned_expenses">Planned Outflows</span>
+            <span id="summary-total-expenses" class="font-semibold text-[#171717]" data-mrb-currency-val="0">$0</span>
           </div>
           <div class="flex justify-between items-center text-xs pt-1 border-t border-[#f2f2f2]">
-            <span class="text-[#8f8f8f]">Income Spent</span>
+            <span class="text-[#8f8f8f]" data-mrb-t="summary.income_spent">Income Spent</span>
             <span id="summary-spent-pct" class="font-semibold text-[#171717]">0%</span>
           </div>
           <div class="flex justify-between items-center text-xs">
-            <span class="text-[#8f8f8f]">Income Remaining</span>
+            <span class="text-[#8f8f8f]" data-mrb-t="summary.income_remaining">Income Remaining</span>
             <span id="summary-remaining-pct" class="font-semibold text-[#171717]">0%</span>
           </div>
           <div class="flex justify-between items-center text-xs">
-            <span class="text-[#8f8f8f]">Savings & Investments</span>
+            <span class="text-[#8f8f8f]" data-mrb-t="summary.savings_investments">Savings & Investments</span>
             <span id="summary-savings-amount" class="font-semibold text-[#0070f3]">$0 (0%)</span>
           </div>
         </div>
@@ -195,7 +201,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
         <!-- Visual Progress Bar -->
         <div class="space-y-1.5 sm:space-y-2 mb-4 sm:mb-6">
           <div class="flex justify-between text-[11px] sm:text-xs text-[#8f8f8f]">
-            <span>Income Allocation</span>
+            <span data-mrb-t="home.preview_distribution">Income Allocation</span>
             <span id="progress-allocation-label">0% spent</span>
           </div>
           <div class="w-full h-2 sm:h-2.5 rounded-full bg-[#f2f2f2] overflow-hidden flex">
@@ -204,16 +210,16 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
             <div id="progress-bar-surplus" class="h-full bg-[#50e3c2] transition-all duration-300" style="width: 0%"></div>
           </div>
           <div class="flex items-center gap-3 text-[10px] sm:text-[11px] text-[#8f8f8f] pt-1 font-mono">
-            <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#171717]"></span> Expenses</span>
-            <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#0070f3]"></span> Savings</span>
-            <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#50e3c2]"></span> Remaining</span>
+            <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#171717]"></span> <span data-mrb-t="summary.outflows">Expenses</span></span>
+            <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#0070f3]"></span> <span data-mrb-t="home.preview_savings">Savings</span></span>
+            <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#50e3c2]"></span> <span data-mrb-t="summary.remaining">Remaining</span></span>
           </div>
         </div>
 
         <!-- Plain Language Interpretation (Secondary Breakdown) -->
         <details class="group space-y-2">
           <summary class="flex items-center justify-between font-mono text-[11px] sm:text-xs font-medium uppercase tracking-wider text-[#8f8f8f] cursor-pointer list-none select-none py-0.5">
-            <span>Practical Interpretation</span>
+            <span data-mrb-t="gbp.live_assessment">Practical Interpretation</span>
             <svg class="w-3.5 h-3.5 text-[#8f8f8f] transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </summary>
           <div id="interpretation-box" class="space-y-2 text-xs text-[#4d4d4d] leading-relaxed pt-1">
@@ -226,7 +232,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
       <div class="bg-white rounded-[12px] border border-[#ebebeb] p-4 sm:p-5 shadow-whisper">
         <details class="group space-y-2.5">
           <summary class="flex items-center justify-between font-mono text-[11px] sm:text-xs font-medium uppercase tracking-wider text-[#8f8f8f] cursor-pointer list-none select-none py-0.5">
-            <span>Top Spending Categories</span>
+            <span data-mrb-t="summary.top_categories">Top Spending Categories</span>
             <svg class="w-3.5 h-3.5 text-[#8f8f8f] transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </summary>
           <div id="top-categories-list" class="space-y-2 text-xs pt-1">
@@ -237,8 +243,8 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
 
       <!-- Quick Method Switcher -->
       <div class="bg-[#fafafa] rounded-[10px] sm:rounded-[12px] border border-[#ebebeb] p-3 sm:p-4 text-xs text-[#4d4d4d] space-y-1.5">
-        <p class="font-medium text-[#171717]">Want to try another budgeting method?</p>
-        <p class="text-[11px] sm:text-[12px] text-[#8f8f8f]">
+        <p class="font-medium text-[#171717]" data-mrb-t="common.try_another_method">Want to try another budgeting method?</p>
+        <p class="text-[11px] sm:text-[12px] text-[#8f8f8f]" data-mrb-t-html="gbp.switch_methods_desc">
           Switch to the <a href="/50-30-20-budget/" class="text-[#0070f3] underline hover:text-[#0761d1]">50/30/20 Method</a> for percentage-based targets, or the <a href="/zero-based-budget/" class="text-[#0070f3] underline hover:text-[#0761d1]">Zero-Based Method</a> to allocate every dollar to zero.
         </p>
       </div>
@@ -375,13 +381,35 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
     return (Number(amount) || 0) * mult;
   }
 
+  function t(k, vars) {
+    if (window._mrb_i18n && typeof window._mrb_i18n.t === 'function') {
+      return window._mrb_i18n.t(k, vars);
+    }
+    return k;
+  }
+
+  function getCurrencySymbol() {
+    if (window._mrb_currency && typeof window._mrb_currency.symbol === 'function') {
+      return window._mrb_currency.symbol();
+    }
+    const curr = (typeof localStorage !== 'undefined' && localStorage.getItem('myrealbudget_currency')) || 'USD';
+    const syms = { USD: '$', EUR: '€', GBP: '£', INR: '₹', CAD: 'C$', AUD: 'A$' };
+    return syms[curr] || '$';
+  }
+
   function formatMoney(amount) {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: amount % 1 === 0 ? 0 : 2,
-    }).format(amount);
+    if (window._mrb_currency && typeof window._mrb_currency.format === 'function') {
+      return window._mrb_currency.format(amount);
+    }
+    const curr = (typeof localStorage !== 'undefined' && localStorage.getItem('myrealbudget_currency')) || 'USD';
+    const sym = getCurrencySymbol();
+    const locale = curr === 'INR' ? 'en-IN' : 'en-US';
+    const hasCents = amount % 1 !== 0;
+    const formatted = new Intl.NumberFormat(locale, {
+      minimumFractionDigits: hasCents ? 2 : 0,
+      maximumFractionDigits: hasCents ? 2 : 0,
+    }).format(Math.abs(amount));
+    return (amount < 0 ? '-' : '') + sym + formatted;
   }
 
   let openCategories = new Set([0]); // Default first category open on mobile
@@ -389,42 +417,45 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
     const container = document.getElementById('income-items-container');
     if (!container) return;
 
-    container.innerHTML = state.income.map((item, idx) => `
+    container.innerHTML = state.income.map((item, idx) => {
+      const itemDisplayName = window._mrb_i18n ? window._mrb_i18n.translateItem(item.name) : item.name;
+      return `
       <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-1 sm:gap-2 p-1.5 sm:p-2 rounded-[6px] bg-[#fafafa] border border-[#ebebeb] text-xs" data-income-idx="${idx}">
         <input
           type="text"
-          value="${escapeHtml(item.name)}"
-          aria-label="Income source name"
+          value="${escapeHtml(itemDisplayName)}"
+          aria-label="${t('aria.income_item_name') || 'Income source name'}"
           class="flex-1 px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-[5px] bg-white border border-[#ebebeb] text-[#171717] focus:outline-none focus:border-[#171717] font-medium text-xs"
           onchange="window._gbp.updateIncomeItem(${idx}, 'name', this.value)"
         />
         <div class="flex items-center gap-1 sm:gap-2">
           <div class="relative flex-1 sm:w-28 sm:flex-initial">
-            <span class="absolute left-2 top-1 sm:top-1.5 text-[#8f8f8f] font-mono text-xs">$</span>
+            <span class="currency-symbol absolute left-2 top-1 sm:top-1.5 text-[#8f8f8f] font-mono text-xs">${getCurrencySymbol()}</span>
             <input
               type="number"
               min="0"
               step="any"
               value="${item.amount || ''}"
               placeholder="0"
-              aria-label="Income amount"
+              aria-label="${t('aria.income_amount') || 'Income amount'}"
               class="w-full pl-5 pr-1.5 py-1 sm:pl-6 sm:pr-2 sm:py-1.5 rounded-[5px] bg-white border border-[#ebebeb] text-[#171717] font-mono text-right focus:outline-none focus:border-[#171717] text-xs"
               oninput="window._gbp.updateIncomeItem(${idx}, 'amount', this.value)"
             />
           </div>
           <select
-            aria-label="Income payment frequency"
+            aria-label="${t('aria.income_frequency') || 'Income payment frequency'}"
             class="px-1.5 py-1 sm:px-2 sm:py-1.5 rounded-[5px] bg-white border border-[#ebebeb] text-[#4d4d4d] focus:outline-none focus:border-[#171717] text-xs font-mono shrink-0"
             onchange="window._gbp.updateIncomeItem(${idx}, 'frequency', this.value)"
           >
-            ${FREQUENCY_OPTIONS.map(opt => `
-              <option value="${opt.id}" ${item.frequency === opt.id ? 'selected' : ''}>${opt.label}</option>
-            `).join('')}
+            ${FREQUENCY_OPTIONS.map(opt => {
+              const freqLabel = window._mrb_i18n ? window._mrb_i18n.getFrequencyLabel(opt.id) : opt.label;
+              return `<option value="${opt.id}" ${item.frequency === opt.id ? 'selected' : ''}>${freqLabel}</option>`;
+            }).join('')}
           </select>
           <button
             type="button"
-            title="Remove item"
-            aria-label="Remove income item"
+            title="${t('actions.delete') || 'Remove item'}"
+            aria-label="${t('aria.remove_income') || 'Remove income item'}"
             class="p-1 sm:p-1.5 text-[#8f8f8f] hover:text-[#ee0000] rounded hover:bg-neutral-100 transition shrink-0"
             onclick="window._gbp.removeIncomeItem(${idx})"
           >
@@ -432,7 +463,8 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
           </button>
         </div>
       </div>
-    `).join('');
+    `;
+    }).join('');
   }
 
   function renderCategories() {
@@ -442,6 +474,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
     container.innerHTML = state.categories.map((cat, catIdx) => {
       const catTotal = cat.items.reduce((sum, item) => sum + normalize(item.amount, item.frequency), 0);
       const isOpen = openCategories.has(catIdx);
+      const catDisplayName = window._mrb_i18n ? window._mrb_i18n.translateCategory(cat.name) : cat.name;
       return `
         <div class="bg-white rounded-[10px] sm:rounded-[12px] border border-[#ebebeb] p-2.5 sm:p-5 shadow-whisper" data-cat-idx="${catIdx}">
           <!-- Compact Category Header -->
@@ -454,14 +487,14 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
                 type="button"
                 id="gbp-cat-btn-${catIdx}"
                 class="sm:hidden p-0.5 text-[#8f8f8f] hover:text-[#171717] transition-transform duration-200 shrink-0 ${isOpen ? 'rotate-180' : ''}"
-                aria-label="Toggle category items"
+                aria-label="${t('aria.toggle_category') || 'Toggle category items'}"
               >
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
               </button>
               <input
                 type="text"
-                value="${escapeHtml(cat.name)}"
-                aria-label="Category name"
+                value="${escapeHtml(catDisplayName)}"
+                aria-label="${t('aria.category_name') || 'Category name'}"
                 class="font-semibold text-xs sm:text-sm text-[#171717] bg-transparent border-b border-transparent hover:border-[#ebebeb] focus:border-[#171717] focus:outline-none py-0.5 flex-1 min-w-0"
                 onclick="event.stopPropagation()"
                 onchange="window._gbp.updateCategoryName(${catIdx}, this.value)"
@@ -469,12 +502,12 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
             </div>
             <div class="flex items-center gap-1.5 sm:gap-3 shrink-0" onclick="event.stopPropagation()">
               <span class="font-mono text-xs sm:text-sm font-semibold text-[#171717]">
-                ${formatMoney(catTotal)}<span class="text-[#8f8f8f] font-normal text-[10px] sm:text-[11px]">/mo</span>
+                ${formatMoney(catTotal)}<span class="text-[#8f8f8f] font-normal text-[10px] sm:text-[11px]">${t('common.per_month') || '/mo'}</span>
               </span>
               <button
                 type="button"
-                title="Remove entire category"
-                aria-label="Remove category ${cat.name}"
+                title="${t('actions.delete') || 'Remove entire category'}"
+                aria-label="${t('common.remove_category') || 'Remove category'} ${catDisplayName}"
                 class="text-[#8f8f8f] hover:text-[#ee0000] p-0.5 sm:p-1 transition"
                 onclick="window._gbp.removeCategory(${catIdx})"
               >
@@ -486,42 +519,45 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
           <!-- Category Line Items (Collapsible on mobile < sm, always visible on sm+) -->
           <div id="gbp-cat-body-${catIdx}" class="${isOpen ? 'block' : 'hidden'} sm:!block pt-2 sm:pt-3">
             <div class="space-y-1.5 sm:space-y-2">
-              ${cat.items.map((item, itemIdx) => `
+              ${cat.items.map((item, itemIdx) => {
+                const itemDisplayName = window._mrb_i18n ? window._mrb_i18n.translateItem(item.name) : item.name;
+                return `
                 <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-1 sm:gap-2 p-1.5 sm:p-2 rounded-[6px] bg-[#fafafa] border border-[#ebebeb] text-xs">
                   <input
                     type="text"
-                    value="${escapeHtml(item.name)}"
-                    aria-label="Expense item name"
+                    value="${escapeHtml(itemDisplayName)}"
+                    aria-label="${t('aria.expense_item_name') || 'Expense item name'}"
                     class="flex-1 px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-[5px] bg-white border border-[#ebebeb] text-[#171717] focus:outline-none focus:border-[#171717] text-xs"
                     onchange="window._gbp.updateItem(${catIdx}, ${itemIdx}, 'name', this.value)"
                   />
                   <div class="flex items-center gap-1 sm:gap-2">
                     <div class="relative flex-1 sm:w-28 sm:flex-initial">
-                      <span class="absolute left-2 top-1 sm:top-1.5 text-[#8f8f8f] font-mono text-xs">$</span>
+                      <span class="currency-symbol absolute left-2 top-1 sm:top-1.5 text-[#8f8f8f] font-mono text-xs">${getCurrencySymbol()}</span>
                       <input
                         type="number"
                         min="0"
                         step="any"
                         value="${item.amount || ''}"
                         placeholder="0"
-                        aria-label="Expense amount"
+                        aria-label="${t('aria.expense_amount') || 'Expense amount'}"
                         class="w-full pl-5 pr-1.5 py-1 sm:pl-6 sm:pr-2 sm:py-1.5 rounded-[5px] bg-white border border-[#ebebeb] text-[#171717] font-mono text-right focus:outline-none focus:border-[#171717] text-xs"
                         oninput="window._gbp.updateItem(${catIdx}, ${itemIdx}, 'amount', this.value)"
                       />
                     </div>
                     <select
-                      aria-label="Expense frequency"
+                      aria-label="${t('aria.expense_frequency') || 'Expense frequency'}"
                       class="px-1.5 py-1 sm:px-2 sm:py-1.5 rounded-[5px] bg-white border border-[#ebebeb] text-[#4d4d4d] focus:outline-none focus:border-[#171717] text-xs font-mono shrink-0"
                       onchange="window._gbp.updateItem(${catIdx}, ${itemIdx}, 'frequency', this.value)"
                     >
-                      ${FREQUENCY_OPTIONS.map(opt => `
-                        <option value="${opt.id}" ${item.frequency === opt.id ? 'selected' : ''}>${opt.label}</option>
-                      `).join('')}
+                      ${FREQUENCY_OPTIONS.map(opt => {
+                        const freqLabel = window._mrb_i18n ? window._mrb_i18n.getFrequencyLabel(opt.id) : opt.label;
+                        return `<option value="${opt.id}" ${item.frequency === opt.id ? 'selected' : ''}>${freqLabel}</option>`;
+                      }).join('')}
                     </select>
                     <button
                       type="button"
-                      title="Remove item"
-                      aria-label="Remove item"
+                      title="${t('actions.delete') || 'Remove item'}"
+                      aria-label="${t('common.remove_item') || 'Remove item'}"
                       class="p-1 sm:p-1.5 text-[#8f8f8f] hover:text-[#ee0000] rounded hover:bg-neutral-100 transition shrink-0"
                       onclick="window._gbp.removeItem(${catIdx}, ${itemIdx})"
                     >
@@ -529,7 +565,8 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
                     </button>
                   </div>
                 </div>
-              `).join('')}
+              `;
+              }).join('')}
             </div>
 
             <button
@@ -538,7 +575,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
               onclick="window._gbp.addItem(${catIdx})"
             >
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-              Add item to ${escapeHtml(cat.name)}
+              + ${t('common.add_item') || 'Add item'} (${escapeHtml(catDisplayName)})
             </button>
           </div>
         </div>
@@ -587,21 +624,21 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
     if (statusBanner && statusText && balanceLabel) {
       if (totalIncome === 0 && totalExpenses === 0) {
         statusBanner.className = 'p-3.5 rounded-[6px] mb-5 text-xs bg-[#f2f2f2] text-[#4d4d4d]';
-        statusText.textContent = 'Enter your monthly income and planned expenses to balance your budget.';
-        balanceLabel.textContent = 'Net Cash Flow';
+        statusText.textContent = t('interpret.general_empty');
+        balanceLabel.textContent = t('summary.net_balance');
       } else if (remaining > 0) {
         statusBanner.className = 'p-3.5 rounded-[6px] mb-5 text-xs bg-[#e6fbf5] text-[#047857] border border-[#a7f3d0]';
-        statusText.textContent = `Surplus: You have ${formatMoney(remaining)} left after planned expenses each month.`;
-        balanceLabel.textContent = 'Monthly Surplus';
+        statusText.textContent = t('interpret.general_surplus', { amount: formatMoney(remaining) });
+        balanceLabel.textContent = t('summary.monthly_surplus');
       } else if (remaining === 0) {
         statusBanner.className = 'p-3.5 rounded-[6px] mb-5 text-xs bg-[#eef6ff] text-[#0761d1] border border-[#bfdbfe]';
-        statusText.textContent = 'Balanced: Every dollar of your income is allocated.';
-        balanceLabel.textContent = 'Net Balance';
+        statusText.textContent = t('interpret.general_balanced');
+        balanceLabel.textContent = t('summary.net_balance');
       } else {
         const deficit = Math.abs(remaining);
         statusBanner.className = 'p-3.5 rounded-[6px] mb-5 text-xs bg-[#fef2f2] text-[#b91c1c] border border-[#fecaca]';
-        statusText.textContent = `Deficit: Your planned expenses are ${formatMoney(deficit)} higher than your income.`;
-        balanceLabel.textContent = 'Monthly Deficit';
+        statusText.textContent = t('interpret.general_deficit', { amount: formatMoney(deficit) });
+        balanceLabel.textContent = t('summary.monthly_deficit');
       }
     }
 
@@ -621,16 +658,16 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
     if (mBadge && mText) {
       if (totalIncome === 0 && totalExpenses === 0) {
         mBadge.className = 'px-2 py-0.5 rounded text-[11px] font-medium bg-[#f2f2f2] text-[#4d4d4d]';
-        mText.textContent = 'Balanced';
+        mText.textContent = t('summary.balanced');
       } else if (remaining > 0) {
         mBadge.className = 'px-2 py-0.5 rounded text-[11px] font-medium bg-[#e6fbf5] text-[#047857] border border-[#a7f3d0]';
-        mText.textContent = 'Surplus';
+        mText.textContent = t('summary.surplus');
       } else if (remaining === 0) {
         mBadge.className = 'px-2 py-0.5 rounded text-[11px] font-medium bg-[#eef6ff] text-[#0761d1] border border-[#bfdbfe]';
-        mText.textContent = 'Balanced';
+        mText.textContent = t('summary.balanced');
       } else {
         mBadge.className = 'px-2 py-0.5 rounded text-[11px] font-medium bg-[#fef2f2] text-[#b91c1c] border border-[#fecaca]';
-        mText.textContent = 'Deficit';
+        mText.textContent = t('summary.deficit');
       }
     }
 
@@ -653,7 +690,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
     const barSavings = document.getElementById('progress-bar-savings');
     const barSurplus = document.getElementById('progress-bar-surplus');
 
-    if (allocLabel) allocLabel.textContent = `${spentPct}% spent`;
+    if (allocLabel) allocLabel.textContent = t('summary.spent_pct', { pct: spentPct });
     if (barSpent && barSavings && barSurplus) {
       if (totalIncome > 0) {
         const nonSavingsExpenses = Math.max(0, totalExpenses - savingsTotal);
@@ -683,7 +720,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
     if (!box) return;
 
     if (income === 0) {
-      box.innerHTML = '<p class="text-[#8f8f8f]">Start by entering your monthly take-home salary or wages above.</p>';
+      box.innerHTML = `<p class="text-[#8f8f8f]">${t('gbp.start_entering')}</p>`;
       return;
     }
 
@@ -694,29 +731,28 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
     // 1. Bottom-line state
     if (remaining > 0) {
       const remPct = Math.round((remaining / income) * 100);
-      insights.push(`You have <strong>${formatMoney(remaining)}</strong> unallocated each month (${remPct}% of net income). Consider directing this into an emergency fund or higher debt payments.`);
+      insights.push(t('interpret.general_insight_surplus', { amount: formatMoney(remaining), pct: remPct }));
     } else if (remaining === 0) {
-      insights.push('Your budget balances to exactly zero. Every dollar has an assigned role before the month begins.');
+      insights.push(t('interpret.general_insight_balanced'));
     } else {
       const deficit = Math.abs(remaining);
-      insights.push(`Your planned expenses exceed your income by <strong class="text-[#ee0000]">${formatMoney(deficit)}</strong> per month. Review non-essential categories to bring spending back in line.`);
+      insights.push(t('interpret.general_insight_deficit', { amount: formatMoney(deficit) }));
     }
 
     // 2. Largest Category
     if (largest) {
       const largestPct = expenses > 0 ? Math.round((largest.total / expenses) * 100) : 0;
       const largestIncomePct = Math.round((largest.total / income) * 100);
-      insights.push(`<strong>${escapeHtml(largest.name)}</strong> is your largest category at ${formatMoney(largest.total)}/month (${largestPct}% of expenses, ${largestIncomePct}% of income).`);
+      const largestName = window._mrb_i18n ? window._mrb_i18n.translateCategory(largest.name) : largest.name;
+      insights.push(t('interpret.general_largest', { name: escapeHtml(largestName), amount: formatMoney(largest.total), pct: largestPct, incPct: largestIncomePct }));
     }
 
     // 3. Savings health
     const savingsPct = Math.round((savings / income) * 100);
-    if (savingsPct >= 20) {
-      insights.push(`Solid savings rate: You are putting away <strong>${savingsPct}%</strong> of your income into savings & investments.`);
-    } else if (savingsPct > 0) {
-      insights.push(`You are currently allocating <strong>${savingsPct}%</strong> to savings. A common benchmark is to aim for 15–20% as high-interest debt is cleared.`);
+    if (savingsPct > 0) {
+      insights.push(t('interpret.general_savings', { pct: savingsPct }));
     } else {
-      insights.push('You do not currently have any funds allocated toward savings or an emergency cushion.');
+      insights.push(t('interpret.general_zero_savings'));
     }
 
     box.innerHTML = insights.map(i => `<p class="flex items-start gap-1.5"><span>•</span><span>${i}</span></p>`).join('');
@@ -729,16 +765,17 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
     const sorted = [...categoryTotals].sort((a, b) => b.total - a.total).filter(c => c.total > 0).slice(0, 5);
 
     if (sorted.length === 0) {
-      list.innerHTML = '<p class="text-[#8f8f8f]">No expense categories with values yet.</p>';
+      list.innerHTML = `<p class="text-[#8f8f8f]">${t('gbp.empty_categories')}</p>`;
       return;
     }
 
     list.innerHTML = sorted.map((cat, idx) => {
       const pct = totalExpenses > 0 ? Math.round((cat.total / totalExpenses) * 100) : 0;
+      const catDisplayName = window._mrb_i18n ? window._mrb_i18n.translateCategory(cat.name) : cat.name;
       return `
         <div class="space-y-1">
           <div class="flex justify-between items-center text-xs">
-            <span class="text-[#171717] font-medium">${idx + 1}. ${escapeHtml(cat.name)}</span>
+            <span class="text-[#171717] font-medium">${idx + 1}. ${escapeHtml(catDisplayName)}</span>
             <span class="font-mono text-[#4d4d4d]">${formatMoney(cat.total)} (${pct}%)</span>
           </div>
           <div class="w-full h-1.5 rounded-full bg-[#f2f2f2] overflow-hidden">
@@ -794,7 +831,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
       if (!state.categories[catIdx]) return;
       state.categories[catIdx].items.push({
         id: 'item_' + Date.now(),
-        name: 'New Item',
+        name: t('common.add_item') || 'New Item',
         amount: 0,
         frequency: 'monthly',
       });
@@ -809,7 +846,8 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
       calculateAndRenderResults();
     },
     removeCategory: function(catIdx) {
-      if (confirm(`Remove the "${state.categories[catIdx].name}" category and its items?`)) {
+      const catName = state.categories[catIdx] ? state.categories[catIdx].name : '';
+      if (confirm(t('confirm.delete_category', { name: catName }))) {
         state.categories.splice(catIdx, 1);
         saveState();
         renderCategories();
@@ -870,7 +908,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
     addIncomeBtn.addEventListener('click', () => {
       state.income.push({
         id: 'inc_' + Date.now(),
-        name: 'New Income Source',
+        name: t('common.add_income') || 'New Income Source',
         amount: 0,
         frequency: 'monthly',
       });
@@ -883,7 +921,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
   const addCatBtn = document.getElementById('btn-add-custom-category');
   if (addCatBtn) {
     addCatBtn.addEventListener('click', () => {
-      const name = prompt('Enter a name for your custom category:', 'Custom Category');
+      const name = prompt(t('prompt.new_category_name'), 'Custom Category');
       if (name && name.trim()) {
         state.categories.push({
           id: 'cat_' + Date.now(),
@@ -902,7 +940,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
   const resetBtn = document.getElementById('btn-reset-budget');
   if (resetBtn) {
     resetBtn.addEventListener('click', () => {
-      if (confirm('Reset all values to default sample numbers? Any custom items will be cleared.')) {
+      if (confirm(t('confirm.reset_general'))) {
         state = JSON.parse(JSON.stringify(defaultData));
         saveState();
         renderIncome();
@@ -938,6 +976,22 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
   function csvClean(str) {
     return '"' + (str || '').replace(/"/g, '""') + '"';
   }
+
+  // Listen for global currency and language updates
+  window.addEventListener('myrealbudget:currency-change', () => {
+    document.querySelectorAll('#general-budget-planner .currency-symbol').forEach(el => {
+      el.textContent = getCurrencySymbol();
+    });
+    renderIncome();
+    renderCategories();
+    calculateAndRenderResults();
+  });
+
+  window.addEventListener('myrealbudget:language-change', () => {
+    renderIncome();
+    renderCategories();
+    calculateAndRenderResults();
+  });
 
   // Initial Boot
   renderIncome();

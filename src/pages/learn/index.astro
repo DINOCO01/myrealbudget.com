@@ -12,11 +12,11 @@ const description = 'Explore practical guides on budgeting fundamentals, how to 
   <section class="border-b border-[#ebebeb] bg-white pt-12 pb-14">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="max-w-3xl space-y-4">
-        <Eyebrow text="Knowledge Center" />
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-[#171717] leading-tight">
+        <Eyebrow text="Knowledge Center" tKey="learn.eyebrow" />
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-[#171717] leading-tight" data-mrb-t="learn.heading">
           Budgeting Learning Center
         </h1>
-        <p class="text-base sm:text-lg text-[#4d4d4d] leading-relaxed">
+        <p class="text-base sm:text-lg text-[#4d4d4d] leading-relaxed" data-mrb-t="learn.desc">
           Clear, jargon-free guides to help you understand where your money goes, select the best budgeting method, and build sustainable financial habits.
         </p>
       </div>
@@ -50,7 +50,7 @@ const description = 'Explore practical guides on budgeting fundamentals, how to 
               href={`/learn/${article.slug}/`}
               class="text-xs font-medium text-[#171717] group-hover:text-[#0070f3] inline-flex items-center gap-1.5 transition-colors"
             >
-              Read Full Guide
+              <span data-mrb-t="learn.read_guide">Read Full Guide</span>
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </a>
           </div>
@@ -60,19 +60,19 @@ const description = 'Explore practical guides on budgeting fundamentals, how to 
 
     <!-- Interactive Tools Callout -->
     <section class="mt-16 p-8 rounded-[12px] bg-[#fafafa] border border-[#ebebeb] text-center max-w-2xl mx-auto space-y-4">
-      <Eyebrow text="Put Knowledge Into Practice" class="mx-auto" />
-      <h3 class="text-xl font-semibold text-[#171717]">Ready to plan your numbers?</h3>
+      <Eyebrow text="Put Knowledge Into Practice" tKey="learn.put_into_practice" class="mx-auto" />
+      <h3 class="text-xl font-semibold text-[#171717]" data-mrb-t="learn.ready_to_plan">Ready to plan your numbers?</h3>
       <p class="text-xs text-[#4d4d4d]">
         Reading guides is helpful, but seeing your real cash flow numbers in an interactive tool creates immediate clarity.
       </p>
       <div class="pt-2 flex flex-wrap justify-center gap-3">
-        <a href="/budget-planner/" class="inline-flex items-center justify-center h-10 px-6 rounded-full bg-[#171717] text-white text-xs font-medium hover:bg-neutral-800 transition">
+        <a href="/budget-planner/" class="inline-flex items-center justify-center h-10 px-6 rounded-full bg-[#171717] text-white text-xs font-medium hover:bg-neutral-800 transition" data-mrb-t="learn.open_planner">
           Open Budget Planner
         </a>
-        <a href="/50-30-20-budget/" class="inline-flex items-center justify-center h-10 px-6 rounded-full bg-white text-[#171717] border border-[#ebebeb] text-xs font-medium hover:bg-neutral-50 transition shadow-whisper">
+        <a href="/50-30-20-budget/" class="inline-flex items-center justify-center h-10 px-6 rounded-full bg-white text-[#171717] border border-[#ebebeb] text-xs font-medium hover:bg-neutral-50 transition shadow-whisper" data-mrb-t="common.f3020_method">
           50/30/20 Budget
         </a>
-        <a href="/zero-based-budget/" class="inline-flex items-center justify-center h-10 px-6 rounded-full bg-white text-[#171717] border border-[#ebebeb] text-xs font-medium hover:bg-neutral-50 transition shadow-whisper">
+        <a href="/zero-based-budget/" class="inline-flex items-center justify-center h-10 px-6 rounded-full bg-white text-[#171717] border border-[#ebebeb] text-xs font-medium hover:bg-neutral-50 transition shadow-whisper" data-mrb-t="common.zero_based_method">
           Zero-Based Budget
         </a>
       </div>

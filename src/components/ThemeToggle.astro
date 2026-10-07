@@ -45,17 +45,21 @@ const { id = 'theme-toggle-btn', class: className = '' } = Astro.props;
         if (isDark) {
           sun.classList.remove('hidden');
           moon.classList.add('hidden');
-          btn.setAttribute('aria-label', 'Switch to light mode');
-          btn.setAttribute('title', 'Switch to light mode');
+          const txt = window._mrb_i18n ? window._mrb_i18n.t('aria.switch_light') : 'Switch to light mode';
+          btn.setAttribute('aria-label', txt);
+          btn.setAttribute('title', txt);
         } else {
           sun.classList.add('hidden');
           moon.classList.remove('hidden');
-          btn.setAttribute('aria-label', 'Switch to dark mode');
-          btn.setAttribute('title', 'Switch to dark mode');
+          const txt = window._mrb_i18n ? window._mrb_i18n.t('aria.switch_dark') : 'Switch to dark mode';
+          btn.setAttribute('aria-label', txt);
+          btn.setAttribute('title', txt);
         }
       }
     });
   }
+
+  window.addEventListener('myrealbudget:language-change', updateToggleIcons);
 
   // Global toggle handler
   window.toggleTheme = function() {

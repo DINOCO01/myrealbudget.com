@@ -17,13 +17,13 @@ const description = 'An unexpected server error occurred. Please refresh the pag
           </svg>
         </div>
 
-        <Eyebrow text="Error 500 • Internal Error" class="mx-auto" />
+        <Eyebrow text="Error 500 • Internal Error" tKey="error.500_eyebrow" class="mx-auto" />
 
-        <h1 class="text-3xl sm:text-5xl font-semibold tracking-[-0.035em] text-[#0f172a] dark:text-[#f8fafc] leading-[1.15]">
+        <h1 class="text-3xl sm:text-5xl font-semibold tracking-[-0.035em] text-[#0f172a] dark:text-[#f8fafc] leading-[1.15]" data-mrb-t="error.500_title">
           Something Went Temporarily Wrong
         </h1>
 
-        <p class="text-base sm:text-lg text-[#475569] dark:text-[#94a3b8] leading-relaxed max-w-lg mx-auto">
+        <p class="text-base sm:text-lg text-[#475569] dark:text-[#94a3b8] leading-relaxed max-w-lg mx-auto" data-mrb-t="error.500_desc">
           We encountered an unexpected technical issue processing this request. Because your budgets are calculated and saved in your device's browser, your data is completely intact.
         </p>
       </div>
@@ -38,14 +38,14 @@ const description = 'An unexpected server error occurred. Please refresh the pag
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
           </svg>
-          Reload Page
+          <span data-mrb-t="error.reload_page">Reload Page</span>
         </button>
 
         <a
           href="/"
           class="inline-flex items-center justify-center gap-2 h-11 px-7 rounded-full bg-white dark:bg-[#111827] text-[#0f172a] dark:text-[#f8fafc] border border-[#e5e0d8] dark:border-[#1e293b] text-sm font-medium hover:bg-[#f8f7f4] dark:hover:bg-[#172033] transition shadow-whisper"
         >
-          Return to Home
+          <span data-mrb-t="error.return_home">Return to Home</span>
         </a>
       </div>
 
@@ -53,9 +53,9 @@ const description = 'An unexpected server error occurred. Please refresh the pag
       <div class="bg-white dark:bg-[#111827] rounded-[14px] border border-[#e5e0d8] dark:border-[#1e293b] p-5 shadow-whisper text-left max-w-lg mx-auto space-y-2">
         <div class="flex items-center gap-2 text-xs font-semibold text-[#0f172a] dark:text-[#f8fafc]">
           <span class="w-2 h-2 rounded-full bg-[#0e6e55] dark:bg-[#10b981]"></span>
-          <span>Your Local Data Is Safe</span>
+          <span data-mrb-t="error.data_safe">Your Local Data Is Safe</span>
         </div>
-        <p class="text-xs text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+        <p class="text-xs text-[#475569] dark:text-[#94a3b8] leading-relaxed" data-mrb-t="error.data_safe_desc">
           My Real Budget doesn't transmit your calculations to remote databases. If this error persists, our technical team may be rolling out an update. Please check back in a few minutes.
         </p>
       </div>

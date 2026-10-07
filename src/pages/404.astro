@@ -17,13 +17,13 @@ const description = 'The page you requested could not be found. Return to My Rea
           </svg>
         </div>
 
-        <Eyebrow text="Error 404 • Page Not Found" class="mx-auto" />
+        <Eyebrow text="Error 404 • Page Not Found" tKey="error.404_eyebrow" class="mx-auto" />
 
-        <h1 class="text-3xl sm:text-5xl font-semibold tracking-[-0.035em] text-[#0f172a] dark:text-[#f8fafc] leading-[1.15]">
+        <h1 class="text-3xl sm:text-5xl font-semibold tracking-[-0.035em] text-[#0f172a] dark:text-[#f8fafc] leading-[1.15]" data-mrb-t="error.404_title">
           This Page Isn't in the Budget
         </h1>
 
-        <p class="text-base sm:text-lg text-[#475569] dark:text-[#94a3b8] leading-relaxed max-w-lg mx-auto">
+        <p class="text-base sm:text-lg text-[#475569] dark:text-[#94a3b8] leading-relaxed max-w-lg mx-auto" data-mrb-t="error.404_desc">
           The link you followed may be outdated, or the address may have been mistyped. Rest assured, your saved budget calculations on your device remain safe.
         </p>
       </div>
@@ -37,20 +37,20 @@ const description = 'The page you requested could not be found. Return to My Rea
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
           </svg>
-          Return to Home
+          <span data-mrb-t="error.return_home">Return to Home</span>
         </a>
 
         <a
           href="/budget-planner/"
           class="inline-flex items-center justify-center gap-2 h-11 px-7 rounded-full bg-white dark:bg-[#111827] text-[#0f172a] dark:text-[#f8fafc] border border-[#e5e0d8] dark:border-[#1e293b] text-sm font-medium hover:bg-[#f8f7f4] dark:hover:bg-[#172033] transition shadow-whisper"
         >
-          Open Budget Planner
+          <span data-mrb-t="learn.open_planner">Open Budget Planner</span>
         </a>
       </div>
 
       <!-- Quick Helpful Destinations Grid -->
       <div class="pt-6 border-t border-[#e5e0d8] dark:border-[#1e293b]">
-        <span class="block text-xs font-mono uppercase tracking-wider text-[#64748b] dark:text-[#94a3b8] mb-4">
+        <span class="block text-xs font-mono uppercase tracking-wider text-[#64748b] dark:text-[#94a3b8] mb-4" data-mrb-t="error.popular_destinations">
           Popular Destinations
         </span>
 

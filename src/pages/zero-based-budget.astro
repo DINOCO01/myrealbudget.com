@@ -43,26 +43,26 @@ const faqSchema = {
   <section class="border-b border-[#ebebeb] bg-white pt-8 pb-10 sm:pt-12 sm:pb-14">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="max-w-3xl space-y-4">
-        <Eyebrow text="Intentional Cash Flow" />
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-[#171717] leading-tight">
+        <Eyebrow text="Intentional Cash Flow" tKey="zbb.eyebrow" />
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-[#171717] leading-tight" data-mrb-t="zbb.heading">
           Zero-Based Budgeting
         </h1>
-        <p class="text-base sm:text-lg text-[#4d4d4d] leading-relaxed">
+        <p class="text-base sm:text-lg text-[#4d4d4d] leading-relaxed" data-mrb-t="zbb.subtitle">
           "Every dollar has a job." Assign your entire income across living expenses, debt reduction, and savings goals until your unassigned balance equals exactly zero.
         </p>
       </div>
 
       <!-- Budgeting Method Switcher Bar -->
       <div class="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-[#f2f2f2] flex flex-wrap items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs">
-        <span class="text-[#8f8f8f] font-mono mr-1 sm:mr-2">Budgeting Method:</span>
-        <a href="/budget-planner/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition">
+        <span class="text-[#8f8f8f] font-mono mr-1 sm:mr-2" data-mrb-t="common.method">Budgeting Method:</span>
+        <a href="/budget-planner/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition" data-mrb-t="common.general_budget">
           General Budget
         </a>
-        <a href="/50-30-20-budget/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition">
+        <a href="/50-30-20-budget/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition" data-mrb-t="common.f3020_method">
           50/30/20 Method
         </a>
-        <span class="px-3 py-1.5 rounded-full bg-[#171717] text-white font-medium">Zero-Based Method</span>
-        <a href="/budget-planner-template/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition">
+        <span class="px-3 py-1.5 rounded-full bg-[#171717] text-white font-medium" data-mrb-t="common.zero_based_method">Zero-Based Method</span>
+        <a href="/budget-planner-template/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition" data-mrb-t="common.spreadsheet_templates">
           Spreadsheet Templates
         </a>
       </div>
@@ -72,11 +72,11 @@ const faqSchema = {
   <!-- INTERACTIVE PLANNER TOOL -->
   <main class="max-w-6xl mx-auto px-3.5 sm:px-6 py-6 sm:py-12">
     <div class="mb-6 sm:mb-10 text-center max-w-2xl mx-auto space-y-2">
-      <Eyebrow text="Interactive Tool" class="mx-auto" />
-      <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717]">
+      <Eyebrow text="Interactive Tool" tKey="zbb.calc_eyebrow" class="mx-auto" />
+      <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717]" data-mrb-t="zbb.calc_title">
         Interactive Zero-Based Budget Builder
       </h2>
-      <p class="text-xs sm:text-sm text-[#4d4d4d]">
+      <p class="text-xs sm:text-sm text-[#4d4d4d]" data-mrb-t="zbb.calc_desc">
         Enter your total net income, assign dollars to your custom category envelopes, and watch the balance meter reach zero.
       </p>
     </div>

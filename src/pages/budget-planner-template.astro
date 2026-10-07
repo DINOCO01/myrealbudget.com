@@ -35,18 +35,18 @@ const faqSchema = {
   <section class="border-b border-[#ebebeb] bg-white pt-12 pb-14">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <div class="max-w-3xl space-y-4">
-        <Eyebrow text="Free Spreadsheets & Worksheets" />
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-[#171717] leading-tight">
+        <Eyebrow text="Free Spreadsheets & Worksheets" tKey="templates.eyebrow" />
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-[#171717] leading-tight" data-mrb-t="templates.heading">
           Budget Planner Templates
         </h1>
-        <p class="text-base sm:text-lg text-[#4d4d4d] leading-relaxed">
+        <p class="text-base sm:text-lg text-[#4d4d4d] leading-relaxed" data-mrb-t="templates.desc">
           Clean, purpose-built budget planner templates for Google Sheets, Microsoft Excel, and printable use. Download directly with zero paywalls or account sign-ups.
         </p>
       </div>
 
       <!-- Quick Nav Strip -->
       <div class="mt-8 pt-6 border-t border-[#f2f2f2] flex flex-wrap items-center gap-2 text-xs">
-        <span class="text-[#8f8f8f] font-mono mr-2">Quick Jump:</span>
+        <span class="text-[#8f8f8f] font-mono mr-2" data-mrb-t="templates.quick_jump">Quick Jump:</span>
         {BUDGET_TEMPLATES.map(t => (
           <a href={`#${t.id}`} class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition">
             {t.name}
@@ -102,10 +102,11 @@ const faqSchema = {
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
-                Download CSV
+                <span data-mrb-t="templates.download_csv">Download CSV</span>
               </button>
               <a
                 href={template.methodSlug}
+                data-mrb-t="templates.use_tool"
                 class="inline-flex items-center justify-center h-10 px-5 rounded-full bg-white text-[#171717] border border-[#ebebeb] text-xs font-medium hover:bg-neutral-50 transition shadow-whisper text-center"
               >
                 Use Interactive Tool
@@ -116,7 +117,7 @@ const faqSchema = {
           <!-- Template Details Grid -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
             <div class="space-y-2">
-              <h4 class="font-mono font-medium uppercase tracking-wider text-[#8f8f8f]">
+              <h4 class="font-mono font-medium uppercase tracking-wider text-[#8f8f8f]" data-mrb-t="templates.best_for">
                 Best For & Target Audience
               </h4>
               <p class="text-[#4d4d4d] leading-relaxed">
@@ -125,7 +126,7 @@ const faqSchema = {
             </div>
 
             <div class="space-y-2">
-              <h4 class="font-mono font-medium uppercase tracking-wider text-[#8f8f8f]">
+              <h4 class="font-mono font-medium uppercase tracking-wider text-[#8f8f8f]" data-mrb-t="templates.structure_highlights">
                 Template Structure & Highlights
               </h4>
               <ul class="space-y-1.5 text-[#4d4d4d]">

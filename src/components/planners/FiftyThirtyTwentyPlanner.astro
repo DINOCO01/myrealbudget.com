@@ -1,5 +1,6 @@
 ---
 import { FREQUENCY_OPTIONS } from '../../utils/frequency';
+import CurrencyLanguageControls from '../ui/CurrencyLanguageControls.astro';
 ---
 
 <div id="fifty-thirty-twenty-planner" class="w-full">
@@ -7,12 +8,14 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
   <div class="mb-4 sm:mb-6 flex flex-wrap items-center justify-between gap-2.5 sm:gap-3 text-[11px] sm:text-xs">
     <div class="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-white border border-[#ebebeb] text-[#4d4d4d] shadow-whisper">
       <span class="w-2 h-2 rounded-full bg-[#50e3c2]"></span>
-      <span>Autosaved locally to this device</span>
+      <span data-mrb-t="common.autosaved">Autosaved locally to this device</span>
     </div>
     <div class="flex items-center gap-2">
+      <CurrencyLanguageControls idPrefix="f3020" />
       <button
         type="button"
         id="f3020-reset-btn"
+        data-mrb-t="common.reset_defaults"
         class="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-[6px] border border-[#ebebeb] bg-white text-[#8f8f8f] hover:text-[#ee0000] font-medium hover:bg-neutral-50 transition shadow-whisper focus-visible:outline-none"
       >
         Reset Defaults
@@ -26,14 +29,14 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
       
       <!-- 1. Take-Home Pay Input -->
       <div class="bg-white rounded-[12px] border border-[#ebebeb] p-3.5 sm:p-6 shadow-whisper">
-        <label for="f3020-income-input" class="block text-xs sm:text-sm font-semibold text-[#171717] mb-0.5 sm:mb-1">
+        <label for="f3020-income-input" class="block text-xs sm:text-sm font-semibold text-[#171717] mb-0.5 sm:mb-1" data-mrb-t="f3020.take_home_label">
           Monthly Take-Home Pay (After Taxes)
         </label>
-        <p class="text-[11px] sm:text-xs text-[#8f8f8f] mb-3 sm:mb-4">
+        <p class="text-[11px] sm:text-xs text-[#8f8f8f] mb-3 sm:mb-4" data-mrb-t="f3020.take_home_desc">
           Enter your total net monthly income. If paid biweekly, multiply your paycheck by 26 and divide by 12.
         </p>
         <div class="relative max-w-sm">
-          <span class="absolute left-3 top-2 sm:left-3.5 sm:top-2.5 text-[#8f8f8f] font-mono text-sm sm:text-base">$</span>
+          <span class="currency-symbol absolute left-3 top-2 sm:left-3.5 sm:top-2.5 text-[#8f8f8f] font-mono text-sm sm:text-base">$</span>
           <input
             type="number"
             id="f3020-income-input"
@@ -50,36 +53,37 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
       <div class="lg:hidden bg-white rounded-[10px] border border-[#ebebeb] p-3 shadow-whisper">
         <div class="flex items-center justify-between pb-2 mb-2 border-b border-[#ebebeb]">
           <div class="flex items-center gap-1.5">
-            <span class="text-xs font-semibold text-[#171717]">Unassigned:</span>
-            <span id="mobile-f3020-unassigned-val" class="font-mono text-base font-bold text-[#171717]">$0</span>
+            <span class="text-xs font-semibold text-[#171717]" data-mrb-t="summary.remaining">Remaining</span>
+            <span id="mobile-f3020-unassigned-val" class="font-mono text-base font-bold text-[#171717]" data-mrb-currency-val="0">$0</span>
           </div>
           <div id="mobile-f3020-status-badge" class="px-2 py-0.5 rounded text-[11px] font-medium bg-[#f2f2f2] text-[#4d4d4d]">
-            <span id="mobile-f3020-status-text">Balanced</span>
+            <span id="mobile-f3020-status-text" data-mrb-t="summary.balanced">Balanced</span>
           </div>
         </div>
         <div class="grid grid-cols-3 gap-1.5 text-center text-xs font-mono">
           <div class="bg-[#fafafa] py-1 px-1.5 rounded border border-[#ebebeb]">
-            <span class="text-[10px] text-[#8f8f8f] block truncate">Needs (50%)</span>
-            <span id="mobile-f3020-needs-val" class="font-semibold text-[#171717] text-xs block">$0</span>
-            <span id="mobile-f3020-needs-target" class="text-[9px] text-[#8f8f8f] block">/ $2,500</span>
+            <span class="text-[10px] text-[#8f8f8f] block truncate" data-mrb-t="f3020.needs_title">Needs (50%)</span>
+            <span id="mobile-f3020-needs-val" class="font-semibold text-[#171717] text-xs block" data-mrb-currency-val="0">$0</span>
+            <span id="mobile-f3020-needs-target" class="text-[9px] text-[#8f8f8f] block" data-mrb-currency-prefix-val="2500">/ $2,500</span>
           </div>
           <div class="bg-[#fafafa] py-1 px-1.5 rounded border border-[#ebebeb]">
-            <span class="text-[10px] text-[#8f8f8f] block truncate">Wants (30%)</span>
-            <span id="mobile-f3020-wants-val" class="font-semibold text-[#7928ca] text-xs block">$0</span>
-            <span id="mobile-f3020-wants-target" class="text-[9px] text-[#8f8f8f] block">/ $1,500</span>
+            <span class="text-[10px] text-[#8f8f8f] block truncate" data-mrb-t="f3020.wants_title">Wants (30%)</span>
+            <span id="mobile-f3020-wants-val" class="font-semibold text-[#7928ca] text-xs block" data-mrb-currency-val="0">$0</span>
+            <span id="mobile-f3020-wants-target" class="text-[9px] text-[#8f8f8f] block" data-mrb-currency-prefix-val="1500">/ $1,500</span>
           </div>
           <div class="bg-[#fafafa] py-1 px-1.5 rounded border border-[#ebebeb]">
-            <span class="text-[10px] text-[#8f8f8f] block truncate">Savings (20%)</span>
-            <span id="mobile-f3020-savings-val" class="font-semibold text-[#0070f3] text-xs block">$0</span>
-            <span id="mobile-f3020-savings-target" class="text-[9px] text-[#8f8f8f] block">/ $1,000</span>
+            <span class="text-[10px] text-[#8f8f8f] block truncate" data-mrb-t="f3020.savings_title">Savings (20%)</span>
+            <span id="mobile-f3020-savings-val" class="font-semibold text-[#0070f3] text-xs block" data-mrb-currency-val="0">$0</span>
+            <span id="mobile-f3020-savings-target" class="text-[9px] text-[#8f8f8f] block" data-mrb-currency-prefix-val="1000">/ $1,000</span>
           </div>
         </div>
         <div class="flex items-center justify-between text-[11px] text-[#8f8f8f] pt-2 mt-1">
-          <span>Actual Outflow: <strong id="mobile-f3020-total-outflow" class="text-[#171717] font-mono">$0</strong></span>
+          <span><span data-mrb-t="summary.actual_outflow">Actual Outflow:</span> <strong id="mobile-f3020-total-outflow" class="text-[#171717] font-mono" data-mrb-currency-val="0">$0</strong></span>
           <div class="flex sm:hidden items-center gap-1.5">
             <button
               type="button"
               class="hover:text-[#171717] underline text-[11px]"
+              data-mrb-t="common.expand_all"
               onclick="window._f3020.toggleAllSections(true)"
             >
               Expand all
@@ -88,6 +92,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
             <button
               type="button"
               class="hover:text-[#171717] underline text-[11px]"
+              data-mrb-t="common.collapse_all"
               onclick="window._f3020.toggleAllSections(false)"
             >
               Collapse all
@@ -108,18 +113,19 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
               id="f3020-btn-needs"
               class="sm:hidden p-0.5 text-[#8f8f8f] hover:text-[#171717] transition-transform duration-200 shrink-0 rotate-180"
               aria-label="Toggle Needs items"
+              data-mrb-t-aria="aria.toggle_needs"
             >
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </button>
             <span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#171717] shrink-0"></span>
             <div class="flex-1 min-w-0">
-              <h3 class="text-xs sm:text-base font-semibold text-[#171717] truncate sm:whitespace-normal">Needs <span class="text-[11px] sm:text-xs font-normal text-[#8f8f8f]">(Target: 50%)</span></h3>
-              <p class="hidden sm:block text-xs text-[#8f8f8f] mt-0.5">Housing, utilities, groceries, gas/transit, insurance, minimum debt payments.</p>
+              <h3 class="text-xs sm:text-base font-semibold text-[#171717] truncate sm:whitespace-normal"><span data-mrb-t="f3020.needs_title">Needs</span> <span class="text-[11px] sm:text-xs font-normal text-[#8f8f8f]" data-mrb-t="f3020.needs_target_label">(Target: 50%)</span></h3>
+              <p class="hidden sm:block text-xs text-[#8f8f8f] mt-0.5" data-mrb-t="f3020.needs_desc">Housing, utilities, groceries, gas/transit, insurance, minimum debt payments.</p>
             </div>
           </div>
           <div class="text-right shrink-0">
-            <span class="hidden sm:block text-xs font-mono text-[#8f8f8f]">Actual</span>
-            <span id="f3020-needs-actual-header" class="font-mono text-xs sm:text-sm font-semibold text-[#171717]">$0</span>
+            <span class="hidden sm:block text-xs font-mono text-[#8f8f8f]" data-mrb-t="summary.actual">Actual</span>
+            <span id="f3020-needs-actual-header" class="font-mono text-xs sm:text-sm font-semibold text-[#171717]" data-mrb-currency-val="0">$0</span>
           </div>
         </div>
 
@@ -134,7 +140,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
             onclick="window._f3020.addItem('needs')"
           >
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-            Add Need Line Item
+            <span data-mrb-t="f3020.add_need">Add Need Line Item</span>
           </button>
         </div>
       </div>
@@ -151,18 +157,19 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
               id="f3020-btn-wants"
               class="sm:hidden p-0.5 text-[#8f8f8f] hover:text-[#171717] transition-transform duration-200 shrink-0"
               aria-label="Toggle Wants items"
+              data-mrb-t-aria="aria.toggle_wants"
             >
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </button>
             <span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#7928ca] shrink-0"></span>
             <div class="flex-1 min-w-0">
-              <h3 class="text-xs sm:text-base font-semibold text-[#171717] truncate sm:whitespace-normal">Wants <span class="text-[11px] sm:text-xs font-normal text-[#8f8f8f]">(Target: 30%)</span></h3>
-              <p class="hidden sm:block text-xs text-[#8f8f8f] mt-0.5">Dining out, entertainment, shopping, subscriptions, vacations, hobbies.</p>
+              <h3 class="text-xs sm:text-base font-semibold text-[#171717] truncate sm:whitespace-normal"><span data-mrb-t="f3020.wants_title">Wants</span> <span class="text-[11px] sm:text-xs font-normal text-[#8f8f8f]" data-mrb-t="f3020.wants_target_label">(Target: 30%)</span></h3>
+              <p class="hidden sm:block text-xs text-[#8f8f8f] mt-0.5" data-mrb-t="f3020.wants_desc">Dining out, entertainment, shopping, subscriptions, vacations, hobbies.</p>
             </div>
           </div>
           <div class="text-right shrink-0">
-            <span class="hidden sm:block text-xs font-mono text-[#8f8f8f]">Actual</span>
-            <span id="f3020-wants-actual-header" class="font-mono text-xs sm:text-sm font-semibold text-[#171717]">$0</span>
+            <span class="hidden sm:block text-xs font-mono text-[#8f8f8f]" data-mrb-t="summary.actual">Actual</span>
+            <span id="f3020-wants-actual-header" class="font-mono text-xs sm:text-sm font-semibold text-[#171717]" data-mrb-currency-val="0">$0</span>
           </div>
         </div>
 
@@ -177,7 +184,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
             onclick="window._f3020.addItem('wants')"
           >
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-            Add Want Line Item
+            <span data-mrb-t="f3020.add_want">Add Want Line Item</span>
           </button>
         </div>
       </div>
@@ -194,18 +201,19 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
               id="f3020-btn-savings"
               class="sm:hidden p-0.5 text-[#8f8f8f] hover:text-[#171717] transition-transform duration-200 shrink-0"
               aria-label="Toggle Savings items"
+              data-mrb-t-aria="aria.toggle_savings"
             >
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </button>
             <span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#0070f3] shrink-0"></span>
             <div class="flex-1 min-w-0">
-              <h3 class="text-xs sm:text-base font-semibold text-[#171717] truncate sm:whitespace-normal">Savings & Extra Debt <span class="text-[11px] sm:text-xs font-normal text-[#8f8f8f]">(Target: 20%)</span></h3>
-              <p class="hidden sm:block text-xs text-[#8f8f8f] mt-0.5">Emergency funds, 401(k)/IRA contributions, extra principal debt payoffs.</p>
+              <h3 class="text-xs sm:text-base font-semibold text-[#171717] truncate sm:whitespace-normal"><span data-mrb-t="f3020.savings_title">Savings & Debt</span> <span class="text-[11px] sm:text-xs font-normal text-[#8f8f8f]" data-mrb-t="f3020.savings_target_label">(Target: 20%)</span></h3>
+              <p class="hidden sm:block text-xs text-[#8f8f8f] mt-0.5" data-mrb-t="f3020.savings_desc">Emergency funds, 401(k)/IRA contributions, extra principal debt payoffs.</p>
             </div>
           </div>
           <div class="text-right shrink-0">
-            <span class="hidden sm:block text-xs font-mono text-[#8f8f8f]">Actual</span>
-            <span id="f3020-savings-actual-header" class="font-mono text-xs sm:text-sm font-semibold text-[#171717]">$0</span>
+            <span class="hidden sm:block text-xs font-mono text-[#8f8f8f]" data-mrb-t="summary.actual">Actual</span>
+            <span id="f3020-savings-actual-header" class="font-mono text-xs sm:text-sm font-semibold text-[#171717]" data-mrb-currency-val="0">$0</span>
           </div>
         </div>
 
@@ -220,7 +228,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
             onclick="window._f3020.addItem('savings')"
           >
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-            Add Savings/Debt Line Item
+            <span data-mrb-t="f3020.add_saving">Add Savings/Debt Line Item</span>
           </button>
         </div>
       </div>
@@ -231,10 +239,10 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
     <div class="lg:col-span-5 xl:col-span-4 lg:sticky lg:top-24 space-y-4 sm:space-y-6">
       
       <div class="bg-white rounded-[12px] border border-[#ebebeb] p-4 sm:p-6 shadow-whisper">
-        <span class="font-mono text-[11px] sm:text-xs uppercase tracking-wider text-[#8f8f8f] block mb-0.5 sm:mb-1">
+        <span class="font-mono text-[11px] sm:text-xs uppercase tracking-wider text-[#8f8f8f] block mb-0.5 sm:mb-1" data-mrb-t="f3020.rule_summary">
           50/30/20 Targets vs Actual
         </span>
-        <h3 class="text-base sm:text-lg font-semibold text-[#171717] tracking-tight mb-3 sm:mb-5">
+        <h3 class="text-base sm:text-lg font-semibold text-[#171717] tracking-tight mb-3 sm:mb-5" data-mrb-t="summary.budget_summary">
           Plan Comparison
         </h3>
 
@@ -245,15 +253,15 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
           <div class="p-2.5 sm:p-3.5 rounded-[8px] bg-[#fafafa] border border-[#ebebeb]">
             <div class="flex justify-between items-center mb-1.5">
               <span class="font-semibold text-xs text-[#171717] flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-[#171717]"></span> Needs (50%)
+                <span class="w-2 h-2 rounded-full bg-[#171717]"></span> <span data-mrb-t="f3020.needs_title">Needs (50%)</span>
               </span>
-              <span id="cmp-needs-diff" class="font-mono text-xs font-semibold">
+              <span id="cmp-needs-diff" class="font-mono text-xs font-semibold" data-mrb-currency-val="0">
                 $0
               </span>
             </div>
             <div class="flex justify-between text-[11px] sm:text-xs text-[#8f8f8f] mb-1.5 sm:mb-2 font-mono">
-              <span>Target: <strong id="cmp-needs-target" class="text-[#171717]">$2,500</strong></span>
-              <span>Actual: <strong id="cmp-needs-actual" class="text-[#171717]">$0</strong></span>
+              <span><span data-mrb-t="summary.target">Target</span>: <strong id="cmp-needs-target" class="text-[#171717]" data-mrb-currency-val="2500">$2,500</strong></span>
+              <span><span data-mrb-t="summary.actual">Actual</span>: <strong id="cmp-needs-actual" class="text-[#171717]" data-mrb-currency-val="0">$0</strong></span>
             </div>
             <div class="w-full h-1.5 sm:h-2 rounded-full bg-[#ebebeb] overflow-hidden">
               <div id="cmp-needs-bar" class="h-full bg-[#171717] transition-all duration-300" style="width: 0%"></div>
@@ -264,15 +272,15 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
           <div class="p-2.5 sm:p-3.5 rounded-[8px] bg-[#fafafa] border border-[#ebebeb]">
             <div class="flex justify-between items-center mb-1.5">
               <span class="font-semibold text-xs text-[#171717] flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-[#7928ca]"></span> Wants (30%)
+                <span class="w-2 h-2 rounded-full bg-[#7928ca]"></span> <span data-mrb-t="f3020.wants_title">Wants (30%)</span>
               </span>
-              <span id="cmp-wants-diff" class="font-mono text-xs font-semibold">
+              <span id="cmp-wants-diff" class="font-mono text-xs font-semibold" data-mrb-currency-val="0">
                 $0
               </span>
             </div>
             <div class="flex justify-between text-[11px] sm:text-xs text-[#8f8f8f] mb-1.5 sm:mb-2 font-mono">
-              <span>Target: <strong id="cmp-wants-target" class="text-[#171717]">$1,500</strong></span>
-              <span>Actual: <strong id="cmp-wants-actual" class="text-[#171717]">$0</strong></span>
+              <span><span data-mrb-t="summary.target">Target</span>: <strong id="cmp-wants-target" class="text-[#171717]" data-mrb-currency-val="1500">$1,500</strong></span>
+              <span><span data-mrb-t="summary.actual">Actual</span>: <strong id="cmp-wants-actual" class="text-[#171717]" data-mrb-currency-val="0">$0</strong></span>
             </div>
             <div class="w-full h-1.5 sm:h-2 rounded-full bg-[#ebebeb] overflow-hidden">
               <div id="cmp-wants-bar" class="h-full bg-[#7928ca] transition-all duration-300" style="width: 0%"></div>
@@ -283,15 +291,15 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
           <div class="p-2.5 sm:p-3.5 rounded-[8px] bg-[#fafafa] border border-[#ebebeb]">
             <div class="flex justify-between items-center mb-1.5">
               <span class="font-semibold text-xs text-[#171717] flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-[#0070f3]"></span> Savings & Debt (20%)
+                <span class="w-2 h-2 rounded-full bg-[#0070f3]"></span> <span data-mrb-t="f3020.savings_title">Savings & Debt (20%)</span>
               </span>
-              <span id="cmp-savings-diff" class="font-mono text-xs font-semibold">
+              <span id="cmp-savings-diff" class="font-mono text-xs font-semibold" data-mrb-currency-val="0">
                 $0
               </span>
             </div>
             <div class="flex justify-between text-[11px] sm:text-xs text-[#8f8f8f] mb-1.5 sm:mb-2 font-mono">
-              <span>Target: <strong id="cmp-savings-target" class="text-[#171717]">$1,000</strong></span>
-              <span>Actual: <strong id="cmp-savings-actual" class="text-[#171717]">$0</strong></span>
+              <span><span data-mrb-t="summary.target">Target</span>: <strong id="cmp-savings-target" class="text-[#171717]" data-mrb-currency-val="1000">$1,000</strong></span>
+              <span><span data-mrb-t="summary.actual">Actual</span>: <strong id="cmp-savings-actual" class="text-[#171717]" data-mrb-currency-val="0">$0</strong></span>
             </div>
             <div class="w-full h-1.5 sm:h-2 rounded-full bg-[#ebebeb] overflow-hidden">
               <div id="cmp-savings-bar" class="h-full bg-[#0070f3] transition-all duration-300" style="width: 0%"></div>
@@ -302,18 +310,18 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
 
         <!-- Overall Budget Net Balance -->
         <div class="mt-4 sm:mt-5 pt-3 sm:pt-4 border-t border-[#ebebeb] flex justify-between items-baseline text-xs">
-          <span class="text-[#8f8f8f]">Total Actual Outflow:</span>
-          <span id="cmp-total-outflow" class="font-mono font-semibold text-xs sm:text-sm text-[#171717]">$0</span>
+          <span class="text-[#8f8f8f]" data-mrb-t="summary.actual_outflow">Total Actual Outflow:</span>
+          <span id="cmp-total-outflow" class="font-mono font-semibold text-xs sm:text-sm text-[#171717]" data-mrb-currency-val="0">$0</span>
         </div>
         <div class="mt-1 flex justify-between items-baseline text-xs">
-          <span class="text-[#8f8f8f]">Unassigned Cash Flow:</span>
-          <span id="cmp-unassigned-cash" class="font-mono font-semibold text-xs sm:text-sm text-[#171717]">$0</span>
+          <span class="text-[#8f8f8f]" data-mrb-t="f3020.unassigned_cash">Unassigned Cash Flow:</span>
+          <span id="cmp-unassigned-cash" class="font-mono font-semibold text-xs sm:text-sm text-[#171717]" data-mrb-currency-val="0">$0</span>
         </div>
 
         <!-- Plain Language Interpretation (Secondary Breakdown) -->
         <details class="group mt-4 sm:mt-6 pt-3 sm:pt-5 border-t border-[#ebebeb] space-y-2">
           <summary class="flex items-center justify-between font-mono text-[11px] sm:text-xs font-medium uppercase tracking-wider text-[#8f8f8f] cursor-pointer list-none select-none py-0.5">
-            <span>Framework Assessment</span>
+            <span data-mrb-t="gbp.live_assessment">Framework Assessment</span>
             <svg class="w-3.5 h-3.5 text-[#8f8f8f] transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </summary>
           <div id="f3020-assessment-box" class="space-y-2 text-xs text-[#4d4d4d] leading-relaxed pt-1">
@@ -326,18 +334,18 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
       <!-- Educational Note (Collapsed by default) -->
       <details class="group bg-[#fafafa] rounded-[10px] sm:rounded-[12px] border border-[#ebebeb] p-3 sm:p-4 text-xs text-[#4d4d4d] space-y-1.5">
         <summary class="flex items-center justify-between font-medium text-[#171717] cursor-pointer list-none select-none">
-          <span>Remember: 50/30/20 is a guide, not a law</span>
+          <span data-mrb-t="f3020.guide_title">Remember: 50/30/20 is a guide, not a law</span>
           <svg class="w-3.5 h-3.5 text-[#8f8f8f] transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
         </summary>
-        <p class="text-[11px] sm:text-[12px] text-[#8f8f8f] leading-normal pt-1">
+        <p class="text-[11px] sm:text-[12px] text-[#8f8f8f] leading-normal pt-1" data-mrb-t="f3020.guide_desc">
           In high-cost-of-living metropolitan areas, housing alone often consumes 35–45% of income, pushing Needs toward 60%. If your Needs are higher, look to balance by temporarily scaling back Wants rather than abandoning the plan entirely.
         </p>
       </details>
 
       <!-- Quick Method Switcher -->
       <div class="bg-[#fafafa] rounded-[10px] sm:rounded-[12px] border border-[#ebebeb] p-3 sm:p-4 text-xs text-[#4d4d4d] space-y-1.5">
-        <p class="font-medium text-[#171717]">Want to try another budgeting method?</p>
-        <p class="text-[11px] sm:text-[12px] text-[#8f8f8f]">
+        <p class="font-medium text-[#171717]" data-mrb-t="common.try_another_method">Want to try another budgeting method?</p>
+        <p class="text-[11px] sm:text-[12px] text-[#8f8f8f]" data-mrb-t-html="f3020.switch_methods_desc">
           Switch to the <a href="/budget-planner/" class="text-[#0070f3] underline hover:text-[#0761d1]">General Budget</a> for flexible categories, or the <a href="/zero-based-budget/" class="text-[#0070f3] underline hover:text-[#0761d1]">Zero-Based Method</a> to allocate every dollar to zero.
         </p>
       </div>
@@ -417,31 +425,55 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
     return (Number(amount) || 0) * (FREQUENCY_MULTIPLIERS[freq] || 1);
   }
 
+  function t(k, vars) {
+    if (window._mrb_i18n && typeof window._mrb_i18n.t === 'function') {
+      return window._mrb_i18n.t(k, vars);
+    }
+    return k;
+  }
+
+  function getCurrencySymbol() {
+    if (window._mrb_currency && typeof window._mrb_currency.symbol === 'function') {
+      return window._mrb_currency.symbol();
+    }
+    const curr = (typeof localStorage !== 'undefined' && localStorage.getItem('myrealbudget_currency')) || 'USD';
+    const syms = { USD: '$', EUR: '€', GBP: '£', INR: '₹', CAD: 'C$', AUD: 'A$' };
+    return syms[curr] || '$';
+  }
+
   function formatMoney(amount) {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: amount % 1 === 0 ? 0 : 2,
-    }).format(amount);
+    if (window._mrb_currency && typeof window._mrb_currency.format === 'function') {
+      return window._mrb_currency.format(amount);
+    }
+    const curr = (typeof localStorage !== 'undefined' && localStorage.getItem('myrealbudget_currency')) || 'USD';
+    const sym = getCurrencySymbol();
+    const locale = curr === 'INR' ? 'en-IN' : 'en-US';
+    const hasCents = amount % 1 !== 0;
+    const formatted = new Intl.NumberFormat(locale, {
+      minimumFractionDigits: hasCents ? 2 : 0,
+      maximumFractionDigits: hasCents ? 2 : 0,
+    }).format(Math.abs(amount));
+    return (amount < 0 ? '-' : '') + sym + formatted;
   }
 
   function renderGroup(groupKey, containerId) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
-    container.innerHTML = state[groupKey].map((item, idx) => `
+    container.innerHTML = state[groupKey].map((item, idx) => {
+      const translatedName = window._mrb_i18n ? window._mrb_i18n.translateItem(item.name) : item.name;
+      return `
       <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-1 sm:gap-2 p-1.5 sm:p-2 rounded-[6px] bg-[#fafafa] border border-[#ebebeb] text-xs">
         <input
           type="text"
-          value="${escapeHtml(item.name)}"
+          value="${escapeHtml(translatedName)}"
           aria-label="${groupKey} line item"
           class="flex-1 px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-[5px] bg-white border border-[#ebebeb] text-[#171717] focus:outline-none focus:border-[#171717] text-xs"
           onchange="window._f3020.updateItem('${groupKey}', ${idx}, 'name', this.value)"
         />
         <div class="flex items-center gap-1 sm:gap-2">
           <div class="relative flex-1 sm:w-28 sm:flex-initial">
-            <span class="absolute left-2 top-1 sm:top-1.5 text-[#8f8f8f] font-mono text-xs">$</span>
+            <span class="currency-symbol absolute left-2 top-1 sm:top-1.5 text-[#8f8f8f] font-mono text-xs">${getCurrencySymbol()}</span>
             <input
               type="number"
               min="0"
@@ -458,14 +490,15 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
             class="px-1.5 py-1 sm:px-2 sm:py-1.5 rounded-[5px] bg-white border border-[#ebebeb] text-[#4d4d4d] focus:outline-none focus:border-[#171717] text-xs font-mono shrink-0"
             onchange="window._f3020.updateItem('${groupKey}', ${idx}, 'frequency', this.value)"
           >
-            ${FREQUENCY_OPTIONS.map(opt => `
-              <option value="${opt.id}" ${item.frequency === opt.id ? 'selected' : ''}>${opt.label}</option>
-            `).join('')}
+            ${FREQUENCY_OPTIONS.map(opt => {
+              const label = window._mrb_i18n ? window._mrb_i18n.getFrequencyLabel(opt.id) : opt.label;
+              return `<option value="${opt.id}" ${item.frequency === opt.id ? 'selected' : ''}>${label}</option>`;
+            }).join('')}
           </select>
           <button
             type="button"
-            title="Remove item"
-            aria-label="Remove item"
+            title="${t('actions.delete') || 'Remove item'}"
+            aria-label="${t('actions.delete') || 'Remove item'}"
             class="p-1 sm:p-1.5 text-[#8f8f8f] hover:text-[#ee0000] rounded hover:bg-neutral-100 transition shrink-0"
             onclick="window._f3020.removeItem('${groupKey}', ${idx})"
           >
@@ -473,7 +506,8 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
           </button>
         </div>
       </div>
-    `).join('');
+    `;
+    }).join('');
   }
 
   function calculateAndRender() {
@@ -535,13 +569,13 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
     if (mBadge && mText) {
       if (unassigned < 0) {
         mBadge.className = 'px-2 py-0.5 rounded text-[11px] font-medium bg-[#fef2f2] text-[#b91c1c] border border-[#fecaca]';
-        mText.textContent = 'Over Budget';
+        mText.textContent = t('summary.over_budget');
       } else if (unassigned === 0) {
         mBadge.className = 'px-2 py-0.5 rounded text-[11px] font-medium bg-[#eef6ff] text-[#0761d1] border border-[#bfdbfe]';
-        mText.textContent = 'Balanced';
+        mText.textContent = t('summary.balanced');
       } else {
         mBadge.className = 'px-2 py-0.5 rounded text-[11px] font-medium bg-[#e6fbf5] text-[#047857] border border-[#a7f3d0]';
-        mText.textContent = 'Surplus';
+        mText.textContent = t('summary.surplus');
       }
     }
     if (mNeedsVal) mNeedsVal.textContent = formatMoney(actualNeeds);
@@ -580,15 +614,15 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
     if (!el) return;
     const diff = actual - target;
     if (Math.abs(diff) < 1) {
-      el.textContent = 'On Target';
+      el.textContent = t('summary.on_target');
       el.className = 'font-mono text-xs font-semibold text-[#047857]';
     } else if (diff > 0) {
       const label = `+${formatMoney(diff)}`;
-      el.textContent = `${label} over`;
+      el.textContent = `${label} ${t('summary.over')}`;
       el.className = isExpense ? 'font-mono text-xs font-semibold text-[#ee0000]' : 'font-mono text-xs font-semibold text-[#047857]';
     } else {
       const label = `-${formatMoney(Math.abs(diff))}`;
-      el.textContent = `${label} under`;
+      el.textContent = `${label} ${t('summary.under')}`;
       el.className = isExpense ? 'font-mono text-xs font-semibold text-[#047857]' : 'font-mono text-xs font-semibold text-[#8f8f8f]';
     }
   }
@@ -605,7 +639,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
     if (!box) return;
 
     if (income === 0) {
-      box.innerHTML = '<p class="text-[#8f8f8f]">Enter your monthly take-home pay to calculate your 50/30/20 benchmark.</p>';
+      box.innerHTML = `<p class="text-[#8f8f8f]">${t('interpret.f3020_empty')}</p>`;
       return;
     }
 
@@ -617,32 +651,34 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
     // Needs
     if (aNeeds > tNeeds) {
       const over = aNeeds - tNeeds;
-      bullets.push(`Your Needs take up <strong>${needsPct}%</strong> (${formatMoney(over)} over the 50% ideal). If housing or essentials are high in your city, look to trim Wants to keep your overall cash flow in balance.`);
+      bullets.push(t('interpret.f3020_needs_over', { pct: needsPct, amount: formatMoney(over) }));
     } else {
-      bullets.push(`Your Needs are comfortably at <strong>${needsPct}%</strong> of net income (below the 50% ceiling).`);
+      bullets.push(t('interpret.f3020_needs_ok', { pct: needsPct }));
     }
 
     // Wants
     if (aWants > tWants) {
       const overW = aWants - tWants;
-      bullets.push(`Your Wants are <strong>${wantsPct}%</strong> (${formatMoney(overW)} over target). Reducing dining out or recurring subscriptions can bring this closer to the 30% guideline.`);
+      bullets.push(t('interpret.f3020_wants_over', { pct: wantsPct, amount: formatMoney(overW) }));
     } else {
-      bullets.push(`Your Wants sit at <strong>${wantsPct}%</strong>, staying within your 30% lifestyle budget.`);
+      bullets.push(t('interpret.f3020_wants_ok', { pct: wantsPct }));
     }
 
     // Savings
     if (aSavings >= tSavings) {
-      bullets.push(`Great job: You are saving/investing <strong>${savingsPct}%</strong> of your net pay, meeting or exceeding the 20% benchmark.`);
+      bullets.push(t('interpret.f3020_savings_ok', { pct: savingsPct }));
     } else {
       const underS = tSavings - aSavings;
-      bullets.push(`Your savings rate is currently <strong>${savingsPct}%</strong> (${formatMoney(underS)} under target). Aim to gradually increase this as debts or temporary costs clear.`);
+      bullets.push(t('interpret.f3020_savings_under', { pct: savingsPct, amount: formatMoney(underS) }));
     }
 
     // Net balance
     if (unassigned < 0) {
-      bullets.push(`<span class="text-[#ee0000] font-medium">Notice: Your actual combined outflows exceed your monthly take-home pay by ${formatMoney(Math.abs(unassigned))}.</span>`);
-    } else if (unassigned > 0) {
-      bullets.push(`You still have <strong>${formatMoney(unassigned)}</strong> in unallocated income each month.`);
+      bullets.push(`<span class="text-[#ee0000] font-medium">${t('interpret.f3020_unassigned_over', { amount: formatMoney(Math.abs(unassigned)) })}</span>`);
+    } else if (unassigned === 0) {
+      bullets.push(t('interpret.f3020_unassigned_balanced'));
+    } else {
+      bullets.push(t('interpret.f3020_unassigned_surplus', { amount: formatMoney(unassigned) }));
     }
 
     box.innerHTML = bullets.map(b => `<p class="flex items-start gap-1.5"><span>•</span><span>${b}</span></p>`).join('');
@@ -734,7 +770,7 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
   const resetBtn = document.getElementById('f3020-reset-btn');
   if (resetBtn) {
     resetBtn.addEventListener('click', () => {
-      if (confirm('Reset 50/30/20 planner to sample numbers?')) {
+      if (confirm(t('confirm.reset_503020'))) {
         state = JSON.parse(JSON.stringify(defaultData));
         if (incomeInput) incomeInput.value = state.income;
         saveState();
@@ -746,7 +782,28 @@ import { FREQUENCY_OPTIONS } from '../../utils/frequency';
     });
   }
 
+  // Listen for global currency and language updates
+  window.addEventListener('myrealbudget:currency-change', () => {
+    document.querySelectorAll('#fifty-thirty-twenty-planner .currency-symbol').forEach(el => {
+      el.textContent = getCurrencySymbol();
+    });
+    renderGroup('needs', 'f3020-needs-items');
+    renderGroup('wants', 'f3020-wants-items');
+    renderGroup('savings', 'f3020-savings-items');
+    calculateAndRender();
+  });
+
+  window.addEventListener('myrealbudget:language-change', () => {
+    renderGroup('needs', 'f3020-needs-items');
+    renderGroup('wants', 'f3020-wants-items');
+    renderGroup('savings', 'f3020-savings-items');
+    calculateAndRender();
+  });
+
   // Initial Boot
+  document.querySelectorAll('#fifty-thirty-twenty-planner .currency-symbol').forEach(el => {
+    el.textContent = getCurrencySymbol();
+  });
   if (incomeInput) incomeInput.value = state.income;
   renderGroup('needs', 'f3020-needs-items');
   renderGroup('wants', 'f3020-wants-items');
