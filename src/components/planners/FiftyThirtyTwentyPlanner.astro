@@ -68,6 +68,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
           <select
             id="f3020-income-frequency"
             aria-label="Income Frequency"
+            data-mrb-t-aria="aria.income_frequency"
             class="px-2 sm:px-3 py-2 sm:py-2.5 rounded-[6px] bg-white border border-[#ebebeb] text-[#4d4d4d] focus:outline-none focus:border-[#171717] text-xs sm:text-sm font-mono shrink-0 shadow-whisper"
           >
             <option value="monthly" selected>Monthly</option>
@@ -1510,6 +1511,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
     function updateIncomeFrequencySelect() {
       const sel = document.getElementById("f3020-income-frequency");
       if (!sel) return;
+      sel.setAttribute("aria-label", t("aria.income_frequency") || "Income Frequency");
       const current = state.incomeFrequency || "monthly";
       sel.innerHTML = FREQUENCY_OPTIONS.map((opt) => {
         const freqLabel = window._mrb_i18n

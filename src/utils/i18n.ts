@@ -305,7 +305,7 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'aria.expense_frequency': 'Expense frequency',
     'aria.income_item_name': 'Income source name',
     'aria.income_amount': 'Income amount',
-    'aria.income_frequency': 'Income frequency',
+    'aria.income_frequency': 'Income Frequency',
     'aria.remove_income': 'Remove income source',
     'aria.toggle_needs': 'Toggle Needs items',
     'aria.toggle_wants': 'Toggle Wants items',
