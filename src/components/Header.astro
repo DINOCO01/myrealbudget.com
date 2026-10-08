@@ -11,52 +11,93 @@ interface Props {
 
 const { currentPath = Astro.url.pathname } = Astro.props;
 
-const navLinks = [
-  {
-    href: '/budget-planner/',
-    label: 'Budget Planner',
-    compactLabel: 'Budget Planner',
-    tKey: 'nav.budget_planner',
-    tKeyCompact: 'nav.budget_planner',
-  },
-  {
-    href: '/50-30-20-budget/',
-    label: '50/30/20 Budget',
-    compactLabel: '50/30/20',
-    tKey: 'nav.f3020_budget',
-    tKeyCompact: 'nav.f3020_compact',
-    ariaLabel: '50/30/20 Budget Planner',
-  },
-  {
-    href: '/zero-based-budget/',
-    label: 'Zero-Based Budget',
-    compactLabel: 'Zero-Based',
-    tKey: 'nav.zero_based_budget',
-    tKeyCompact: 'nav.zero_based_compact',
-    ariaLabel: 'Zero-Based Budget Planner',
-  },
-  {
-    href: '/budget-planner-template/',
-    label: 'Templates',
-    compactLabel: 'Templates',
-    tKey: 'nav.templates',
-    tKeyCompact: 'nav.templates',
-  },
-  {
-    href: '/learn/',
-    label: 'Learn',
-    compactLabel: 'Learn',
-    tKey: 'nav.learn',
-    tKeyCompact: 'nav.learn',
-  },
-];
+const isZh = currentPath.startsWith('/zh/');
+const homeHref = isZh ? '/zh/' : '/';
+
+const navLinks = isZh
+  ? [
+      {
+        href: '/zh/budget-planner/',
+        label: '预算规划器',
+        compactLabel: '预算规划器',
+        tKey: 'nav.budget_planner',
+        tKeyCompact: 'nav.budget_planner',
+        ariaLabel: '预算规划器',
+      },
+      {
+        href: '/zh/50-30-20-budget/',
+        label: '50/30/20预算',
+        compactLabel: '50/30/20',
+        tKey: 'nav.f3020_budget',
+        tKeyCompact: 'nav.f3020_compact',
+        ariaLabel: '50/30/20 预算规划器',
+      },
+      {
+        href: '/zh/zero-based-budget/',
+        label: '零基预算',
+        compactLabel: '零基预算',
+        tKey: 'nav.zero_based_budget',
+        tKeyCompact: 'nav.zero_based_compact',
+        ariaLabel: '零基预算规划器',
+      },
+      {
+        href: '/zh/templates/',
+        label: '预算模板',
+        compactLabel: '预算模板',
+        tKey: 'nav.templates',
+        tKeyCompact: 'nav.templates',
+        ariaLabel: '免费预算模板',
+      },
+    ]
+  : [
+      {
+        href: '/budget-planner/',
+        label: 'Budget Planner',
+        compactLabel: 'Budget Planner',
+        tKey: 'nav.budget_planner',
+        tKeyCompact: 'nav.budget_planner',
+        ariaLabel: 'Budget Planner',
+      },
+      {
+        href: '/50-30-20-budget/',
+        label: '50/30/20 Budget',
+        compactLabel: '50/30/20',
+        tKey: 'nav.f3020_budget',
+        tKeyCompact: 'nav.f3020_compact',
+        ariaLabel: '50/30/20 Budget Planner',
+      },
+      {
+        href: '/zero-based-budget/',
+        label: 'Zero-Based Budget',
+        compactLabel: 'Zero-Based',
+        tKey: 'nav.zero_based_budget',
+        tKeyCompact: 'nav.zero_based_compact',
+        ariaLabel: 'Zero-Based Budget Planner',
+      },
+      {
+        href: '/budget-planner-template/',
+        label: 'Templates',
+        compactLabel: 'Templates',
+        tKey: 'nav.templates',
+        tKeyCompact: 'nav.templates',
+        ariaLabel: 'Templates',
+      },
+      {
+        href: '/learn/',
+        label: 'Learn',
+        compactLabel: 'Learn',
+        tKey: 'nav.learn',
+        tKeyCompact: 'nav.learn',
+        ariaLabel: 'Learn',
+      },
+    ];
 ---
 
 <header class="sticky top-0 z-50 w-full bg-[var(--bg-page)]/90 backdrop-blur-md border-b border-[var(--border-main)]">
   <div class="max-w-7xl mx-auto px-3 sm:px-6 h-16 flex items-center justify-between gap-2 sm:gap-3">
     <!-- Brand Wordmark -->
     <a
-      href="/"
+      href={homeHref}
       class="flex items-center gap-2 text-[var(--text-primary)] hover:opacity-90 transition group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--focus-ring)] rounded-[6px] shrink-0"
     >
       <Logo class="w-6 h-6 sm:w-7 sm:h-7 rounded-[6px] shadow-sm shrink-0" />
@@ -71,7 +112,7 @@ const navLinks = [
       aria-label="Main Navigation"
     >
       {navLinks.map((link) => {
-        const isActive = currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href));
+        const isActive = currentPath === link.href || (link.href !== '/' && link.href !== '/zh/' && currentPath.startsWith(link.href));
         return (
           <a
             href={link.href}
@@ -94,11 +135,11 @@ const navLinks = [
       <CurrencyLanguageControls idPrefix="header-desktop" />
       <ThemeToggle id="desktop-theme-toggle" />
       <a
-        href="/budget-planner/"
+        href={isZh ? '/zh/budget-planner/' : '/budget-planner/'}
         data-mrb-t="nav.start_budget"
         class="inline-flex items-center justify-center h-9 px-4 rounded-full bg-[var(--btn-primary-bg)] text-[var(--btn-primary-fg)] text-[13px] font-medium hover:opacity-90 transition shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--focus-ring)] whitespace-nowrap shrink-0"
       >
-        Start Budget Planner
+        {isZh ? '开始规划' : 'Start Budget Planner'}
       </a>
     </div>
 
@@ -220,11 +261,11 @@ const navLinks = [
     <!-- SECTION 3: PRIMARY ACTION -->
     <div class="pt-1">
       <a
-        href="/budget-planner/"
+        href={isZh ? '/zh/budget-planner/' : '/budget-planner/'}
         data-mrb-t="nav.start_budget"
         class="block w-full text-center py-2.5 rounded-full bg-[var(--btn-primary-bg)] text-[var(--btn-primary-fg)] text-[14px] font-medium hover:opacity-90 transition shadow-sm"
       >
-        Start Budget Planner
+        {isZh ? '开始规划' : 'Start Budget Planner'}
       </a>
     </div>
   </div>

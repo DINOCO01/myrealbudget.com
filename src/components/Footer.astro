@@ -1,5 +1,11 @@
 ---
 import Logo from './Logo.astro';
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = Astro.url.pathname } = Astro.props;
+const isZh = currentPath.startsWith('/zh/');
 const currentYear = new Date().getFullYear();
 ---
 
@@ -8,19 +14,19 @@ const currentYear = new Date().getFullYear();
     <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
       <!-- Brand & Mission -->
       <div class="md:col-span-1 space-y-3">
-        <div class="flex items-center gap-2 text-[var(--text-primary)]">
+        <a href={isZh ? '/zh/' : '/'} class="flex items-center gap-2 text-[var(--text-primary)] hover:opacity-90 transition">
           <Logo class="w-6 h-6 rounded-[6px] shadow-sm" />
           <span class="font-semibold text-[16px] tracking-tight" data-mrb-t="nav.brand">My Real Budget</span>
-        </div>
+        </a>
         <p class="text-sm text-[var(--text-secondary)] leading-relaxed" data-mrb-t="footer.mission">
-          Build a budget that actually works for you. Plan your cash flow with real numbers, normalized payment frequencies, and zero guesswork.
+          {isZh ? '打造真正适合您的预算方案。用真实的数字规划现金流，统一账单支付频次，告别盲目揣测。' : 'Build a budget that actually works for you. Plan your cash flow with real numbers, normalized payment frequencies, and zero guesswork.'}
         </p>
         <div class="pt-2">
           <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[6px] bg-[var(--surface)] border border-[var(--border-main)] text-[var(--text-secondary)] text-xs font-mono shadow-whisper">
             <svg class="w-3.5 h-3.5 text-[var(--btn-primary-bg)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
             </svg>
-            <span data-mrb-t="common.private_local">100% Private & Local</span>
+            <span data-mrb-t="common.private_local">{isZh ? '100% 本地隐私保存' : '100% Private & Local'}</span>
           </span>
         </div>
       </div>
@@ -28,27 +34,27 @@ const currentYear = new Date().getFullYear();
       <!-- Budget Methods -->
       <div class="space-y-3">
         <h4 class="font-mono text-xs font-medium uppercase tracking-wider text-[var(--text-muted)]" data-mrb-t="footer.budget_methods">
-          Budget Methods
+          {isZh ? '预算方法' : 'Budget Methods'}
         </h4>
         <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
           <li>
-            <a href="/budget-planner/" class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.general_planner">
-              General Budget Planner
+            <a href={isZh ? '/zh/budget-planner/' : '/budget-planner/'} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.general_planner">
+              {isZh ? '通用预算规划器' : 'General Budget Planner'}
             </a>
           </li>
           <li>
-            <a href="/50-30-20-budget/" class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.f3020_rule">
-              50/30/20 Budget Rule
+            <a href={isZh ? '/zh/50-30-20-budget/' : '/50-30-20-budget/'} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.f3020_rule">
+              {isZh ? '50/30/20预算规则' : '50/30/20 Budget Rule'}
             </a>
           </li>
           <li>
-            <a href="/zero-based-budget/" class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.zero_based">
-              Zero-Based Budget
+            <a href={isZh ? '/zh/zero-based-budget/' : '/zero-based-budget/'} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.zero_based">
+              {isZh ? '零基预算规划器' : 'Zero-Based Budget'}
             </a>
           </li>
           <li>
-            <a href="/budget-planner/#frequency" class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.freq_normalization">
-              Frequency Normalization
+            <a href={isZh ? '/zh/budget-planner/#frequency' : '/budget-planner/#frequency'} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.freq_normalization">
+              {isZh ? '频次归一化原理' : 'Frequency Normalization'}
             </a>
           </li>
         </ul>
@@ -57,32 +63,32 @@ const currentYear = new Date().getFullYear();
       <!-- Templates & Tools -->
       <div class="space-y-3">
         <h4 class="font-mono text-xs font-medium uppercase tracking-wider text-[var(--text-muted)]" data-mrb-t="footer.templates_tools">
-          Templates & Tools
+          {isZh ? '模板与工具' : 'Templates & Tools'}
         </h4>
         <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
           <li>
-            <a href="/budget-planner-template/" class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.planner_template">
-              Budget Planner Template
+            <a href={isZh ? '/zh/templates/' : '/budget-planner-template/'} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.planner_template">
+              {isZh ? '预算规划表模板' : 'Budget Planner Template'}
             </a>
           </li>
           <li>
-            <a href="/budget-templates/" class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.all_templates">
-              All Budget Templates
+            <a href={isZh ? '/zh/templates/' : '/budget-templates/'} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.all_templates">
+              {isZh ? '全部免费预算模板' : 'All Budget Templates'}
             </a>
           </li>
           <li>
-            <a href="/budget-planner-template/#simple-monthly" class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.simple_monthly">
-              Simple Monthly Template
+            <a href={isZh ? '/zh/templates/#simple-monthly' : '/budget-planner-template/#simple-monthly'} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.simple_monthly">
+              {isZh ? '极简月度预算模板' : 'Simple Monthly Template'}
             </a>
           </li>
           <li>
-            <a href="/budget-planner-template/#student" class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.student_template">
-              Student Budget Template
+            <a href={isZh ? '/zh/templates/#student' : '/budget-planner-template/#student'} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.student_template">
+              {isZh ? '大学生预算模板' : 'Student Budget Template'}
             </a>
           </li>
           <li>
-            <a href="/budget-planner-template/#household" class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.household_template">
-              Couples & Household Template
+            <a href={isZh ? '/zh/templates/#household' : '/budget-planner-template/#household'} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.household_template">
+              {isZh ? '家庭与伴侣预算模板' : 'Couples & Household Template'}
             </a>
           </li>
         </ul>
@@ -91,37 +97,32 @@ const currentYear = new Date().getFullYear();
       <!-- Learning Center -->
       <div class="space-y-3">
         <h4 class="font-mono text-xs font-medium uppercase tracking-wider text-[var(--text-muted)]" data-mrb-t="footer.learn_guides">
-          Learn & Guides
+          {isZh ? '学习指南' : 'Learn & Guides'}
         </h4>
         <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
           <li>
-            <a href="/learn/" class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.learning_hub">
-              Learning Hub
+            <a href={isZh ? '/zh/' : '/learn/'} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.learning_hub">
+              {isZh ? '理财规划首页' : 'Learning Hub'}
             </a>
           </li>
           <li>
-            <a href="/learn/what-is-a-budget/" class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.what_is_budget">
-              What Is a Budget?
+            <a href={isZh ? '/zh/budget-planner/' : '/learn/what-is-a-budget/'} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.what_is_budget">
+              {isZh ? '什么是预算？' : 'What Is a Budget?'}
             </a>
           </li>
           <li>
-            <a href="/learn/how-to-create-a-monthly-budget/" class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.how_to_create">
-              How to Create a Monthly Budget
+            <a href={isZh ? '/zh/budget-planner/' : '/learn/how-to-create-a-monthly-budget/'} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.how_to_create">
+              {isZh ? '如何制定月度预算' : 'How to Create a Monthly Budget'}
             </a>
           </li>
           <li>
-            <a href="/learn/50-30-20-budget-explained/" class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.f3020_explained">
-              50/30/20 Explained
+            <a href={isZh ? '/zh/50-30-20-budget/' : '/learn/50-30-20-budget-explained/'} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.f3020_explained">
+              {isZh ? '50/30/20规则详解' : '50/30/20 Explained'}
             </a>
           </li>
           <li>
-            <a href="/learn/zero-based-budget-explained/" class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.zbb_explained">
-              Zero-Based Explained
-            </a>
-          </li>
-          <li>
-            <a href="/learn/50-30-20-vs-zero-based-budget/" class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.f3020_vs_zbb">
-              50/30/20 vs Zero-Based
+            <a href={isZh ? '/zh/zero-based-budget/' : '/learn/zero-based-budget-explained/'} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.zbb_explained">
+              {isZh ? '零基预算方法详解' : 'Zero-Based Explained'}
             </a>
           </li>
         </ul>
@@ -143,7 +144,7 @@ const currentYear = new Date().getFullYear();
         </div>
       </div>
       <p class="text-center md:text-right" data-mrb-t="footer.disclaimer">
-        Educational budgeting tools. Not intended as formal investment, tax, or legal advisory.
+        {isZh ? '教育与个人理财规划工具。不构成专业投资、税务或法律建议。' : 'Educational budgeting tools. Not intended as formal investment, tax, or legal advisory.'}
       </p>
     </div>
   </div>

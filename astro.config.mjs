@@ -17,7 +17,7 @@ export default defineConfig({
 				!page.includes('/privacy-policy') &&
 				!page.includes('/terms-and-conditions'),
 			serialize(item) {
-				if (item.url === 'https://myrealbudget.com/') {
+				if (item.url === 'https://myrealbudget.com/' || item.url === 'https://myrealbudget.com/zh/') {
 					item.changefreq = ChangeFreqEnum.WEEKLY;
 					item.priority = 1.0;
 				} else if (

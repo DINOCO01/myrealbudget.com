@@ -234,4 +234,50 @@ export const PAGE_FAQ_TRANSLATIONS: Record<string, Record<string, string>> = {
     'pagefaq.tmpl.nav_f3020': 'Planejador 50/30/20 →',
     'pagefaq.tmpl.nav_zbb': 'Ferramenta Base Zero →',
   },
+  zh: {
+    // Zero-Based Page FAQ
+    'pagefaq.zbb.heading': '关于零基预算的常见问题',
+    'pagefaq.zbb.q1': '零基预算是否意味着我银行账户的余额也是0元？',
+    'pagefaq.zbb.a1': '不是。零基预算指的是将您赚到的每一分钱在纸面或电子表格中分配给特定类别或信封。您的真实银行账户中依然可以保留数千甚至数万元的应急储蓄和活期缓冲。',
+    'pagefaq.zbb.q2': '零基预算与50/30/20法则相比有何不同？',
+    'pagefaq.zbb.a2': '50/30/20法则是一种宏观的比例指导方针，将资金划分为三大百分比。而零基预算是一套精细化的微观规划系统，为每一笔具体的资金安排明确用途。很多人先通过50/30/20设定大方向，再借助零基预算在日常中精准执行。',
+    'pagefaq.zbb.nav_label': '对比其他工具：',
+    'pagefaq.zbb.nav_f3020': '50/30/20预算规则 →',
+    'pagefaq.zbb.nav_gbp': '通用预算规划器 →',
+    'pagefaq.zbb.nav_tmpl': '零基预算CSV模板 →',
+
+    // General Budget Planner Page FAQ
+    'pagefaq.gbp.heading': '关于预算规划的常见问题',
+    'pagefaq.gbp.q1': '如果我的预算显示月度赤字该怎么办？',
+    'pagefaq.gbp.a1': '如果您的计划支出超过了收入，请不必惊慌。首先将真正的生存刚需（住房、饮食、水电、最低还款额）与弹性消费区分开来。梳理重复订阅、减少外出就餐，并尝试降低宽带费或车险保费等固定开支。',
+    'pagefaq.gbp.q2': '我应该多久审查一次自己的预算？',
+    'pagefaq.gbp.a2': '我们建议在每月发薪日前至少审查一次收支数据，并在每季度进行更深入的复盘，以应对季节性开支波动或年度保费续约。',
+    'pagefaq.gbp.q3': '哪种预算方法最适合初学者？',
+    'pagefaq.gbp.a3': '初学者通常非常喜欢<a href="/50-30-20-budget/" class="text-[#0070f3] underline">50/30/20法则</a>，因为只需跟踪三个大类别。如果您希望对每一笔资金拥有更精细的掌控力，可以了解<a href="/zero-based-budget/" class="text-[#0070f3] underline">零基预算</a>。',
+    'pagefaq.gbp.nav_label': '继续探索其他方法：',
+    'pagefaq.gbp.nav_f3020': '50/30/20法则指南 →',
+    'pagefaq.gbp.nav_zbb': '零基预算方法 →',
+    'pagefaq.gbp.nav_tmpl': '下载预算模板 →',
+
+    // 50/30/20 Page FAQ
+    'pagefaq.f3020.heading': '关于50/30/20法则的常见问题',
+    'pagefaq.f3020.q1': '百分比是按税前收入还是税后收入计算？',
+    'pagefaq.f3020.a1': '50/30/20框架是依据<strong>税后净收入</strong>计算的，而非税前名义薪水。您可以采用以下两种方式之一：<ul class="space-y-1 text-[#4d4d4d] pl-3 list-disc mt-1"><li><strong>实发薪资法：</strong>严格按照打入银行卡中的实际到账金额进行规划。税费和社保等代扣款项在预算前已被扣除。</li><li><strong>综合收入法：</strong>将公积金或企业年金等自愿扣款重新加回到手工资中，然后将其分别列入储蓄（养老储备）和必要开支（医疗保障）项下。</li></ul><p class="text-[#4d4d4d] leading-relaxed pt-1">两种方式均行之有效——关键在于选择一种并保持前后一致。</p>',
+    'pagefaq.f3020.q2': '如果我的必要支出（Needs）超过了50%怎么办？',
+    'pagefaq.f3020.a2': '当基础生活成本较高时，建议优先适度削减弹性消费（Wants）的预算比例，而不是完全停止储蓄。持续维持应急储蓄缓冲，有助于避免在面对突发医疗或维修账单时背负高息债务。',
+    'pagefaq.f3020.cta_title': '更倾向于可下载的电子表格？',
+    'pagefaq.f3020.cta_desc': '获取我们免费的50/30/20 CSV表格模板，完美兼容Excel和Google表格。',
+    'pagefaq.f3020.cta_btn': '下载50/30/20模板',
+
+    // Budget Planner Template Page FAQ
+    'pagefaq.tmpl.heading': '关于预算模板的常见问题',
+    'pagefaq.tmpl.q1': '这些预算模板可以打印吗？',
+    'pagefaq.tmpl.a1': '可以。导入Google表格或Excel后，版式均已针对标准A4纸或Letter纸张进行了排版适配。您也可以直接导出为PDF格式进行离线手写记录。',
+    'pagefaq.tmpl.q2': '下载模板需要付费或提供电子邮箱吗？',
+    'pagefaq.tmpl.a2': '不需要。My Real Budget上的所有模板均完全免费、开放且即时可取。我们坚信实用的个人理财工具应当面向所有人零门槛开放。',
+    'pagefaq.tmpl.nav_label': '更喜欢交互式预算工具？',
+    'pagefaq.tmpl.nav_gbp': '通用预算规划器 →',
+    'pagefaq.tmpl.nav_f3020': '50/30/20规划器 →',
+    'pagefaq.tmpl.nav_zbb': '零基预算工具 →',
+  },
 };

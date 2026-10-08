@@ -1,0 +1,204 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Eyebrow from '../../components/ui/Eyebrow.astro';
+import ZeroBasedPlanner from '../../components/planners/ZeroBasedPlanner.astro';
+
+const title = '零基预算：方法、步骤与预算规划器 | My Real Budget';
+const description = '零基预算方法详解与免费在线规划器。赋予每分钱明确使命，使月度总收入减去全部支出与储蓄分配等于零，彻底消除无意识消费。';
+const canonical = 'https://myrealbudget.com/zh/zero-based-budget/';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '什么是零基预算？它的核心公式是什么？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '零基预算（Zero-Based Budgeting，简称 ZBB）是一种极其严谨的目标导向型预算方法。其核心逻辑是“收入 − 全部支出与储蓄分配 = 0”。在月初，您将税后收入的每一分钱都预先分配至特定用途（必需账单、债务偿还、储蓄目标、娱乐开销或缓冲资金），直到“待分配金额”恰好归零。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '“收入减支出等于零”意味着要把银行卡里的钱全部花光吗？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '绝对不是。零基预算的“归零”指的是未分配差额归零，而非账户存款清零。储蓄、投资、应急基金甚至活期账户防透支安全垫，都是被正式命名的“分配项目”。每一笔资金在账面上都有归宿，避免闲置资金在无意识中流失。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '如果月末有结余资金，应该如何处理？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '如果在执行过程中某项开支低于预期产生结余，绝不能让资金无序游荡。您可以将其主动分配到加速偿还高息债务、补充应急备用金、或者存入下一季度的旅行心愿专项基金中，重新实现零基平衡。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '自由职业者或收入波动较大的人群适合零基预算吗？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '非常适合，但需建立基线机制。波动收入者应以过去半年收入的“最低月份基线”作为当月起点，确保刚需全覆盖；高收入月份的多余资金则全额划入“收入平滑缓冲池”，用于在低收入月份提取贴补。',
+      },
+    },
+  ],
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  lang="zh-CN"
+  jsonLd={faqSchema}
+>
+  <!-- HEADER INTRO -->
+  <section class="border-b border-[#ebebeb] dark:border-[#1e293b] bg-white dark:bg-[#111827] pt-8 pb-10 sm:pt-12 sm:pb-14 transition-colors">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="max-w-3xl space-y-4">
+        <Eyebrow text="目标导向预算" />
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-[#171717] dark:text-[#f8fafc] leading-tight">
+          零基预算规划器
+        </h1>
+        <p class="text-base sm:text-lg text-[#4d4d4d] dark:text-[#94a3b8] leading-relaxed">
+          “赋予每一分钱明确的使命。”将您的总收入完整分配至刚需开销、债务清偿、储蓄目标与缓冲基金，直至未分配差额精准归零。
+        </p>
+      </div>
+
+      <!-- Budgeting Method Switcher Bar -->
+      <div class="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-[#f2f2f2] dark:border-[#1e293b] flex flex-wrap items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs">
+        <span class="text-[#8f8f8f] dark:text-[#64748b] font-mono mr-1 sm:mr-2">预算规划方法：</span>
+        <a href="/zh/budget-planner/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] dark:bg-[#1e293b] text-[#4d4d4d] dark:text-[#94a3b8] hover:text-[#171717] dark:hover:text-[#f8fafc] hover:bg-[#ebebeb] transition">
+          通用预算规划器
+        </a>
+        <a href="/zh/50-30-20-budget/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] dark:bg-[#1e293b] text-[#4d4d4d] dark:text-[#94a3b8] hover:text-[#171717] dark:hover:text-[#f8fafc] hover:bg-[#ebebeb] transition">
+          50/30/20 比例法
+        </a>
+        <span class="px-3 py-1.5 rounded-full bg-[#171717] text-white font-medium">零基预算分配法</span>
+        <a href="/zh/templates/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] dark:bg-[#1e293b] text-[#4d4d4d] dark:text-[#94a3b8] hover:text-[#171717] dark:hover:text-[#f8fafc] hover:bg-[#ebebeb] transition">
+          免费预算模板
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE ZERO-BASED PLANNER COMPONENT -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+    <ZeroBasedPlanner />
+  </main>
+
+  <!-- EDITORIAL GUIDE SECTION -->
+  <section class="border-t border-[#ebebeb] dark:border-[#1e293b] bg-[#faf8f5] dark:bg-[#0b1220] py-14 sm:py-18 transition-colors">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 space-y-12">
+      <!-- Section 1: The Core Philosophy -->
+      <div class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+          零基预算的核心哲学：让每一元钱带着任务工作
+        </h2>
+        <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+          许多人在月末经常感到困惑：“我明明没有买什么奢侈品，为什么存款还是没增加？”其根本原因在于账户中的闲散流动资金缺乏明确归属，容易在碎片化的外卖、冲动网购与小额消费中被无声侵蚀。
+        </p>
+        <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+          <strong>零基预算彻底逆转了这一过程。</strong>在薪资到账的第一天，您就为全部资金写好剧本：哪些去交房租，哪些买菜，哪些定投，甚至专门划出一笔“自由享乐金”。当您知道每一笔钱的归宿时，您花钱时将没有罪恶感，省钱时将充满目标感。
+        </p>
+      </div>
+
+      <!-- Section 2: 5 Steps to Zero -->
+      <div class="bg-white dark:bg-[#111827] p-6 sm:p-8 rounded-[14px] border border-[#e5e0d8] dark:border-[#1e293b] space-y-5">
+        <h2 class="text-xl sm:text-2xl font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+          零基预算落地的五个实操步骤
+        </h2>
+        <div class="space-y-4 text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8]">
+          <div class="flex items-start gap-3">
+            <span class="w-6 h-6 rounded-full bg-[#0e6e55]/10 text-[#0e6e55] dark:text-[#10b981] flex items-center justify-center shrink-0 font-bold text-xs mt-0.5">1</span>
+            <div>
+              <strong class="text-[#0f172a] dark:text-[#f8fafc] block">计算当月确切总资金池：</strong>
+              统计税后薪资、预计津贴及其他已知到账款项，明确本月总分配额（例如¥18,000）。
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="w-6 h-6 rounded-full bg-[#0e6e55]/10 text-[#0e6e55] dark:text-[#10b981] flex items-center justify-center shrink-0 font-bold text-xs mt-0.5">2</span>
+            <div>
+              <strong class="text-[#0f172a] dark:text-[#f8fafc] block">优先分配生存刚性支出（四道防线）：</strong>
+              住房（房租房贷）、饮食、公用事业（水电通信）与出行交通。确保基础生活坚不可摧。
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="w-6 h-6 rounded-full bg-[#0e6e55]/10 text-[#0e6e55] dark:text-[#10b981] flex items-center justify-center shrink-0 font-bold text-xs mt-0.5">3</span>
+            <div>
+              <strong class="text-[#0f172a] dark:text-[#f8fafc] block">划拨储蓄目标与下沉专项基金（Sinking Funds）：</strong>
+              为年度车险、人情往来礼金、节日旅行提前设立按月储蓄槽位，避免账单来临时措手不及。
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="w-6 h-6 rounded-full bg-[#0e6e55]/10 text-[#0e6e55] dark:text-[#10b981] flex items-center justify-center shrink-0 font-bold text-xs mt-0.5">4</span>
+            <div>
+              <strong class="text-[#0f172a] dark:text-[#f8fafc] block">安排品质生活与自由零花预算：</strong>
+              外出就餐、聚会看电影、个人购物等。在此限额内开销完全合规，无需自我怀疑。
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="w-6 h-6 rounded-full bg-[#0e6e55]/10 text-[#0e6e55] dark:text-[#10b981] flex items-center justify-center shrink-0 font-bold text-xs mt-0.5">5</span>
+            <div>
+              <strong class="text-[#0f172a] dark:text-[#f8fafc] block">设定“安全缓冲池”直至差额归零：</strong>
+              若最后还剩¥500无法归类，将其填入“意外缓冲基金”，确保总分配与总收入完全相等（差额为¥0）。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Sinking Funds Explanation -->
+      <div class="bg-white dark:bg-[#111827] p-6 sm:p-8 rounded-[14px] border border-[#e5e0d8] dark:border-[#1e293b] space-y-4">
+        <h2 class="text-xl sm:text-2xl font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+          零基预算的致胜秘诀：下沉基金（Sinking Funds）
+        </h2>
+        <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+          许多预算在执行到第三或第四个月时破裂，通常不是因为超支买奶茶，而是遇到“已知但非每月发生的大额账单”（例如：一年一次的商业车险¥4,800，或是年检换胎¥2,400）。
+        </p>
+        <div class="p-4 rounded-[8px] bg-[#faf8f5] dark:bg-[#0b1220] border border-[#e5e0d8] dark:border-[#1e293b] text-xs text-[#0f172a] dark:text-[#f8fafc] space-y-2">
+          <p>
+            <strong>下沉基金的做法是：</strong>将年度¥4,800的车险拆分为每个月¥400的零基专项分配。每个月在账面上划拨¥400存入专用小账本。到了年底缴费时，账户中已有现成全款，完全不影响当月的现金流平衡。
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <div class="space-y-4">
+        <h2 class="text-xl sm:text-2xl font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+          零基预算常见问题解答
+        </h2>
+        <div class="space-y-3">
+          {faqSchema.mainEntity.map((item) => (
+            <details class="bg-white dark:bg-[#111827] rounded-[10px] border border-[#ebebeb] dark:border-[#1e293b] p-4 shadow-whisper group cursor-pointer">
+              <summary class="font-semibold text-xs sm:text-sm text-[#0f172a] dark:text-[#f8fafc] flex items-center justify-between list-none select-none">
+                <span>{item.name}</span>
+                <span class="text-[#8f8f8f] group-open:rotate-180 transition-transform text-xs ml-2">▼</span>
+              </summary>
+              <div class="pt-3 text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed border-t border-[#f1efe9] dark:border-[#1e293b] mt-3">
+                {item.acceptedAnswer.text}
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- Internal Link Bridges -->
+      <div class="pt-6 border-t border-[#ebebeb] dark:border-[#1e293b] flex flex-wrap items-center justify-between gap-4 text-xs">
+        <span class="text-[#8f8f8f] dark:text-[#64748b]">对比其他预算策略：</span>
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="/zh/budget-planner/" class="text-[#0e6e55] dark:text-[#10b981] font-medium hover:underline">
+            通用月度预算规划器 →
+          </a>
+          <a href="/zh/50-30-20-budget/" class="text-[#0e6e55] dark:text-[#10b981] font-medium hover:underline">
+            50/30/20比例预算规划器 →
+          </a>
+          <a href="/zh/templates/" class="text-[#0e6e55] dark:text-[#10b981] font-medium hover:underline">
+            下载零基预算Excel模板 →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

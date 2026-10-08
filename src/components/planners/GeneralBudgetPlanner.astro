@@ -968,6 +968,199 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
       ],
     };
 
+    const defaultDataCNY = {
+      income: [
+        {
+          id: "inc_salary",
+          name: "Primary Salary (Take-home)",
+          amount: 18000,
+          frequency: "monthly",
+        },
+        {
+          id: "inc_side",
+          name: "Side Income",
+          amount: 2000,
+          frequency: "monthly",
+        },
+        {
+          id: "inc_freelance",
+          name: "Freelance & Contract",
+          amount: 0,
+          frequency: "monthly",
+        },
+      ],
+      categories: [
+        {
+          id: "cat_housing",
+          categoryId: "housing",
+          name: "Housing",
+          items: [
+            {
+              id: "h1",
+              name: "Rent or Mortgage",
+              amount: 5500,
+              frequency: "monthly",
+            },
+            {
+              id: "h2",
+              name: "Property Taxes & HOA",
+              amount: 300,
+              frequency: "monthly",
+            },
+          ],
+        },
+        {
+          id: "cat_utilities",
+          categoryId: "utilities",
+          name: "Utilities",
+          items: [
+            {
+              id: "u1",
+              name: "Electricity",
+              amount: 200,
+              frequency: "monthly",
+            },
+            {
+              id: "u2",
+              name: "Water & Gas",
+              amount: 100,
+              frequency: "monthly",
+            },
+            {
+              id: "u3",
+              name: "High-speed Internet",
+              amount: 100,
+              frequency: "monthly",
+            },
+            {
+              id: "u4",
+              name: "Mobile Phone Plan",
+              amount: 100,
+              frequency: "monthly",
+            },
+          ],
+        },
+        {
+          id: "cat_food",
+          categoryId: "food_groceries",
+          name: "Food & Groceries",
+          items: [
+            {
+              id: "f1",
+              name: "Groceries & Household Supplies",
+              amount: 600,
+              frequency: "weekly",
+            },
+            {
+              id: "f2",
+              name: "Dining Out & Takeaway",
+              amount: 1200,
+              frequency: "monthly",
+            },
+          ],
+        },
+        {
+          id: "cat_transportation",
+          categoryId: "transportation",
+          name: "Transportation",
+          items: [
+            {
+              id: "t1",
+              name: "Public Transit / Rideshare",
+              amount: 400,
+              frequency: "monthly",
+            },
+            {
+              id: "t2",
+              name: "Gasoline / Fuel",
+              amount: 600,
+              frequency: "monthly",
+            },
+          ],
+        },
+        {
+          id: "cat_insurance",
+          categoryId: "insurance_healthcare",
+          name: "Insurance & Healthcare",
+          items: [
+            {
+              id: "i1",
+              name: "Health & Dental Insurance",
+              amount: 500,
+              frequency: "monthly",
+            },
+            {
+              id: "i2",
+              name: "Auto Insurance",
+              amount: 3600,
+              frequency: "yearly",
+            },
+          ],
+        },
+        {
+          id: "cat_subscriptions",
+          categoryId: "subscriptions_lifestyle",
+          name: "Subscriptions & Lifestyle",
+          items: [
+            {
+              id: "s1",
+              name: "Streaming Services (Netflix, Spotify, etc.)",
+              amount: 80,
+              frequency: "monthly",
+            },
+            {
+              id: "s2",
+              name: "Gym / Fitness Membership",
+              amount: 200,
+              frequency: "monthly",
+            },
+          ],
+        },
+        {
+          id: "cat_debt",
+          categoryId: "debt_payments",
+          name: "Debt Payments",
+          items: [
+            {
+              id: "d1",
+              name: "Personal Loans",
+              amount: 1500,
+              frequency: "monthly",
+            },
+          ],
+        },
+        {
+          id: "cat_savings",
+          categoryId: "savings_investments",
+          name: "Savings & Investments",
+          isSavings: true,
+          items: [
+            {
+              id: "sa1",
+              name: "Emergency Fund",
+              amount: 2000,
+              frequency: "monthly",
+              isSavings: true,
+            },
+            {
+              id: "sa2",
+              name: "Retirement Savings",
+              amount: 1500,
+              frequency: "monthly",
+              isSavings: true,
+            },
+            {
+              id: "sa3",
+              name: "Investment Income",
+              amount: 2820,
+              frequency: "monthly",
+              isSavings: true,
+            },
+          ],
+        },
+      ],
+    };
+
     function getCurrentCurrencyCode() {
       if (
         window._mrb_currency &&
@@ -983,7 +1176,10 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
     }
 
     function getDefaultDataForCurrency() {
-      return getCurrentCurrencyCode() === "INR" ? defaultDataINR : defaultData;
+      const code = getCurrentCurrencyCode();
+      if (code === "INR") return defaultDataINR;
+      if (code === "CNY") return defaultDataCNY;
+      return defaultData;
     }
 
     const BUILTIN_CATEGORY_ALIASES = {
@@ -1212,6 +1408,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
         INR: "₹",
         CAD: "C$",
         AUD: "A$",
+        CNY: "¥",
       };
       return syms[curr] || "$";
     }

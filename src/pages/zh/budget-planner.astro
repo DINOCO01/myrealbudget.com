@@ -1,0 +1,174 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Eyebrow from '../../components/ui/Eyebrow.astro';
+import GeneralBudgetPlanner from '../../components/planners/GeneralBudgetPlanner.astro';
+
+const title = '预算规划器：免费制定个人预算 | My Real Budget';
+const description = '免费易用的在线个人预算规划器。清晰梳理您的月度收入与支出流向，支持多频次账单自动折算，为个人与家庭预算提供精准收支平衡计算，数据100%本地保存。';
+const canonical = 'https://myrealbudget.com/zh/budget-planner/';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '本预算规划器如何处理不同周期的账单归一化换算？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '许多人在计算月度开支时习惯简单地把每周支出乘以4，这会导致约8.3%的严重低估（因为一年有52周，平均每月4.33周）。本规划器采用精准年化折算公式：每周支出乘以52并除以12，每双周支出乘以26并除以12，季度账单除以3，年度保费除以12，从而真实还原您全年的月均现金流成本。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '我的预算数据会上传至网络服务器吗？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '绝不会。My Real Budget 坚持纯本地存储架构。您在预算规划器中输入的所有数字与自定义项目，均只保存在当前浏览器的 localStorage 中，没有任何后端数据库，保证您财务隐私的绝对安全。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '可以随意添加自定义收入和支出类别吗？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '完全可以。规划器支持自由添加自定义收入来源、自定义支出大类及无限个明细子项，您可以随时修改分类名称、金额、账单周期或删除默认分类。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '如果希望将预算导出或使用电子表格，有对应资源吗？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '有。如果您更喜欢在 Microsoft Excel 或 Google 表格中离线记账，可以直接访问我们的预算模板页面，免费下载对应的 .xlsx 格式通用预算表模板。',
+      },
+    },
+  ],
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  lang="zh-CN"
+  jsonLd={faqSchema}
+>
+  <!-- HEADER INTRO -->
+  <section class="border-b border-[#ebebeb] dark:border-[#1e293b] bg-white dark:bg-[#111827] pt-8 pb-10 sm:pt-12 sm:pb-14 transition-colors">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="max-w-3xl space-y-4">
+        <Eyebrow text="在线交互工具" />
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-[#171717] dark:text-[#f8fafc] leading-tight">
+          在线个人预算规划器
+        </h1>
+        <p class="text-base sm:text-lg text-[#4d4d4d] dark:text-[#94a3b8] leading-relaxed">
+          科学规划个人与家庭的月度收支。内置账单支付频次自动归一化换算，助您厘清资金走向，打造符合真实生活节奏的预算计划。
+        </p>
+      </div>
+
+      <!-- Budgeting Method Switcher Bar -->
+      <div class="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-[#f2f2f2] dark:border-[#1e293b] flex flex-wrap items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs">
+        <span class="text-[#8f8f8f] dark:text-[#64748b] font-mono mr-1 sm:mr-2">预算规划方法：</span>
+        <span class="px-3 py-1.5 rounded-full bg-[#171717] text-white font-medium">通用预算规划器</span>
+        <a href="/zh/50-30-20-budget/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] dark:bg-[#1e293b] text-[#4d4d4d] dark:text-[#94a3b8] hover:text-[#171717] dark:hover:text-[#f8fafc] hover:bg-[#ebebeb] transition">
+          50/30/20 比例法
+        </a>
+        <a href="/zh/zero-based-budget/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] dark:bg-[#1e293b] text-[#4d4d4d] dark:text-[#94a3b8] hover:text-[#171717] dark:hover:text-[#f8fafc] hover:bg-[#ebebeb] transition">
+          零基预算分配法
+        </a>
+        <a href="/zh/templates/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] dark:bg-[#1e293b] text-[#4d4d4d] dark:text-[#94a3b8] hover:text-[#171717] dark:hover:text-[#f8fafc] hover:bg-[#ebebeb] transition">
+          免费预算模板
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE BUDGET PLANNER COMPONENT -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+    <GeneralBudgetPlanner />
+  </main>
+
+  <!-- EDUCATIONAL EDITORIAL SECTION -->
+  <section class="border-t border-[#ebebeb] dark:border-[#1e293b] bg-[#faf8f5] dark:bg-[#0b1220] py-14 sm:py-18 transition-colors">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 space-y-12">
+      <!-- Section 1: How to use this planner -->
+      <div class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+          如何高效使用本预算规划器制定月度预算
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8]">
+          <div class="bg-white dark:bg-[#111827] p-5 rounded-[12px] border border-[#e5e0d8] dark:border-[#1e293b] space-y-2">
+            <h3 class="font-semibold text-[#0f172a] dark:text-[#f8fafc]">1. 录入所有实际到手收入</h3>
+            <p>在收入板块填写您的主职税后月薪、兼职酬劳、投资分红等。如果存在副业收入波动，填入过去几个月的稳定基线。</p>
+          </div>
+          <div class="bg-white dark:bg-[#111827] p-5 rounded-[12px] border border-[#e5e0d8] dark:border-[#1e293b] space-y-2">
+            <h3 class="font-semibold text-[#0f172a] dark:text-[#f8fafc]">2. 细分各生活支出类目</h3>
+            <p>依次梳理住房房租、水电煤气、日常饮食、交通通勤、医疗保险与品质娱乐。可根据家庭实际需求任意添加自定义子项。</p>
+          </div>
+          <div class="bg-white dark:bg-[#111827] p-5 rounded-[12px] border border-[#e5e0d8] dark:border-[#1e293b] space-y-2">
+            <h3 class="font-semibold text-[#0f172a] dark:text-[#f8fafc]">3. 选择真实的账单支付频次</h3>
+            <p>这是保证预算准确的关键步骤。买菜选每周，物业选月度，车险保费选年度。无需手动除算，规划器会自动年化折算。</p>
+          </div>
+          <div class="bg-white dark:bg-[#111827] p-5 rounded-[12px] border border-[#e5e0d8] dark:border-[#1e293b] space-y-2">
+            <h3 class="font-semibold text-[#0f172a] dark:text-[#f8fafc]">4. 关注净现金流与储蓄率指标</h3>
+            <p>规划器右上角将动态呈现净现金流盈余与储蓄率。如果出现赤字，及时回溯非刚需消费并进行结构性优化调整。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Frequency Normalization in Depth -->
+      <div id="frequency" class="bg-white dark:bg-[#111827] p-6 sm:p-8 rounded-[14px] border border-[#e5e0d8] dark:border-[#1e293b] space-y-4">
+        <h2 class="text-xl sm:text-2xl font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+          为什么要严格采用“账单频次归一化”？
+        </h2>
+        <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+          许多个人预算失败的隐蔽根源在于计算周期的粗糙估算。大部分人习惯把每周¥500的伙食费简单乘以4，得出每月¥2,000。然而，一年实际有52个自然周，真正的月平均周数是 <strong>52 ÷ 12 ≈ 4.333 周</strong>。
+        </p>
+        <div class="p-4 rounded-[8px] bg-[#faf8f5] dark:bg-[#0b1220] border border-[#e5e0d8] dark:border-[#1e293b] font-mono text-xs text-[#0f172a] dark:text-[#f8fafc] space-y-1">
+          <div>错误算法：¥500 × 4 = ¥2,000 / 月（每年低估了将近整整一整月的伙食开销！）</div>
+          <div class="text-[#0e6e55] dark:text-[#10b981] font-semibold">科学年化算法：¥500 × 52 ÷ 12 = ¥2,166.67 / 月（精准反映真实消耗）</div>
+        </div>
+        <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+          同理，年度商业保险、节假日消费和汽车保养如果不在平时按月均摊储备，年末集中扣费就会引发断崖式赤字。本预算规划器正是通过统一算法杜绝此类隐患。
+        </p>
+      </div>
+
+      <!-- FAQ Section -->
+      <div class="space-y-4">
+        <h2 class="text-xl sm:text-2xl font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+          预算规划器常见问题解答
+        </h2>
+        <div class="space-y-3">
+          {faqSchema.mainEntity.map((item) => (
+            <details class="bg-white dark:bg-[#111827] rounded-[10px] border border-[#ebebeb] dark:border-[#1e293b] p-4 shadow-whisper group cursor-pointer">
+              <summary class="font-semibold text-xs sm:text-sm text-[#0f172a] dark:text-[#f8fafc] flex items-center justify-between list-none select-none">
+                <span>{item.name}</span>
+                <span class="text-[#8f8f8f] group-open:rotate-180 transition-transform text-xs ml-2">▼</span>
+              </summary>
+              <div class="pt-3 text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed border-t border-[#f1efe9] dark:border-[#1e293b] mt-3">
+                {item.acceptedAnswer.text}
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- Internal Link Bridges -->
+      <div class="pt-6 border-t border-[#ebebeb] dark:border-[#1e293b] flex flex-wrap items-center justify-between gap-4 text-xs">
+        <span class="text-[#8f8f8f] dark:text-[#64748b]">探索更多预算方法：</span>
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="/zh/50-30-20-budget/" class="text-[#0e6e55] dark:text-[#10b981] font-medium hover:underline">
+            50/30/20比例预算规划器 →
+          </a>
+          <a href="/zh/zero-based-budget/" class="text-[#0e6e55] dark:text-[#10b981] font-medium hover:underline">
+            零基预算规划器 →
+          </a>
+          <a href="/zh/templates/" class="text-[#0e6e55] dark:text-[#10b981] font-medium hover:underline">
+            下载Excel预算表模板 →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

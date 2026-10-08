@@ -978,6 +978,101 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
       ],
     };
 
+    const defaultDataCNY = {
+      income: 20000,
+      incomeFrequency: "monthly",
+      needs: [
+        {
+          id: "n1",
+          name: "Rent / Mortgage",
+          amount: 5200,
+          frequency: "monthly",
+        },
+        {
+          id: "n2",
+          name: "Groceries & Essentials",
+          amount: 600,
+          frequency: "weekly",
+        },
+        {
+          id: "n3",
+          name: "Utilities & Internet",
+          amount: 500,
+          frequency: "monthly",
+        },
+        {
+          id: "n4",
+          name: "Public Transit / Rideshare",
+          amount: 500,
+          frequency: "monthly",
+        },
+        {
+          id: "n5",
+          name: "Health & Prescriptions",
+          amount: 600,
+          frequency: "monthly",
+        },
+        {
+          id: "n6",
+          name: "Auto Insurance",
+          amount: 7200,
+          frequency: "yearly",
+        },
+      ],
+      wants: [
+        {
+          id: "w1",
+          name: "Dining Out & Takeaway",
+          amount: 400,
+          frequency: "weekly",
+        },
+        {
+          id: "w2",
+          name: "Entertainment & Hobbies",
+          amount: 1500,
+          frequency: "monthly",
+        },
+        {
+          id: "w3",
+          name: "Streaming & Subscriptions",
+          amount: 100,
+          frequency: "monthly",
+        },
+        {
+          id: "w4",
+          name: "Shopping & Personal Care",
+          amount: 1200,
+          frequency: "monthly",
+        },
+        {
+          id: "w5",
+          name: "Annual Travel & Holidays Fund",
+          amount: 17600,
+          frequency: "yearly",
+        },
+      ],
+      savings: [
+        {
+          id: "s1",
+          name: "Emergency Fund",
+          amount: 2000,
+          frequency: "monthly",
+        },
+        {
+          id: "s2",
+          name: "Retirement Savings",
+          amount: 1000,
+          frequency: "monthly",
+        },
+        {
+          id: "s3",
+          name: "Short-term Savings Target",
+          amount: 1000,
+          frequency: "monthly",
+        },
+      ],
+    };
+
     function getCurrentCurrencyCode() {
       if (
         window._mrb_currency &&
@@ -993,7 +1088,10 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
     }
 
     function getDefaultDataForCurrency() {
-      return getCurrentCurrencyCode() === "INR" ? defaultDataINR : defaultData;
+      const code = getCurrentCurrencyCode();
+      if (code === "INR") return defaultDataINR;
+      if (code === "CNY") return defaultDataCNY;
+      return defaultData;
     }
 
     function getEmptyData() {
@@ -1164,6 +1262,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
         INR: "₹",
         CAD: "C$",
         AUD: "A$",
+        CNY: "¥",
       };
       return syms[curr] || "$";
     }

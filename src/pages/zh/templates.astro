@@ -1,0 +1,260 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Eyebrow from '../../components/ui/Eyebrow.astro';
+import { BUDGET_TEMPLATES } from '../../data/templatesData';
+
+const title = '免费预算模板：个人、50/30/20与零基预算 | My Real Budget';
+const description = '免费下载精美个人与家庭预算表模板。包含通用月度预算表、50/30/20规则预算表及零基预算Excel表格，支持Microsoft Excel与Google表格即下即用。';
+const canonical = 'https://myrealbudget.com/zh/templates/';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '这些预算模板是完全免费下载的吗？需要注册账号吗？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '是的，My Real Budget 提供的所有预算模板均为100%永久免费。无需填写电子邮箱、无需注册登录账号、无任何隐藏付费或功能锁。您可以一键直接下载 .xlsx 格式的电子表格文件。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '下载的 Excel 预算模板可以在 WPS Office 或 Google 表格中使用吗？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '完全兼容。模板采用通用开放的 Microsoft Excel (.xlsx) 与 CSV 格式制作，无论您是在 Windows/Mac 上使用 Microsoft Excel、金山 WPS Office、苹果 Numbers，还是将文件导入 Google 表格或飞书表格，均可完美兼容并保留全部公式结构。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '模板包含预置的自动计算求和公式吗？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '包含。每个模板均已预先配置好总收入自动汇总、各类开支年化折算、结余差额计算及百分比进度条公式，您只需在指定单元格填入自己的真实收支数字即可实时看到结果。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '在线规划器与下载的 Excel 模板之间有什么区别？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '在线预算规划器更适合在手机或电脑浏览器中随时进行实时计算、周期折算与快速推演，数据自动保存在本地；而下载的 Excel 预算模板更适合需要深度归档、进行长期历史对比或对单元格有重度定制需求的财务爱好者。两者可以相互配合使用。',
+      },
+    },
+  ],
+};
+
+const ZH_TEMPLATES = [
+  {
+    id: 'general-budget',
+    name: '通用月度个人预算表模板',
+    method: '通用预算',
+    shortDescription: '全面的月度收支跟踪表格，支持收入来源明细、固定必需开支、弹性生活费用及储蓄汇总自动核算。',
+    targetAudience: '适合希望全面掌握收支、建立系统化月度财务底账的个人与上班族。',
+    downloadUrl: '/templates/my-real-budget-general-budget-template.xlsx',
+    plannerUrl: '/zh/budget-planner/',
+  },
+  {
+    id: '50-30-20',
+    name: '50/30/20 比例规则预算表模板',
+    method: '50/30/20 规则',
+    shortDescription: '基于经典比例法则构建的极简模型，自动计算50%必需支出、30%品质享受与20%储蓄投资目标限额。',
+    targetAudience: '适合追求宏观平衡、讨厌繁杂流水账记账的初学者与年轻白领。',
+    downloadUrl: '/templates/my-real-budget-50-30-20-template.xlsx',
+    plannerUrl: '/zh/50-30-20-budget/',
+  },
+  {
+    id: 'zero-based',
+    name: '零基预算分配工作表模板',
+    method: '零基预算',
+    shortDescription: '严格执行“收入减去支出等于零”的专业表格，让每一元钱带着明确任务工作，杜绝无意识漏财。',
+    targetAudience: '适合希望加速清偿债务、冲刺储蓄目标或需要精细化把控现金流的用户。',
+    downloadUrl: '/templates/my-real-budget-zero-based-budget-template.xlsx',
+    plannerUrl: '/zh/zero-based-budget/',
+  },
+  {
+    id: 'simple-monthly',
+    name: '极简月度收支对照表模板',
+    method: '极简模式',
+    shortDescription: '去除复杂子项，仅保留核心收入与四大支出分类的高效表格，五分钟即可完成月度预算梳理。',
+    targetAudience: '适合记账新手、时间紧张人士以及只需掌握基础收支平衡的人群。',
+    downloadUrl: '/templates/my-real-budget-general-budget-template.xlsx',
+    plannerUrl: '/zh/budget-planner/',
+  },
+  {
+    id: 'student',
+    name: '大学生与青年生活预算表模板',
+    method: '学生青年',
+    shortDescription: '专为校园与刚毕业青年设计，涵盖生活费、奖学金、兼职、餐饮、数码文娱与学习培训开支。',
+    targetAudience: '在校大学生、应届毕业生及正在培养独立理财意识的年轻人。',
+    downloadUrl: '/templates/my-real-budget-general-budget-template.xlsx',
+    plannerUrl: '/zh/budget-planner/',
+  },
+  {
+    id: 'household',
+    name: '伴侣与家庭联合收支预算表模板',
+    method: '家庭联合',
+    shortDescription: '支持双人或多收入来源合并预算，清晰分离个人自主零花与家庭公共支出（房贷、育儿、人情等）。',
+    targetAudience: '同居伴侣、已婚家庭以及共同管理家庭财务储备的夫妻双方。',
+    downloadUrl: '/templates/my-real-budget-general-budget-template.xlsx',
+    plannerUrl: '/zh/budget-planner/',
+  },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  lang="zh-CN"
+  jsonLd={faqSchema}
+>
+  <!-- HEADER INTRO -->
+  <section class="border-b border-[#ebebeb] dark:border-[#1e293b] bg-white dark:bg-[#111827] pt-12 pb-14 transition-colors">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="max-w-3xl space-y-4">
+        <Eyebrow text="免费电子表格目录" />
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-[#171717] dark:text-[#f8fafc] leading-tight">
+          免费预算模板目录
+        </h1>
+        <p class="text-base sm:text-lg text-[#4d4d4d] dark:text-[#94a3b8] leading-relaxed">
+          为不同财务场景量身定制的免费 Excel 与 Google 表格预算表模板。无需注册邮箱或付费，一键免费下载，直接导入 Microsoft Excel、WPS Office 或 Google 表格中使用。
+        </p>
+      </div>
+
+      <!-- Quick Nav Strip -->
+      <div class="mt-8 pt-6 border-t border-[#f2f2f2] dark:border-[#1e293b] flex flex-wrap items-center gap-2 text-xs">
+        <span class="text-[#8f8f8f] dark:text-[#64748b] font-mono mr-2">快速跳转：</span>
+        {ZH_TEMPLATES.map((t) => (
+          <a
+            href={`#${t.id}`}
+            class="px-2.5 py-1 rounded-[6px] bg-[#fafafa] dark:bg-[#1e293b] hover:bg-[#f2f2f2] dark:hover:bg-[#334155] border border-[#ebebeb] dark:border-[#334155] text-[#171717] dark:text-[#f8fafc] transition"
+          >
+            {t.name.split('模板')[0]}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- DIRECTORY GRID -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {ZH_TEMPLATES.map((template) => (
+        <article id={template.id} class="bg-white dark:bg-[#111827] rounded-[12px] border border-[#ebebeb] dark:border-[#1e293b] p-6 shadow-whisper flex flex-col justify-between hover:border-[#0e6e55] dark:hover:border-[#10b981] transition group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="inline-block px-2.5 py-0.5 rounded-[6px] bg-[#f2f2f2] dark:bg-[#1e293b] text-xs font-mono text-[#0e6e55] dark:text-[#10b981] font-medium">
+                {template.method}
+              </span>
+              <span class="text-xs text-[#8f8f8f] dark:text-[#64748b] font-mono">.XLSX / 表格</span>
+            </div>
+
+            <h2 class="text-lg font-semibold text-[#171717] dark:text-[#f8fafc] tracking-tight">
+              {template.name}
+            </h2>
+
+            <p class="text-xs text-[#4d4d4d] dark:text-[#94a3b8] leading-relaxed">
+              {template.shortDescription}
+            </p>
+
+            <div class="pt-2 border-t border-[#f2f2f2] dark:border-[#1e293b] space-y-1">
+              <span class="text-[11px] font-mono uppercase text-[#8f8f8f] dark:text-[#64748b] block">适用人群：</span>
+              <p class="text-xs text-[#171717] dark:text-[#f8fafc]">
+                {template.targetAudience}
+              </p>
+            </div>
+          </div>
+
+          <div class="pt-6 border-t border-[#ebebeb] dark:border-[#1e293b] mt-6 flex flex-col sm:flex-row gap-2">
+            <a
+              href={template.downloadUrl}
+              download
+              class="flex-1 inline-flex items-center justify-center h-9 px-4 rounded-full bg-[#171717] text-white text-xs font-medium hover:bg-neutral-800 transition text-center shadow-sm"
+            >
+              下载 Excel 模板 (.xlsx)
+            </a>
+            <a
+              href={template.plannerUrl}
+              class="inline-flex items-center justify-center h-9 px-3 rounded-full bg-[#f2f2f2] dark:bg-[#1e293b] text-[#171717] dark:text-[#f8fafc] text-xs font-medium hover:bg-[#ebebeb] transition text-center"
+            >
+              在线规划
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </main>
+
+  <!-- SPREADSHEET BEST PRACTICES SECTION -->
+  <section class="border-t border-[#ebebeb] dark:border-[#1e293b] bg-[#faf8f5] dark:bg-[#0b1220] py-14 sm:py-18 transition-colors">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 space-y-10">
+      <div class="text-center space-y-3">
+        <Eyebrow text="使用技巧与指南" />
+        <h2 class="text-2xl sm:text-3xl font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+          如何高效使用电子表格管理个人预算
+        </h2>
+        <p class="text-sm text-[#475569] dark:text-[#94a3b8]">
+          将电子表格的自由度与严谨的财务纪律相结合。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8]">
+        <div class="bg-white dark:bg-[#111827] p-5 rounded-[12px] border border-[#e5e0d8] dark:border-[#1e293b] space-y-2">
+          <strong class="text-[#0f172a] dark:text-[#f8fafc] block font-semibold text-base">第一步：下载并妥善保存母版</strong>
+          <p>下载 .xlsx 文件后，建议在云端网盘（如 OneDrive、坚果云或 Google Drive）另存一份空白副本作为母版，每月初复制一份填写当月数据。</p>
+        </div>
+        <div class="bg-white dark:bg-[#111827] p-5 rounded-[12px] border border-[#e5e0d8] dark:border-[#1e293b] space-y-2">
+          <strong class="text-[#0f172a] dark:text-[#f8fafc] block font-semibold text-base">第二步：仅需填写数字输入列</strong>
+          <p>模板中的求和汇总、盈余计算与百分比列均已写入公式，请尽量避免手动覆盖公式单元格，只需按需修改分类名称与金额数值。</p>
+        </div>
+        <div class="bg-white dark:bg-[#111827] p-5 rounded-[12px] border border-[#e5e0d8] dark:border-[#1e293b] space-y-2">
+          <strong class="text-[#0f172a] dark:text-[#f8fafc] block font-semibold text-base">第三步：月末进行一次性复盘</strong>
+          <p>无需每天高压输入，建议在每月最后一个周末花15分钟核对实际账单与预算预设值的偏差，并适度调优下月指标。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
+    <div class="text-center space-y-3 mb-10">
+      <Eyebrow text="常见疑问" />
+      <h2 class="text-2xl sm:text-3xl font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+        预算模板常见问题解答
+      </h2>
+    </div>
+
+    <div class="space-y-3">
+      {faqSchema.mainEntity.map((item) => (
+        <details class="bg-white dark:bg-[#111827] rounded-[10px] border border-[#ebebeb] dark:border-[#1e293b] p-4 shadow-whisper group cursor-pointer">
+          <summary class="font-semibold text-xs sm:text-sm text-[#0f172a] dark:text-[#f8fafc] flex items-center justify-between list-none select-none">
+            <span>{item.name}</span>
+            <span class="text-[#8f8f8f] group-open:rotate-180 transition-transform text-xs ml-2">▼</span>
+          </summary>
+          <div class="pt-3 text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed border-t border-[#f1efe9] dark:border-[#1e293b] mt-3">
+            {item.acceptedAnswer.text}
+          </div>
+        </details>
+      ))}
+    </div>
+
+    <!-- Bottom Navigation Bridges -->
+    <div class="pt-10 border-t border-[#ebebeb] dark:border-[#1e293b] mt-12 flex flex-wrap items-center justify-between gap-4 text-xs">
+      <span class="text-[#8f8f8f] dark:text-[#64748b]">直接使用免下载在线工具：</span>
+      <div class="flex flex-wrap items-center gap-4">
+        <a href="/zh/budget-planner/" class="text-[#0e6e55] dark:text-[#10b981] font-medium hover:underline">
+          通用月度预算规划器 →
+        </a>
+        <a href="/zh/50-30-20-budget/" class="text-[#0e6e55] dark:text-[#10b981] font-medium hover:underline">
+          50/30/20比例预算规划器 →
+        </a>
+        <a href="/zh/zero-based-budget/" class="text-[#0e6e55] dark:text-[#10b981] font-medium hover:underline">
+          零基预算规划器 →
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -19,6 +19,7 @@ export const SUPPORTED_CURRENCIES: Record<string, CurrencyConfig> = {
   INR: { code: 'INR', symbol: '₹', label: 'INR (₹)', narrowSymbol: '₹' },
   CAD: { code: 'CAD', symbol: 'C$', label: 'CAD (C$)', narrowSymbol: 'C$' },
   AUD: { code: 'AUD', symbol: 'A$', label: 'AUD (A$)', narrowSymbol: 'A$' },
+  CNY: { code: 'CNY', symbol: '¥', label: 'CNY (¥)', narrowSymbol: '¥' },
 };
 
 export const DEFAULT_CURRENCY = 'USD';
@@ -82,6 +83,20 @@ function getActiveLanguage(): string {
     try {
       const saved = localStorage.getItem('myrealbudget_language');
       if (saved) return saved.toLowerCase();
+      if (typeof navigator !== 'undefined') {
+        const langs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language];
+        for (const raw of langs) {
+          if (!raw) continue;
+          const lower = raw.toLowerCase().trim();
+          const code = lower.split('-')[0];
+          if (code === 'zh' || lower.startsWith('zh')) return 'zh';
+          if (code === 'es') return 'es';
+          if (code === 'fr') return 'fr';
+          if (code === 'de') return 'de';
+          if (code === 'pt') return 'pt';
+          if (code === 'en') return 'en';
+        }
+      }
     } catch (e) { }
   }
   return 'en';
@@ -146,6 +161,7 @@ export function formatCurrency(
     locale = 'en-IN';
   } else {
     switch (lang) {
+      case 'zh': locale = 'zh-CN'; break;
       case 'es': locale = 'es-ES'; break;
       case 'fr': locale = 'fr-FR'; break;
       case 'de': locale = 'de-DE'; break;

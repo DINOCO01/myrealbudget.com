@@ -661,6 +661,126 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
       ],
     };
 
+    const defaultDataCNY = {
+      income: 18000,
+      groups: [
+        {
+          id: "g_housing_living",
+          groupId: "housing_living_essentials",
+          name: "Housing & Living Essentials",
+          items: [
+            {
+              id: "z1",
+              name: "Rent or Mortgage",
+              amount: 5000,
+              frequency: "monthly",
+            },
+            {
+              id: "z2",
+              name: "Utilities & Phone",
+              amount: 500,
+              frequency: "monthly",
+            },
+            { id: "z3", name: "Groceries", amount: 2500, frequency: "monthly" },
+            {
+              id: "z4",
+              name: "Transportation & Commute",
+              amount: 500,
+              frequency: "monthly",
+            },
+          ],
+        },
+        {
+          id: "g_debt",
+          groupId: "debt_payments",
+          name: "Debt Payments",
+          items: [
+            {
+              id: "z5",
+              name: "Personal Loan / Installments",
+              amount: 1200,
+              frequency: "monthly",
+            },
+            {
+              id: "z6",
+              name: "Credit Card Repayment",
+              amount: 800,
+              frequency: "monthly",
+            },
+          ],
+        },
+        {
+          id: "g_savings",
+          groupId: "savings_sinking_funds",
+          name: "Savings & Sinking Funds",
+          items: [
+            {
+              id: "z7",
+              name: "Emergency Cushion Fund",
+              amount: 1500,
+              frequency: "monthly",
+            },
+            {
+              id: "z8",
+              name: "Mutual Funds & Investments",
+              amount: 2000,
+              frequency: "monthly",
+            },
+            {
+              id: "z9",
+              name: "Retirement & Pension Savings",
+              amount: 1000,
+              frequency: "monthly",
+            },
+            {
+              id: "z10",
+              name: "Annual Festival / Sinking Fund",
+              amount: 6000,
+              frequency: "yearly",
+            },
+          ],
+        },
+        {
+          id: "g_lifestyle",
+          groupId: "lifestyle_fun_money",
+          name: "Lifestyle & Fun Money",
+          items: [
+            {
+              id: "z11",
+              name: "Dining Out & Leisure",
+              amount: 1200,
+              frequency: "monthly",
+            },
+            {
+              id: "z12",
+              name: "Subscriptions & Mobile",
+              amount: 300,
+              frequency: "monthly",
+            },
+            {
+              id: "z13",
+              name: "Personal Care & Shopping",
+              amount: 500,
+              frequency: "monthly",
+            },
+          ],
+        },
+        {
+          id: "g_buffer",
+          groupId: "miscellaneous_cushion_buffer",
+          name: "Miscellaneous Cushion Buffer",
+          items: [
+            {
+              id: "z14",
+              name: "Account Buffer (Zero cushion)",
+              amount: 500,
+              frequency: "monthly",
+            },
+          ],
+        },
+      ],
+    };
+
     function getCurrentCurrencyCode() {
       if (
         window._mrb_currency &&
@@ -676,7 +796,9 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
     }
 
     function getDefaultDataForCurrency() {
-      return getCurrentCurrencyCode() === "INR" ? defaultDataINR : defaultData;
+      const curr = getCurrentCurrencyCode();
+      if (curr === "CNY") return defaultDataCNY;
+      return curr === "INR" ? defaultDataINR : defaultData;
     }
 
     const BUILTIN_GROUP_ALIASES = {
@@ -914,6 +1036,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
         INR: "₹",
         CAD: "C$",
         AUD: "A$",
+        CNY: "¥",
       };
       return syms[curr] || "$";
     }

@@ -1,0 +1,346 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Eyebrow from '../../components/ui/Eyebrow.astro';
+import { BUDGET_TEMPLATES } from '../../data/templatesData';
+
+const title = '免费预算规划器：50/30/20与零基预算 | My Real Budget';
+const description = '免费在线预算规划器。支持月度收支平衡、50/30/20预算规则与零基预算分配，助您清晰掌控个人与家庭现金流，提供精美Excel预算表模板下载。';
+const canonical = 'https://myrealbudget.com/zh/';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '什么是预算规划器？它与普通记账软件有什么区别？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '普通记账软件通常是在消费发生后进行被动记录，往往无法阻止超支。而预算规划器是一种前瞻性的财务工具，它帮助您在月度或发薪周期开始之前，根据真实收入预先规划房租、饮食、储蓄与投资等各项目的支出限额，从而主动掌控资金流向。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '初学者应该选择50/30/20预算还是零基预算？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '如果您刚开始规划预算，希望规则简单清晰且不想繁琐追踪每笔细微开销，推荐使用“50/30/20预算方法”（50%必需支出、30%想要支出、20%储蓄）。如果您希望彻底杜绝无意识消费、加速偿还债务或资金较为紧张，推荐使用“零基预算”，将每分钱都指定明确用途直至余额为零。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '我的个人财务数据安全吗？需要注册账号吗？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '绝对安全。My Real Budget 坚持“本地优先”原则，无需注册账号、无需绑定银行卡或手机号。您输入的预算数据仅保存在您的浏览器本地存储（localStorage）中，绝不会上传至任何云端服务器。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '工具支持人民币（CNY ¥）显示与结算吗？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '支持。本站支持完整的多币种体系，您可以直接在顶部菜单将货币切换为人民币（CNY ¥），且语言与货币完全独立，满足多元化的财务管理习惯。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '除了在线规划工具，是否提供可下载的Excel预算表？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '提供。我们提供了覆盖通用月度预算、50/30/20规则与零基预算的免费Excel与Google表格模板，无需注册即可直接免费下载使用。',
+      },
+    },
+  ],
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  lang="zh-CN"
+  jsonLd={faqSchema}
+>
+  <!-- HERO SECTION -->
+  <section class="relative pt-10 pb-14 sm:pt-16 sm:pb-20 border-b border-[#e5e0d8] dark:border-[#1e293b] bg-[#faf8f5] dark:bg-[#0b1220] transition-colors">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <!-- Hero Copy -->
+        <div class="lg:col-span-7 space-y-5 sm:space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-[#111827] border border-[#e5e0d8] dark:border-[#1e293b] text-xs font-mono font-medium text-[#475569] dark:text-[#94a3b8] shadow-whisper">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#0e6e55] dark:bg-[#10b981]"></span>
+            <span>科学现金流规划工具</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl md:text-[48px] font-semibold tracking-[-0.035em] text-[#0f172a] dark:text-[#f8fafc] leading-[1.18]">
+            免费预算规划器：<br class="hidden sm:inline" />
+            <span class="text-[#0e6e55] dark:text-[#10b981]">让每分钱都物尽其用</span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-[#475569] dark:text-[#94a3b8] leading-relaxed max-w-xl font-normal">
+            告别被动记账与月末财务焦虑。My Real Budget 提供直观好用的<strong>免费预算规划器</strong>，支持月度现金流收支评估、50/30/20法则与零基预算体系，帮助个人与家庭建立健康充裕的财务储备。
+          </p>
+
+          <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+            <a
+              href="/zh/budget-planner/"
+              class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[#0e6e55] hover:bg-[#0a5240] text-white text-sm font-medium transition shadow-sm"
+            >
+              开始制定个人预算
+            </a>
+            <a
+              href="/zh/templates/"
+              class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white dark:bg-[#111827] hover:bg-[#f1efe9] dark:hover:bg-[#1e293b] border border-[#d6cfc5] dark:border-[#334155] text-[#0f172a] dark:text-[#f8fafc] text-sm font-medium transition shadow-whisper"
+            >
+              下载免费预算模板
+            </a>
+          </div>
+
+          <div class="pt-4 flex flex-wrap items-center gap-6 text-xs text-[#64748b] dark:text-[#94a3b8] font-mono">
+            <span class="flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-[#0e6e55] dark:text-[#10b981]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              100% 浏览器本地保存
+            </span>
+            <span class="flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-[#0e6e55] dark:text-[#10b981]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              无需注册登录
+            </span>
+            <span class="flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-[#0e6e55] dark:text-[#10b981]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              支持人民币（CNY ¥）
+            </span>
+          </div>
+        </div>
+
+        <!-- Right: Feature Highlights Box -->
+        <div class="lg:col-span-5 bg-white dark:bg-[#111827] rounded-[16px] border border-[#e5e0d8] dark:border-[#1e293b] p-6 sm:p-8 shadow-whisper space-y-5">
+          <h2 class="text-lg font-semibold text-[#0f172a] dark:text-[#f8fafc] border-b border-[#f1efe9] dark:border-[#1e293b] pb-3">
+            为什么选择科学预算规划？
+          </h2>
+          <div class="space-y-4 text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8]">
+            <div class="flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-[#0e6e55]/10 text-[#0e6e55] dark:text-[#10b981] flex items-center justify-center shrink-0 font-bold text-xs mt-0.5">1</div>
+              <div>
+                <strong class="text-[#0f172a] dark:text-[#f8fafc] block">账单周期科学归一化：</strong>
+                按周买菜、按季度缴费、按年付保费？系统自动统一年化折算为月度标准，杜绝收支误判。
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-[#0e6e55]/10 text-[#0e6e55] dark:text-[#10b981] flex items-center justify-center shrink-0 font-bold text-xs mt-0.5">2</div>
+              <div>
+                <strong class="text-[#0f172a] dark:text-[#f8fafc] block">三种经典模型随心选：</strong>
+                自由分类规划、50/30/20黄金比例、零基预算分配，满足人生各阶段财务需求。
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-[#0e6e55]/10 text-[#0e6e55] dark:text-[#10b981] flex items-center justify-center shrink-0 font-bold text-xs mt-0.5">3</div>
+              <div>
+                <strong class="text-[#0f172a] dark:text-[#f8fafc] block">纯粹安全与私密：</strong>
+                没有任何第三方追踪代码，不索取个人敏感信息，您的账本属于且仅属于您自己。
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METHOD SUITE CARDS -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
+    <div class="text-center max-w-2xl mx-auto space-y-3 mb-12">
+      <Eyebrow text="财务规划体系" />
+      <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#0f172a] dark:text-[#f8fafc]">
+        三大核心预算方法：选择最契合您的规划模式
+      </h2>
+      <p class="text-sm sm:text-base text-[#475569] dark:text-[#94a3b8]">
+        无论您追求简单明晰还是极致掌控，都能在这里找到行之有效的预算工具。
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Card 1: General Budget Planner -->
+      <div class="bg-white dark:bg-[#111827] rounded-[14px] border border-[#ebebeb] dark:border-[#1e293b] p-6 shadow-whisper flex flex-col justify-between hover:border-[#0e6e55] dark:hover:border-[#10b981] transition group">
+        <div class="space-y-4">
+          <span class="inline-block px-2.5 py-1 rounded-[6px] bg-[#f4f2ee] dark:bg-[#1e293b] text-xs font-mono font-medium text-[#0e6e55] dark:text-[#10b981]">
+            灵活全能
+          </span>
+          <h3 class="text-lg font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+            通用月度预算规划器
+          </h3>
+          <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+            自由自定义收入来源与各类支出开销。自动统一年化收支周期，实时测算月度净储蓄盈余与健康储蓄率。
+          </p>
+        </div>
+        <div class="pt-6 border-t border-[#f1efe9] dark:border-[#1e293b] mt-6">
+          <a
+            href="/zh/budget-planner/"
+            class="inline-flex items-center text-xs font-semibold text-[#0e6e55] dark:text-[#10b981] group-hover:underline gap-1"
+          >
+            打开预算规划器 →
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 2: 50/30/20 Budget -->
+      <div class="bg-white dark:bg-[#111827] rounded-[14px] border border-[#ebebeb] dark:border-[#1e293b] p-6 shadow-whisper flex flex-col justify-between hover:border-[#0e6e55] dark:hover:border-[#10b981] transition group">
+        <div class="space-y-4">
+          <span class="inline-block px-2.5 py-1 rounded-[6px] bg-[#f4f2ee] dark:bg-[#1e293b] text-xs font-mono font-medium text-[#0e6e55] dark:text-[#10b981]">
+            黄金比例
+          </span>
+          <h3 class="text-lg font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+            50/30/20 预算规划器
+          </h3>
+          <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+            经典的三分法则：50%必需生活开支、30%弹性享受消费、20%用于储蓄与加速偿债。免去繁杂记账，掌握宏观平衡。
+          </p>
+        </div>
+        <div class="pt-6 border-t border-[#f1efe9] dark:border-[#1e293b] mt-6">
+          <a
+            href="/zh/50-30-20-budget/"
+            class="inline-flex items-center text-xs font-semibold text-[#0e6e55] dark:text-[#10b981] group-hover:underline gap-1"
+          >
+            打开50/30/20计算器 →
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 3: Zero-Based Budget -->
+      <div class="bg-white dark:bg-[#111827] rounded-[14px] border border-[#ebebeb] dark:border-[#1e293b] p-6 shadow-whisper flex flex-col justify-between hover:border-[#0e6e55] dark:hover:border-[#10b981] transition group">
+        <div class="space-y-4">
+          <span class="inline-block px-2.5 py-1 rounded-[6px] bg-[#f4f2ee] dark:bg-[#1e293b] text-xs font-mono font-medium text-[#0e6e55] dark:text-[#10b981]">
+            精准归零
+          </span>
+          <h3 class="text-lg font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+            零基预算规划器
+          </h3>
+          <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+            让每一分收入都有具体的使命。通过将月收入完整分配到刚需、债务、储蓄及缓冲金中，达到收入减支出等于零。
+          </p>
+        </div>
+        <div class="pt-6 border-t border-[#f1efe9] dark:border-[#1e293b] mt-6">
+          <a
+            href="/zh/zero-based-budget/"
+            class="inline-flex items-center text-xs font-semibold text-[#0e6e55] dark:text-[#10b981] group-hover:underline gap-1"
+          >
+            打开零基预算工具 →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO BUDGET SECTION -->
+  <section class="border-t border-[#ebebeb] dark:border-[#1e293b] bg-[#faf8f5] dark:bg-[#0b1220] py-14 sm:py-20 transition-colors">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="max-w-3xl mx-auto space-y-10">
+        <div class="text-center space-y-3">
+          <Eyebrow text="实战方法论" />
+          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#0f172a] dark:text-[#f8fafc]">
+            科学制定个人与家庭预算的四个步骤
+          </h2>
+          <p class="text-sm text-[#475569] dark:text-[#94a3b8]">
+            掌握这套经过时间检验的预算流程，让财务规划真正融入日常生活。
+          </p>
+        </div>
+
+        <div class="space-y-6">
+          <div class="bg-white dark:bg-[#111827] rounded-[12px] p-6 border border-[#e5e0d8] dark:border-[#1e293b] space-y-2">
+            <h3 class="text-base font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+              第一步：明确真实的月度税后净收入
+            </h3>
+            <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+              预算的基石是能够真正支配的资金，而非税前名义薪资。统计您和家庭每月实际到账的薪资净额、兼职副业报酬及稳定的投资利息。如果有浮动收入，建议以过去6个月的保守最低值作为起点。
+            </p>
+          </div>
+
+          <div class="bg-white dark:bg-[#111827] rounded-[12px] p-6 border border-[#e5e0d8] dark:border-[#1e293b] space-y-2">
+            <h3 class="text-base font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+              第二步：梳理刚性必需支出与周期性账单
+            </h3>
+            <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+              列出房租或房贷、水电燃气物业费、基础超市买菜、通勤交通、家庭医疗保险等维持基本生活不可或缺的费用。特别要注意将年付或季度付的账单按月均摊拆解，避免集中缴费时造成现金流断裂。
+            </p>
+          </div>
+
+          <div class="bg-white dark:bg-[#111827] rounded-[12px] p-6 border border-[#e5e0d8] dark:border-[#1e293b] space-y-2">
+            <h3 class="text-base font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+              第三步：优先划拨储蓄投资与应急备用金
+            </h3>
+            <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+              实践“先付钱给自己”的理财法则。在规划娱乐和享乐支出之前，先将收入的10%至20%划入不可动用的独立账户，用于积累至少3至6个月生活费的应急备用金，以及长期的稳健理财与个人养老定投。
+            </p>
+          </div>
+
+          <div class="bg-white dark:bg-[#111827] rounded-[12px] p-6 border border-[#e5e0d8] dark:border-[#1e293b] space-y-2">
+            <h3 class="text-base font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+              第四步：设定弹性生活与品质消费限额
+            </h3>
+            <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+              预算不是为了痛苦节衣缩食，而是为了有底气地享受生活。为外出就餐、周末娱乐、旅行度假及个人爱好设定合理的额度。在额度内可以自由消费，一旦达到限额便自觉暂停，以此保障财务平衡。
+            </p>
+          </div>
+        </div>
+
+        <div class="text-center pt-4">
+          <a
+            href="/zh/templates/"
+            class="inline-flex items-center gap-1.5 text-sm font-semibold text-[#0e6e55] dark:text-[#10b981] hover:underline"
+          >
+            查看我们制作的免费预算表模板与下载资源 →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ ACCORDION SECTION -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
+    <div class="text-center space-y-3 mb-10">
+      <Eyebrow text="常见疑问解答" />
+      <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#0f172a] dark:text-[#f8fafc]">
+        关于预算规划的常见问题
+      </h2>
+    </div>
+
+    <div class="space-y-4">
+      {faqSchema.mainEntity.map((item, idx) => (
+        <details class="bg-white dark:bg-[#111827] rounded-[12px] border border-[#ebebeb] dark:border-[#1e293b] p-5 shadow-whisper group cursor-pointer">
+          <summary class="font-semibold text-sm sm:text-base text-[#0f172a] dark:text-[#f8fafc] flex items-center justify-between list-none select-none">
+            <span>{item.name}</span>
+            <span class="text-[#8f8f8f] group-open:rotate-180 transition-transform text-xs ml-2">▼</span>
+          </summary>
+          <div class="pt-3 text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed border-t border-[#f1efe9] dark:border-[#1e293b] mt-3">
+            {item.acceptedAnswer.text}
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <!-- BOTTOM CTA BANNER -->
+  <section class="border-t border-[#ebebeb] dark:border-[#1e293b] bg-white dark:bg-[#111827] py-14 sm:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-5">
+      <h2 class="text-2xl sm:text-3xl font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+        立即开启您的家庭与个人预算规划
+      </h2>
+      <p class="text-sm text-[#475569] dark:text-[#94a3b8] max-w-xl mx-auto">
+        零门槛、免注册、纯本地存储。今天就用真实数字梳理现金流，走向财务从容。
+      </p>
+      <div class="pt-2 flex flex-wrap items-center justify-center gap-3">
+        <a
+          href="/zh/budget-planner/"
+          class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#0e6e55] hover:bg-[#0a5240] text-white text-xs sm:text-sm font-medium transition"
+        >
+          免费进入预算规划器
+        </a>
+        <a
+          href="/zh/50-30-20-budget/"
+          class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#f4f2ee] dark:bg-[#1e293b] text-[#171717] dark:text-[#f8fafc] text-xs sm:text-sm font-medium hover:bg-[#ebebeb] transition"
+        >
+          使用50/30/20分配法
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

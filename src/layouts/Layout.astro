@@ -13,6 +13,7 @@ interface Props {
   ogImage?: string;
   jsonLd?: Record<string, any> | Array<Record<string, any>>;
   noIndex?: boolean;
+  lang?: string;
 }
 
 const {
@@ -25,6 +26,7 @@ const {
   ogImage,
   jsonLd,
   noIndex = false,
+  lang,
 } = Astro.props;
 
 const siteUrl = 'https://myrealbudget.com';
@@ -38,19 +40,40 @@ if (!normalizedPath.endsWith('/')) {
   normalizedPath = `${normalizedPath}/`;
 }
 
+const isZh = normalizedPath.startsWith('/zh/') || lang === 'zh-CN' || lang === 'zh';
+const htmlLang = isZh ? 'zh-CN' : (lang || 'en');
+const ogLocale = isZh ? 'zh_CN' : 'en_US';
+
 const canonicalUrl = canonical || (normalizedPath === '/' ? `${siteUrl}/` : `${siteUrl}${normalizedPath}`);
 const resolvedOgImage = ogImage || `${siteUrl}/og-image.png`;
 const resolvedOgTitle = ogTitle || title;
 const resolvedOgDescription = ogDescription || description;
+
+// Hreflang alternates for the 5 supported English-Chinese page pairs
+const HREFLANG_PAIRS: Record<string, { en: string; zh: string }> = {
+  '/': { en: `${siteUrl}/`, zh: `${siteUrl}/zh/` },
+  '/zh/': { en: `${siteUrl}/`, zh: `${siteUrl}/zh/` },
+  '/budget-planner/': { en: `${siteUrl}/budget-planner/`, zh: `${siteUrl}/zh/budget-planner/` },
+  '/zh/budget-planner/': { en: `${siteUrl}/budget-planner/`, zh: `${siteUrl}/zh/budget-planner/` },
+  '/50-30-20-budget/': { en: `${siteUrl}/50-30-20-budget/`, zh: `${siteUrl}/zh/50-30-20-budget/` },
+  '/zh/50-30-20-budget/': { en: `${siteUrl}/50-30-20-budget/`, zh: `${siteUrl}/zh/50-30-20-budget/` },
+  '/zero-based-budget/': { en: `${siteUrl}/zero-based-budget/`, zh: `${siteUrl}/zh/zero-based-budget/` },
+  '/zh/zero-based-budget/': { en: `${siteUrl}/zero-based-budget/`, zh: `${siteUrl}/zh/zero-based-budget/` },
+  '/budget-templates/': { en: `${siteUrl}/budget-templates/`, zh: `${siteUrl}/zh/templates/` },
+  '/zh/templates/': { en: `${siteUrl}/budget-templates/`, zh: `${siteUrl}/zh/templates/` },
+};
+const hreflangData = HREFLANG_PAIRS[normalizedPath];
 
 // Base structured data graph: WebSite & Organization
 const baseGraph: Record<string, any>[] = [
   {
     '@type': 'WebSite',
     '@id': `${siteUrl}/#website`,
-    url: `${siteUrl}/`,
+    url: isZh ? `${siteUrl}/zh/` : `${siteUrl}/`,
     name: 'My Real Budget',
-    description: 'Online budget planner for monthly budgeting, the 50/30/20 rule, zero-based budgeting, and spreadsheet templates.',
+    description: isZh
+      ? '免费在线预算规划器，提供月度预算规划、50/30/20法则、零基预算及电子表格预算模板。'
+      : 'Online budget planner for monthly budgeting, the 50/30/20 rule, zero-based budgeting, and spreadsheet templates.',
     publisher: {
       '@id': `${siteUrl}/#organization`,
     },
@@ -65,38 +88,69 @@ const baseGraph: Record<string, any>[] = [
 ];
 
 // WebApplication for planner/interactive routes
-const isPlannerRoute = ['/', '/budget-planner/', '/50-30-20-budget/', '/zero-based-budget/'].includes(normalizedPath);
+const isPlannerRoute = [
+  '/',
+  '/budget-planner/',
+  '/50-30-20-budget/',
+  '/zero-based-budget/',
+  '/zh/',
+  '/zh/budget-planner/',
+  '/zh/50-30-20-budget/',
+  '/zh/zero-based-budget/',
+].includes(normalizedPath);
+
 if (isPlannerRoute) {
   baseGraph.push({
     '@type': 'WebApplication',
     '@id': `${siteUrl}/#webapp`,
-    name: 'My Real Budget Planner',
-    url: `${siteUrl}/budget-planner/`,
+    name: isZh ? 'My Real Budget 预算规划器' : 'My Real Budget Planner',
+    url: isZh ? `${siteUrl}/zh/budget-planner/` : `${siteUrl}/budget-planner/`,
     applicationCategory: 'FinanceApplication',
     operatingSystem: 'All',
     browserRequirements: 'Requires modern web browser with HTML5 and JavaScript enabled.',
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'USD',
-    },
-    description: 'Free online budget planner for monthly cash flow planning, 50/30/20 budgets, and zero-based budgeting.',
+    offers: isZh
+      ? {
+          '@type': 'Offer',
+          price: '0',
+        }
+      : {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+    description: isZh
+      ? '免费在线预算规划器，支持月度现金流规划、50/30/20预算分配与零基预算。'
+      : 'Free online budget planner for monthly cash flow planning, 50/30/20 budgets, and zero-based budgeting.',
   });
 }
 
 // Add BreadcrumbList for indexable subpages
-if (normalizedPath !== '/' && !noIndex) {
+if (normalizedPath !== '/' && normalizedPath !== '/zh/' && !noIndex) {
   const pathSegments = normalizedPath.split('/').filter(Boolean);
   const breadcrumbItems: Record<string, any>[] = [
     {
       '@type': 'ListItem',
       position: 1,
-      name: 'Home',
-      item: `${siteUrl}/`,
+      name: isZh ? '首页' : 'Home',
+      item: isZh ? `${siteUrl}/zh/` : `${siteUrl}/`,
     },
   ];
 
-  if (pathSegments.length === 1) {
+  if (isZh) {
+    const zhNames: Record<string, string> = {
+      'budget-planner': '预算规划器',
+      '50-30-20-budget': '50/30/20预算',
+      'zero-based-budget': '零基预算',
+      'templates': '预算模板',
+    };
+    const sub = pathSegments[1] || '';
+    breadcrumbItems.push({
+      '@type': 'ListItem',
+      position: 2,
+      name: zhNames[sub] || title.split('|')[0].split('—')[0].split(':')[0].trim(),
+      item: canonicalUrl,
+    });
+  } else if (pathSegments.length === 1) {
     breadcrumbItems.push({
       '@type': 'ListItem',
       position: 2,
@@ -144,7 +198,7 @@ const finalJsonLd = {
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang={htmlLang} class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -161,6 +215,13 @@ const finalJsonLd = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+    {hreflangData && (
+      <>
+        <link rel="alternate" hreflang="en" href={hreflangData.en} />
+        <link rel="alternate" hreflang="zh-CN" href={hreflangData.zh} />
+        <link rel="alternate" hreflang="x-default" href={hreflangData.en} />
+      </>
+    )}
     {noIndex ? (
       <meta name="robots" content="noindex, nofollow" />
     ) : (
@@ -177,7 +238,7 @@ const finalJsonLd = {
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={resolvedOgTitle} />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content={ogLocale} />
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -204,9 +265,26 @@ const finalJsonLd = {
           } else {
             document.documentElement.classList.remove('dark');
           }
-          const storedLang = localStorage.getItem('myrealbudget_language');
-          if (storedLang) {
-            document.documentElement.lang = storedLang;
+          if (window.location.pathname.startsWith('/zh/')) {
+            document.documentElement.lang = 'zh-CN';
+          } else {
+            const storedLang = localStorage.getItem('myrealbudget_language');
+            if (storedLang) {
+              document.documentElement.lang = storedLang;
+            } else if (typeof navigator !== 'undefined') {
+              const langs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language];
+              for (const raw of langs) {
+                if (!raw) continue;
+                const lower = raw.toLowerCase().trim();
+                const code = lower.split('-')[0];
+                if (code === 'zh' || lower.startsWith('zh')) { document.documentElement.lang = 'zh'; break; }
+                if (code === 'es') { document.documentElement.lang = 'es'; break; }
+                if (code === 'fr') { document.documentElement.lang = 'fr'; break; }
+                if (code === 'de') { document.documentElement.lang = 'de'; break; }
+                if (code === 'pt') { document.documentElement.lang = 'pt'; break; }
+                if (code === 'en') { document.documentElement.lang = 'en'; break; }
+              }
+            }
           }
         } catch (e) {}
       })();
@@ -220,7 +298,7 @@ const finalJsonLd = {
     <div class="flex-1 flex flex-col">
       <slot />
     </div>
-    <Footer />
+    <Footer currentPath={Astro.url.pathname} />
 
     <!-- Global Currency & Language Controller -->
     <script>

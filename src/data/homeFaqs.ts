@@ -4,6 +4,7 @@ export interface LocalizedString {
   fr: string;
   de: string;
   pt: string;
+  zh: string;
 }
 
 export interface HomeFAQ {
@@ -434,9 +435,10 @@ export const HOME_FAQ_TRANSLATIONS: Record<string, Record<string, string>> = {
   fr: {},
   de: {},
   pt: {},
+  zh: {},
 };
 
-(['en', 'es', 'fr', 'de', 'pt'] as const).forEach((lang) => {
+(['en', 'es', 'fr', 'de', 'pt', 'zh'] as const).forEach((lang) => {
   HOME_FAQS.forEach((faq) => {
     HOME_FAQ_TRANSLATIONS[lang][`faq.${faq.id}.q`] = faq.question[lang];
     HOME_FAQ_TRANSLATIONS[lang][`faq.${faq.id}.a`] = faq.answerHtml[lang];
