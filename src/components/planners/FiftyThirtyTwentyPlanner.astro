@@ -19,6 +19,14 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
       <CurrencyLanguageControls idPrefix="f3020" />
       <button
         type="button"
+        id="f3020-btn-load-example"
+        data-mrb-t="common.see_example"
+        class="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-[6px] border border-[#ebebeb] bg-white text-[#171717] font-medium hover:bg-neutral-50 transition shadow-whisper focus-visible:outline-none"
+      >
+        See an Example
+      </button>
+      <button
+        type="button"
         id="f3020-reset-btn"
         data-mrb-t="common.reset_defaults"
         class="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-[6px] border border-[#ebebeb] bg-white text-[#8f8f8f] hover:text-[#ee0000] font-medium hover:bg-neutral-50 transition shadow-whisper focus-visible:outline-none"
@@ -31,6 +39,32 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-start">
     <!-- LEFT: Inputs (7 cols on lg) -->
     <div class="lg:col-span-7 xl:col-span-8 space-y-4 sm:space-y-6">
+      <!-- Sample Data Banner (Shown only when viewing sample data) -->
+      <div
+        id="f3020-example-banner"
+        class="hidden p-3 sm:p-3.5 rounded-[10px] bg-[#f8f9fa] border border-[#e5e7eb] flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs shadow-whisper"
+      >
+        <div class="flex items-center gap-2">
+          <span
+            class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-[#e0f2fe] text-[#0369a1] border border-[#bae6fd]"
+            data-mrb-t="common.sample_data_badge"
+          >
+            Sample Data
+          </span>
+          <span class="text-[#374151] font-medium" data-mrb-t="common.viewing_sample_data">
+            You're viewing sample data.
+          </span>
+        </div>
+        <button
+          type="button"
+          id="f3020-btn-clear-example"
+          class="inline-flex items-center justify-center px-3 py-1.5 rounded-[6px] bg-white border border-[#d1d5db] text-[#374151] hover:text-[#111827] hover:bg-neutral-50 font-medium text-xs shadow-whisper transition shrink-0"
+          data-mrb-t="common.clear_example"
+        >
+          Clear Example & Start Fresh
+        </button>
+      </div>
+
       <!-- 1. Take-Home Pay Input -->
       <div
         class="bg-white rounded-[12px] border border-[#ebebeb] p-3.5 sm:p-6 shadow-whisper"
@@ -60,9 +94,9 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
               id="f3020-income-input"
               min="0"
               step="50"
-              value="5000"
+              value=""
               class="w-full pl-7 pr-3 py-2 sm:pl-8 sm:pr-4 sm:py-2.5 rounded-[6px] bg-white border border-[#ebebeb] text-[#171717] font-mono text-base sm:text-lg font-semibold focus:outline-none focus:border-[#171717] shadow-whisper"
-              placeholder="5000"
+              placeholder="0"
             />
           </div>
           <select
@@ -962,7 +996,63 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
       return getCurrentCurrencyCode() === "INR" ? defaultDataINR : defaultData;
     }
 
+    function getEmptyData() {
+      return {
+        income: 0,
+        incomeFrequency: "monthly",
+        needs: [],
+        wants: [],
+        savings: [],
+      };
+    }
+
+    let isExampleMode = false;
     let state = loadState();
+
+    function updateExampleBanner() {
+      const banner = document.getElementById("f3020-example-banner");
+      if (!banner) return;
+      if (isExampleMode) {
+        banner.classList.remove("hidden");
+        banner.classList.add("flex");
+      } else {
+        banner.classList.remove("flex");
+        banner.classList.add("hidden");
+      }
+    }
+
+    function markAsCustomized() {
+      if (isExampleMode) {
+        isExampleMode = false;
+        updateExampleBanner();
+      }
+    }
+
+    function loadExample() {
+      isExampleMode = true;
+      state = JSON.parse(JSON.stringify(getDefaultDataForCurrency()));
+      const incEl = document.getElementById("f3020-income-input");
+      if (incEl) incEl.value = state.income || "";
+      updateIncomeFrequencySelect();
+      updateExampleBanner();
+      renderGroup("needs", "f3020-needs-items");
+      renderGroup("wants", "f3020-wants-items");
+      renderGroup("savings", "f3020-savings-items");
+      calculateAndRender();
+    }
+
+    function clearExample() {
+      isExampleMode = false;
+      state = getEmptyData();
+      const incEl = document.getElementById("f3020-income-input");
+      if (incEl) incEl.value = "";
+      updateIncomeFrequencySelect();
+      updateExampleBanner();
+      renderGroup("needs", "f3020-needs-items");
+      renderGroup("wants", "f3020-wants-items");
+      renderGroup("savings", "f3020-savings-items");
+      calculateAndRender();
+    }
 
     const MONEY_TOLERANCE =
       (window._mrb_currency && window._mrb_currency.tolerance) || 0.005;
@@ -1018,10 +1108,11 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
       } catch (e) {
         console.warn("LocalStorage error:", e);
       }
-      return JSON.parse(JSON.stringify(getDefaultDataForCurrency()));
+      return getEmptyData();
     }
 
     function saveState() {
+      if (isExampleMode) return;
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
       } catch (e) {
@@ -1107,6 +1198,21 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
     function renderGroup(groupKey, containerId) {
       const container = document.getElementById(containerId);
       if (!container) return;
+
+      if (state[groupKey].length === 0) {
+        const emptyMessageKey =
+          groupKey === "needs"
+            ? "f3020.empty_group_needs"
+            : groupKey === "wants"
+              ? "f3020.empty_group_wants"
+              : "f3020.empty_group_savings";
+        container.innerHTML = `
+          <div class="p-3 sm:p-4 text-center rounded-[6px] bg-[#fafafa] border border-dashed border-[#e5e5e5]">
+            <p class="text-xs text-[#8f8f8f]" data-mrb-t="${emptyMessageKey}">${t(emptyMessageKey)}</p>
+          </div>
+        `;
+        return;
+      }
 
       container.innerHTML = state[groupKey]
         .map((item, idx) => {
@@ -1434,8 +1540,11 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
     }
 
     window._f3020 = {
+      loadExample: loadExample,
+      clearExample: clearExample,
       updateItem: function (group, idx, field, value, el) {
         if (!state[group] || !state[group][idx]) return;
+        markAsCustomized();
         if (field === "amount") {
           if (el) validateNumericInput(el, value);
           state[group][idx].amount = sanitizeAmount(value);
@@ -1447,6 +1556,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
       },
       removeItem: function (group, idx) {
         if (!state[group]) return;
+        markAsCustomized();
         state[group].splice(idx, 1);
         saveState();
         renderGroup(group, `f3020-${group}-items`);
@@ -1454,6 +1564,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
       },
       addItem: function (group) {
         if (!state[group]) return;
+        markAsCustomized();
         state[group].push({
           id: "item_" + Date.now(),
           name:
@@ -1525,6 +1636,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
     const incomeInput = document.getElementById("f3020-income-input");
     if (incomeInput) {
       incomeInput.addEventListener("input", (e) => {
+        markAsCustomized();
         validateNumericInput(e.target, e.target.value);
         state.income = sanitizeAmount(e.target.value);
         saveState();
@@ -1532,6 +1644,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
       });
       incomeInput.addEventListener("change", (e) => {
         if ((e.target.value || "").trim().startsWith("-") || Number(e.target.value) < 0) {
+          markAsCustomized();
           e.target.value = "0";
           validateNumericInput(e.target, "0");
           state.income = 0;
@@ -1544,18 +1657,31 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
     const incomeFreqSelect = document.getElementById("f3020-income-frequency");
     if (incomeFreqSelect) {
       incomeFreqSelect.addEventListener("change", (e) => {
+        markAsCustomized();
         state.incomeFrequency = e.target.value;
         saveState();
         calculateAndRender();
       });
     }
 
+    const btnLoadExample = document.getElementById("f3020-btn-load-example");
+    if (btnLoadExample) {
+      btnLoadExample.addEventListener("click", loadExample);
+    }
+
+    const btnClearExample = document.getElementById("f3020-btn-clear-example");
+    if (btnClearExample) {
+      btnClearExample.addEventListener("click", clearExample);
+    }
+
     const resetBtn = document.getElementById("f3020-reset-btn");
     if (resetBtn) {
       resetBtn.addEventListener("click", () => {
         if (confirm(t("confirm.reset_503020"))) {
+          isExampleMode = false;
+          updateExampleBanner();
           state = JSON.parse(JSON.stringify(getDefaultDataForCurrency()));
-          if (incomeInput) incomeInput.value = state.income;
+          if (incomeInput) incomeInput.value = state.income || "";
           updateIncomeFrequencySelect();
           saveState();
           renderGroup("needs", "f3020-needs-items");
@@ -1573,9 +1699,9 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
         .forEach((el) => {
           el.textContent = getCurrencySymbol();
         });
-      if (!localStorage.getItem(STORAGE_KEY)) {
+      if (isExampleMode) {
         state = JSON.parse(JSON.stringify(getDefaultDataForCurrency()));
-        if (incomeInput) incomeInput.value = state.income;
+        if (incomeInput) incomeInput.value = state.income || "";
         updateIncomeFrequencySelect();
       }
       renderGroup("needs", "f3020-needs-items");
@@ -1598,8 +1724,9 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
       .forEach((el) => {
         el.textContent = getCurrencySymbol();
       });
-    if (incomeInput) incomeInput.value = state.income;
+    if (incomeInput) incomeInput.value = state.income ? state.income : "";
     updateIncomeFrequencySelect();
+    updateExampleBanner();
     renderGroup("needs", "f3020-needs-items");
     renderGroup("wants", "f3020-wants-items");
     renderGroup("savings", "f3020-savings-items");
