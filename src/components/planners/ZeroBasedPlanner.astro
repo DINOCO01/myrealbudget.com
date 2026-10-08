@@ -570,6 +570,48 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
       return sanitizeAmount(amount) * (FREQUENCY_MULTIPLIERS[freq] || 1);
     }
 
+    function validateNumericInput(el, rawVal) {
+      if (!el) return false;
+      const str = String(rawVal ?? "").trim();
+      const num = Number(rawVal);
+      const isNeg = str.startsWith("-") || num < 0;
+      if (isNeg) {
+        el.classList.add("!border-[#ee0000]", "!text-[#ee0000]", "focus:!border-[#ee0000]");
+        el.setAttribute("aria-invalid", "true");
+      } else {
+        el.classList.remove("!border-[#ee0000]", "!text-[#ee0000]", "focus:!border-[#ee0000]");
+        el.removeAttribute("aria-invalid");
+      }
+      return isNeg;
+    }
+
+    function getAllocationPctInfo(totalAllocated, income, remaining) {
+      if (income <= 0) return { pctStr: "0", pctNum: 0 };
+      const rawPct = (totalAllocated / income) * 100;
+      if (Math.abs(remaining) < MONEY_TOLERANCE || remaining === 0) {
+        return { pctStr: "100", pctNum: 100 };
+      }
+      // If close to 100% (within 5% of 100% or rounds to 100)
+      if (rawPct >= 95 && rawPct <= 105) {
+        let oneDec = Math.round(rawPct * 10) / 10;
+        // Strictly prevent non-zero remaining amount from displaying as 100%
+        if (remaining > 0 && oneDec >= 100) {
+          oneDec = 99.9;
+        } else if (remaining < 0 && oneDec <= 100) {
+          oneDec = 100.1;
+        }
+        return { pctStr: oneDec.toFixed(1), pctNum: oneDec };
+      }
+      const rounded = Math.round(rawPct);
+      if (rounded === 100) {
+        return {
+          pctStr: remaining > 0 ? "99.9" : "100.1",
+          pctNum: remaining > 0 ? 99.9 : 100.1,
+        };
+      }
+      return { pctStr: String(rounded), pctNum: rounded };
+    }
+
     function t(k, vars) {
       if (window._mrb_i18n && typeof window._mrb_i18n.t === "function") {
         return window._mrb_i18n.t(k, vars);
@@ -711,7 +753,8 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
                         placeholder="0"
                         aria-label="${t("aria.expense_amount") || "Allocated amount"}"
                         class="w-full pl-5 pr-1.5 py-1 sm:pl-6 sm:pr-2 sm:py-1.5 rounded-[5px] bg-white border border-[#ebebeb] text-[#171717] font-mono text-right focus:outline-none focus:border-[#171717] text-xs"
-                        oninput="window._zbb.updateItem(${grpIdx}, ${itemIdx}, 'amount', this.value)"
+                        oninput="window._zbb.updateItem(${grpIdx}, ${itemIdx}, 'amount', this.value, this)"
+                        onchange="if((this.value||'').trim().startsWith('-')||Number(this.value)<0){this.value='';window._zbb.updateItem(${grpIdx}, ${itemIdx}, 'amount', 0, this);}"
                       />
                     </div>
                     <select
@@ -772,8 +815,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
 
       totalAllocated = cleanMoney(totalAllocated);
       const remaining = cleanMoney(income - totalAllocated);
-      const pct =
-        income > 0 ? Math.round((totalAllocated / income) * 100) : 0;
+      const { pctStr, pctNum } = getAllocationPctInfo(totalAllocated, income, remaining);
 
       // Status Box (Desktop)
       const sBox = document.getElementById("zbb-status-box");
@@ -796,7 +838,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
       if (mVal) mVal.textContent = formatMoney(remaining);
       if (mSumInc) mSumInc.textContent = formatMoney(income);
       if (mSumAlloc) mSumAlloc.textContent = formatMoney(totalAllocated);
-      if (mSumPct) mSumPct.textContent = `${pct}%`;
+      if (mSumPct) mSumPct.textContent = `${pctStr}%`;
 
       const isBalanced = remaining === 0;
       const isUnder = remaining > 0;
@@ -859,14 +901,14 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
 
       if (sumInc) sumInc.textContent = formatMoney(income);
       if (sumAlloc) sumAlloc.textContent = formatMoney(totalAllocated);
-      if (sumPct) sumPct.textContent = `${pct}%`;
+      if (sumPct) sumPct.textContent = `${pctStr}%`;
 
       // Progress Fill
       const pFill = document.getElementById("zbb-progress-fill");
       const pLbl = document.getElementById("zbb-progress-label");
-      if (pLbl) pLbl.textContent = t("zbb.pct_assigned", { pct });
+      if (pLbl) pLbl.textContent = t("zbb.pct_assigned", { pct: pctStr });
       if (pFill) {
-        pFill.style.width = `${Math.min(100, pct)}%`;
+        pFill.style.width = `${Math.min(100, Math.max(0, pctNum))}%`;
         pFill.className =
           remaining < 0
             ? "h-full bg-[#ee0000] transition-all duration-300"
@@ -926,10 +968,11 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
           calculateAndRender();
         }
       },
-      updateItem: function (grpIdx, itemIdx, field, value) {
+      updateItem: function (grpIdx, itemIdx, field, value, el) {
         if (!state.groups[grpIdx] || !state.groups[grpIdx].items[itemIdx])
           return;
         if (field === "amount") {
+          if (el) validateNumericInput(el, value);
           state.groups[grpIdx].items[itemIdx].amount = sanitizeAmount(value);
         } else {
           state.groups[grpIdx].items[itemIdx][field] = value;
@@ -1007,9 +1050,19 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
     const incInput = document.getElementById("zbb-income-input");
     if (incInput) {
       incInput.addEventListener("input", (e) => {
+        validateNumericInput(e.target, e.target.value);
         state.income = sanitizeAmount(e.target.value);
         saveState();
         calculateAndRender();
+      });
+      incInput.addEventListener("change", (e) => {
+        if ((e.target.value || "").trim().startsWith("-") || Number(e.target.value) < 0) {
+          e.target.value = "0";
+          validateNumericInput(e.target, "0");
+          state.income = 0;
+          saveState();
+          calculateAndRender();
+        }
       });
     }
 

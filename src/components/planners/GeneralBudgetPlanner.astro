@@ -803,7 +803,22 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
     function normalize(amount, freq) {
       const mult = FREQUENCY_MULTIPLIERS[freq] || 1;
       const sanitized = sanitizeAmount(amount);
-      return Math.round(sanitized * mult * 100) / 100;
+      return sanitized * mult;
+    }
+
+    function validateNumericInput(el, rawVal) {
+      if (!el) return false;
+      const str = String(rawVal ?? "").trim();
+      const num = Number(rawVal);
+      const isNeg = str.startsWith("-") || num < 0;
+      if (isNeg) {
+        el.classList.add("!border-[#ee0000]", "!text-[#ee0000]", "focus:!border-[#ee0000]");
+        el.setAttribute("aria-invalid", "true");
+      } else {
+        el.classList.remove("!border-[#ee0000]", "!text-[#ee0000]", "focus:!border-[#ee0000]");
+        el.removeAttribute("aria-invalid");
+      }
+      return isNeg;
     }
 
     function t(k, vars) {
@@ -892,7 +907,8 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
               placeholder="0"
               aria-label="${t("aria.income_amount") || "Income amount"}"
               class="w-full pl-5 pr-1.5 py-1 sm:pl-6 sm:pr-2 sm:py-1.5 rounded-[5px] bg-white border border-[#ebebeb] text-[#171717] font-mono text-right focus:outline-none focus:border-[#171717] text-xs"
-              oninput="window._gbp.updateIncomeItem(${idx}, 'amount', this.value)"
+              oninput="window._gbp.updateIncomeItem(${idx}, 'amount', this.value, this)"
+              onchange="if((this.value||'').trim().startsWith('-')||Number(this.value)<0){this.value='';window._gbp.updateIncomeItem(${idx}, 'amount', 0, this);}"
             />
           </div>
           <select
@@ -929,10 +945,10 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
 
       container.innerHTML = state.categories
         .map((cat, catIdx) => {
-          const catTotal = cat.items.reduce(
+          const catTotal = cleanMoney(cat.items.reduce(
             (sum, item) => sum + normalize(item.amount, item.frequency),
             0,
-          );
+          ));
           const isOpen = openCategories.has(catIdx);
           const catDisplayName = window._mrb_i18n
             ? window._mrb_i18n.translateCategory(cat.name)
@@ -1014,7 +1030,8 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
                         placeholder="0"
                         aria-label="${t("aria.expense_amount") || "Expense amount"}"
                         class="w-full pl-5 pr-1.5 py-1 sm:pl-6 sm:pr-2 sm:py-1.5 rounded-[5px] bg-white border border-[#ebebeb] text-[#171717] font-mono text-right focus:outline-none focus:border-[#171717] text-xs"
-                        oninput="window._gbp.updateItem(${catIdx}, ${itemIdx}, 'amount', this.value)"
+                        oninput="window._gbp.updateItem(${catIdx}, ${itemIdx}, 'amount', this.value, this)"
+                        onchange="if((this.value||'').trim().startsWith('-')||Number(this.value)<0){this.value='';window._gbp.updateItem(${catIdx}, ${itemIdx}, 'amount', 0, this);}"
                       />
                     </div>
                     <select
@@ -1068,29 +1085,27 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
         ),
       );
 
-      let totalExpenses = 0;
-      let savingsTotal = 0;
+      let totalExpensesRaw = 0;
+      let savingsTotalRaw = 0;
       const categoryTotals = [];
 
       state.categories.forEach((cat) => {
-        let catTotal = 0;
-        let catSavings = 0;
+        let catTotalRaw = 0;
+        let catSavingsRaw = 0;
         cat.items.forEach((item) => {
           const itemVal = normalize(item.amount, item.frequency);
-          catTotal += itemVal;
+          catTotalRaw += itemVal;
           if (cat.isSavings || item.isSavings) {
-            catSavings += itemVal;
+            catSavingsRaw += itemVal;
           }
         });
-        catTotal = cleanMoney(catTotal);
-        catSavings = cleanMoney(catSavings);
-        totalExpenses += catTotal;
-        savingsTotal += catSavings;
-        categoryTotals.push({ name: cat.name, total: catTotal });
+        totalExpensesRaw += catTotalRaw;
+        savingsTotalRaw += catSavingsRaw;
+        categoryTotals.push({ name: cat.name, total: cleanMoney(catTotalRaw) });
       });
 
-      totalExpenses = cleanMoney(totalExpenses);
-      savingsTotal = cleanMoney(savingsTotal);
+      const totalExpenses = cleanMoney(totalExpensesRaw);
+      const savingsTotal = cleanMoney(savingsTotalRaw);
       const remaining = cleanMoney(totalIncome - totalExpenses);
       const spentPct =
         totalIncome > 0 ? Math.round((totalExpenses / totalIncome) * 100) : 0;
@@ -1369,9 +1384,10 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
 
     // Global handler object for inline event handlers
     window._gbp = {
-      updateIncomeItem: function (idx, field, value) {
+      updateIncomeItem: function (idx, field, value, el) {
         if (!state.income[idx]) return;
         if (field === "amount") {
+          validateNumericInput(el, value);
           state.income[idx].amount = sanitizeAmount(value);
         } else {
           state.income[idx][field] = value;
@@ -1385,13 +1401,14 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
         renderIncome();
         calculateAndRenderResults();
       },
-      updateItem: function (catIdx, itemIdx, field, value) {
+      updateItem: function (catIdx, itemIdx, field, value, el) {
         if (
           !state.categories[catIdx] ||
           !state.categories[catIdx].items[itemIdx]
         )
           return;
         if (field === "amount") {
+          validateNumericInput(el, value);
           state.categories[catIdx].items[itemIdx].amount =
             sanitizeAmount(value);
         } else {

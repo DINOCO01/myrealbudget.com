@@ -925,6 +925,21 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
       return sanitizeAmount(amount) * (FREQUENCY_MULTIPLIERS[freq] || 1);
     }
 
+    function validateNumericInput(el, rawVal) {
+      if (!el) return false;
+      const str = String(rawVal ?? "").trim();
+      const num = Number(rawVal);
+      const isNeg = str.startsWith("-") || num < 0;
+      if (isNeg) {
+        el.classList.add("!border-[#ee0000]", "!text-[#ee0000]", "focus:!border-[#ee0000]");
+        el.setAttribute("aria-invalid", "true");
+      } else {
+        el.classList.remove("!border-[#ee0000]", "!text-[#ee0000]", "focus:!border-[#ee0000]");
+        el.removeAttribute("aria-invalid");
+      }
+      return isNeg;
+    }
+
     function t(k, vars) {
       if (window._mrb_i18n && typeof window._mrb_i18n.t === "function") {
         return window._mrb_i18n.t(k, vars);
@@ -1010,7 +1025,8 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
               placeholder="0"
               aria-label="${groupKey} amount"
               class="w-full pl-5 pr-1.5 py-1 sm:pl-6 sm:pr-2 sm:py-1.5 rounded-[5px] bg-white border border-[#ebebeb] text-[#171717] font-mono text-right focus:outline-none focus:border-[#171717] text-xs"
-              oninput="window._f3020.updateItem('${groupKey}', ${idx}, 'amount', this.value)"
+              oninput="window._f3020.updateItem('${groupKey}', ${idx}, 'amount', this.value, this)"
+              onchange="if((this.value||'').trim().startsWith('-')||Number(this.value)<0){this.value='';window._f3020.updateItem('${groupKey}', ${idx}, 'amount', 0, this);}"
             />
           </div>
           <select
@@ -1046,7 +1062,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
       const monthlyIncome = cleanMoney(normalize(state.income, incomeFreq));
       const targetNeeds = cleanMoney(monthlyIncome * 0.5);
       const targetWants = cleanMoney(monthlyIncome * 0.3);
-      const targetSavings = cleanMoney(monthlyIncome * 0.2);
+      const targetSavings = cleanMoney(monthlyIncome - targetNeeds - targetWants);
 
       const actualNeeds = cleanMoney(
         state.needs.reduce((s, i) => s + normalize(i.amount, i.frequency), 0),
@@ -1310,9 +1326,10 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
     }
 
     window._f3020 = {
-      updateItem: function (group, idx, field, value) {
+      updateItem: function (group, idx, field, value, el) {
         if (!state[group] || !state[group][idx]) return;
         if (field === "amount") {
+          if (el) validateNumericInput(el, value);
           state[group][idx].amount = sanitizeAmount(value);
         } else {
           state[group][idx][field] = value;
@@ -1399,9 +1416,19 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
     const incomeInput = document.getElementById("f3020-income-input");
     if (incomeInput) {
       incomeInput.addEventListener("input", (e) => {
+        validateNumericInput(e.target, e.target.value);
         state.income = sanitizeAmount(e.target.value);
         saveState();
         calculateAndRender();
+      });
+      incomeInput.addEventListener("change", (e) => {
+        if ((e.target.value || "").trim().startsWith("-") || Number(e.target.value) < 0) {
+          e.target.value = "0";
+          validateNumericInput(e.target, "0");
+          state.income = 0;
+          saveState();
+          calculateAndRender();
+        }
       });
     }
 
