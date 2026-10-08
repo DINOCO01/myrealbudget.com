@@ -78,6 +78,7 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'freq.weekly': 'Weekly',
     'freq.biweekly': 'Bi-weekly',
     'freq.monthly': 'Monthly',
+    'freq.semiannual': 'Semi-Annual',
     'freq.quarterly': 'Quarterly',
     'freq.yearly': 'Yearly',
 
@@ -106,10 +107,10 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'summary.actual_outflow': 'Actual Outflow:',
     'summary.cash_breakdown': 'Cash Flow Breakdown',
     'summary.top_categories': 'Largest Monthly Expenses',
-    'summary.spent_pct': '{pct}% spent',
+    'summary.spent_pct': '{pct}% allocated',
     'summary.assigned_pct': '{pct}% assigned',
     'summary.available_pct': '100% available',
-    'summary.income_spent': 'Income Spent',
+    'summary.income_spent': 'Income Allocated',
     'summary.income_remaining': 'Income Remaining',
     'summary.savings_investments': 'Savings & Investments',
     'summary.remaining_cash': 'Remaining Cash',
@@ -126,6 +127,10 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'gbp.normalized_expenses': 'Normalized Expenses',
     'gbp.live_assessment': 'Dynamic Budget Insights',
     'gbp.empty_categories': 'No expense categories with values yet.',
+    'gbp.savings_flag': 'Savings',
+    'gbp.expense_flag': 'Expense',
+    'gbp.is_savings_hint': 'Classified as savings & investments. Click to toggle.',
+    'gbp.is_expense_hint': 'Classified as living expense. Click to toggle.',
 
     // 50/30/20 Planner Specific
     'f3020.heading': '50/30/20 Budget Calculator & Planner',
@@ -323,8 +328,8 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'home.built_desc': 'My Real Budget provides modern financial planning tools directly in your browser. Whether you are balancing paychecks week-to-week or planning annual savings goals, our suite helps you model, organize, and execute an actionable spending plan without spreadsheets breaking or bank accounts being exposed.',
     'home.feat1_title': 'Create a Monthly Budget',
     'home.feat1_desc': 'Organize all sources of income, fixed obligations, and variable expenses into a synchronized monthly balance sheet with automated totals.',
-    'home.feat2_title': 'Plan Weekly Spending',
-    'home.feat2_desc': 'Translate monthly targets into practical weekly allowances so day-to-day grocery runs and dining choices do not derail your bottom line.',
+    'home.feat2_title': 'Customize Budget Categories',
+    'home.feat2_desc': 'Organize living expenses, debt payments, and savings into clear categories to see exactly where your money is allocated.',
     'home.feat3_title': 'Apply the 50/30/20 Rule',
     'home.feat3_desc': 'Distribute after-tax income across 50% essentials, 30% lifestyle choices, and 20% savings and debt acceleration in seconds.',
     'home.feat4_title': 'Create a Zero-Based Budget',
@@ -475,6 +480,7 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'freq.weekly': 'Semanal',
     'freq.biweekly': 'Quincenal',
     'freq.monthly': 'Mensual',
+    'freq.semiannual': 'Semestral',
     'freq.quarterly': 'Trimestral',
     'freq.yearly': 'Anual',
 
@@ -503,10 +509,10 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'summary.actual_outflow': 'Salida Real:',
     'summary.cash_breakdown': 'Desglose de Flujo de Caja',
     'summary.top_categories': 'Mayores Gastos Mensuales',
-    'summary.spent_pct': '{pct}% gastado',
+    'summary.spent_pct': '{pct}% asignado',
     'summary.assigned_pct': '{pct}% asignado',
     'summary.available_pct': '100% disponible',
-    'summary.income_spent': 'Ingresos Gastados',
+    'summary.income_spent': 'Ingresos Asignados',
     'summary.income_remaining': 'Ingresos Restantes',
     'summary.savings_investments': 'Ahorros e Inversiones',
     'summary.remaining_cash': 'Dinero Restante',
@@ -523,6 +529,10 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'gbp.normalized_expenses': 'Gastos Normalizados',
     'gbp.live_assessment': 'Perspectivas Dinámicas del Presupuesto',
     'gbp.empty_categories': 'Aún no hay categorías de gastos con valores.',
+    'gbp.savings_flag': 'Ahorro',
+    'gbp.expense_flag': 'Gasto',
+    'gbp.is_savings_hint': 'Clasificado como ahorro e inversión. Haz clic para cambiar.',
+    'gbp.is_expense_hint': 'Clasificado como gasto. Haz clic para cambiar.',
 
     // 50/30/20 Planner Specific
     'f3020.heading': 'Calculadora y Planificador 50/30/20',
@@ -720,8 +730,8 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'home.built_desc': 'My Real Budget ofrece herramientas modernas de finanzas en tu navegador. Modela, organiza y ejecuta un plan de gastos realista sin hojas de cálculo complejas ni exponer cuentas bancarias.',
     'home.feat1_title': 'Crea un Presupuesto Mensual',
     'home.feat1_desc': 'Organiza fuentes de ingresos, obligaciones fijas y gastos variables en un balance mensual sincronizado.',
-    'home.feat2_title': 'Planifica Gastos Semanales',
-    'home.feat2_desc': 'Convierte metas mensuales en asignaciones semanales prácticas para evitar desvíos.',
+    'home.feat2_title': 'Personaliza Categorías de Presupuesto',
+    'home.feat2_desc': 'Organiza gastos de vida, pagos de deudas y ahorros en categorías claras para ver exactamente cómo se distribuye tu dinero.',
     'home.feat3_title': 'Aplica la Regla 50/30/20',
     'home.feat3_desc': 'Distribuye ingresos netos en 50% esenciales, 30% estilo de vida y 20% ahorro y deudas en segundos.',
     'home.feat4_title': 'Crea un Presupuesto Base Cero',
@@ -872,6 +882,7 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'freq.weekly': 'Hebdomadaire',
     'freq.biweekly': 'Bihebdomadaire',
     'freq.monthly': 'Mensuel',
+    'freq.semiannual': 'Semestriel',
     'freq.quarterly': 'Trimestriel',
     'freq.yearly': 'Annuel',
 
@@ -900,10 +911,10 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'summary.actual_outflow': 'Dépenses Réelles :',
     'summary.cash_breakdown': 'Répartition de Trésorerie',
     'summary.top_categories': 'Principales Dépenses Mensuelles',
-    'summary.spent_pct': '{pct}% dépensé',
+    'summary.spent_pct': '{pct}% alloué',
     'summary.assigned_pct': '{pct}% alloué',
     'summary.available_pct': '100% disponible',
-    'summary.income_spent': 'Revenus Dépensés',
+    'summary.income_spent': 'Revenus Alloués',
     'summary.income_remaining': 'Revenus Restants',
     'summary.savings_investments': 'Épargne et Investissements',
     'summary.remaining_cash': 'Argent Restant',
@@ -920,6 +931,10 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'gbp.normalized_expenses': 'Dépenses Normalisées',
     'gbp.live_assessment': 'Aperçu Dynamique du Budget',
     'gbp.empty_categories': 'Aucune catégorie avec des montants pour le moment.',
+    'gbp.savings_flag': 'Épargne',
+    'gbp.expense_flag': 'Dépense',
+    'gbp.is_savings_hint': 'Classé comme épargne et investissement. Cliquez pour basculer.',
+    'gbp.is_expense_hint': 'Classé comme dépense. Cliquez pour basculer.',
 
     // 50/30/20 Planner Specific
     'f3020.heading': 'Calculateur et Planificateur de Budget 50/30/20',
@@ -1117,8 +1132,8 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'home.built_desc': 'My Real Budget offre des outils financiers modernes dans votre navigateur. Modélisez, organisez et suivez vos dépenses réelles sans tableurs complexes ni partage de comptes bancaires.',
     'home.feat1_title': 'Créer un Budget Mensuel',
     'home.feat1_desc': 'Organisez vos revenus, charges fixes et dépenses variables dans un aperçu synchronisé.',
-    'home.feat2_title': 'Planifier les Dépenses Hebdomadaires',
-    'home.feat2_desc': 'Convertissez les objectifs mensuels en allocations hebdomadaires pour éviter les dérapages.',
+    'home.feat2_title': 'Personnaliser les Catégories',
+    'home.feat2_desc': 'Organisez vos dépenses quotidiennes, remboursements et épargne en catégories claires pour visualiser la répartition exacte de votre argent.',
     'home.feat3_title': 'Appliquer la Règle 50/30/20',
     'home.feat3_desc': 'Répartissez instantanément vos revenus : 50% essentiels, 30% loisirs et 20% épargne.',
     'home.feat4_title': 'Construire un Budget Base Zéro',
@@ -1269,6 +1284,7 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'freq.weekly': 'Wöchentlich',
     'freq.biweekly': 'Zweiwöchentlich',
     'freq.monthly': 'Monatlich',
+    'freq.semiannual': 'Halbjährlich',
     'freq.quarterly': 'Vierteljährlich',
     'freq.yearly': 'Jährlich',
 
@@ -1297,10 +1313,10 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'summary.actual_outflow': 'Tatsächliche Ausgaben:',
     'summary.cash_breakdown': 'Cashflow-Aufschlüsselung',
     'summary.top_categories': 'Größte monatliche Ausgaben',
-    'summary.spent_pct': '{pct}% ausgegeben',
+    'summary.spent_pct': '{pct}% zugewiesen',
     'summary.assigned_pct': '{pct}% zugewiesen',
     'summary.available_pct': '100% verfügbar',
-    'summary.income_spent': 'Ausgegebenes Einkommen',
+    'summary.income_spent': 'Zugewiesenes Einkommen',
     'summary.income_remaining': 'Verbleibendes Einkommen',
     'summary.savings_investments': 'Sparen & Investitionen',
     'summary.remaining_cash': 'Verbleibendes Geld',
@@ -1317,6 +1333,10 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'gbp.normalized_expenses': 'Normalisierte Ausgaben',
     'gbp.live_assessment': 'Dynamische Budget-Einblicke',
     'gbp.empty_categories': 'Bisher keine Ausgabenkategorien erfasst.',
+    'gbp.savings_flag': 'Sparen',
+    'gbp.expense_flag': 'Ausgabe',
+    'gbp.is_savings_hint': 'Als Sparen & Investition eingestuft. Klicken zum Umschalten.',
+    'gbp.is_expense_hint': 'Als Ausgabe eingestuft. Klicken zum Umschalten.',
 
     // 50/30/20 Planner Specific
     'f3020.heading': '50/30/20 Budgetrechner & Planer',
@@ -1514,8 +1534,8 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'home.built_desc': 'My Real Budget bietet moderne Finanzwerkzeuge direkt im Browser. Modellieren, organisieren und steuern Sie realistische Ausgaben – ohne komplizierte Tabellen oder Bankkonto-Freigaben.',
     'home.feat1_title': 'Monatsbudget erstellen',
     'home.feat1_desc': 'Ordnen Sie Einnahmen, feste Verpflichtungen und variable Ausgaben in einer synchronisierten Monatsübersicht.',
-    'home.feat2_title': 'Wöchentliche Ausgaben planen',
-    'home.feat2_desc': 'Wandeln Sie Monatsziele in praktische Wochenbudgets um, um Budgetüberschreitungen zu vermeiden.',
+    'home.feat2_title': 'Budget-Kategorien anpassen',
+    'home.feat2_desc': 'Strukturieren Sie Lebenshaltungskosten, Schuldenzahlungen und Ersparnisse in übersichtlichen Kategorien, um die genaue Verteilung Ihrer Finanzen zu sehen.',
     'home.feat3_title': 'Die 50/30/20-Regel anwenden',
     'home.feat3_desc': 'Teilen Sie Ihr Nettoeinkommen in Sekunden in 50% Notwendiges, 30% Lebensstil und 20% Ersparnisse auf.',
     'home.feat4_title': 'Nullbasiertes Budget aufbauen',
@@ -1666,6 +1686,7 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'freq.weekly': 'Semanal',
     'freq.biweekly': 'Quinzenal',
     'freq.monthly': 'Mensal',
+    'freq.semiannual': 'Semestral',
     'freq.quarterly': 'Trimestral',
     'freq.yearly': 'Anual',
 
@@ -1694,10 +1715,10 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'summary.actual_outflow': 'Saída Real:',
     'summary.cash_breakdown': 'Detalhamento do Fluxo',
     'summary.top_categories': 'Maiores Despesas Mensais',
-    'summary.spent_pct': '{pct}% gasto',
+    'summary.spent_pct': '{pct}% alocado',
     'summary.assigned_pct': '{pct}% alocado',
     'summary.available_pct': '100% disponível',
-    'summary.income_spent': 'Renda Gasta',
+    'summary.income_spent': 'Renda Alocada',
     'summary.income_remaining': 'Renda Restante',
     'summary.savings_investments': 'Poupança e Investimentos',
     'summary.remaining_cash': 'Dinheiro Restante',
@@ -1714,6 +1735,10 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'gbp.normalized_expenses': 'Despesas Normalizadas',
     'gbp.live_assessment': 'Insights do Orçamento',
     'gbp.empty_categories': 'Nenhuma categoria com valores ainda.',
+    'gbp.savings_flag': 'Poupança',
+    'gbp.expense_flag': 'Despesa',
+    'gbp.is_savings_hint': 'Classificado como poupança e investimento. Clique para alternar.',
+    'gbp.is_expense_hint': 'Classificado como despesa. Clique para alternar.',
 
     // 50/30/20 Planner Specific
     'f3020.heading': 'Calculadora e Planejador 50/30/20',
@@ -1911,8 +1936,8 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'home.built_desc': 'O My Real Budget oferece ferramentas financeiras modernas no seu navegador. Modele, organize e execute um plano de gastos realista sem planilhas complexas nem exposição de contas bancárias.',
     'home.feat1_title': 'Crie um Orçamento Mensal',
     'home.feat1_desc': 'Organize fontes de renda, despesas fixas e gastos variáveis em um resumo mensal sincronizado.',
-    'home.feat2_title': 'Planeje Gastos Semanais',
-    'home.feat2_desc': 'Converta metas mensais em limites semanais práticos para evitar surpresas.',
+    'home.feat2_title': 'Personalize Categorias do Orçamento',
+    'home.feat2_desc': 'Organize despesas essenciais, pagamentos de dívidas e economias em categorias claras para ver com precisão onde seu dinheiro está alocado.',
     'home.feat3_title': 'Aplique a Regra 50/30/20',
     'home.feat3_desc': 'Distribua a renda líquida em 50% essenciais, 30% estilo de vida e 20% poupança e dívidas em segundos.',
     'home.feat4_title': 'Construa um Orçamento Base Zero',
@@ -2307,7 +2332,7 @@ export function getSelectedLanguage(): string {
     if (saved && SUPPORTED_LANGUAGES[saved.toLowerCase()]) {
       return saved.toLowerCase();
     }
-  } catch (e) {}
+  } catch (e) { }
   return DEFAULT_LANGUAGE;
 }
 
@@ -2317,7 +2342,7 @@ export function setSelectedLanguage(lang: string): void {
   if (typeof window !== 'undefined') {
     try {
       localStorage.setItem(LANGUAGE_STORAGE_KEY, lower);
-    } catch (e) {}
+    } catch (e) { }
     // Update live DOM translations
     updateDocumentTranslations(lower);
     // Dispatch custom event for reactive UI updates

@@ -1,15 +1,23 @@
 ---
-import { DEFAULT_INCOME_ITEMS, DEFAULT_EXPENSE_CATEGORIES } from '../../data/budgetCategories';
-import { FREQUENCY_OPTIONS } from '../../utils/frequency';
-import CurrencyLanguageControls from '../ui/CurrencyLanguageControls.astro';
+import {
+  DEFAULT_INCOME_ITEMS,
+  DEFAULT_EXPENSE_CATEGORIES,
+} from "../../data/budgetCategories";
+import { FREQUENCY_OPTIONS } from "../../utils/frequency";
+import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
 ---
 
 <div id="general-budget-planner" class="w-full">
   <!-- Privacy Badge & Quick Controls -->
-  <div class="mb-4 sm:mb-6 flex flex-wrap items-center justify-between gap-2.5 text-xs">
-    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-white border border-[#ebebeb] text-[#4d4d4d] shadow-whisper text-[11px] sm:text-xs">
+  <div
+    class="mb-4 sm:mb-6 flex flex-wrap items-center justify-between gap-2.5 text-xs"
+  >
+    <div
+      class="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-white border border-[#ebebeb] text-[#4d4d4d] shadow-whisper text-[11px] sm:text-xs"
+    >
       <span class="w-2 h-2 rounded-full bg-[#50e3c2]"></span>
-      <span data-mrb-t="common.autosaved">Autosaved locally to this device</span>
+      <span data-mrb-t="common.autosaved">Autosaved locally to this device</span
+      >
     </div>
     <div class="flex items-center gap-1.5 sm:gap-2">
       <CurrencyLanguageControls idPrefix="gbp" />
@@ -19,8 +27,18 @@ import CurrencyLanguageControls from '../ui/CurrencyLanguageControls.astro';
         data-mrb-t="common.export_csv"
         class="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-[6px] border border-[#ebebeb] bg-white text-[#171717] font-medium hover:bg-neutral-50 transition shadow-whisper text-[11px] sm:text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0070f3]"
       >
-        <svg class="w-3.5 h-3.5 text-[#4d4d4d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+        <svg
+          class="w-3.5 h-3.5 text-[#4d4d4d]"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+          ></path>
         </svg>
         Export CSV
       </button>
@@ -38,17 +56,37 @@ import CurrencyLanguageControls from '../ui/CurrencyLanguageControls.astro';
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-start">
     <!-- LEFT: Inputs (8 cols on lg) -->
     <div class="lg:col-span-7 xl:col-span-8 space-y-4 sm:space-y-6">
-      
       <!-- 1. INCOME SECTION -->
-      <section class="bg-white rounded-[10px] sm:rounded-[12px] border border-[#ebebeb] p-3.5 sm:p-6 shadow-whisper">
-        <div class="flex items-center justify-between pb-2.5 mb-2.5 sm:pb-4 sm:mb-4 border-b border-[#ebebeb]">
+      <section
+        class="bg-white rounded-[10px] sm:rounded-[12px] border border-[#ebebeb] p-3.5 sm:p-6 shadow-whisper"
+      >
+        <div
+          class="flex items-center justify-between pb-2.5 mb-2.5 sm:pb-4 sm:mb-4 border-b border-[#ebebeb]"
+        >
           <div>
-            <h2 class="text-base sm:text-lg font-semibold text-[#171717] tracking-tight" data-mrb-t="gbp.income_section">1. Monthly Income</h2>
-            <p class="text-[11px] sm:text-xs text-[#8f8f8f]" data-mrb-t="gbp.income_desc">Enter all income streams. Choose how often you get paid.</p>
+            <h2
+              class="text-base sm:text-lg font-semibold text-[#171717] tracking-tight"
+              data-mrb-t="gbp.income_section"
+            >
+              1. Monthly Income
+            </h2>
+            <p
+              class="text-[11px] sm:text-xs text-[#8f8f8f]"
+              data-mrb-t="gbp.income_desc"
+            >
+              Enter all income streams. Choose how often you get paid.
+            </p>
           </div>
           <div class="text-right">
-            <span class="text-[10px] sm:text-xs font-mono text-[#8f8f8f] block" data-mrb-t="gbp.normalized_total">Normalized Total</span>
-            <span id="income-header-total" class="font-mono text-sm sm:text-base font-semibold text-[#171717]" data-mrb-currency-val="4200">$4,200</span>
+            <span
+              class="text-[10px] sm:text-xs font-mono text-[#8f8f8f] block"
+              data-mrb-t="gbp.normalized_total">Normalized Total</span
+            >
+            <span
+              id="income-header-total"
+              class="font-mono text-sm sm:text-base font-semibold text-[#171717]"
+              data-mrb-currency-val="4200">$4,200</span
+            >
           </div>
         </div>
 
@@ -61,49 +99,112 @@ import CurrencyLanguageControls from '../ui/CurrencyLanguageControls.astro';
           id="btn-add-income-item"
           class="mt-2.5 sm:mt-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[6px] border border-dashed border-[#ebebeb] text-xs font-medium text-[#4d4d4d] hover:text-[#171717] hover:border-[#171717] hover:bg-[#fafafa] transition w-full justify-center"
         >
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          <svg
+            class="w-3.5 h-3.5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 4v16m8-8H4"></path>
           </svg>
           <span data-mrb-t="common.add_income">Add Income Stream</span>
         </button>
       </section>
 
       <!-- Mobile Quick Summary Bar (Visible only on mobile/tablet < lg) -->
-      <div class="lg:hidden bg-white rounded-[10px] border border-[#ebebeb] p-3 shadow-whisper">
-        <div class="flex items-center justify-between pb-2 mb-2 border-b border-[#ebebeb]">
+      <div
+        class="lg:hidden bg-white rounded-[10px] border border-[#ebebeb] p-3 shadow-whisper"
+      >
+        <div
+          class="flex items-center justify-between pb-2 mb-2 border-b border-[#ebebeb]"
+        >
           <div class="flex items-center gap-1.5">
-            <span class="text-xs font-semibold text-[#171717]" data-mrb-t="summary.net_balance">Net Cash Flow:</span>
-            <span id="mobile-summary-balance-value" class="font-mono text-base font-bold text-[#171717]" data-mrb-currency-val="0">$0</span>
+            <span
+              class="text-xs font-semibold text-[#171717]"
+              data-mrb-t="summary.net_balance">Net Cash Flow:</span
+            >
+            <span
+              id="mobile-summary-balance-value"
+              class="font-mono text-base font-bold text-[#171717]"
+              data-mrb-currency-val="0">$0</span
+            >
           </div>
-          <div id="mobile-balance-status-badge" class="px-2 py-0.5 rounded text-[11px] font-medium bg-[#f2f2f2] text-[#4d4d4d]">
-            <span id="mobile-balance-status-text" data-mrb-t="summary.balanced">Balanced</span>
+          <div
+            id="mobile-balance-status-badge"
+            class="px-2 py-0.5 rounded text-[11px] font-medium bg-[#f2f2f2] text-[#4d4d4d]"
+          >
+            <span id="mobile-balance-status-text" data-mrb-t="summary.balanced"
+              >Balanced</span
+            >
           </div>
         </div>
         <div class="grid grid-cols-3 gap-1.5 text-center text-xs font-mono">
           <div class="bg-[#fafafa] py-1 px-1.5 rounded border border-[#ebebeb]">
-            <span class="text-[10px] text-[#8f8f8f] block" data-mrb-t="summary.monthly_income">Income</span>
-            <span id="mobile-summary-income" class="font-semibold text-[#171717] text-xs block" data-mrb-currency-val="0">$0</span>
+            <span
+              class="text-[10px] text-[#8f8f8f] block"
+              data-mrb-t="summary.monthly_income">Income</span
+            >
+            <span
+              id="mobile-summary-income"
+              class="font-semibold text-[#171717] text-xs block"
+              data-mrb-currency-val="0">$0</span
+            >
           </div>
           <div class="bg-[#fafafa] py-1 px-1.5 rounded border border-[#ebebeb]">
-            <span class="text-[10px] text-[#8f8f8f] block" data-mrb-t="summary.outflows">Outflows</span>
-            <span id="mobile-summary-expenses" class="font-semibold text-[#171717] text-xs block" data-mrb-currency-val="0">$0</span>
+            <span
+              class="text-[10px] text-[#8f8f8f] block"
+              data-mrb-t="summary.outflows">Outflows</span
+            >
+            <span
+              id="mobile-summary-expenses"
+              class="font-semibold text-[#171717] text-xs block"
+              data-mrb-currency-val="0">$0</span
+            >
           </div>
           <div class="bg-[#fafafa] py-1 px-1.5 rounded border border-[#ebebeb]">
-            <span class="text-[10px] text-[#8f8f8f] block" data-mrb-t="summary.remaining">Remaining</span>
-            <span id="mobile-summary-remaining" class="font-semibold text-[#171717] text-xs block" data-mrb-currency-val="0">$0</span>
+            <span
+              class="text-[10px] text-[#8f8f8f] block"
+              data-mrb-t="summary.remaining">Remaining</span
+            >
+            <span
+              id="mobile-summary-remaining"
+              class="font-semibold text-[#171717] text-xs block"
+              data-mrb-currency-val="0">$0</span
+            >
           </div>
         </div>
       </div>
 
       <!-- 2. EXPENSES SECTION -->
       <section class="space-y-3 sm:space-y-6">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 px-1">
+        <div
+          class="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 px-1"
+        >
           <div>
-            <h2 class="text-base sm:text-lg font-semibold text-[#171717] tracking-tight" data-mrb-t="gbp.expenses_section">2. Planned Expenses</h2>
-            <p class="text-[11px] sm:text-xs text-[#8f8f8f]" data-mrb-t="gbp.expenses_desc">Set amounts and select frequencies. Yearly and weekly items are annualized to monthly.</p>
+            <h2
+              class="text-base sm:text-lg font-semibold text-[#171717] tracking-tight"
+              data-mrb-t="gbp.expenses_section"
+            >
+              2. Planned Expenses
+            </h2>
+            <p
+              class="text-[11px] sm:text-xs text-[#8f8f8f]"
+              data-mrb-t="gbp.expenses_desc"
+            >
+              Set amounts and select frequencies. Yearly and weekly items are
+              annualized to monthly.
+            </p>
           </div>
-          <div class="flex items-center justify-between sm:justify-end gap-3 pt-1 sm:pt-0">
-            <div class="flex sm:hidden items-center gap-1.5 text-xs text-[#8f8f8f]">
+          <div
+            class="flex items-center justify-between sm:justify-end gap-3 pt-1 sm:pt-0"
+          >
+            <div
+              class="flex sm:hidden items-center gap-1.5 text-xs text-[#8f8f8f]"
+            >
               <button
                 type="button"
                 class="hover:text-[#171717] underline text-[11px]"
@@ -123,8 +224,15 @@ import CurrencyLanguageControls from '../ui/CurrencyLanguageControls.astro';
               </button>
             </div>
             <div class="text-right">
-              <span class="hidden sm:block text-xs font-mono text-[#8f8f8f]" data-mrb-t="gbp.normalized_expenses">Normalized Expenses</span>
-              <span id="expenses-header-total" class="font-mono text-sm sm:text-base font-semibold text-[#171717]" data-mrb-currency-val="0">$0</span>
+              <span
+                class="hidden sm:block text-xs font-mono text-[#8f8f8f]"
+                data-mrb-t="gbp.normalized_expenses">Normalized Expenses</span
+              >
+              <span
+                id="expenses-header-total"
+                class="font-mono text-sm sm:text-base font-semibold text-[#171717]"
+                data-mrb-currency-val="0">$0</span
+              >
             </div>
           </div>
         </div>
@@ -141,10 +249,21 @@ import CurrencyLanguageControls from '../ui/CurrencyLanguageControls.astro';
             id="btn-add-custom-category"
             class="inline-flex items-center justify-center gap-1.5 w-full py-2.5 rounded-[10px] sm:rounded-[12px] border border-dashed border-[#ebebeb] bg-white text-xs font-medium text-[#4d4d4d] hover:text-[#171717] hover:border-[#171717] hover:bg-[#fafafa] transition shadow-whisper"
           >
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            <svg
+              class="w-3.5 h-3.5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 4v16m8-8H4"></path>
             </svg>
-            <span data-mrb-t="common.add_category">Add Custom Expense Category</span>
+            <span data-mrb-t="common.add_category"
+              >Add Custom Expense Category</span
+            >
           </button>
         </div>
       </section>
@@ -152,88 +271,206 @@ import CurrencyLanguageControls from '../ui/CurrencyLanguageControls.astro';
 
     <!-- RIGHT: Results & Interpretation (Sticky on Desktop) -->
     <div class="lg:col-span-5 xl:col-span-4 lg:sticky lg:top-24 space-y-6">
-      
       <!-- Summary Result Card -->
-      <div class="bg-white rounded-[12px] border border-[#ebebeb] p-4 sm:p-6 shadow-whisper">
+      <div
+        class="bg-white rounded-[12px] border border-[#ebebeb] p-4 sm:p-6 shadow-whisper"
+      >
         <div class="border-b border-[#ebebeb] pb-3 sm:pb-4 mb-3 sm:mb-5">
-          <span class="font-mono text-[11px] sm:text-xs uppercase tracking-wider text-[#8f8f8f] block mb-0.5 sm:mb-1" data-mrb-t="summary.budget_summary">
+          <span
+            class="font-mono text-[11px] sm:text-xs uppercase tracking-wider text-[#8f8f8f] block mb-0.5 sm:mb-1"
+            data-mrb-t="summary.budget_summary"
+          >
             Budget Balance
           </span>
           <div class="flex items-baseline justify-between">
-            <span id="summary-balance-label" class="text-xs sm:text-sm font-medium text-[#4d4d4d]" data-mrb-t="summary.remaining_cash">Remaining Cash</span>
-            <span id="summary-balance-value" class="font-mono text-xl sm:text-2xl font-bold tracking-tight text-[#171717]" data-mrb-currency-val="0">
+            <span
+              id="summary-balance-label"
+              class="text-xs sm:text-sm font-medium text-[#4d4d4d]"
+              data-mrb-t="summary.remaining_cash">Remaining Cash</span
+            >
+            <span
+              id="summary-balance-value"
+              class="font-mono text-xl sm:text-2xl font-bold tracking-tight text-[#171717]"
+              data-mrb-currency-val="0"
+            >
               $0
             </span>
           </div>
         </div>
 
         <!-- Balance Status Banner -->
-        <div id="balance-status-banner" class="p-2.5 sm:p-3.5 rounded-[6px] mb-3 sm:mb-5 text-xs transition-colors">
-          <p id="balance-status-text" class="font-medium leading-relaxed" data-mrb-t="interpret.general_empty">
+        <div
+          id="balance-status-banner"
+          class="p-2.5 sm:p-3.5 rounded-[6px] mb-3 sm:mb-5 text-xs transition-colors"
+        >
+          <p
+            id="balance-status-text"
+            class="font-medium leading-relaxed"
+            data-mrb-t="interpret.general_empty"
+          >
             Enter your monthly income and expenses to balance your budget.
           </p>
         </div>
 
         <!-- Breakdown Numbers -->
-        <div class="space-y-2 sm:space-y-3 font-mono text-sm border-b border-[#ebebeb] pb-3 sm:pb-5 mb-3 sm:mb-5">
+        <div
+          class="space-y-2 sm:space-y-3 font-mono text-sm border-b border-[#ebebeb] pb-3 sm:pb-5 mb-3 sm:mb-5"
+        >
           <div class="flex justify-between items-center text-xs">
-            <span class="text-[#8f8f8f]" data-mrb-t="summary.monthly_income">Monthly Income</span>
-            <span id="summary-total-income" class="font-semibold text-[#171717]" data-mrb-currency-val="0">$0</span>
+            <span class="text-[#8f8f8f]" data-mrb-t="summary.monthly_income"
+              >Monthly Income</span
+            >
+            <span
+              id="summary-total-income"
+              class="font-semibold text-[#171717]"
+              data-mrb-currency-val="0">$0</span
+            >
           </div>
           <div class="flex justify-between items-center text-xs">
-            <span class="text-[#8f8f8f]" data-mrb-t="summary.planned_expenses">Planned Outflows</span>
-            <span id="summary-total-expenses" class="font-semibold text-[#171717]" data-mrb-currency-val="0">$0</span>
+            <span class="text-[#8f8f8f]" data-mrb-t="summary.planned_expenses"
+              >Planned Outflows</span
+            >
+            <span
+              id="summary-total-expenses"
+              class="font-semibold text-[#171717]"
+              data-mrb-currency-val="0">$0</span
+            >
           </div>
-          <div class="flex justify-between items-center text-xs pt-1 border-t border-[#f2f2f2]">
-            <span class="text-[#8f8f8f]" data-mrb-t="summary.income_spent">Income Spent</span>
-            <span id="summary-spent-pct" class="font-semibold text-[#171717]">0%</span>
+          <div
+            class="flex justify-between items-center text-xs pt-1 border-t border-[#f2f2f2]"
+          >
+            <span class="text-[#8f8f8f]" data-mrb-t="summary.income_spent"
+              >Income Spent</span
+            >
+            <span id="summary-spent-pct" class="font-semibold text-[#171717]"
+              >0%</span
+            >
           </div>
           <div class="flex justify-between items-center text-xs">
-            <span class="text-[#8f8f8f]" data-mrb-t="summary.income_remaining">Income Remaining</span>
-            <span id="summary-remaining-pct" class="font-semibold text-[#171717]">0%</span>
+            <span class="text-[#8f8f8f]" data-mrb-t="summary.income_remaining"
+              >Income Remaining</span
+            >
+            <span
+              id="summary-remaining-pct"
+              class="font-semibold text-[#171717]">0%</span
+            >
           </div>
           <div class="flex justify-between items-center text-xs">
-            <span class="text-[#8f8f8f]" data-mrb-t="summary.savings_investments">Savings & Investments</span>
-            <span id="summary-savings-amount" class="font-semibold text-[#0070f3]">$0 (0%)</span>
+            <span
+              class="text-[#8f8f8f]"
+              data-mrb-t="summary.savings_investments"
+              >Savings & Investments</span
+            >
+            <span
+              id="summary-savings-amount"
+              class="font-semibold text-[#0070f3]">$0 (0%)</span
+            >
           </div>
         </div>
 
         <!-- Visual Progress Bar -->
         <div class="space-y-1.5 sm:space-y-2 mb-4 sm:mb-6">
-          <div class="flex justify-between text-[11px] sm:text-xs text-[#8f8f8f]">
-            <span data-mrb-t="home.preview_distribution">Income Allocation</span>
+          <div
+            class="flex justify-between text-[11px] sm:text-xs text-[#8f8f8f]"
+          >
+            <span data-mrb-t="home.preview_distribution">Income Allocation</span
+            >
             <span id="progress-allocation-label">0% spent</span>
           </div>
-          <div class="w-full h-2 sm:h-2.5 rounded-full bg-[#f2f2f2] overflow-hidden flex">
-            <div id="progress-bar-spent" class="h-full bg-[#171717] transition-all duration-300" style="width: 0%"></div>
-            <div id="progress-bar-savings" class="h-full bg-[#0070f3] transition-all duration-300" style="width: 0%"></div>
-            <div id="progress-bar-surplus" class="h-full bg-[#50e3c2] transition-all duration-300" style="width: 0%"></div>
+          <div
+            class="w-full h-2 sm:h-2.5 rounded-full bg-[#f2f2f2] overflow-hidden flex"
+          >
+            <div
+              id="progress-bar-spent"
+              class="h-full bg-[#171717] transition-all duration-300"
+              style="width: 0%"
+            >
+            </div>
+            <div
+              id="progress-bar-savings"
+              class="h-full bg-[#0070f3] transition-all duration-300"
+              style="width: 0%"
+            >
+            </div>
+            <div
+              id="progress-bar-surplus"
+              class="h-full bg-[#50e3c2] transition-all duration-300"
+              style="width: 0%"
+            >
+            </div>
           </div>
-          <div class="flex items-center gap-3 text-[10px] sm:text-[11px] text-[#8f8f8f] pt-1 font-mono">
-            <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#171717]"></span> <span data-mrb-t="summary.outflows">Expenses</span></span>
-            <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#0070f3]"></span> <span data-mrb-t="home.preview_savings">Savings</span></span>
-            <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#50e3c2]"></span> <span data-mrb-t="summary.remaining">Remaining</span></span>
+          <div
+            class="flex items-center gap-3 text-[10px] sm:text-[11px] text-[#8f8f8f] pt-1 font-mono"
+          >
+            <span class="flex items-center gap-1"
+              ><span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#171717]"
+              ></span>
+              <span data-mrb-t="summary.outflows">Expenses</span></span
+            >
+            <span class="flex items-center gap-1"
+              ><span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#0070f3]"
+              ></span>
+              <span data-mrb-t="home.preview_savings">Savings</span></span
+            >
+            <span class="flex items-center gap-1"
+              ><span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#50e3c2]"
+              ></span>
+              <span data-mrb-t="summary.remaining">Remaining</span></span
+            >
           </div>
         </div>
 
         <!-- Plain Language Interpretation (Secondary Breakdown) -->
         <details class="group space-y-2">
-          <summary class="flex items-center justify-between font-mono text-[11px] sm:text-xs font-medium uppercase tracking-wider text-[#8f8f8f] cursor-pointer list-none select-none py-0.5">
-            <span data-mrb-t="gbp.live_assessment">Practical Interpretation</span>
-            <svg class="w-3.5 h-3.5 text-[#8f8f8f] transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          <summary
+            class="flex items-center justify-between font-mono text-[11px] sm:text-xs font-medium uppercase tracking-wider text-[#8f8f8f] cursor-pointer list-none select-none py-0.5"
+          >
+            <span data-mrb-t="gbp.live_assessment"
+              >Practical Interpretation</span
+            >
+            <svg
+              class="w-3.5 h-3.5 text-[#8f8f8f] transition-transform duration-200 group-open:rotate-180"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"></path></svg
+            >
           </summary>
-          <div id="interpretation-box" class="space-y-2 text-xs text-[#4d4d4d] leading-relaxed pt-1">
+          <div
+            id="interpretation-box"
+            class="space-y-2 text-xs text-[#4d4d4d] leading-relaxed pt-1"
+          >
             <!-- Dynamic insights based on real numbers -->
           </div>
         </details>
       </div>
 
       <!-- Largest Spending Categories Card -->
-      <div class="bg-white rounded-[12px] border border-[#ebebeb] p-4 sm:p-5 shadow-whisper">
+      <div
+        class="bg-white rounded-[12px] border border-[#ebebeb] p-4 sm:p-5 shadow-whisper"
+      >
         <details class="group space-y-2.5">
-          <summary class="flex items-center justify-between font-mono text-[11px] sm:text-xs font-medium uppercase tracking-wider text-[#8f8f8f] cursor-pointer list-none select-none py-0.5">
-            <span data-mrb-t="summary.top_categories">Top Spending Categories</span>
-            <svg class="w-3.5 h-3.5 text-[#8f8f8f] transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          <summary
+            class="flex items-center justify-between font-mono text-[11px] sm:text-xs font-medium uppercase tracking-wider text-[#8f8f8f] cursor-pointer list-none select-none py-0.5"
+          >
+            <span data-mrb-t="summary.top_categories"
+              >Top Spending Categories</span
+            >
+            <svg
+              class="w-3.5 h-3.5 text-[#8f8f8f] transition-transform duration-200 group-open:rotate-180"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"></path></svg
+            >
           </summary>
           <div id="top-categories-list" class="space-y-2 text-xs pt-1">
             <!-- Populated dynamically -->
@@ -242,189 +479,405 @@ import CurrencyLanguageControls from '../ui/CurrencyLanguageControls.astro';
       </div>
 
       <!-- Quick Method Switcher -->
-      <div class="bg-[#fafafa] rounded-[10px] sm:rounded-[12px] border border-[#ebebeb] p-3 sm:p-4 text-xs text-[#4d4d4d] space-y-1.5">
-        <p class="font-medium text-[#171717]" data-mrb-t="common.try_another_method">Want to try another budgeting method?</p>
-        <p class="text-[11px] sm:text-[12px] text-[#8f8f8f]" data-mrb-t-html="gbp.switch_methods_desc">
-          Switch to the <a href="/50-30-20-budget/" class="text-[#0070f3] underline hover:text-[#0761d1]">50/30/20 Method</a> for percentage-based targets, or the <a href="/zero-based-budget/" class="text-[#0070f3] underline hover:text-[#0761d1]">Zero-Based Method</a> to allocate every dollar to zero.
+      <div
+        class="bg-[#fafafa] rounded-[10px] sm:rounded-[12px] border border-[#ebebeb] p-3 sm:p-4 text-xs text-[#4d4d4d] space-y-1.5"
+      >
+        <p
+          class="font-medium text-[#171717]"
+          data-mrb-t="common.try_another_method"
+        >
+          Want to try another budgeting method?
+        </p>
+        <p
+          class="text-[11px] sm:text-[12px] text-[#8f8f8f]"
+          data-mrb-t-html="gbp.switch_methods_desc"
+        >
+          Switch to the <a
+            href="/50-30-20-budget/"
+            class="text-[#0070f3] underline hover:text-[#0761d1]"
+            >50/30/20 Method</a
+          > for percentage-based targets, or the <a
+            href="/zero-based-budget/"
+            class="text-[#0070f3] underline hover:text-[#0761d1]"
+            >Zero-Based Method</a
+          > to allocate every dollar to zero.
         </p>
       </div>
-
     </div>
   </div>
 </div>
 
 <script is:inline>
-(function() {
-  const STORAGE_KEY = 'myrealbudget_general_budget_v1';
+  (function () {
+    const STORAGE_KEY = "myrealbudget_general_budget_v1";
 
-  const FREQUENCY_MULTIPLIERS = {
-    weekly: 52 / 12,
-    biweekly: 26 / 12,
-    monthly: 1,
-    quarterly: 4 / 12,
-    yearly: 1 / 12,
-  };
+    const FREQUENCY_MULTIPLIERS = {
+      weekly: 52 / 12,
+      biweekly: 26 / 12,
+      monthly: 1,
+      quarterly: 4 / 12,
+      semiannual: 2 / 12,
+      yearly: 1 / 12,
+    };
 
-  const FREQUENCY_OPTIONS = [
-    { id: 'monthly', label: 'Monthly' },
-    { id: 'weekly', label: 'Weekly' },
-    { id: 'biweekly', label: 'Every 2 wks' },
-    { id: 'quarterly', label: 'Quarterly' },
-    { id: 'yearly', label: 'Yearly' },
-  ];
+    const FREQUENCY_OPTIONS = [
+      { id: "monthly", label: "Monthly" },
+      { id: "weekly", label: "Weekly" },
+      { id: "biweekly", label: "Every 2 wks" },
+      { id: "quarterly", label: "Quarterly" },
+      { id: "semiannual", label: "Semi-Annual" },
+      { id: "yearly", label: "Yearly" },
+    ];
 
-  const defaultData = {
-    income: [
-      { id: 'inc_salary', name: 'Primary Salary (Take-home)', amount: 4200, frequency: 'monthly' },
-      { id: 'inc_side', name: 'Side Income', amount: 300, frequency: 'monthly' },
-      { id: 'inc_freelance', name: 'Freelance & Contract', amount: 0, frequency: 'monthly' },
-    ],
-    categories: [
-      {
-        id: 'cat_housing',
-        name: 'Housing',
-        items: [
-          { id: 'h1', name: 'Rent or Mortgage', amount: 1400, frequency: 'monthly' },
-          { id: 'h2', name: 'Maintenance & Repairs', amount: 100, frequency: 'monthly' },
-        ],
-      },
-      {
-        id: 'cat_utilities',
-        name: 'Utilities',
-        items: [
-          { id: 'u1', name: 'Electricity & Gas', amount: 120, frequency: 'monthly' },
-          { id: 'u2', name: 'Water & Trash', amount: 60, frequency: 'monthly' },
-          { id: 'u3', name: 'Internet & Mobile Plan', amount: 130, frequency: 'monthly' },
-        ],
-      },
-      {
-        id: 'cat_food',
-        name: 'Food & Groceries',
-        items: [
-          { id: 'f1', name: 'Groceries & Essentials', amount: 110, frequency: 'weekly' },
-          { id: 'f2', name: 'Dining Out & Coffee', amount: 45, frequency: 'weekly' },
-        ],
-      },
-      {
-        id: 'cat_transportation',
-        name: 'Transportation',
-        items: [
-          { id: 't1', name: 'Car Loan / Transit Pass', amount: 280, frequency: 'monthly' },
-          { id: 't2', name: 'Gas / Fuel', amount: 40, frequency: 'weekly' },
-          { id: 't3', name: 'Auto Maintenance & Tires', amount: 600, frequency: 'yearly' },
-        ],
-      },
-      {
-        id: 'cat_insurance',
-        name: 'Insurance & Healthcare',
-        items: [
-          { id: 'i1', name: 'Auto Insurance', amount: 1200, frequency: 'yearly' },
-          { id: 'i2', name: 'Renters / Home Insurance', amount: 240, frequency: 'yearly' },
-          { id: 'i3', name: 'Medical Co-pays & Prescriptions', amount: 45, frequency: 'monthly' },
-        ],
-      },
-      {
-        id: 'cat_debt',
-        name: 'Debt Payments',
-        items: [
-          { id: 'd1', name: 'Student Loan Payment', amount: 180, frequency: 'monthly' },
-          { id: 'd2', name: 'Credit Card Minimum', amount: 0, frequency: 'monthly' },
-        ],
-      },
-      {
-        id: 'cat_subscriptions',
-        name: 'Subscriptions & Lifestyle',
-        items: [
-          { id: 's1', name: 'Streaming & Apps', amount: 40, frequency: 'monthly' },
-          { id: 's2', name: 'Gym / Fitness Membership', amount: 45, frequency: 'monthly' },
-          { id: 's3', name: 'Entertainment & Fun Money', amount: 120, frequency: 'monthly' },
-        ],
-      },
-      {
-        id: 'cat_savings',
-        name: 'Savings & Investments',
-        items: [
-          { id: 'sa1', name: 'Emergency Fund', amount: 250, frequency: 'monthly' },
-          { id: 'sa2', name: 'Roth IRA / Retirement', amount: 250, frequency: 'monthly' },
-        ],
-      },
-    ],
-  };
+    const defaultData = {
+      income: [
+        {
+          id: "inc_salary",
+          name: "Primary Salary (Take-home)",
+          amount: 4200,
+          frequency: "monthly",
+        },
+        {
+          id: "inc_side",
+          name: "Side Income",
+          amount: 300,
+          frequency: "monthly",
+        },
+        {
+          id: "inc_freelance",
+          name: "Freelance & Contract",
+          amount: 0,
+          frequency: "monthly",
+        },
+      ],
+      categories: [
+        {
+          id: "cat_housing",
+          name: "Housing",
+          items: [
+            {
+              id: "h1",
+              name: "Rent or Mortgage",
+              amount: 1400,
+              frequency: "monthly",
+            },
+            {
+              id: "h2",
+              name: "Maintenance & Repairs",
+              amount: 100,
+              frequency: "monthly",
+            },
+          ],
+        },
+        {
+          id: "cat_utilities",
+          name: "Utilities",
+          items: [
+            {
+              id: "u1",
+              name: "Electricity & Gas",
+              amount: 120,
+              frequency: "monthly",
+            },
+            {
+              id: "u2",
+              name: "Water & Trash",
+              amount: 60,
+              frequency: "monthly",
+            },
+            {
+              id: "u3",
+              name: "Internet & Mobile Plan",
+              amount: 130,
+              frequency: "monthly",
+            },
+          ],
+        },
+        {
+          id: "cat_food",
+          name: "Food & Groceries",
+          items: [
+            {
+              id: "f1",
+              name: "Groceries & Essentials",
+              amount: 110,
+              frequency: "weekly",
+            },
+            {
+              id: "f2",
+              name: "Dining Out & Coffee",
+              amount: 45,
+              frequency: "weekly",
+            },
+          ],
+        },
+        {
+          id: "cat_transportation",
+          name: "Transportation",
+          items: [
+            {
+              id: "t1",
+              name: "Car Loan / Transit Pass",
+              amount: 280,
+              frequency: "monthly",
+            },
+            { id: "t2", name: "Gas / Fuel", amount: 40, frequency: "weekly" },
+            {
+              id: "t3",
+              name: "Auto Maintenance & Tires",
+              amount: 600,
+              frequency: "yearly",
+            },
+          ],
+        },
+        {
+          id: "cat_insurance",
+          name: "Insurance & Healthcare",
+          items: [
+            {
+              id: "i1",
+              name: "Auto Insurance",
+              amount: 1200,
+              frequency: "yearly",
+            },
+            {
+              id: "i2",
+              name: "Renters / Home Insurance",
+              amount: 240,
+              frequency: "yearly",
+            },
+            {
+              id: "i3",
+              name: "Medical Co-pays & Prescriptions",
+              amount: 45,
+              frequency: "monthly",
+            },
+          ],
+        },
+        {
+          id: "cat_debt",
+          name: "Debt Payments",
+          items: [
+            {
+              id: "d1",
+              name: "Student Loan Payment",
+              amount: 180,
+              frequency: "monthly",
+            },
+            {
+              id: "d2",
+              name: "Credit Card Minimum",
+              amount: 0,
+              frequency: "monthly",
+            },
+          ],
+        },
+        {
+          id: "cat_subscriptions",
+          name: "Subscriptions & Lifestyle",
+          items: [
+            {
+              id: "s1",
+              name: "Streaming & Apps",
+              amount: 40,
+              frequency: "monthly",
+            },
+            {
+              id: "s2",
+              name: "Gym / Fitness Membership",
+              amount: 45,
+              frequency: "monthly",
+            },
+            {
+              id: "s3",
+              name: "Entertainment & Fun Money",
+              amount: 120,
+              frequency: "monthly",
+            },
+          ],
+        },
+        {
+          id: "cat_savings",
+          name: "Savings & Investments",
+          isSavings: true,
+          items: [
+            {
+              id: "sa1",
+              name: "Emergency Fund",
+              amount: 250,
+              frequency: "monthly",
+              isSavings: true,
+            },
+            {
+              id: "sa2",
+              name: "Roth IRA / Retirement",
+              amount: 250,
+              frequency: "monthly",
+              isSavings: true,
+            },
+          ],
+        },
+      ],
+    };
 
-  let state = loadState();
+    const MONEY_TOLERANCE =
+      (window._mrb_currency && window._mrb_currency.tolerance) || 0.005;
 
-  function loadState() {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (parsed.income && parsed.categories) {
-          return parsed;
-        }
+    function sanitizeAmount(val) {
+      if (
+        window._mrb_currency &&
+        typeof window._mrb_currency.sanitizeAmount === "function"
+      ) {
+        return window._mrb_currency.sanitizeAmount(val);
       }
-    } catch (e) {
-      console.warn('LocalStorage error:', e);
+      const num = Number(val);
+      if (!isFinite(num) || isNaN(num) || num <= 0 || num > Number.MAX_SAFE_INTEGER / 100) return 0;
+      return Math.round(num * 100) / 100;
     }
-    return JSON.parse(JSON.stringify(defaultData));
-  }
 
-  function saveState() {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    } catch (e) {
-      console.warn('Failed to save to localStorage:', e);
+    function cleanMoney(val) {
+      if (
+        window._mrb_currency &&
+        typeof window._mrb_currency.cleanMoney === "function"
+      ) {
+        return window._mrb_currency.cleanMoney(val);
+      }
+      const num = Number(val);
+      if (!isFinite(num) || isNaN(num) || Math.abs(num) < MONEY_TOLERANCE || Object.is(num, -0) || Math.abs(num) > Number.MAX_SAFE_INTEGER / 100)
+        return 0;
+      const rounded = Math.round(num * 100) / 100;
+      return (!isFinite(rounded) || Math.abs(rounded) < MONEY_TOLERANCE || Object.is(rounded, -0)) ? 0 : rounded;
     }
-  }
 
-  function normalize(amount, freq) {
-    const mult = FREQUENCY_MULTIPLIERS[freq] || 1;
-    return (Number(amount) || 0) * mult;
-  }
+    let state = loadState();
 
-  function t(k, vars) {
-    if (window._mrb_i18n && typeof window._mrb_i18n.t === 'function') {
-      return window._mrb_i18n.t(k, vars);
+    function loadState() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (
+            Array.isArray(parsed.income) &&
+            Array.isArray(parsed.categories)
+          ) {
+            parsed.income.forEach((item) => {
+              item.amount = sanitizeAmount(item.amount);
+            });
+            parsed.categories.forEach((cat) => {
+              if (typeof cat.isSavings !== "boolean") {
+                const catId = (cat.id || "").toLowerCase();
+                const catName = (cat.name || "").toLowerCase();
+                cat.isSavings =
+                  catId.includes("saving") ||
+                  catId.includes("invest") ||
+                  catName.includes("saving") ||
+                  catName.includes("invest") ||
+                  catName.includes("emergency");
+              }
+              if (Array.isArray(cat.items)) {
+                cat.items.forEach((item) => {
+                  item.amount = sanitizeAmount(item.amount);
+                  if (typeof item.isSavings !== "boolean") {
+                    item.isSavings = Boolean(cat.isSavings);
+                  }
+                });
+              }
+            });
+            return parsed;
+          }
+        }
+      } catch (e) {
+        console.warn("LocalStorage error:", e);
+      }
+      return JSON.parse(JSON.stringify(defaultData));
     }
-    return k;
-  }
 
-  function getCurrencySymbol() {
-    if (window._mrb_currency && typeof window._mrb_currency.symbol === 'function') {
-      return window._mrb_currency.symbol();
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) {
+        console.warn("Failed to save to localStorage:", e);
+      }
     }
-    const curr = (typeof localStorage !== 'undefined' && localStorage.getItem('myrealbudget_currency')) || 'USD';
-    const syms = { USD: '$', EUR: '€', GBP: '£', INR: '₹', CAD: 'C$', AUD: 'A$' };
-    return syms[curr] || '$';
-  }
 
-  function formatMoney(amount) {
-    if (window._mrb_currency && typeof window._mrb_currency.format === 'function') {
-      return window._mrb_currency.format(amount);
+    function normalize(amount, freq) {
+      const mult = FREQUENCY_MULTIPLIERS[freq] || 1;
+      const sanitized = sanitizeAmount(amount);
+      return Math.round(sanitized * mult * 100) / 100;
     }
-    const curr = (typeof localStorage !== 'undefined' && localStorage.getItem('myrealbudget_currency')) || 'USD';
-    const sym = getCurrencySymbol();
-    const locale = curr === 'INR' ? 'en-IN' : 'en-US';
-    const hasCents = amount % 1 !== 0;
-    const formatted = new Intl.NumberFormat(locale, {
-      minimumFractionDigits: hasCents ? 2 : 0,
-      maximumFractionDigits: hasCents ? 2 : 0,
-    }).format(Math.abs(amount));
-    return (amount < 0 ? '-' : '') + sym + formatted;
-  }
 
-  let openCategories = new Set([0]); // Default first category open on mobile
-  function renderIncome() {
-    const container = document.getElementById('income-items-container');
-    if (!container) return;
+    function t(k, vars) {
+      if (window._mrb_i18n && typeof window._mrb_i18n.t === "function") {
+        return window._mrb_i18n.t(k, vars);
+      }
+      return k;
+    }
 
-    container.innerHTML = state.income.map((item, idx) => {
-      const itemDisplayName = window._mrb_i18n ? window._mrb_i18n.translateItem(item.name) : item.name;
-      return `
+    function getCurrencySymbol() {
+      if (
+        window._mrb_currency &&
+        typeof window._mrb_currency.symbol === "function"
+      ) {
+        return window._mrb_currency.symbol();
+      }
+      const curr =
+        (typeof localStorage !== "undefined" &&
+          localStorage.getItem("myrealbudget_currency")) ||
+        "USD";
+      const syms = {
+        USD: "$",
+        EUR: "€",
+        GBP: "£",
+        INR: "₹",
+        CAD: "C$",
+        AUD: "A$",
+      };
+      return syms[curr] || "$";
+    }
+
+    function formatMoney(amount) {
+      amount = cleanMoney(amount);
+      if (
+        window._mrb_currency &&
+        typeof window._mrb_currency.format === "function"
+      ) {
+        return window._mrb_currency.format(amount);
+      }
+      const sym = getCurrencySymbol();
+      if (!isFinite(amount) || isNaN(amount)) {
+        return sym + "0";
+      }
+      const curr =
+        (typeof localStorage !== "undefined" &&
+          localStorage.getItem("myrealbudget_currency")) ||
+        "USD";
+      const locale = curr === "INR" ? "en-IN" : "en-US";
+      const hasCents = amount % 1 !== 0;
+      const formatted = new Intl.NumberFormat(locale, {
+        minimumFractionDigits: hasCents ? 2 : 0,
+        maximumFractionDigits: hasCents ? 2 : 0,
+      }).format(Math.abs(amount));
+      const sign =
+        amount < 0 && Math.abs(amount) >= MONEY_TOLERANCE ? "-" : "";
+      return sign + sym + formatted;
+    }
+
+    let openCategories = new Set([0]); // Default first category open on mobile
+    function renderIncome() {
+      const container = document.getElementById("income-items-container");
+      if (!container) return;
+
+      container.innerHTML = state.income
+        .map((item, idx) => {
+          const itemDisplayName = window._mrb_i18n
+            ? window._mrb_i18n.translateItem(item.name)
+            : item.name;
+          return `
       <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-1 sm:gap-2 p-1.5 sm:p-2 rounded-[6px] bg-[#fafafa] border border-[#ebebeb] text-xs" data-income-idx="${idx}">
         <input
           type="text"
           value="${escapeHtml(itemDisplayName)}"
-          aria-label="${t('aria.income_item_name') || 'Income source name'}"
+          aria-label="${t("aria.income_item_name") || "Income source name"}"
           class="flex-1 px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-[5px] bg-white border border-[#ebebeb] text-[#171717] focus:outline-none focus:border-[#171717] font-medium text-xs"
           onchange="window._gbp.updateIncomeItem(${idx}, 'name', this.value)"
         />
@@ -435,27 +888,29 @@ import CurrencyLanguageControls from '../ui/CurrencyLanguageControls.astro';
               type="number"
               min="0"
               step="any"
-              value="${item.amount || ''}"
+              value="${item.amount || ""}"
               placeholder="0"
-              aria-label="${t('aria.income_amount') || 'Income amount'}"
+              aria-label="${t("aria.income_amount") || "Income amount"}"
               class="w-full pl-5 pr-1.5 py-1 sm:pl-6 sm:pr-2 sm:py-1.5 rounded-[5px] bg-white border border-[#ebebeb] text-[#171717] font-mono text-right focus:outline-none focus:border-[#171717] text-xs"
               oninput="window._gbp.updateIncomeItem(${idx}, 'amount', this.value)"
             />
           </div>
           <select
-            aria-label="${t('aria.income_frequency') || 'Income payment frequency'}"
+            aria-label="${t("aria.income_frequency") || "Income payment frequency"}"
             class="px-1.5 py-1 sm:px-2 sm:py-1.5 rounded-[5px] bg-white border border-[#ebebeb] text-[#4d4d4d] focus:outline-none focus:border-[#171717] text-xs font-mono shrink-0"
             onchange="window._gbp.updateIncomeItem(${idx}, 'frequency', this.value)"
           >
-            ${FREQUENCY_OPTIONS.map(opt => {
-              const freqLabel = window._mrb_i18n ? window._mrb_i18n.getFrequencyLabel(opt.id) : opt.label;
-              return `<option value="${opt.id}" ${item.frequency === opt.id ? 'selected' : ''}>${freqLabel}</option>`;
-            }).join('')}
+            ${FREQUENCY_OPTIONS.map((opt) => {
+              const freqLabel = window._mrb_i18n
+                ? window._mrb_i18n.getFrequencyLabel(opt.id)
+                : opt.label;
+              return `<option value="${opt.id}" ${item.frequency === opt.id ? "selected" : ""}>${freqLabel}</option>`;
+            }).join("")}
           </select>
           <button
             type="button"
-            title="${t('actions.delete') || 'Remove item'}"
-            aria-label="${t('aria.remove_income') || 'Remove income item'}"
+            title="${t("actions.delete") || "Remove item"}"
+            aria-label="${t("aria.remove_income") || "Remove income item"}"
             class="p-1 sm:p-1.5 text-[#8f8f8f] hover:text-[#ee0000] rounded hover:bg-neutral-100 transition shrink-0"
             onclick="window._gbp.removeIncomeItem(${idx})"
           >
@@ -464,18 +919,25 @@ import CurrencyLanguageControls from '../ui/CurrencyLanguageControls.astro';
         </div>
       </div>
     `;
-    }).join('');
-  }
+        })
+        .join("");
+    }
 
-  function renderCategories() {
-    const container = document.getElementById('expense-categories-container');
-    if (!container) return;
+    function renderCategories() {
+      const container = document.getElementById("expense-categories-container");
+      if (!container) return;
 
-    container.innerHTML = state.categories.map((cat, catIdx) => {
-      const catTotal = cat.items.reduce((sum, item) => sum + normalize(item.amount, item.frequency), 0);
-      const isOpen = openCategories.has(catIdx);
-      const catDisplayName = window._mrb_i18n ? window._mrb_i18n.translateCategory(cat.name) : cat.name;
-      return `
+      container.innerHTML = state.categories
+        .map((cat, catIdx) => {
+          const catTotal = cat.items.reduce(
+            (sum, item) => sum + normalize(item.amount, item.frequency),
+            0,
+          );
+          const isOpen = openCategories.has(catIdx);
+          const catDisplayName = window._mrb_i18n
+            ? window._mrb_i18n.translateCategory(cat.name)
+            : cat.name;
+          return `
         <div class="bg-white rounded-[10px] sm:rounded-[12px] border border-[#ebebeb] p-2.5 sm:p-5 shadow-whisper" data-cat-idx="${catIdx}">
           <!-- Compact Category Header -->
           <div
@@ -486,28 +948,36 @@ import CurrencyLanguageControls from '../ui/CurrencyLanguageControls.astro';
               <button
                 type="button"
                 id="gbp-cat-btn-${catIdx}"
-                class="sm:hidden p-0.5 text-[#8f8f8f] hover:text-[#171717] transition-transform duration-200 shrink-0 ${isOpen ? 'rotate-180' : ''}"
-                aria-label="${t('aria.toggle_category') || 'Toggle category items'}"
+                class="sm:hidden p-0.5 text-[#8f8f8f] hover:text-[#171717] transition-transform duration-200 shrink-0 ${isOpen ? "rotate-180" : ""}"
+                aria-label="${t("aria.toggle_category") || "Toggle category items"}"
               >
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
               </button>
               <input
                 type="text"
                 value="${escapeHtml(catDisplayName)}"
-                aria-label="${t('aria.category_name') || 'Category name'}"
+                aria-label="${t("aria.category_name") || "Category name"}"
                 class="font-semibold text-xs sm:text-sm text-[#171717] bg-transparent border-b border-transparent hover:border-[#ebebeb] focus:border-[#171717] focus:outline-none py-0.5 flex-1 min-w-0"
                 onclick="event.stopPropagation()"
                 onchange="window._gbp.updateCategoryName(${catIdx}, this.value)"
               />
             </div>
-            <div class="flex items-center gap-1.5 sm:gap-3 shrink-0" onclick="event.stopPropagation()">
+            <div class="flex items-center gap-1.5 sm:gap-2.5 shrink-0" onclick="event.stopPropagation()">
+              <button
+                type="button"
+                onclick="window._gbp.toggleCategorySavings(${catIdx})"
+                title="${cat.isSavings ? t("gbp.savings_flag") || "Savings" : t("gbp.expense_flag") || "Expense"}"
+                class="px-1.5 py-0.5 text-[10px] rounded font-medium transition cursor-pointer select-none ${cat.isSavings ? "bg-[#e6fbf5] text-[#047857] border border-[#a7f3d0]" : "bg-[#f5f5f5] text-[#737373] border border-[#e5e5e5]"}"
+              >
+                ${cat.isSavings ? t("gbp.savings_flag") || "Savings" : t("gbp.expense_flag") || "Expense"}
+              </button>
               <span class="font-mono text-xs sm:text-sm font-semibold text-[#171717]">
-                ${formatMoney(catTotal)}<span class="text-[#8f8f8f] font-normal text-[10px] sm:text-[11px]">${t('common.per_month') || '/mo'}</span>
+                ${formatMoney(catTotal)}<span class="text-[#8f8f8f] font-normal text-[10px] sm:text-[11px]">${t("common.per_month") || "/mo"}</span>
               </span>
               <button
                 type="button"
-                title="${t('actions.delete') || 'Remove entire category'}"
-                aria-label="${t('common.remove_category') || 'Remove category'} ${catDisplayName}"
+                title="${t("actions.delete") || "Remove entire category"}"
+                aria-label="${t("common.remove_category") || "Remove category"} ${catDisplayName}"
                 class="text-[#8f8f8f] hover:text-[#ee0000] p-0.5 sm:p-1 transition"
                 onclick="window._gbp.removeCategory(${catIdx})"
               >
@@ -517,16 +987,19 @@ import CurrencyLanguageControls from '../ui/CurrencyLanguageControls.astro';
           </div>
 
           <!-- Category Line Items (Collapsible on mobile < sm, always visible on sm+) -->
-          <div id="gbp-cat-body-${catIdx}" class="${isOpen ? 'block' : 'hidden'} sm:!block pt-2 sm:pt-3">
+          <div id="gbp-cat-body-${catIdx}" class="${isOpen ? "block" : "hidden"} sm:!block pt-2 sm:pt-3">
             <div class="space-y-1.5 sm:space-y-2">
-              ${cat.items.map((item, itemIdx) => {
-                const itemDisplayName = window._mrb_i18n ? window._mrb_i18n.translateItem(item.name) : item.name;
-                return `
+              ${cat.items
+                .map((item, itemIdx) => {
+                  const itemDisplayName = window._mrb_i18n
+                    ? window._mrb_i18n.translateItem(item.name)
+                    : item.name;
+                  return `
                 <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-1 sm:gap-2 p-1.5 sm:p-2 rounded-[6px] bg-[#fafafa] border border-[#ebebeb] text-xs">
                   <input
                     type="text"
                     value="${escapeHtml(itemDisplayName)}"
-                    aria-label="${t('aria.expense_item_name') || 'Expense item name'}"
+                    aria-label="${t("aria.expense_item_name") || "Expense item name"}"
                     class="flex-1 px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-[5px] bg-white border border-[#ebebeb] text-[#171717] focus:outline-none focus:border-[#171717] text-xs"
                     onchange="window._gbp.updateItem(${catIdx}, ${itemIdx}, 'name', this.value)"
                   />
@@ -537,27 +1010,29 @@ import CurrencyLanguageControls from '../ui/CurrencyLanguageControls.astro';
                         type="number"
                         min="0"
                         step="any"
-                        value="${item.amount || ''}"
+                        value="${item.amount || ""}"
                         placeholder="0"
-                        aria-label="${t('aria.expense_amount') || 'Expense amount'}"
+                        aria-label="${t("aria.expense_amount") || "Expense amount"}"
                         class="w-full pl-5 pr-1.5 py-1 sm:pl-6 sm:pr-2 sm:py-1.5 rounded-[5px] bg-white border border-[#ebebeb] text-[#171717] font-mono text-right focus:outline-none focus:border-[#171717] text-xs"
                         oninput="window._gbp.updateItem(${catIdx}, ${itemIdx}, 'amount', this.value)"
                       />
                     </div>
                     <select
-                      aria-label="${t('aria.expense_frequency') || 'Expense frequency'}"
+                      aria-label="${t("aria.expense_frequency") || "Expense frequency"}"
                       class="px-1.5 py-1 sm:px-2 sm:py-1.5 rounded-[5px] bg-white border border-[#ebebeb] text-[#4d4d4d] focus:outline-none focus:border-[#171717] text-xs font-mono shrink-0"
                       onchange="window._gbp.updateItem(${catIdx}, ${itemIdx}, 'frequency', this.value)"
                     >
-                      ${FREQUENCY_OPTIONS.map(opt => {
-                        const freqLabel = window._mrb_i18n ? window._mrb_i18n.getFrequencyLabel(opt.id) : opt.label;
-                        return `<option value="${opt.id}" ${item.frequency === opt.id ? 'selected' : ''}>${freqLabel}</option>`;
-                      }).join('')}
+                      ${FREQUENCY_OPTIONS.map((opt) => {
+                        const freqLabel = window._mrb_i18n
+                          ? window._mrb_i18n.getFrequencyLabel(opt.id)
+                          : opt.label;
+                        return `<option value="${opt.id}" ${item.frequency === opt.id ? "selected" : ""}>${freqLabel}</option>`;
+                      }).join("")}
                     </select>
                     <button
                       type="button"
-                      title="${t('actions.delete') || 'Remove item'}"
-                      aria-label="${t('common.remove_item') || 'Remove item'}"
+                      title="${t("actions.delete") || "Remove item"}"
+                      aria-label="${t("common.remove_item") || "Remove item"}"
                       class="p-1 sm:p-1.5 text-[#8f8f8f] hover:text-[#ee0000] rounded hover:bg-neutral-100 transition shrink-0"
                       onclick="window._gbp.removeItem(${catIdx}, ${itemIdx})"
                     >
@@ -566,7 +1041,8 @@ import CurrencyLanguageControls from '../ui/CurrencyLanguageControls.astro';
                   </div>
                 </div>
               `;
-              }).join('')}
+                })
+                .join("")}
             </div>
 
             <button
@@ -575,204 +1051,294 @@ import CurrencyLanguageControls from '../ui/CurrencyLanguageControls.astro';
               onclick="window._gbp.addItem(${catIdx})"
             >
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-              + ${t('common.add_item') || 'Add item'} (${escapeHtml(catDisplayName)})
+              + ${t("common.add_item") || "Add item"} (${escapeHtml(catDisplayName)})
             </button>
           </div>
         </div>
       `;
-    }).join('');
-  }
+        })
+        .join("");
+    }
 
-  function calculateAndRenderResults() {
-    const totalIncome = state.income.reduce((sum, item) => sum + normalize(item.amount, item.frequency), 0);
-    
-    let totalExpenses = 0;
-    let savingsTotal = 0;
-    const categoryTotals = [];
+    function calculateAndRenderResults() {
+      const totalIncome = cleanMoney(
+        state.income.reduce(
+          (sum, item) => sum + normalize(item.amount, item.frequency),
+          0,
+        ),
+      );
 
-    state.categories.forEach(cat => {
-      const catTotal = cat.items.reduce((sum, item) => sum + normalize(item.amount, item.frequency), 0);
-      totalExpenses += catTotal;
-      categoryTotals.push({ name: cat.name, total: catTotal });
-      
-      const lower = cat.name.toLowerCase();
-      if (lower.includes('saving') || lower.includes('invest') || lower.includes('emergency')) {
-        savingsTotal += catTotal;
+      let totalExpenses = 0;
+      let savingsTotal = 0;
+      const categoryTotals = [];
+
+      state.categories.forEach((cat) => {
+        let catTotal = 0;
+        let catSavings = 0;
+        cat.items.forEach((item) => {
+          const itemVal = normalize(item.amount, item.frequency);
+          catTotal += itemVal;
+          if (cat.isSavings || item.isSavings) {
+            catSavings += itemVal;
+          }
+        });
+        catTotal = cleanMoney(catTotal);
+        catSavings = cleanMoney(catSavings);
+        totalExpenses += catTotal;
+        savingsTotal += catSavings;
+        categoryTotals.push({ name: cat.name, total: catTotal });
+      });
+
+      totalExpenses = cleanMoney(totalExpenses);
+      savingsTotal = cleanMoney(savingsTotal);
+      const remaining = cleanMoney(totalIncome - totalExpenses);
+      const spentPct =
+        totalIncome > 0 ? Math.round((totalExpenses / totalIncome) * 100) : 0;
+      const remainingPct =
+        totalIncome > 0 ? Math.round((remaining / totalIncome) * 100) : 0;
+      const savingsPct =
+        totalIncome > 0 ? Math.round((savingsTotal / totalIncome) * 100) : 0;
+
+      // Headers
+      const incHeader = document.getElementById("income-header-total");
+      if (incHeader) incHeader.textContent = formatMoney(totalIncome);
+
+      const expHeader = document.getElementById("expenses-header-total");
+      if (expHeader) expHeader.textContent = formatMoney(totalExpenses);
+
+      // Summary Card
+      const balanceVal = document.getElementById("summary-balance-value");
+      const balanceLabel = document.getElementById("summary-balance-label");
+      const statusBanner = document.getElementById("balance-status-banner");
+      const statusText = document.getElementById("balance-status-text");
+
+      if (balanceVal) balanceVal.textContent = formatMoney(remaining);
+
+      if (statusBanner && statusText && balanceLabel) {
+        if (totalIncome === 0 && totalExpenses === 0) {
+          statusBanner.className =
+            "p-3.5 rounded-[6px] mb-5 text-xs bg-[#f2f2f2] text-[#4d4d4d]";
+          statusText.textContent = t("interpret.general_empty");
+          balanceLabel.textContent = t("summary.net_balance");
+        } else if (remaining === 0) {
+          statusBanner.className =
+            "p-3.5 rounded-[6px] mb-5 text-xs bg-[#eef6ff] text-[#0761d1] border border-[#bfdbfe]";
+          statusText.textContent = t("interpret.general_balanced");
+          balanceLabel.textContent = t("summary.net_balance");
+        } else if (remaining > 0) {
+          statusBanner.className =
+            "p-3.5 rounded-[6px] mb-5 text-xs bg-[#e6fbf5] text-[#047857] border border-[#a7f3d0]";
+          statusText.textContent = t("interpret.general_surplus", {
+            amount: formatMoney(remaining),
+          });
+          balanceLabel.textContent = t("summary.monthly_surplus");
+        } else {
+          const deficit = Math.abs(remaining);
+          statusBanner.className =
+            "p-3.5 rounded-[6px] mb-5 text-xs bg-[#fef2f2] text-[#b91c1c] border border-[#fecaca]";
+          statusText.textContent = t("interpret.general_deficit", {
+            amount: formatMoney(deficit),
+          });
+          balanceLabel.textContent = t("summary.monthly_deficit");
+        }
       }
-    });
 
-    const remaining = totalIncome - totalExpenses;
-    const spentPct = totalIncome > 0 ? Math.min(100, Math.round((totalExpenses / totalIncome) * 100)) : 0;
-    const remainingPct = totalIncome > 0 ? Math.round((remaining / totalIncome) * 100) : 0;
-    const savingsPct = totalIncome > 0 ? Math.round((savingsTotal / totalIncome) * 100) : 0;
+      // Mobile Quick Summary
+      const mBalVal = document.getElementById("mobile-summary-balance-value");
+      const mInc = document.getElementById("mobile-summary-income");
+      const mExp = document.getElementById("mobile-summary-expenses");
+      const mRem = document.getElementById("mobile-summary-remaining");
+      const mBadge = document.getElementById("mobile-balance-status-badge");
+      const mText = document.getElementById("mobile-balance-status-text");
 
-    // Headers
-    const incHeader = document.getElementById('income-header-total');
-    if (incHeader) incHeader.textContent = formatMoney(totalIncome);
+      if (mBalVal) mBalVal.textContent = formatMoney(remaining);
+      if (mInc) mInc.textContent = formatMoney(totalIncome);
+      if (mExp) mExp.textContent = formatMoney(totalExpenses);
+      if (mRem) mRem.textContent = formatMoney(remaining);
 
-    const expHeader = document.getElementById('expenses-header-total');
-    if (expHeader) expHeader.textContent = formatMoney(totalExpenses);
+      if (mBadge && mText) {
+        if (totalIncome === 0 && totalExpenses === 0) {
+          mBadge.className =
+            "px-2 py-0.5 rounded text-[11px] font-medium bg-[#f2f2f2] text-[#4d4d4d]";
+          mText.textContent = t("summary.balanced");
+        } else if (remaining === 0) {
+          mBadge.className =
+            "px-2 py-0.5 rounded text-[11px] font-medium bg-[#eef6ff] text-[#0761d1] border border-[#bfdbfe]";
+          mText.textContent = t("summary.balanced");
+        } else if (remaining > 0) {
+          mBadge.className =
+            "px-2 py-0.5 rounded text-[11px] font-medium bg-[#e6fbf5] text-[#047857] border border-[#a7f3d0]";
+          mText.textContent = t("summary.surplus");
+        } else {
+          mBadge.className =
+            "px-2 py-0.5 rounded text-[11px] font-medium bg-[#fef2f2] text-[#b91c1c] border border-[#fecaca]";
+          mText.textContent = t("summary.deficit");
+        }
+      }
 
-    // Summary Card
-    const balanceVal = document.getElementById('summary-balance-value');
-    const balanceLabel = document.getElementById('summary-balance-label');
-    const statusBanner = document.getElementById('balance-status-banner');
-    const statusText = document.getElementById('balance-status-text');
+      // Breakdown
+      const sIncome = document.getElementById("summary-total-income");
+      const sExpenses = document.getElementById("summary-total-expenses");
+      const sSpentPct = document.getElementById("summary-spent-pct");
+      const sRemPct = document.getElementById("summary-remaining-pct");
+      const sSavings = document.getElementById("summary-savings-amount");
 
-    if (balanceVal) balanceVal.textContent = formatMoney(remaining);
+      if (sIncome) sIncome.textContent = formatMoney(totalIncome);
+      if (sExpenses) sExpenses.textContent = formatMoney(totalExpenses);
+      if (sSpentPct) sSpentPct.textContent = `${spentPct}%`;
+      if (sRemPct) sRemPct.textContent = `${remainingPct}%`;
+      if (sSavings)
+        sSavings.textContent = `${formatMoney(savingsTotal)} (${savingsPct}%)`;
 
-    if (statusBanner && statusText && balanceLabel) {
-      if (totalIncome === 0 && totalExpenses === 0) {
-        statusBanner.className = 'p-3.5 rounded-[6px] mb-5 text-xs bg-[#f2f2f2] text-[#4d4d4d]';
-        statusText.textContent = t('interpret.general_empty');
-        balanceLabel.textContent = t('summary.net_balance');
+      // Progress Bar
+      const allocLabel = document.getElementById("progress-allocation-label");
+      const barSpent = document.getElementById("progress-bar-spent");
+      const barSavings = document.getElementById("progress-bar-savings");
+      const barSurplus = document.getElementById("progress-bar-surplus");
+
+      if (allocLabel)
+        allocLabel.textContent = t("summary.spent_pct", { pct: spentPct });
+      if (barSpent && barSavings && barSurplus) {
+        if (totalIncome > 0) {
+          const nonSavingsExpenses = Math.max(0, totalExpenses - savingsTotal);
+          const spentWidth = Math.min(
+            100,
+            (nonSavingsExpenses / totalIncome) * 100,
+          );
+          const savingsWidth = Math.min(
+            100 - spentWidth,
+            (savingsTotal / totalIncome) * 100,
+          );
+          const surplusWidth =
+            remaining > 0
+              ? Math.min(
+                  100 - spentWidth - savingsWidth,
+                  (remaining / totalIncome) * 100,
+                )
+              : 0;
+
+          barSpent.style.width = `${spentWidth}%`;
+          barSavings.style.width = `${savingsWidth}%`;
+          barSurplus.style.width = `${surplusWidth}%`;
+        } else {
+          barSpent.style.width = "0%";
+          barSavings.style.width = "0%";
+          barSurplus.style.width = "0%";
+        }
+      }
+
+      // Dynamic Interpretation
+      renderInterpretation(
+        totalIncome,
+        totalExpenses,
+        remaining,
+        categoryTotals,
+        savingsTotal,
+      );
+
+      // Top Categories
+      renderTopCategories(categoryTotals, totalExpenses);
+    }
+
+    function renderInterpretation(
+      income,
+      expenses,
+      remaining,
+      categoryTotals,
+      savings,
+    ) {
+      const box = document.getElementById("interpretation-box");
+      if (!box) return;
+
+      if (income === 0) {
+        box.innerHTML = `<p class="text-[#8f8f8f]">${t("gbp.start_entering")}</p>`;
+        return;
+      }
+
+      const sorted = [...categoryTotals]
+        .sort((a, b) => b.total - a.total)
+        .filter((c) => c.total > 0);
+      const largest = sorted[0];
+      const insights = [];
+
+      // 1. Bottom-line state
+      if (remaining === 0) {
+        insights.push(t("interpret.general_insight_balanced"));
       } else if (remaining > 0) {
-        statusBanner.className = 'p-3.5 rounded-[6px] mb-5 text-xs bg-[#e6fbf5] text-[#047857] border border-[#a7f3d0]';
-        statusText.textContent = t('interpret.general_surplus', { amount: formatMoney(remaining) });
-        balanceLabel.textContent = t('summary.monthly_surplus');
-      } else if (remaining === 0) {
-        statusBanner.className = 'p-3.5 rounded-[6px] mb-5 text-xs bg-[#eef6ff] text-[#0761d1] border border-[#bfdbfe]';
-        statusText.textContent = t('interpret.general_balanced');
-        balanceLabel.textContent = t('summary.net_balance');
+        const remPct = Math.round((remaining / income) * 100);
+        insights.push(
+          t("interpret.general_insight_surplus", {
+            amount: formatMoney(remaining),
+            pct: remPct,
+          }),
+        );
       } else {
         const deficit = Math.abs(remaining);
-        statusBanner.className = 'p-3.5 rounded-[6px] mb-5 text-xs bg-[#fef2f2] text-[#b91c1c] border border-[#fecaca]';
-        statusText.textContent = t('interpret.general_deficit', { amount: formatMoney(deficit) });
-        balanceLabel.textContent = t('summary.monthly_deficit');
+        insights.push(
+          t("interpret.general_insight_deficit", {
+            amount: formatMoney(deficit),
+          }),
+        );
       }
-    }
 
-    // Mobile Quick Summary
-    const mBalVal = document.getElementById('mobile-summary-balance-value');
-    const mInc = document.getElementById('mobile-summary-income');
-    const mExp = document.getElementById('mobile-summary-expenses');
-    const mRem = document.getElementById('mobile-summary-remaining');
-    const mBadge = document.getElementById('mobile-balance-status-badge');
-    const mText = document.getElementById('mobile-balance-status-text');
+      // 2. Largest Category
+      if (largest) {
+        const largestPct =
+          expenses > 0 ? Math.round((largest.total / expenses) * 100) : 0;
+        const largestIncomePct = Math.round((largest.total / income) * 100);
+        const largestName = window._mrb_i18n
+          ? window._mrb_i18n.translateCategory(largest.name)
+          : largest.name;
+        insights.push(
+          t("interpret.general_largest", {
+            name: escapeHtml(largestName),
+            amount: formatMoney(largest.total),
+            pct: largestPct,
+            incPct: largestIncomePct,
+          }),
+        );
+      }
 
-    if (mBalVal) mBalVal.textContent = formatMoney(remaining);
-    if (mInc) mInc.textContent = formatMoney(totalIncome);
-    if (mExp) mExp.textContent = formatMoney(totalExpenses);
-    if (mRem) mRem.textContent = formatMoney(remaining);
-
-    if (mBadge && mText) {
-      if (totalIncome === 0 && totalExpenses === 0) {
-        mBadge.className = 'px-2 py-0.5 rounded text-[11px] font-medium bg-[#f2f2f2] text-[#4d4d4d]';
-        mText.textContent = t('summary.balanced');
-      } else if (remaining > 0) {
-        mBadge.className = 'px-2 py-0.5 rounded text-[11px] font-medium bg-[#e6fbf5] text-[#047857] border border-[#a7f3d0]';
-        mText.textContent = t('summary.surplus');
-      } else if (remaining === 0) {
-        mBadge.className = 'px-2 py-0.5 rounded text-[11px] font-medium bg-[#eef6ff] text-[#0761d1] border border-[#bfdbfe]';
-        mText.textContent = t('summary.balanced');
+      // 3. Savings health
+      const savingsPct = Math.round((savings / income) * 100);
+      if (savingsPct > 0) {
+        insights.push(t("interpret.general_savings", { pct: savingsPct }));
       } else {
-        mBadge.className = 'px-2 py-0.5 rounded text-[11px] font-medium bg-[#fef2f2] text-[#b91c1c] border border-[#fecaca]';
-        mText.textContent = t('summary.deficit');
+        insights.push(t("interpret.general_zero_savings"));
       }
+
+      box.innerHTML = insights
+        .map(
+          (i) =>
+            `<p class="flex items-start gap-1.5"><span>•</span><span>${i}</span></p>`,
+        )
+        .join("");
     }
 
-    // Breakdown
-    const sIncome = document.getElementById('summary-total-income');
-    const sExpenses = document.getElementById('summary-total-expenses');
-    const sSpentPct = document.getElementById('summary-spent-pct');
-    const sRemPct = document.getElementById('summary-remaining-pct');
-    const sSavings = document.getElementById('summary-savings-amount');
+    function renderTopCategories(categoryTotals, totalExpenses) {
+      const list = document.getElementById("top-categories-list");
+      if (!list) return;
 
-    if (sIncome) sIncome.textContent = formatMoney(totalIncome);
-    if (sExpenses) sExpenses.textContent = formatMoney(totalExpenses);
-    if (sSpentPct) sSpentPct.textContent = `${spentPct}%`;
-    if (sRemPct) sRemPct.textContent = `${remainingPct}%`;
-    if (sSavings) sSavings.textContent = `${formatMoney(savingsTotal)} (${savingsPct}%)`;
+      const sorted = [...categoryTotals]
+        .sort((a, b) => b.total - a.total)
+        .filter((c) => c.total > 0)
+        .slice(0, 5);
 
-    // Progress Bar
-    const allocLabel = document.getElementById('progress-allocation-label');
-    const barSpent = document.getElementById('progress-bar-spent');
-    const barSavings = document.getElementById('progress-bar-savings');
-    const barSurplus = document.getElementById('progress-bar-surplus');
-
-    if (allocLabel) allocLabel.textContent = t('summary.spent_pct', { pct: spentPct });
-    if (barSpent && barSavings && barSurplus) {
-      if (totalIncome > 0) {
-        const nonSavingsExpenses = Math.max(0, totalExpenses - savingsTotal);
-        const spentWidth = Math.min(100, (nonSavingsExpenses / totalIncome) * 100);
-        const savingsWidth = Math.min(100 - spentWidth, (savingsTotal / totalIncome) * 100);
-        const surplusWidth = remaining > 0 ? Math.min(100 - spentWidth - savingsWidth, (remaining / totalIncome) * 100) : 0;
-
-        barSpent.style.width = `${spentWidth}%`;
-        barSavings.style.width = `${savingsWidth}%`;
-        barSurplus.style.width = `${surplusWidth}%`;
-      } else {
-        barSpent.style.width = '0%';
-        barSavings.style.width = '0%';
-        barSurplus.style.width = '0%';
+      if (sorted.length === 0) {
+        list.innerHTML = `<p class="text-[#8f8f8f]">${t("gbp.empty_categories")}</p>`;
+        return;
       }
-    }
 
-    // Dynamic Interpretation
-    renderInterpretation(totalIncome, totalExpenses, remaining, categoryTotals, savingsTotal);
-
-    // Top Categories
-    renderTopCategories(categoryTotals, totalExpenses);
-  }
-
-  function renderInterpretation(income, expenses, remaining, categoryTotals, savings) {
-    const box = document.getElementById('interpretation-box');
-    if (!box) return;
-
-    if (income === 0) {
-      box.innerHTML = `<p class="text-[#8f8f8f]">${t('gbp.start_entering')}</p>`;
-      return;
-    }
-
-    const sorted = [...categoryTotals].sort((a, b) => b.total - a.total).filter(c => c.total > 0);
-    const largest = sorted[0];
-    const insights = [];
-
-    // 1. Bottom-line state
-    if (remaining > 0) {
-      const remPct = Math.round((remaining / income) * 100);
-      insights.push(t('interpret.general_insight_surplus', { amount: formatMoney(remaining), pct: remPct }));
-    } else if (remaining === 0) {
-      insights.push(t('interpret.general_insight_balanced'));
-    } else {
-      const deficit = Math.abs(remaining);
-      insights.push(t('interpret.general_insight_deficit', { amount: formatMoney(deficit) }));
-    }
-
-    // 2. Largest Category
-    if (largest) {
-      const largestPct = expenses > 0 ? Math.round((largest.total / expenses) * 100) : 0;
-      const largestIncomePct = Math.round((largest.total / income) * 100);
-      const largestName = window._mrb_i18n ? window._mrb_i18n.translateCategory(largest.name) : largest.name;
-      insights.push(t('interpret.general_largest', { name: escapeHtml(largestName), amount: formatMoney(largest.total), pct: largestPct, incPct: largestIncomePct }));
-    }
-
-    // 3. Savings health
-    const savingsPct = Math.round((savings / income) * 100);
-    if (savingsPct > 0) {
-      insights.push(t('interpret.general_savings', { pct: savingsPct }));
-    } else {
-      insights.push(t('interpret.general_zero_savings'));
-    }
-
-    box.innerHTML = insights.map(i => `<p class="flex items-start gap-1.5"><span>•</span><span>${i}</span></p>`).join('');
-  }
-
-  function renderTopCategories(categoryTotals, totalExpenses) {
-    const list = document.getElementById('top-categories-list');
-    if (!list) return;
-
-    const sorted = [...categoryTotals].sort((a, b) => b.total - a.total).filter(c => c.total > 0).slice(0, 5);
-
-    if (sorted.length === 0) {
-      list.innerHTML = `<p class="text-[#8f8f8f]">${t('gbp.empty_categories')}</p>`;
-      return;
-    }
-
-    list.innerHTML = sorted.map((cat, idx) => {
-      const pct = totalExpenses > 0 ? Math.round((cat.total / totalExpenses) * 100) : 0;
-      const catDisplayName = window._mrb_i18n ? window._mrb_i18n.translateCategory(cat.name) : cat.name;
-      return `
+      list.innerHTML = sorted
+        .map((cat, idx) => {
+          const pct =
+            totalExpenses > 0
+              ? Math.round((cat.total / totalExpenses) * 100)
+              : 0;
+          const catDisplayName = window._mrb_i18n
+            ? window._mrb_i18n.translateCategory(cat.name)
+            : cat.name;
+          return `
         <div class="space-y-1">
           <div class="flex justify-between items-center text-xs">
             <span class="text-[#171717] font-medium">${idx + 1}. ${escapeHtml(catDisplayName)}</span>
@@ -783,219 +1349,263 @@ import CurrencyLanguageControls from '../ui/CurrencyLanguageControls.astro';
           </div>
         </div>
       `;
-    }).join('');
-  }
+        })
+        .join("");
+    }
 
-  function escapeHtml(str) {
-    return (str || '').replace(/[&<>"']/g, m => ({
-      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
-    }[m]));
-  }
+    function escapeHtml(str) {
+      return (str || "").replace(
+        /[&<>"']/g,
+        (m) =>
+          ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;",
+          })[m],
+      );
+    }
 
-  // Global handler object for inline event handlers
-  window._gbp = {
-    updateIncomeItem: function(idx, field, value) {
-      if (!state.income[idx]) return;
-      if (field === 'amount') {
-        state.income[idx].amount = parseFloat(value) || 0;
-      } else {
-        state.income[idx][field] = value;
-      }
-      saveState();
-      calculateAndRenderResults();
-    },
-    removeIncomeItem: function(idx) {
-      state.income.splice(idx, 1);
-      saveState();
-      renderIncome();
-      calculateAndRenderResults();
-    },
-    updateItem: function(catIdx, itemIdx, field, value) {
-      if (!state.categories[catIdx] || !state.categories[catIdx].items[itemIdx]) return;
-      if (field === 'amount') {
-        state.categories[catIdx].items[itemIdx].amount = parseFloat(value) || 0;
-      } else {
-        state.categories[catIdx].items[itemIdx][field] = value;
-      }
-      saveState();
-      calculateAndRenderResults();
-    },
-    removeItem: function(catIdx, itemIdx) {
-      if (!state.categories[catIdx]) return;
-      state.categories[catIdx].items.splice(itemIdx, 1);
-      saveState();
-      renderCategories();
-      calculateAndRenderResults();
-    },
-    addItem: function(catIdx) {
-      if (!state.categories[catIdx]) return;
-      state.categories[catIdx].items.push({
-        id: 'item_' + Date.now(),
-        name: t('common.add_item') || 'New Item',
-        amount: 0,
-        frequency: 'monthly',
-      });
-      saveState();
-      renderCategories();
-      calculateAndRenderResults();
-    },
-    updateCategoryName: function(catIdx, name) {
-      if (!state.categories[catIdx]) return;
-      state.categories[catIdx].name = name;
-      saveState();
-      calculateAndRenderResults();
-    },
-    removeCategory: function(catIdx) {
-      const catName = state.categories[catIdx] ? state.categories[catIdx].name : '';
-      if (confirm(t('confirm.delete_category', { name: catName }))) {
-        state.categories.splice(catIdx, 1);
+    // Global handler object for inline event handlers
+    window._gbp = {
+      updateIncomeItem: function (idx, field, value) {
+        if (!state.income[idx]) return;
+        if (field === "amount") {
+          state.income[idx].amount = sanitizeAmount(value);
+        } else {
+          state.income[idx][field] = value;
+        }
+        saveState();
+        calculateAndRenderResults();
+      },
+      removeIncomeItem: function (idx) {
+        state.income.splice(idx, 1);
+        saveState();
+        renderIncome();
+        calculateAndRenderResults();
+      },
+      updateItem: function (catIdx, itemIdx, field, value) {
+        if (
+          !state.categories[catIdx] ||
+          !state.categories[catIdx].items[itemIdx]
+        )
+          return;
+        if (field === "amount") {
+          state.categories[catIdx].items[itemIdx].amount =
+            sanitizeAmount(value);
+        } else {
+          state.categories[catIdx].items[itemIdx][field] = value;
+        }
+        saveState();
+        calculateAndRenderResults();
+      },
+      toggleCategorySavings: function (catIdx) {
+        if (!state.categories[catIdx]) return;
+        state.categories[catIdx].isSavings =
+          !state.categories[catIdx].isSavings;
+        if (Array.isArray(state.categories[catIdx].items)) {
+          state.categories[catIdx].items.forEach((it) => {
+            it.isSavings = state.categories[catIdx].isSavings;
+          });
+        }
         saveState();
         renderCategories();
         calculateAndRenderResults();
-      }
-    },
-    toggleCategory: function(catIdx) {
-      if (openCategories.has(catIdx)) {
-        openCategories.delete(catIdx);
-      } else {
-        openCategories.add(catIdx);
-      }
-      const body = document.getElementById(`gbp-cat-body-${catIdx}`);
-      const btn = document.getElementById(`gbp-cat-btn-${catIdx}`);
-      if (body) {
-        if (openCategories.has(catIdx)) {
-          body.classList.remove('hidden');
-          body.classList.add('block');
-        } else {
-          body.classList.remove('block');
-          body.classList.add('hidden');
+      },
+      removeItem: function (catIdx, itemIdx) {
+        if (!state.categories[catIdx]) return;
+        state.categories[catIdx].items.splice(itemIdx, 1);
+        saveState();
+        renderCategories();
+        calculateAndRenderResults();
+      },
+      addItem: function (catIdx) {
+        if (!state.categories[catIdx]) return;
+        state.categories[catIdx].items.push({
+          id: "item_" + Date.now(),
+          name: t("common.add_item") || "New Item",
+          amount: 0,
+          frequency: "monthly",
+          isSavings: Boolean(state.categories[catIdx].isSavings),
+        });
+        saveState();
+        renderCategories();
+        calculateAndRenderResults();
+      },
+      updateCategoryName: function (catIdx, name) {
+        if (!state.categories[catIdx]) return;
+        state.categories[catIdx].name = name;
+        saveState();
+        calculateAndRenderResults();
+      },
+      removeCategory: function (catIdx) {
+        const catName = state.categories[catIdx]
+          ? state.categories[catIdx].name
+          : "";
+        if (confirm(t("confirm.delete_category", { name: catName }))) {
+          state.categories.splice(catIdx, 1);
+          saveState();
+          renderCategories();
+          calculateAndRenderResults();
         }
-      }
-      if (btn) {
+      },
+      toggleCategory: function (catIdx) {
         if (openCategories.has(catIdx)) {
-          btn.classList.add('rotate-180');
+          openCategories.delete(catIdx);
         } else {
-          btn.classList.remove('rotate-180');
+          openCategories.add(catIdx);
         }
-      }
-    },
-    toggleAllCategories: function(expand) {
-      state.categories.forEach((_, idx) => {
-        if (expand) openCategories.add(idx);
-        else openCategories.delete(idx);
-        const body = document.getElementById(`gbp-cat-body-${idx}`);
-        const btn = document.getElementById(`gbp-cat-btn-${idx}`);
+        const body = document.getElementById(`gbp-cat-body-${catIdx}`);
+        const btn = document.getElementById(`gbp-cat-btn-${catIdx}`);
         if (body) {
-          if (expand) {
-            body.classList.remove('hidden');
-            body.classList.add('block');
+          if (openCategories.has(catIdx)) {
+            body.classList.remove("hidden");
+            body.classList.add("block");
           } else {
-            body.classList.remove('block');
-            body.classList.add('hidden');
+            body.classList.remove("block");
+            body.classList.add("hidden");
           }
         }
         if (btn) {
-          if (expand) btn.classList.add('rotate-180');
-          else btn.classList.remove('rotate-180');
+          if (openCategories.has(catIdx)) {
+            btn.classList.add("rotate-180");
+          } else {
+            btn.classList.remove("rotate-180");
+          }
         }
-      });
-    },
-  };
-
-  // DOM Events
-  const addIncomeBtn = document.getElementById('btn-add-income-item');
-  if (addIncomeBtn) {
-    addIncomeBtn.addEventListener('click', () => {
-      state.income.push({
-        id: 'inc_' + Date.now(),
-        name: t('common.add_income') || 'New Income Source',
-        amount: 0,
-        frequency: 'monthly',
-      });
-      saveState();
-      renderIncome();
-      calculateAndRenderResults();
-    });
-  }
-
-  const addCatBtn = document.getElementById('btn-add-custom-category');
-  if (addCatBtn) {
-    addCatBtn.addEventListener('click', () => {
-      const name = prompt(t('prompt.new_category_name'), 'Custom Category');
-      if (name && name.trim()) {
-        state.categories.push({
-          id: 'cat_' + Date.now(),
-          name: name.trim(),
-          items: [
-            { id: 'item_' + Date.now(), name: 'First Item', amount: 0, frequency: 'monthly' },
-          ],
+      },
+      toggleAllCategories: function (expand) {
+        state.categories.forEach((_, idx) => {
+          if (expand) openCategories.add(idx);
+          else openCategories.delete(idx);
+          const body = document.getElementById(`gbp-cat-body-${idx}`);
+          const btn = document.getElementById(`gbp-cat-btn-${idx}`);
+          if (body) {
+            if (expand) {
+              body.classList.remove("hidden");
+              body.classList.add("block");
+            } else {
+              body.classList.remove("block");
+              body.classList.add("hidden");
+            }
+          }
+          if (btn) {
+            if (expand) btn.classList.add("rotate-180");
+            else btn.classList.remove("rotate-180");
+          }
         });
-        saveState();
-        renderCategories();
-        calculateAndRenderResults();
-      }
-    });
-  }
+      },
+    };
 
-  const resetBtn = document.getElementById('btn-reset-budget');
-  if (resetBtn) {
-    resetBtn.addEventListener('click', () => {
-      if (confirm(t('confirm.reset_general'))) {
-        state = JSON.parse(JSON.stringify(defaultData));
+    // DOM Events
+    const addIncomeBtn = document.getElementById("btn-add-income-item");
+    if (addIncomeBtn) {
+      addIncomeBtn.addEventListener("click", () => {
+        state.income.push({
+          id: "inc_" + Date.now(),
+          name: t("common.add_income") || "New Income Source",
+          amount: 0,
+          frequency: "monthly",
+        });
         saveState();
         renderIncome();
-        renderCategories();
         calculateAndRenderResults();
-      }
-    });
-  }
-
-  const exportBtn = document.getElementById('btn-export-csv');
-  if (exportBtn) {
-    exportBtn.addEventListener('click', () => {
-      let csv = 'Section,Category,Item Name,Frequency,Entered Amount,Normalized Monthly\n';
-      state.income.forEach(item => {
-        csv += `Income,Income,${csvClean(item.name)},${item.frequency},${item.amount},${normalize(item.amount, item.frequency).toFixed(2)}\n`;
       });
-      state.categories.forEach(cat => {
-        cat.items.forEach(item => {
-          csv += `Expense,${csvClean(cat.name)},${csvClean(item.name)},${item.frequency},${item.amount},${normalize(item.amount, item.frequency).toFixed(2)}\n`;
+    }
+
+    const addCatBtn = document.getElementById("btn-add-custom-category");
+    if (addCatBtn) {
+      addCatBtn.addEventListener("click", () => {
+        const name = prompt(t("prompt.new_category_name"), "Custom Category");
+        if (name && name.trim()) {
+          state.categories.push({
+            id: "cat_" + Date.now(),
+            name: name.trim(),
+            isSavings: false,
+            items: [
+              {
+                id: "item_" + Date.now(),
+                name: "First Item",
+                amount: 0,
+                frequency: "monthly",
+                isSavings: false,
+              },
+            ],
+          });
+          saveState();
+          renderCategories();
+          calculateAndRenderResults();
+        }
+      });
+    }
+
+    const resetBtn = document.getElementById("btn-reset-budget");
+    if (resetBtn) {
+      resetBtn.addEventListener("click", () => {
+        if (confirm(t("confirm.reset_general"))) {
+          state = JSON.parse(JSON.stringify(defaultData));
+          saveState();
+          renderIncome();
+          renderCategories();
+          calculateAndRenderResults();
+        }
+      });
+    }
+
+    const exportBtn = document.getElementById("btn-export-csv");
+    if (exportBtn) {
+      exportBtn.addEventListener("click", () => {
+        let csv =
+          "Section,Category,Item Name,Frequency,Entered Amount,Normalized Monthly\n";
+        state.income.forEach((item) => {
+          csv += `Income,Income,${csvClean(item.name)},${item.frequency},${item.amount},${normalize(item.amount, item.frequency).toFixed(2)}\n`;
         });
+        state.categories.forEach((cat) => {
+          cat.items.forEach((item) => {
+            csv += `Expense,${csvClean(cat.name)},${csvClean(item.name)},${item.frequency},${item.amount},${normalize(item.amount, item.frequency).toFixed(2)}\n`;
+          });
+        });
+
+        const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `myrealbudget-planner-${new Date().toISOString().split("T")[0]}.csv`;
+        a.click();
+        URL.revokeObjectURL(url);
       });
-      
-      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `myrealbudget-planner-${new Date().toISOString().split('T')[0]}.csv`;
-      a.click();
-      URL.revokeObjectURL(url);
-    });
-  }
+    }
 
-  function csvClean(str) {
-    return '"' + (str || '').replace(/"/g, '""') + '"';
-  }
+    function csvClean(str) {
+      let s = String(str || "");
+      if (/^[=+\-@]/.test(s)) {
+        s = "'" + s;
+      }
+      return '"' + s.replace(/"/g, '""') + '"';
+    }
 
-  // Listen for global currency and language updates
-  window.addEventListener('myrealbudget:currency-change', () => {
-    document.querySelectorAll('#general-budget-planner .currency-symbol').forEach(el => {
-      el.textContent = getCurrencySymbol();
+    // Listen for global currency and language updates
+    window.addEventListener("myrealbudget:currency-change", () => {
+      document
+        .querySelectorAll("#general-budget-planner .currency-symbol")
+        .forEach((el) => {
+          el.textContent = getCurrencySymbol();
+        });
+      renderIncome();
+      renderCategories();
+      calculateAndRenderResults();
     });
+
+    window.addEventListener("myrealbudget:language-change", () => {
+      renderIncome();
+      renderCategories();
+      calculateAndRenderResults();
+    });
+
+    // Initial Boot
     renderIncome();
     renderCategories();
     calculateAndRenderResults();
-  });
-
-  window.addEventListener('myrealbudget:language-change', () => {
-    renderIncome();
-    renderCategories();
-    calculateAndRenderResults();
-  });
-
-  // Initial Boot
-  renderIncome();
-  renderCategories();
-  calculateAndRenderResults();
-})();
+  })();
 </script>

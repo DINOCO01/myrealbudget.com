@@ -233,6 +233,10 @@ const finalJsonLd = {
         getCurrencyConfig,
         updateDocumentCurrencies,
         SUPPORTED_CURRENCIES,
+        MONEY_TOLERANCE,
+        cleanMoney,
+        isMoneyZero,
+        sanitizeAmount,
       } from '../utils/currency';
       import {
         initLanguage,
@@ -254,6 +258,10 @@ const finalJsonLd = {
         config: getCurrencyConfig,
         update: updateDocumentCurrencies,
         currencies: SUPPORTED_CURRENCIES,
+        tolerance: MONEY_TOLERANCE,
+        cleanMoney: cleanMoney,
+        isZero: isMoneyZero,
+        sanitizeAmount: sanitizeAmount,
       };
 
       (window as any)._mrb_i18n = {

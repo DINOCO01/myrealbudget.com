@@ -7,6 +7,7 @@ export interface BudgetItemData {
   frequency: FrequencyType;
   notes?: string;
   isCustom?: boolean;
+  isSavings?: boolean;
 }
 
 export interface BudgetCategoryData {
@@ -16,6 +17,7 @@ export interface BudgetCategoryData {
   description?: string;
   items: BudgetItemData[];
   isCustom?: boolean;
+  isSavings?: boolean;
 }
 
 export const DEFAULT_INCOME_ITEMS: BudgetItemData[] = [
@@ -143,16 +145,18 @@ export const DEFAULT_EXPENSE_CATEGORIES: BudgetCategoryData[] = [
   {
     id: 'cat_savings',
     name: 'Savings & Emergency Fund',
+    isSavings: true,
     items: [
-      { id: 'exp_emergency_fund', name: 'High-Yield Emergency Fund', amount: 300, frequency: 'monthly' },
-      { id: 'exp_short_term_savings', name: 'Short-term Savings Target', amount: 100, frequency: 'monthly' },
+      { id: 'exp_emergency_fund', name: 'High-Yield Emergency Fund', amount: 300, frequency: 'monthly', isSavings: true },
+      { id: 'exp_short_term_savings', name: 'Short-term Savings Target', amount: 100, frequency: 'monthly', isSavings: true },
     ],
   },
   {
     id: 'cat_investments',
     name: 'Investments & Retirement',
+    isSavings: true,
     items: [
-      { id: 'exp_ira_brokerage', name: 'Roth IRA / Brokerage Contribution', amount: 250, frequency: 'monthly' },
+      { id: 'exp_ira_brokerage', name: 'Roth IRA / Brokerage Contribution', amount: 250, frequency: 'monthly', isSavings: true },
     ],
   },
   {

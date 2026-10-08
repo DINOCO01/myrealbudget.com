@@ -1,14 +1,19 @@
 ---
-import { FREQUENCY_OPTIONS } from '../../utils/frequency';
-import CurrencyLanguageControls from '../ui/CurrencyLanguageControls.astro';
+import { FREQUENCY_OPTIONS } from "../../utils/frequency";
+import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
 ---
 
 <div id="zero-based-planner" class="w-full">
   <!-- Status & Quick Actions -->
-  <div class="mb-4 sm:mb-6 flex flex-wrap items-center justify-between gap-2.5 sm:gap-3 text-[11px] sm:text-xs">
-    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-white border border-[#ebebeb] text-[#4d4d4d] shadow-whisper">
+  <div
+    class="mb-4 sm:mb-6 flex flex-wrap items-center justify-between gap-2.5 sm:gap-3 text-[11px] sm:text-xs"
+  >
+    <div
+      class="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-white border border-[#ebebeb] text-[#4d4d4d] shadow-whisper"
+    >
       <span class="w-2 h-2 rounded-full bg-[#50e3c2]"></span>
-      <span data-mrb-t="common.autosaved">Autosaved locally to this device</span>
+      <span data-mrb-t="common.autosaved">Autosaved locally to this device</span
+      >
     </div>
     <div class="flex items-center gap-2">
       <CurrencyLanguageControls idPrefix="zbb" />
@@ -26,17 +31,29 @@ import CurrencyLanguageControls from '../ui/CurrencyLanguageControls.astro';
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-start">
     <!-- LEFT: Inputs (7 cols on lg) -->
     <div class="lg:col-span-7 xl:col-span-8 space-y-4 sm:space-y-6">
-      
       <!-- 1. Total Monthly Income Available -->
-      <div class="bg-white rounded-[12px] border border-[#ebebeb] p-3.5 sm:p-6 shadow-whisper">
-        <label for="zbb-income-input" class="block text-xs sm:text-sm font-semibold text-[#171717] mb-0.5 sm:mb-1" data-mrb-t="zbb.income_label">
+      <div
+        class="bg-white rounded-[12px] border border-[#ebebeb] p-3.5 sm:p-6 shadow-whisper"
+      >
+        <label
+          for="zbb-income-input"
+          class="block text-xs sm:text-sm font-semibold text-[#171717] mb-0.5 sm:mb-1"
+          data-mrb-t="zbb.income_label"
+        >
           Total Net Monthly Income to Assign
         </label>
-        <p class="text-[11px] sm:text-xs text-[#8f8f8f] mb-3 sm:mb-4" data-mrb-t="zbb.income_sub">
-          The starting pool of money for the month. Your objective is to allocate every cent until $0 remains.
+        <p
+          class="text-[11px] sm:text-xs text-[#8f8f8f] mb-3 sm:mb-4"
+          data-mrb-t="zbb.income_sub"
+        >
+          The starting pool of money for the month. Your objective is to
+          allocate every cent until $0 remains.
         </p>
         <div class="relative max-w-sm">
-          <span class="currency-symbol absolute left-3 top-2 sm:left-3.5 sm:top-2.5 text-[#8f8f8f] font-mono text-sm sm:text-base">$</span>
+          <span
+            class="currency-symbol absolute left-3 top-2 sm:left-3.5 sm:top-2.5 text-[#8f8f8f] font-mono text-sm sm:text-base"
+            >$</span
+          >
           <input
             type="number"
             id="zbb-income-input"
@@ -50,32 +67,75 @@ import CurrencyLanguageControls from '../ui/CurrencyLanguageControls.astro';
       </div>
 
       <!-- Mobile Allocation Quick Status (Visible only on mobile/tablet < lg) -->
-      <div class="lg:hidden bg-white rounded-[10px] border border-[#ebebeb] p-3 shadow-whisper">
-        <div class="flex items-center justify-between pb-2 mb-2 border-b border-[#ebebeb]">
+      <div
+        class="lg:hidden bg-white rounded-[10px] border border-[#ebebeb] p-3 shadow-whisper"
+      >
+        <div
+          class="flex items-center justify-between pb-2 mb-2 border-b border-[#ebebeb]"
+        >
           <div class="flex items-center gap-1.5">
-            <span class="text-xs font-semibold text-[#171717]" data-mrb-t="zbb.left_to_assign">Left to Assign:</span>
-            <span id="mobile-zbb-remaining-val" class="font-mono text-base font-bold text-[#171717]" data-mrb-currency-val="0">$0</span>
+            <span
+              class="text-xs font-semibold text-[#171717]"
+              data-mrb-t="zbb.left_to_assign">Left to Assign:</span
+            >
+            <span
+              id="mobile-zbb-remaining-val"
+              class="font-mono text-base font-bold text-[#171717]"
+              data-mrb-currency-val="0">$0</span
+            >
           </div>
-          <div id="mobile-zbb-status-badge" class="px-2 py-0.5 rounded text-[11px] font-medium bg-[#f2f2f2] text-[#4d4d4d]">
-            <span id="mobile-zbb-status-badge-text" data-mrb-t="zbb.budget_balanced">Every Dollar Assigned</span>
+          <div
+            id="mobile-zbb-status-badge"
+            class="px-2 py-0.5 rounded text-[11px] font-medium bg-[#f2f2f2] text-[#4d4d4d]"
+          >
+            <span
+              id="mobile-zbb-status-badge-text"
+              data-mrb-t="zbb.budget_balanced">Every Dollar Assigned</span
+            >
           </div>
         </div>
         <div class="grid grid-cols-3 gap-1.5 text-center text-xs font-mono">
           <div class="bg-[#fafafa] py-1 px-1.5 rounded border border-[#ebebeb]">
-            <span class="text-[10px] text-[#8f8f8f] block" data-mrb-t="zbb.income_pool">Income Pool</span>
-            <span id="mobile-zbb-summary-income" class="font-semibold text-[#171717] text-xs block" data-mrb-currency-val="0">$0</span>
+            <span
+              class="text-[10px] text-[#8f8f8f] block"
+              data-mrb-t="zbb.income_pool">Income Pool</span
+            >
+            <span
+              id="mobile-zbb-summary-income"
+              class="font-semibold text-[#171717] text-xs block"
+              data-mrb-currency-val="0">$0</span
+            >
           </div>
           <div class="bg-[#fafafa] py-1 px-1.5 rounded border border-[#ebebeb]">
-            <span class="text-[10px] text-[#8f8f8f] block" data-mrb-t="zbb.total_allocated">Allocated</span>
-            <span id="mobile-zbb-summary-allocated" class="font-semibold text-[#171717] text-xs block" data-mrb-currency-val="0">$0</span>
+            <span
+              class="text-[10px] text-[#8f8f8f] block"
+              data-mrb-t="zbb.total_allocated">Allocated</span
+            >
+            <span
+              id="mobile-zbb-summary-allocated"
+              class="font-semibold text-[#171717] text-xs block"
+              data-mrb-currency-val="0">$0</span
+            >
           </div>
           <div class="bg-[#fafafa] py-1 px-1.5 rounded border border-[#ebebeb]">
-            <span class="text-[10px] text-[#8f8f8f] block" data-mrb-t="zbb.allocation_rate">Allocated %</span>
-            <span id="mobile-zbb-summary-pct" class="font-semibold text-[#171717] text-xs block">0%</span>
+            <span
+              class="text-[10px] text-[#8f8f8f] block"
+              data-mrb-t="zbb.allocation_rate">Allocated %</span
+            >
+            <span
+              id="mobile-zbb-summary-pct"
+              class="font-semibold text-[#171717] text-xs block">0%</span
+            >
           </div>
         </div>
-        <div class="flex items-center justify-between text-[11px] text-[#8f8f8f] pt-2 mt-1">
-          <span id="mobile-zbb-status-subtext" class="truncate pr-2 font-mono text-[10px] text-[#8f8f8f]" data-mrb-t="zbb.sub_left">Assign until 0 remains</span>
+        <div
+          class="flex items-center justify-between text-[11px] text-[#8f8f8f] pt-2 mt-1"
+        >
+          <span
+            id="mobile-zbb-status-subtext"
+            class="truncate pr-2 font-mono text-[10px] text-[#8f8f8f]"
+            data-mrb-t="zbb.sub_left">Assign until 0 remains</span
+          >
           <div class="flex items-center gap-1.5 shrink-0">
             <button
               type="button"
@@ -110,236 +170,479 @@ import CurrencyLanguageControls from '../ui/CurrencyLanguageControls.astro';
           id="zbb-add-group-btn"
           class="inline-flex items-center justify-center gap-2 w-full py-2.5 sm:py-3 rounded-[10px] sm:rounded-[12px] border border-dashed border-[#ebebeb] bg-white text-xs font-medium text-[#4d4d4d] hover:text-[#171717] hover:border-[#171717] hover:bg-[#fafafa] transition shadow-whisper"
         >
-          <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          <svg
+            class="w-3.5 h-3.5 sm:w-4 sm:h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 4v16m8-8H4"></path></svg
+          >
           <span data-mrb-t="zbb.add_group">Add New Allocation Group</span>
         </button>
       </div>
-
     </div>
 
     <!-- RIGHT: Zero Balance Meter & Summary (Sticky on Desktop) -->
-    <div class="lg:col-span-5 xl:col-span-4 lg:sticky lg:top-24 space-y-4 sm:space-y-6">
-      
-      <div class="bg-white rounded-[12px] border border-[#ebebeb] p-4 sm:p-6 shadow-whisper">
+    <div
+      class="lg:col-span-5 xl:col-span-4 lg:sticky lg:top-24 space-y-4 sm:space-y-6"
+    >
+      <div
+        class="bg-white rounded-[12px] border border-[#ebebeb] p-4 sm:p-6 shadow-whisper"
+      >
         <div class="border-b border-[#ebebeb] pb-3 mb-4">
-          <span class="font-mono text-[11px] sm:text-xs uppercase tracking-wider text-[#8f8f8f] block mb-0.5" data-mrb-t="zbb.zero_balance_title">
+          <span
+            class="font-mono text-[11px] sm:text-xs uppercase tracking-wider text-[#8f8f8f] block mb-0.5"
+            data-mrb-t="zbb.zero_balance_title"
+          >
             Zero-Based Balance
           </span>
           <div class="flex items-baseline justify-between">
-            <span id="zbb-status-label" class="text-sm font-semibold text-[#171717]" data-mrb-t="zbb.left_to_assign">Left to Assign</span>
-            <span id="zbb-remaining-val" class="font-mono text-xl sm:text-2xl font-bold tracking-tight text-[#171717]" data-mrb-currency-val="0">$0</span>
+            <span
+              id="zbb-status-label"
+              class="text-sm font-semibold text-[#171717]"
+              data-mrb-t="zbb.left_to_assign">Left to Assign</span
+            >
+            <span
+              id="zbb-remaining-val"
+              class="font-mono text-xl sm:text-2xl font-bold tracking-tight text-[#171717]"
+              data-mrb-currency-val="0">$0</span
+            >
           </div>
         </div>
 
         <!-- Status Banner -->
-        <div id="zbb-status-box" class="p-2.5 sm:p-3 rounded-[6px] mb-4 border transition-colors text-xs">
+        <div
+          id="zbb-status-box"
+          class="p-2.5 sm:p-3 rounded-[6px] mb-4 border transition-colors text-xs"
+        >
           <p id="zbb-status-message" class="leading-relaxed font-medium">
             <!-- Dynamic status -->
           </p>
         </div>
 
         <!-- Numbers Stack -->
-        <div class="space-y-2 sm:space-y-2.5 font-mono text-xs border-b border-[#ebebeb] pb-3 sm:pb-4 mb-3 sm:mb-5">
+        <div
+          class="space-y-2 sm:space-y-2.5 font-mono text-xs border-b border-[#ebebeb] pb-3 sm:pb-4 mb-3 sm:mb-5"
+        >
           <div class="flex justify-between items-center">
-            <span class="text-[#8f8f8f]" data-mrb-t="zbb.income_pool">Income Pool</span>
-            <span id="zbb-summary-income" class="font-semibold text-[#171717]" data-mrb-currency-val="0">$0</span>
+            <span class="text-[#8f8f8f]" data-mrb-t="zbb.income_pool"
+              >Income Pool</span
+            >
+            <span
+              id="zbb-summary-income"
+              class="font-semibold text-[#171717]"
+              data-mrb-currency-val="0">$0</span
+            >
           </div>
           <div class="flex justify-between items-center">
-            <span class="text-[#8f8f8f]" data-mrb-t="zbb.total_allocated">Total Allocated</span>
-            <span id="zbb-summary-allocated" class="font-semibold text-[#171717]" data-mrb-currency-val="0">$0</span>
+            <span class="text-[#8f8f8f]" data-mrb-t="zbb.total_allocated"
+              >Total Allocated</span
+            >
+            <span
+              id="zbb-summary-allocated"
+              class="font-semibold text-[#171717]"
+              data-mrb-currency-val="0">$0</span
+            >
           </div>
-          <div class="flex justify-between items-center pt-1 border-t border-[#f2f2f2]">
-            <span class="text-[#8f8f8f]" data-mrb-t="zbb.allocation_rate">Allocation Rate</span>
-            <span id="zbb-summary-pct" class="font-semibold text-[#171717]">0%</span>
+          <div
+            class="flex justify-between items-center pt-1 border-t border-[#f2f2f2]"
+          >
+            <span class="text-[#8f8f8f]" data-mrb-t="zbb.allocation_rate"
+              >Allocation Rate</span
+            >
+            <span id="zbb-summary-pct" class="font-semibold text-[#171717]"
+              >0%</span
+            >
           </div>
         </div>
 
         <!-- Group Allocation Progress Bar -->
         <div class="space-y-1.5 sm:space-y-2 mb-4 sm:mb-6">
-          <div class="flex justify-between text-[11px] sm:text-xs text-[#8f8f8f]">
-            <span data-mrb-t="zbb.assigned_vs_available">Assigned vs Available</span>
+          <div
+            class="flex justify-between text-[11px] sm:text-xs text-[#8f8f8f]"
+          >
+            <span data-mrb-t="zbb.assigned_vs_available"
+              >Assigned vs Available</span
+            >
             <span id="zbb-progress-label">0% assigned</span>
           </div>
-          <div class="w-full h-2 sm:h-2.5 rounded-full bg-[#f2f2f2] overflow-hidden">
-            <div id="zbb-progress-fill" class="h-full bg-[#171717] transition-all duration-300" style="width: 0%"></div>
+          <div
+            class="w-full h-2 sm:h-2.5 rounded-full bg-[#f2f2f2] overflow-hidden"
+          >
+            <div
+              id="zbb-progress-fill"
+              class="h-full bg-[#171717] transition-all duration-300"
+              style="width: 0%"
+            >
+            </div>
           </div>
         </div>
 
         <!-- Budget Summary (Secondary Breakdown - Collapsed by default) -->
         <details class="group space-y-2">
-          <summary class="flex items-center justify-between font-mono text-[11px] sm:text-xs font-medium uppercase tracking-wider text-[#8f8f8f] cursor-pointer list-none select-none py-0.5">
+          <summary
+            class="flex items-center justify-between font-mono text-[11px] sm:text-xs font-medium uppercase tracking-wider text-[#8f8f8f] cursor-pointer list-none select-none py-0.5"
+          >
             <span data-mrb-t="summary.budget_summary">Budget Summary</span>
-            <svg class="w-3.5 h-3.5 text-[#8f8f8f] transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <svg
+              class="w-3.5 h-3.5 text-[#8f8f8f] transition-transform duration-200 group-open:rotate-180"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"></path></svg
+            >
           </summary>
           <div id="zbb-groups-summary" class="space-y-2 text-xs pt-1">
             <!-- Populated dynamically -->
           </div>
         </details>
-
       </div>
 
       <!-- Strategy Guidance (Collapsed by default) -->
-      <details class="group bg-[#fafafa] rounded-[10px] sm:rounded-[12px] border border-[#ebebeb] p-3 sm:p-4 text-xs text-[#4d4d4d] space-y-1.5">
-        <summary class="flex items-center justify-between font-medium text-[#171717] cursor-pointer list-none select-none">
+      <details
+        class="group bg-[#fafafa] rounded-[10px] sm:rounded-[12px] border border-[#ebebeb] p-3 sm:p-4 text-xs text-[#4d4d4d] space-y-1.5"
+      >
+        <summary
+          class="flex items-center justify-between font-medium text-[#171717] cursor-pointer list-none select-none"
+        >
           <span data-mrb-t="zbb.strategy_title">How to reach Zero:</span>
-          <svg class="w-3.5 h-3.5 text-[#8f8f8f] transition-transform duration-200 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          <svg
+            class="w-3.5 h-3.5 text-[#8f8f8f] transition-transform duration-200 group-open:rotate-180"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"></path></svg
+          >
         </summary>
         <ul class="space-y-1.5 text-[11px] sm:text-[12px] text-[#8f8f8f] pt-1">
-          <li class="flex items-start gap-1"><span>•</span><span data-mrb-t="zbb.strategy_leftover"><strong>If money is left over:</strong> Do not leave it floating. Assign it to extra debt principal, retirement, or an irregular expense sinking fund.</span></li>
-          <li class="flex items-start gap-1"><span>•</span><span data-mrb-t="zbb.strategy_negative"><strong>If negative:</strong> You have assigned more than you make. Trim dining out, discretionary shopping, or entertainment until the balance hits $0.</span></li>
+          <li class="flex items-start gap-1">
+            <span>•</span><span data-mrb-t="zbb.strategy_leftover"
+              ><strong>If money is left over:</strong> Do not leave it floating. Assign
+              it to extra debt principal, retirement, or an irregular expense sinking
+              fund.</span>
+          </li>
+          <li class="flex items-start gap-1">
+            <span>•</span><span data-mrb-t="zbb.strategy_negative"
+              ><strong>If negative:</strong> You have assigned more than you make.
+              Trim dining out, discretionary shopping, or entertainment until the
+              balance hits $0.</span>
+          </li>
         </ul>
       </details>
 
       <!-- Quick Method Switcher -->
-      <div class="bg-[#fafafa] rounded-[10px] sm:rounded-[12px] border border-[#ebebeb] p-3 sm:p-4 text-xs text-[#4d4d4d] space-y-1.5">
-        <p class="font-medium text-[#171717]" data-mrb-t="common.try_another_method">Want to try another budgeting method?</p>
-        <p class="text-[11px] sm:text-[12px] text-[#8f8f8f]" data-mrb-t-html="zbb.switch_methods_desc">
-          Switch to the <a href="/budget-planner/" class="text-[#0070f3] underline hover:text-[#0761d1]">General Budget</a> for flexible categories, or the <a href="/50-30-20-budget/" class="text-[#0070f3] underline hover:text-[#0761d1]">50/30/20 Method</a> for percentage-based targets.
+      <div
+        class="bg-[#fafafa] rounded-[10px] sm:rounded-[12px] border border-[#ebebeb] p-3 sm:p-4 text-xs text-[#4d4d4d] space-y-1.5"
+      >
+        <p
+          class="font-medium text-[#171717]"
+          data-mrb-t="common.try_another_method"
+        >
+          Want to try another budgeting method?
+        </p>
+        <p
+          class="text-[11px] sm:text-[12px] text-[#8f8f8f]"
+          data-mrb-t-html="zbb.switch_methods_desc"
+        >
+          Switch to the <a
+            href="/budget-planner/"
+            class="text-[#0070f3] underline hover:text-[#0761d1]"
+            >General Budget</a
+          > for flexible categories, or the <a
+            href="/50-30-20-budget/"
+            class="text-[#0070f3] underline hover:text-[#0761d1]"
+            >50/30/20 Method</a
+          > for percentage-based targets.
         </p>
       </div>
-
     </div>
   </div>
 </div>
 
 <script is:inline>
-(function() {
-  const STORAGE_KEY = 'myrealbudget_zerobased_v1';
+  (function () {
+    const STORAGE_KEY = "myrealbudget_zerobased_v1";
 
-  const FREQUENCY_MULTIPLIERS = {
-    weekly: 52 / 12,
-    biweekly: 26 / 12,
-    monthly: 1,
-    quarterly: 4 / 12,
-    yearly: 1 / 12,
-  };
+    const FREQUENCY_MULTIPLIERS = {
+      weekly: 52 / 12,
+      biweekly: 26 / 12,
+      monthly: 1,
+      quarterly: 4 / 12,
+      semiannual: 2 / 12,
+      yearly: 1 / 12,
+    };
 
-  const FREQUENCY_OPTIONS = [
-    { id: 'monthly', label: 'Monthly' },
-    { id: 'weekly', label: 'Weekly' },
-    { id: 'biweekly', label: 'Every 2 wks' },
-    { id: 'quarterly', label: 'Quarterly' },
-    { id: 'yearly', label: 'Yearly' },
-  ];
+    const FREQUENCY_OPTIONS = [
+      { id: "monthly", label: "Monthly" },
+      { id: "weekly", label: "Weekly" },
+      { id: "biweekly", label: "Every 2 wks" },
+      { id: "quarterly", label: "Quarterly" },
+      { id: "semiannual", label: "Semi-Annual" },
+      { id: "yearly", label: "Yearly" },
+    ];
 
-  const defaultData = {
-    income: 4500,
-    groups: [
-      {
-        id: 'g_housing_living',
-        name: 'Housing & Living Essentials',
-        items: [
-          { id: 'z1', name: 'Rent or Mortgage', amount: 1400, frequency: 'monthly' },
-          { id: 'z2', name: 'Utilities (Power/Water/Gas)', amount: 200, frequency: 'monthly' },
-          { id: 'z3', name: 'Groceries', amount: 115, frequency: 'weekly' },
-          { id: 'z4', name: 'Transportation & Gas', amount: 40, frequency: 'weekly' },
-        ],
-      },
-      {
-        id: 'g_debt',
-        name: 'Debt Payments',
-        items: [
-          { id: 'z5', name: 'Student Loan Minimum', amount: 180, frequency: 'monthly' },
-          { id: 'z6', name: 'Accelerated Extra Principal Payoff', amount: 300, frequency: 'monthly' },
-        ],
-      },
-      {
-        id: 'g_savings',
-        name: 'Savings & Sinking Funds',
-        items: [
-          { id: 'z7', name: 'Emergency Cushion Fund', amount: 350, frequency: 'monthly' },
-          { id: 'z8', name: 'Annual Car Maintenance Sinking Fund', amount: 600, frequency: 'yearly' },
-          { id: 'z9', name: 'Roth IRA / Retirement', amount: 400, frequency: 'monthly' },
-        ],
-      },
-      {
-        id: 'g_lifestyle',
-        name: 'Lifestyle & Fun Money',
-        items: [
-          { id: 'z10', name: 'Dining Out & Entertainment', amount: 250, frequency: 'monthly' },
-          { id: 'z11', name: 'Subscriptions & Software', amount: 45, frequency: 'monthly' },
-          { id: 'z12', name: 'Personal Care & Clothing', amount: 100, frequency: 'monthly' },
-        ],
-      },
-      {
-        id: 'g_buffer',
-        name: 'Miscellaneous Cushion Buffer',
-        items: [
-          { id: 'z13', name: 'Checking Account Buffer (Zero cushion)', amount: 105, frequency: 'monthly' },
-        ],
-      },
-    ],
-  };
+    const defaultData = {
+      income: 4500,
+      groups: [
+        {
+          id: "g_housing_living",
+          name: "Housing & Living Essentials",
+          items: [
+            {
+              id: "z1",
+              name: "Rent or Mortgage",
+              amount: 1400,
+              frequency: "monthly",
+            },
+            {
+              id: "z2",
+              name: "Utilities (Power/Water/Gas)",
+              amount: 200,
+              frequency: "monthly",
+            },
+            { id: "z3", name: "Groceries", amount: 120, frequency: "weekly" },
+            {
+              id: "z4",
+              name: "Transportation & Gas",
+              amount: 45,
+              frequency: "weekly",
+            },
+          ],
+        },
+        {
+          id: "g_debt",
+          name: "Debt Payments",
+          items: [
+            {
+              id: "z5",
+              name: "Student Loan Minimum",
+              amount: 185,
+              frequency: "monthly",
+            },
+            {
+              id: "z6",
+              name: "Accelerated Extra Principal Payoff",
+              amount: 300,
+              frequency: "monthly",
+            },
+          ],
+        },
+        {
+          id: "g_savings",
+          name: "Savings & Sinking Funds",
+          items: [
+            {
+              id: "z7",
+              name: "Emergency Cushion Fund",
+              amount: 350,
+              frequency: "monthly",
+            },
+            {
+              id: "z8",
+              name: "Annual Car Maintenance Sinking Fund",
+              amount: 600,
+              frequency: "yearly",
+            },
+            {
+              id: "z9",
+              name: "Roth IRA / Retirement",
+              amount: 400,
+              frequency: "monthly",
+            },
+          ],
+        },
+        {
+          id: "g_lifestyle",
+          name: "Lifestyle & Fun Money",
+          items: [
+            {
+              id: "z10",
+              name: "Dining Out & Entertainment",
+              amount: 250,
+              frequency: "monthly",
+            },
+            {
+              id: "z11",
+              name: "Subscriptions & Software",
+              amount: 45,
+              frequency: "monthly",
+            },
+            {
+              id: "z12",
+              name: "Personal Care & Clothing",
+              amount: 105,
+              frequency: "monthly",
+            },
+          ],
+        },
+        {
+          id: "g_buffer",
+          name: "Miscellaneous Cushion Buffer",
+          items: [
+            {
+              id: "z13",
+              name: "Checking Account Buffer (Zero cushion)",
+              amount: 500,
+              frequency: "monthly",
+            },
+          ],
+        },
+      ],
+    };
 
-  let state = loadState();
+    let state = loadState();
 
-  function loadState() {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (parsed.income && parsed.groups) return parsed;
+    const MONEY_TOLERANCE =
+      (window._mrb_currency && window._mrb_currency.tolerance) || 0.005;
+
+    function sanitizeAmount(val) {
+      if (
+        window._mrb_currency &&
+        typeof window._mrb_currency.sanitizeAmount === "function"
+      ) {
+        return window._mrb_currency.sanitizeAmount(val);
       }
-    } catch (e) {
-      console.warn('LocalStorage error:', e);
+      const n = typeof val === "number" ? val : parseFloat(val);
+      if (isNaN(n) || !isFinite(n) || n <= 0 || n > Number.MAX_SAFE_INTEGER / 100) return 0;
+      return Math.round(n * 100) / 100;
     }
-    return JSON.parse(JSON.stringify(defaultData));
-  }
 
-  function saveState() {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    } catch (e) {
-      console.warn('Save state error:', e);
+    function cleanMoney(val) {
+      if (
+        window._mrb_currency &&
+        typeof window._mrb_currency.cleanMoney === "function"
+      ) {
+        return window._mrb_currency.cleanMoney(val);
+      }
+      const num = Number(val);
+      if (!isFinite(num) || isNaN(num) || Math.abs(num) < MONEY_TOLERANCE || Object.is(num, -0) || Math.abs(num) > Number.MAX_SAFE_INTEGER / 100)
+        return 0;
+      const rounded = Math.round(num * 100) / 100;
+      return (!isFinite(rounded) || Math.abs(rounded) < MONEY_TOLERANCE || Object.is(rounded, -0)) ? 0 : rounded;
     }
-  }
 
-  function normalize(amount, freq) {
-    return (Number(amount) || 0) * (FREQUENCY_MULTIPLIERS[freq] || 1);
-  }
-
-  function t(k, vars) {
-    if (window._mrb_i18n && typeof window._mrb_i18n.t === 'function') {
-      return window._mrb_i18n.t(k, vars);
+    function loadState() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (
+            typeof parsed.income === "number" &&
+            !isNaN(parsed.income) &&
+            Array.isArray(parsed.groups)
+          ) {
+            parsed.income = sanitizeAmount(parsed.income);
+            parsed.groups.forEach((g) => {
+              if (Array.isArray(g.items)) {
+                g.items.forEach((i) => (i.amount = sanitizeAmount(i.amount)));
+              }
+            });
+            return parsed;
+          }
+        }
+      } catch (e) {
+        console.warn("LocalStorage error:", e);
+      }
+      return JSON.parse(JSON.stringify(defaultData));
     }
-    return k;
-  }
 
-  function getCurrencySymbol() {
-    if (window._mrb_currency && typeof window._mrb_currency.symbol === 'function') {
-      return window._mrb_currency.symbol();
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) {
+        console.warn("Save state error:", e);
+      }
     }
-    const curr = (typeof localStorage !== 'undefined' && localStorage.getItem('myrealbudget_currency')) || 'USD';
-    const syms = { USD: '$', EUR: '€', GBP: '£', INR: '₹', CAD: 'C$', AUD: 'A$' };
-    return syms[curr] || '$';
-  }
 
-  function formatMoney(amount) {
-    if (window._mrb_currency && typeof window._mrb_currency.format === 'function') {
-      return window._mrb_currency.format(amount);
+    function normalize(amount, freq) {
+      return sanitizeAmount(amount) * (FREQUENCY_MULTIPLIERS[freq] || 1);
     }
-    const curr = (typeof localStorage !== 'undefined' && localStorage.getItem('myrealbudget_currency')) || 'USD';
-    const sym = getCurrencySymbol();
-    const locale = curr === 'INR' ? 'en-IN' : 'en-US';
-    const hasCents = amount % 1 !== 0;
-    const formatted = new Intl.NumberFormat(locale, {
-      minimumFractionDigits: hasCents ? 2 : 0,
-      maximumFractionDigits: hasCents ? 2 : 0,
-    }).format(Math.abs(amount));
-    return (amount < 0 ? '-' : '') + sym + formatted;
-  }
 
-  let openGroups = new Set([0]); // Default first group open on mobile
+    function t(k, vars) {
+      if (window._mrb_i18n && typeof window._mrb_i18n.t === "function") {
+        return window._mrb_i18n.t(k, vars);
+      }
+      return k;
+    }
 
-  function renderGroups() {
-    const container = document.getElementById('zbb-groups-container');
-    if (!container) return;
+    function getCurrencySymbol() {
+      if (
+        window._mrb_currency &&
+        typeof window._mrb_currency.symbol === "function"
+      ) {
+        return window._mrb_currency.symbol();
+      }
+      const curr =
+        (typeof localStorage !== "undefined" &&
+          localStorage.getItem("myrealbudget_currency")) ||
+        "USD";
+      const syms = {
+        USD: "$",
+        EUR: "€",
+        GBP: "£",
+        INR: "₹",
+        CAD: "C$",
+        AUD: "A$",
+      };
+      return syms[curr] || "$";
+    }
 
-    container.innerHTML = state.groups.map((grp, grpIdx) => {
-      const groupTotal = grp.items.reduce((s, i) => s + normalize(i.amount, i.frequency), 0);
-      const isOpen = openGroups.has(grpIdx);
-      const groupDisplayName = window._mrb_i18n ? window._mrb_i18n.translateCategory(grp.name) : grp.name;
-      return `
+    function formatMoney(amount) {
+      amount = cleanMoney(amount);
+      if (
+        window._mrb_currency &&
+        typeof window._mrb_currency.format === "function"
+      ) {
+        return window._mrb_currency.format(amount);
+      }
+      const sym = getCurrencySymbol();
+      if (!isFinite(amount) || isNaN(amount)) {
+        return sym + "0";
+      }
+      const curr =
+        (typeof localStorage !== "undefined" &&
+          localStorage.getItem("myrealbudget_currency")) ||
+        "USD";
+      const locale = curr === "INR" ? "en-IN" : "en-US";
+      const hasCents = amount % 1 !== 0;
+      const formatted = new Intl.NumberFormat(locale, {
+        minimumFractionDigits: hasCents ? 2 : 0,
+        maximumFractionDigits: hasCents ? 2 : 0,
+      }).format(Math.abs(amount));
+      const sign =
+        amount < 0 && Math.abs(amount) >= MONEY_TOLERANCE ? "-" : "";
+      return sign + sym + formatted;
+    }
+
+    let openGroups = new Set([0]); // Default first group open on mobile
+
+    function renderGroups() {
+      const container = document.getElementById("zbb-groups-container");
+      if (!container) return;
+
+      container.innerHTML = state.groups
+        .map((grp, grpIdx) => {
+          const groupTotal = grp.items.reduce(
+            (s, i) => s + normalize(i.amount, i.frequency),
+            0,
+          );
+          const isOpen = openGroups.has(grpIdx);
+          const groupDisplayName = window._mrb_i18n
+            ? window._mrb_i18n.translateCategory(grp.name)
+            : grp.name;
+          return `
         <div class="bg-white rounded-[10px] sm:rounded-[12px] border border-[#ebebeb] p-2.5 sm:p-5 shadow-whisper" data-grp-idx="${grpIdx}">
           <!-- Compact Group Header -->
           <div
@@ -350,15 +653,15 @@ import CurrencyLanguageControls from '../ui/CurrencyLanguageControls.astro';
               <button
                 type="button"
                 id="zbb-grp-btn-${grpIdx}"
-                class="sm:hidden p-0.5 text-[#8f8f8f] hover:text-[#171717] transition-transform duration-200 shrink-0 ${isOpen ? 'rotate-180' : ''}"
-                aria-label="${t('aria.toggle_category') || 'Toggle group items'}"
+                class="sm:hidden p-0.5 text-[#8f8f8f] hover:text-[#171717] transition-transform duration-200 shrink-0 ${isOpen ? "rotate-180" : ""}"
+                aria-label="${t("aria.toggle_category") || "Toggle group items"}"
               >
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
               </button>
               <input
                 type="text"
                 value="${escapeHtml(groupDisplayName)}"
-                aria-label="${t('aria.category_name') || 'Group name'}"
+                aria-label="${t("aria.category_name") || "Group name"}"
                 class="font-semibold text-xs sm:text-sm text-[#171717] bg-transparent border-b border-transparent hover:border-[#ebebeb] focus:border-[#171717] focus:outline-none py-0.5 flex-1 min-w-0"
                 onclick="event.stopPropagation()"
                 onchange="window._zbb.updateGroupName(${grpIdx}, this.value)"
@@ -366,12 +669,12 @@ import CurrencyLanguageControls from '../ui/CurrencyLanguageControls.astro';
             </div>
             <div class="flex items-center gap-1.5 sm:gap-3 shrink-0" onclick="event.stopPropagation()">
               <span class="font-mono text-xs sm:text-sm font-semibold text-[#171717]">
-                ${formatMoney(groupTotal)}<span class="text-[#8f8f8f] font-normal text-[10px] sm:text-[11px]">${t('common.per_month') || '/mo'}</span>
+                ${formatMoney(groupTotal)}<span class="text-[#8f8f8f] font-normal text-[10px] sm:text-[11px]">${t("common.per_month") || "/mo"}</span>
               </span>
               <button
                 type="button"
-                title="${t('actions.delete') || 'Remove group'}"
-                aria-label="${t('actions.delete') || 'Remove group'}"
+                title="${t("actions.delete") || "Remove group"}"
+                aria-label="${t("actions.delete") || "Remove group"}"
                 class="text-[#8f8f8f] hover:text-[#ee0000] p-0.5 sm:p-1 transition"
                 onclick="window._zbb.removeGroup(${grpIdx})"
               >
@@ -381,16 +684,19 @@ import CurrencyLanguageControls from '../ui/CurrencyLanguageControls.astro';
           </div>
 
           <!-- Group Line Items (Collapsible on mobile < sm, always visible on sm+) -->
-          <div id="zbb-grp-body-${grpIdx}" class="${isOpen ? 'block' : 'hidden'} sm:!block pt-2 sm:pt-3">
+          <div id="zbb-grp-body-${grpIdx}" class="${isOpen ? "block" : "hidden"} sm:!block pt-2 sm:pt-3">
             <div class="space-y-1.5 sm:space-y-2">
-              ${grp.items.map((item, itemIdx) => {
-                const itemDisplayName = window._mrb_i18n ? window._mrb_i18n.translateItem(item.name) : item.name;
-                return `
+              ${grp.items
+                .map((item, itemIdx) => {
+                  const itemDisplayName = window._mrb_i18n
+                    ? window._mrb_i18n.translateItem(item.name)
+                    : item.name;
+                  return `
                 <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-1 sm:gap-2 p-1.5 sm:p-2 rounded-[6px] bg-[#fafafa] border border-[#ebebeb] text-xs">
                   <input
                     type="text"
                     value="${escapeHtml(itemDisplayName)}"
-                    aria-label="${t('aria.expense_item_name') || 'Line item name'}"
+                    aria-label="${t("aria.expense_item_name") || "Line item name"}"
                     class="flex-1 px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-[5px] bg-white border border-[#ebebeb] text-[#171717] focus:outline-none focus:border-[#171717] text-xs"
                     onchange="window._zbb.updateItem(${grpIdx}, ${itemIdx}, 'name', this.value)"
                   />
@@ -401,27 +707,29 @@ import CurrencyLanguageControls from '../ui/CurrencyLanguageControls.astro';
                         type="number"
                         min="0"
                         step="any"
-                        value="${item.amount || ''}"
+                        value="${item.amount || ""}"
                         placeholder="0"
-                        aria-label="${t('aria.expense_amount') || 'Allocated amount'}"
+                        aria-label="${t("aria.expense_amount") || "Allocated amount"}"
                         class="w-full pl-5 pr-1.5 py-1 sm:pl-6 sm:pr-2 sm:py-1.5 rounded-[5px] bg-white border border-[#ebebeb] text-[#171717] font-mono text-right focus:outline-none focus:border-[#171717] text-xs"
                         oninput="window._zbb.updateItem(${grpIdx}, ${itemIdx}, 'amount', this.value)"
                       />
                     </div>
                     <select
-                      aria-label="${t('aria.expense_frequency') || 'Frequency'}"
+                      aria-label="${t("aria.expense_frequency") || "Frequency"}"
                       class="px-1.5 py-1 sm:px-2 sm:py-1.5 rounded-[5px] bg-white border border-[#ebebeb] text-[#4d4d4d] focus:outline-none focus:border-[#171717] text-xs font-mono shrink-0"
                       onchange="window._zbb.updateItem(${grpIdx}, ${itemIdx}, 'frequency', this.value)"
                     >
-                      ${FREQUENCY_OPTIONS.map(opt => {
-                        const freqLabel = window._mrb_i18n ? window._mrb_i18n.getFrequencyLabel(opt.id) : opt.label;
-                        return `<option value="${opt.id}" ${item.frequency === opt.id ? 'selected' : ''}>${freqLabel}</option>`;
-                      }).join('')}
+                      ${FREQUENCY_OPTIONS.map((opt) => {
+                        const freqLabel = window._mrb_i18n
+                          ? window._mrb_i18n.getFrequencyLabel(opt.id)
+                          : opt.label;
+                        return `<option value="${opt.id}" ${item.frequency === opt.id ? "selected" : ""}>${freqLabel}</option>`;
+                      }).join("")}
                     </select>
                     <button
                       type="button"
-                      title="${t('actions.delete') || 'Remove line item'}"
-                      aria-label="${t('actions.delete') || 'Remove line item'}"
+                      title="${t("actions.delete") || "Remove line item"}"
+                      aria-label="${t("actions.delete") || "Remove line item"}"
                       class="p-1 sm:p-1.5 text-[#8f8f8f] hover:text-[#ee0000] rounded hover:bg-neutral-100 transition shrink-0"
                       onclick="window._zbb.removeItem(${grpIdx}, ${itemIdx})"
                     >
@@ -430,7 +738,8 @@ import CurrencyLanguageControls from '../ui/CurrencyLanguageControls.astro';
                   </div>
                 </div>
               `;
-              }).join('')}
+                })
+                .join("")}
             </div>
 
             <button
@@ -439,280 +748,337 @@ import CurrencyLanguageControls from '../ui/CurrencyLanguageControls.astro';
               onclick="window._zbb.addItem(${grpIdx})"
             >
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-              ${t('zbb.add_item_to', { group: escapeHtml(groupDisplayName) }) || ('Add item to ' + escapeHtml(groupDisplayName))}
+              ${t("zbb.add_item_to", { group: escapeHtml(groupDisplayName) }) || "Add item to " + escapeHtml(groupDisplayName)}
             </button>
           </div>
         </div>
       `;
-    }).join('');
-  }
+        })
+        .join("");
+    }
 
-  function calculateAndRender() {
-    const income = Number(state.income) || 0;
-    let totalAllocated = 0;
-    const groupSummaries = [];
+    function calculateAndRender() {
+      const income = sanitizeAmount(state.income);
+      let totalAllocated = 0;
+      const groupSummaries = [];
 
-    state.groups.forEach(grp => {
-      const gTot = grp.items.reduce((s, i) => s + normalize(i.amount, i.frequency), 0);
-      totalAllocated += gTot;
-      groupSummaries.push({ name: grp.name, total: gTot });
-    });
+      state.groups.forEach((grp) => {
+        const gTot = cleanMoney(
+          grp.items.reduce((s, i) => s + normalize(i.amount, i.frequency), 0),
+        );
+        totalAllocated += gTot;
+        groupSummaries.push({ name: grp.name, total: gTot });
+      });
 
-    const remaining = income - totalAllocated;
-    const pct = income > 0 ? Math.min(100, Math.round((totalAllocated / income) * 100)) : 0;
+      totalAllocated = cleanMoney(totalAllocated);
+      const remaining = cleanMoney(income - totalAllocated);
+      const pct =
+        income > 0 ? Math.round((totalAllocated / income) * 100) : 0;
 
-    // Status Box (Desktop)
-    const sBox = document.getElementById('zbb-status-box');
-    const sLabel = document.getElementById('zbb-status-label');
-    const sVal = document.getElementById('zbb-remaining-val');
-    const sMsg = document.getElementById('zbb-status-message');
+      // Status Box (Desktop)
+      const sBox = document.getElementById("zbb-status-box");
+      const sLabel = document.getElementById("zbb-status-label");
+      const sVal = document.getElementById("zbb-remaining-val");
+      const sMsg = document.getElementById("zbb-status-message");
 
-    // Status Box (Mobile)
-    const mVal = document.getElementById('mobile-zbb-remaining-val');
-    const mBadge = document.getElementById('mobile-zbb-status-badge');
-    const mBadgeText = document.getElementById('mobile-zbb-status-badge-text');
-    const mSubText = document.getElementById('mobile-zbb-status-subtext');
-    const mSumInc = document.getElementById('mobile-zbb-summary-income');
-    const mSumAlloc = document.getElementById('mobile-zbb-summary-allocated');
-    const mSumPct = document.getElementById('mobile-zbb-summary-pct');
+      // Status Box (Mobile)
+      const mVal = document.getElementById("mobile-zbb-remaining-val");
+      const mBadge = document.getElementById("mobile-zbb-status-badge");
+      const mBadgeText = document.getElementById(
+        "mobile-zbb-status-badge-text",
+      );
+      const mSubText = document.getElementById("mobile-zbb-status-subtext");
+      const mSumInc = document.getElementById("mobile-zbb-summary-income");
+      const mSumAlloc = document.getElementById("mobile-zbb-summary-allocated");
+      const mSumPct = document.getElementById("mobile-zbb-summary-pct");
 
-    if (sVal) sVal.textContent = formatMoney(remaining);
-    if (mVal) mVal.textContent = formatMoney(remaining);
-    if (mSumInc) mSumInc.textContent = formatMoney(income);
-    if (mSumAlloc) mSumAlloc.textContent = formatMoney(totalAllocated);
-    if (mSumPct) mSumPct.textContent = `${pct}%`;
+      if (sVal) sVal.textContent = formatMoney(remaining);
+      if (mVal) mVal.textContent = formatMoney(remaining);
+      if (mSumInc) mSumInc.textContent = formatMoney(income);
+      if (mSumAlloc) mSumAlloc.textContent = formatMoney(totalAllocated);
+      if (mSumPct) mSumPct.textContent = `${pct}%`;
 
-    const isBalanced = Math.abs(remaining) < 0.5;
-    const isUnder = remaining > 0;
+      const isBalanced = remaining === 0;
+      const isUnder = remaining > 0;
 
-    if (sBox && sLabel && sMsg) {
-      if (isBalanced) {
-        sBox.className = 'p-4 rounded-[8px] mb-5 border bg-[#e6fbf5] border-[#a7f3d0] text-[#047857]';
-        sLabel.textContent = t('zbb.budget_balanced');
-        sMsg.innerHTML = t('zbb.goal_reached_msg');
-      } else if (isUnder) {
-        sBox.className = 'p-4 rounded-[8px] mb-5 border bg-[#eef6ff] border-[#bfdbfe] text-[#0761d1]';
-        sLabel.textContent = t('zbb.left_to_assign');
-        sMsg.innerHTML = t('zbb.left_to_assign_msg', { amount: formatMoney(remaining), zero: formatMoney(0) });
-      } else {
-        const over = Math.abs(remaining);
-        sBox.className = 'p-4 rounded-[8px] mb-5 border bg-[#fef2f2] border-[#fecaca] text-[#b91c1c]';
-        sLabel.textContent = t('zbb.over_allocated');
-        sMsg.innerHTML = t('zbb.over_allocated_msg', { amount: formatMoney(over) });
+      if (sBox && sLabel && sMsg) {
+        if (isBalanced) {
+          sBox.className =
+            "p-4 rounded-[8px] mb-5 border bg-[#e6fbf5] border-[#a7f3d0] text-[#047857]";
+          sLabel.textContent = t("zbb.budget_balanced");
+          sMsg.innerHTML = t("zbb.goal_reached_msg");
+        } else if (isUnder) {
+          sBox.className =
+            "p-4 rounded-[8px] mb-5 border bg-[#eef6ff] border-[#bfdbfe] text-[#0761d1]";
+          sLabel.textContent = t("zbb.left_to_assign");
+          sMsg.innerHTML = t("zbb.left_to_assign_msg", {
+            amount: formatMoney(remaining),
+            zero: formatMoney(0),
+          });
+        } else {
+          const over = Math.abs(remaining);
+          sBox.className =
+            "p-4 rounded-[8px] mb-5 border bg-[#fef2f2] border-[#fecaca] text-[#b91c1c]";
+          sLabel.textContent = t("zbb.over_allocated");
+          sMsg.innerHTML = t("zbb.over_allocated_msg", {
+            amount: formatMoney(over),
+          });
+        }
       }
-    }
 
-    if (mBadge && mBadgeText && mSubText) {
-      if (isBalanced) {
-        mBadge.className = 'px-2 py-0.5 rounded text-[11px] font-medium bg-[#e6fbf5] text-[#047857] border border-[#a7f3d0]';
-        mBadgeText.textContent = t('zbb.badge_balanced', { zero: formatMoney(0) });
-        mSubText.textContent = t('zbb.sub_balanced');
-      } else if (isUnder) {
-        mBadge.className = 'px-2 py-0.5 rounded text-[11px] font-medium bg-[#eef6ff] text-[#0761d1] border border-[#bfdbfe]';
-        mBadgeText.textContent = t('zbb.badge_left', { amount: formatMoney(remaining) });
-        mSubText.textContent = t('zbb.sub_left', { zero: formatMoney(0) });
-      } else {
-        const over = Math.abs(remaining);
-        mBadge.className = 'px-2 py-0.5 rounded text-[11px] font-medium bg-[#fef2f2] text-[#b91c1c] border border-[#fecaca]';
-        mBadgeText.textContent = t('zbb.badge_over', { amount: formatMoney(over) });
-        mSubText.textContent = t('zbb.sub_over');
+      if (mBadge && mBadgeText && mSubText) {
+        if (isBalanced) {
+          mBadge.className =
+            "px-2 py-0.5 rounded text-[11px] font-medium bg-[#e6fbf5] text-[#047857] border border-[#a7f3d0]";
+          mBadgeText.textContent = t("zbb.badge_balanced", {
+            zero: formatMoney(0),
+          });
+          mSubText.textContent = t("zbb.sub_balanced");
+        } else if (isUnder) {
+          mBadge.className =
+            "px-2 py-0.5 rounded text-[11px] font-medium bg-[#eef6ff] text-[#0761d1] border border-[#bfdbfe]";
+          mBadgeText.textContent = t("zbb.badge_left", {
+            amount: formatMoney(remaining),
+          });
+          mSubText.textContent = t("zbb.sub_left", { zero: formatMoney(0) });
+        } else {
+          const over = Math.abs(remaining);
+          mBadge.className =
+            "px-2 py-0.5 rounded text-[11px] font-medium bg-[#fef2f2] text-[#b91c1c] border border-[#fecaca]";
+          mBadgeText.textContent = t("zbb.badge_over", {
+            amount: formatMoney(over),
+          });
+          mSubText.textContent = t("zbb.sub_over");
+        }
       }
-    }
 
-    // Stack Numbers
-    const sumInc = document.getElementById('zbb-summary-income');
-    const sumAlloc = document.getElementById('zbb-summary-allocated');
-    const sumPct = document.getElementById('zbb-summary-pct');
+      // Stack Numbers
+      const sumInc = document.getElementById("zbb-summary-income");
+      const sumAlloc = document.getElementById("zbb-summary-allocated");
+      const sumPct = document.getElementById("zbb-summary-pct");
 
-    if (sumInc) sumInc.textContent = formatMoney(income);
-    if (sumAlloc) sumAlloc.textContent = formatMoney(totalAllocated);
-    if (sumPct) sumPct.textContent = `${pct}%`;
+      if (sumInc) sumInc.textContent = formatMoney(income);
+      if (sumAlloc) sumAlloc.textContent = formatMoney(totalAllocated);
+      if (sumPct) sumPct.textContent = `${pct}%`;
 
-    // Progress Fill
-    const pFill = document.getElementById('zbb-progress-fill');
-    const pLbl = document.getElementById('zbb-progress-label');
-    if (pLbl) pLbl.textContent = t('zbb.pct_assigned', { pct });
-    if (pFill) {
-      pFill.style.width = `${pct}%`;
-      pFill.className = remaining < 0 ? 'h-full bg-[#ee0000] transition-all duration-300' : 'h-full bg-[#171717] transition-all duration-300';
-    }
+      // Progress Fill
+      const pFill = document.getElementById("zbb-progress-fill");
+      const pLbl = document.getElementById("zbb-progress-label");
+      if (pLbl) pLbl.textContent = t("zbb.pct_assigned", { pct });
+      if (pFill) {
+        pFill.style.width = `${Math.min(100, pct)}%`;
+        pFill.className =
+          remaining < 0
+            ? "h-full bg-[#ee0000] transition-all duration-300"
+            : "h-full bg-[#171717] transition-all duration-300";
+      }
 
-    // Envelopes List
-    const groupsContainer = document.getElementById('zbb-groups-summary');
-    if (groupsContainer) {
-      groupsContainer.innerHTML = groupSummaries.map(g => {
-        const gPct = totalAllocated > 0 ? Math.round((g.total / totalAllocated) * 100) : 0;
-        const gDisplayName = window._mrb_i18n ? window._mrb_i18n.translateCategory(g.name) : g.name;
-        return `
+      // Envelopes List
+      const groupsContainer = document.getElementById("zbb-groups-summary");
+      if (groupsContainer) {
+        groupsContainer.innerHTML = groupSummaries
+          .map((g) => {
+            const gPct =
+              totalAllocated > 0
+                ? Math.round((g.total / totalAllocated) * 100)
+                : 0;
+            const gDisplayName = window._mrb_i18n
+              ? window._mrb_i18n.translateCategory(g.name)
+              : g.name;
+            return `
           <div class="flex justify-between items-center text-xs">
             <span class="text-[#4d4d4d] truncate max-w-[170px]">${escapeHtml(gDisplayName)}</span>
             <span class="font-mono text-[#171717] font-medium">${formatMoney(g.total)} <span class="text-[#8f8f8f] font-normal">(${gPct}%)</span></span>
           </div>
         `;
-      }).join('');
+          })
+          .join("");
+      }
     }
-  }
 
-  function escapeHtml(str) {
-    return (str || '').replace(/[&<>"']/g, m => ({
-      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
-    }[m]));
-  }
+    function escapeHtml(str) {
+      return (str || "").replace(
+        /[&<>"']/g,
+        (m) =>
+          ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;",
+          })[m],
+      );
+    }
 
-  window._zbb = {
-    updateGroupName: function(grpIdx, name) {
-      if (!state.groups[grpIdx]) return;
-      state.groups[grpIdx].name = name;
-      saveState();
-      calculateAndRender();
-    },
-    removeGroup: function(grpIdx) {
-      const grpName = state.groups[grpIdx] ? state.groups[grpIdx].name : '';
-      if (confirm(t('confirm.delete_group', { name: grpName }))) {
-        state.groups.splice(grpIdx, 1);
+    window._zbb = {
+      updateGroupName: function (grpIdx, name) {
+        if (!state.groups[grpIdx]) return;
+        state.groups[grpIdx].name = name;
+        saveState();
+        calculateAndRender();
+      },
+      removeGroup: function (grpIdx) {
+        const grpName = state.groups[grpIdx] ? state.groups[grpIdx].name : "";
+        if (confirm(t("confirm.delete_group", { name: grpName }))) {
+          state.groups.splice(grpIdx, 1);
+          saveState();
+          renderGroups();
+          calculateAndRender();
+        }
+      },
+      updateItem: function (grpIdx, itemIdx, field, value) {
+        if (!state.groups[grpIdx] || !state.groups[grpIdx].items[itemIdx])
+          return;
+        if (field === "amount") {
+          state.groups[grpIdx].items[itemIdx].amount = sanitizeAmount(value);
+        } else {
+          state.groups[grpIdx].items[itemIdx][field] = value;
+        }
+        saveState();
+        calculateAndRender();
+      },
+      removeItem: function (grpIdx, itemIdx) {
+        if (!state.groups[grpIdx]) return;
+        state.groups[grpIdx].items.splice(itemIdx, 1);
         saveState();
         renderGroups();
         calculateAndRender();
-      }
-    },
-    updateItem: function(grpIdx, itemIdx, field, value) {
-      if (!state.groups[grpIdx] || !state.groups[grpIdx].items[itemIdx]) return;
-      if (field === 'amount') {
-        state.groups[grpIdx].items[itemIdx].amount = parseFloat(value) || 0;
-      } else {
-        state.groups[grpIdx].items[itemIdx][field] = value;
-      }
-      saveState();
-      calculateAndRender();
-    },
-    removeItem: function(grpIdx, itemIdx) {
-      if (!state.groups[grpIdx]) return;
-      state.groups[grpIdx].items.splice(itemIdx, 1);
-      saveState();
-      renderGroups();
-      calculateAndRender();
-    },
-    addItem: function(grpIdx) {
-      if (!state.groups[grpIdx]) return;
-      state.groups[grpIdx].items.push({
-        id: 'z_' + Date.now(),
-        name: t('common.new_allocation') || 'New Allocation',
-        amount: 0,
-        frequency: 'monthly',
-      });
-      saveState();
-      renderGroups();
-      calculateAndRender();
-    },
-    toggleGroup: function(grpIdx) {
-      if (openGroups.has(grpIdx)) {
-        openGroups.delete(grpIdx);
-      } else {
-        openGroups.add(grpIdx);
-      }
-      const body = document.getElementById(`zbb-grp-body-${grpIdx}`);
-      const btn = document.getElementById(`zbb-grp-btn-${grpIdx}`);
-      if (body) {
-        if (openGroups.has(grpIdx)) {
-          body.classList.remove('hidden');
-          body.classList.add('block');
-        } else {
-          body.classList.remove('block');
-          body.classList.add('hidden');
-        }
-      }
-      if (btn) {
-        if (openGroups.has(grpIdx)) {
-          btn.classList.add('rotate-180');
-        } else {
-          btn.classList.remove('rotate-180');
-        }
-      }
-    },
-    toggleAllGroups: function(expand) {
-      state.groups.forEach((_, idx) => {
-        if (expand) openGroups.add(idx);
-        else openGroups.delete(idx);
-        const body = document.getElementById(`zbb-grp-body-${idx}`);
-        const btn = document.getElementById(`zbb-grp-btn-${idx}`);
-        if (body) {
-          if (expand) {
-            body.classList.remove('hidden');
-            body.classList.add('block');
-          } else {
-            body.classList.remove('block');
-            body.classList.add('hidden');
-          }
-        }
-        if (btn) {
-          if (expand) btn.classList.add('rotate-180');
-          else btn.classList.remove('rotate-180');
-        }
-      });
-    },
-  };
-
-  const incInput = document.getElementById('zbb-income-input');
-  if (incInput) {
-    incInput.addEventListener('input', (e) => {
-      state.income = parseFloat(e.target.value) || 0;
-      saveState();
-      calculateAndRender();
-    });
-  }
-
-  const addGroupBtn = document.getElementById('zbb-add-group-btn');
-  if (addGroupBtn) {
-    addGroupBtn.addEventListener('click', () => {
-      const defaultName = t('prompt.new_group_default') || 'Special Allocation Group';
-      const promptText = t('prompt.new_group_name') || 'Enter a name for your new allocation group:';
-      const name = prompt(promptText, defaultName);
-      if (name && name.trim()) {
-        state.groups.push({
-          id: 'grp_' + Date.now(),
-          name: name.trim(),
-          items: [{ id: 'z_' + Date.now(), name: 'First Item', amount: 0, frequency: 'monthly' }],
+      },
+      addItem: function (grpIdx) {
+        if (!state.groups[grpIdx]) return;
+        state.groups[grpIdx].items.push({
+          id: "z_" + Date.now(),
+          name: t("common.new_allocation") || "New Allocation",
+          amount: 0,
+          frequency: "monthly",
         });
         saveState();
         renderGroups();
         calculateAndRender();
-      }
-    });
-  }
+      },
+      toggleGroup: function (grpIdx) {
+        if (openGroups.has(grpIdx)) {
+          openGroups.delete(grpIdx);
+        } else {
+          openGroups.add(grpIdx);
+        }
+        const body = document.getElementById(`zbb-grp-body-${grpIdx}`);
+        const btn = document.getElementById(`zbb-grp-btn-${grpIdx}`);
+        if (body) {
+          if (openGroups.has(grpIdx)) {
+            body.classList.remove("hidden");
+            body.classList.add("block");
+          } else {
+            body.classList.remove("block");
+            body.classList.add("hidden");
+          }
+        }
+        if (btn) {
+          if (openGroups.has(grpIdx)) {
+            btn.classList.add("rotate-180");
+          } else {
+            btn.classList.remove("rotate-180");
+          }
+        }
+      },
+      toggleAllGroups: function (expand) {
+        state.groups.forEach((_, idx) => {
+          if (expand) openGroups.add(idx);
+          else openGroups.delete(idx);
+          const body = document.getElementById(`zbb-grp-body-${idx}`);
+          const btn = document.getElementById(`zbb-grp-btn-${idx}`);
+          if (body) {
+            if (expand) {
+              body.classList.remove("hidden");
+              body.classList.add("block");
+            } else {
+              body.classList.remove("block");
+              body.classList.add("hidden");
+            }
+          }
+          if (btn) {
+            if (expand) btn.classList.add("rotate-180");
+            else btn.classList.remove("rotate-180");
+          }
+        });
+      },
+    };
 
-  const resetBtn = document.getElementById('zbb-reset-btn');
-  if (resetBtn) {
-    resetBtn.addEventListener('click', () => {
-      if (confirm(t('confirm.reset_zbb'))) {
-        state = JSON.parse(JSON.stringify(defaultData));
-        if (incInput) incInput.value = state.income;
+    const incInput = document.getElementById("zbb-income-input");
+    if (incInput) {
+      incInput.addEventListener("input", (e) => {
+        state.income = sanitizeAmount(e.target.value);
         saveState();
-        renderGroups();
         calculateAndRender();
-      }
-    });
-  }
+      });
+    }
 
-  // Listen for global currency and language updates
-  window.addEventListener('myrealbudget:currency-change', () => {
-    document.querySelectorAll('#zero-based-planner .currency-symbol').forEach(el => {
-      el.textContent = getCurrencySymbol();
+    const addGroupBtn = document.getElementById("zbb-add-group-btn");
+    if (addGroupBtn) {
+      addGroupBtn.addEventListener("click", () => {
+        const defaultName =
+          t("prompt.new_group_default") || "Special Allocation Group";
+        const promptText =
+          t("prompt.new_group_name") ||
+          "Enter a name for your new allocation group:";
+        const name = prompt(promptText, defaultName);
+        if (name && name.trim()) {
+          state.groups.push({
+            id: "grp_" + Date.now(),
+            name: name.trim(),
+            items: [
+              {
+                id: "z_" + Date.now(),
+                name: "First Item",
+                amount: 0,
+                frequency: "monthly",
+              },
+            ],
+          });
+          saveState();
+          renderGroups();
+          calculateAndRender();
+        }
+      });
+    }
+
+    const resetBtn = document.getElementById("zbb-reset-btn");
+    if (resetBtn) {
+      resetBtn.addEventListener("click", () => {
+        if (confirm(t("confirm.reset_zbb"))) {
+          state = JSON.parse(JSON.stringify(defaultData));
+          if (incInput) incInput.value = state.income;
+          saveState();
+          renderGroups();
+          calculateAndRender();
+        }
+      });
+    }
+
+    // Listen for global currency and language updates
+    window.addEventListener("myrealbudget:currency-change", () => {
+      document
+        .querySelectorAll("#zero-based-planner .currency-symbol")
+        .forEach((el) => {
+          el.textContent = getCurrencySymbol();
+        });
+      renderGroups();
+      calculateAndRender();
     });
+
+    window.addEventListener("myrealbudget:language-change", () => {
+      renderGroups();
+      calculateAndRender();
+    });
+
+    // Initial Boot
+    document
+      .querySelectorAll("#zero-based-planner .currency-symbol")
+      .forEach((el) => {
+        el.textContent = getCurrencySymbol();
+      });
+    if (incInput) incInput.value = state.income;
     renderGroups();
     calculateAndRender();
-  });
-
-  window.addEventListener('myrealbudget:language-change', () => {
-    renderGroups();
-    calculateAndRender();
-  });
-
-  // Initial Boot
-  document.querySelectorAll('#zero-based-planner .currency-symbol').forEach(el => {
-    el.textContent = getCurrencySymbol();
-  });
-  if (incInput) incInput.value = state.income;
-  renderGroups();
-  calculateAndRender();
-})();
+  })();
 </script>

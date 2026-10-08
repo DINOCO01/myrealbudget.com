@@ -9,7 +9,7 @@
  * - Yearly: amount / 12
  */
 
-export type FrequencyType = 'weekly' | 'biweekly' | 'monthly' | 'quarterly' | 'yearly';
+export type FrequencyType = 'weekly' | 'biweekly' | 'monthly' | 'quarterly' | 'semiannual' | 'yearly';
 
 export interface FrequencyOption {
   id: FrequencyType;
@@ -23,11 +23,12 @@ export const FREQUENCY_OPTIONS: FrequencyOption[] = [
   { id: 'biweekly', label: 'Every 2 weeks', shortLabel: '/2wks', description: '26 times per year' },
   { id: 'monthly', label: 'Monthly', shortLabel: '/mo', description: 'Once per month' },
   { id: 'quarterly', label: 'Quarterly', shortLabel: '/qtr', description: '4 times per year' },
+  { id: 'semiannual', label: 'Semi-Annual', shortLabel: '/6mo', description: 'Twice per year' },
   { id: 'yearly', label: 'Yearly', shortLabel: '/yr', description: 'Once per year' },
 ];
 
 export function normalizeToMonthly(amount: number, frequency: FrequencyType): number {
-  if (isNaN(amount) || amount <= 0) return 0;
+  if (isNaN(amount) || !Number.isFinite(amount) || amount <= 0) return 0;
 
   switch (frequency) {
     case 'weekly':
@@ -38,6 +39,8 @@ export function normalizeToMonthly(amount: number, frequency: FrequencyType): nu
       return amount;
     case 'quarterly':
       return (amount * 4) / 12;
+    case 'semiannual':
+      return (amount * 2) / 12;
     case 'yearly':
       return amount / 12;
     default:

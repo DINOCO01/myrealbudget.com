@@ -24,6 +24,38 @@ export const SUPPORTED_CURRENCIES: Record<string, CurrencyConfig> = {
 export const DEFAULT_CURRENCY = 'USD';
 export const CURRENCY_STORAGE_KEY = 'myrealbudget_currency';
 
+/**
+ * Shared money comparison tolerance.
+ * For currencies with 2 decimal digits (cents, pence, paise, centimes),
+ * 0.005 is half a cent/paisa, absorbing floating-point residue
+ * without masking genuine differences.
+ */
+export const MONEY_TOLERANCE = 0.005;
+
+export function roundToCents(amount: number): number {
+  if (isNaN(amount) || !Number.isFinite(amount) || Math.abs(amount) > Number.MAX_SAFE_INTEGER / 100) return 0;
+  const rounded = Math.round((amount + Number.EPSILON) * 100) / 100;
+  return Number.isFinite(rounded) ? rounded : 0;
+}
+
+export function cleanMoney(amount: number, tolerance = MONEY_TOLERANCE): number {
+  if (isNaN(amount) || !Number.isFinite(amount) || Math.abs(amount) > Number.MAX_SAFE_INTEGER / 100) return 0;
+  const rounded = Math.round(amount * 100) / 100;
+  if (!Number.isFinite(rounded)) return 0;
+  return (Math.abs(rounded) < tolerance || Object.is(rounded, -0)) ? 0 : rounded;
+}
+
+export function isMoneyZero(amount: number, tolerance = MONEY_TOLERANCE): boolean {
+  if (isNaN(amount) || !Number.isFinite(amount)) return true;
+  return Math.abs(amount) < tolerance;
+}
+
+export function sanitizeAmount(val: any): number {
+  const n = typeof val === 'number' ? val : parseFloat(val);
+  if (isNaN(n) || !Number.isFinite(n) || n <= 0 || n > Number.MAX_SAFE_INTEGER / 100) return 0;
+  return Math.round(n * 100) / 100;
+}
+
 export function getCurrencyConfig(code?: string): CurrencyConfig {
   if (!code) return SUPPORTED_CURRENCIES[DEFAULT_CURRENCY];
   const upper = code.toUpperCase();
@@ -41,7 +73,7 @@ export function getSelectedCurrency(): string {
     if (saved && SUPPORTED_CURRENCIES[saved.toUpperCase()]) {
       return saved.toUpperCase();
     }
-  } catch (e) {}
+  } catch (e) { }
   return DEFAULT_CURRENCY;
 }
 
@@ -50,7 +82,7 @@ function getActiveLanguage(): string {
     try {
       const saved = localStorage.getItem('myrealbudget_language');
       if (saved) return saved.toLowerCase();
-    } catch (e) {}
+    } catch (e) { }
   }
   return 'en';
 }
@@ -61,7 +93,7 @@ export function setSelectedCurrency(code: string): void {
   if (typeof window !== 'undefined') {
     try {
       localStorage.setItem(CURRENCY_STORAGE_KEY, upper);
-    } catch (e) {}
+    } catch (e) { }
     // Update live DOM currency representations
     updateDocumentCurrencies(upper);
     // Dispatch custom event for reactive UI updates
@@ -85,8 +117,14 @@ export function formatCurrency(
   amount: number,
   options: CurrencyFormatOptions = {}
 ): string {
-  if (isNaN(amount) || amount === null || amount === undefined) {
-    const sym = getCurrencySymbol(options.currency);
+  const sym = getCurrencySymbol(options.currency);
+  if (amount === null || amount === undefined || isNaN(amount) || !Number.isFinite(amount)) {
+    return `${sym}0`;
+  }
+
+  // Absorb floating point noise near zero so it never displays -0.00 or -$0.00
+  amount = cleanMoney(amount);
+  if (!Number.isFinite(amount) || isNaN(amount)) {
     return `${sym}0`;
   }
 
@@ -99,8 +137,8 @@ export function formatCurrency(
     ? options.minimumFractionDigits
     : (hasCents ? 2 : 0);
   const maxDigits = options.maximumFractionDigits !== undefined
-    ? options.maximumFractionDigits
-    : (hasCents ? 2 : 0);
+    ? Math.max(options.maximumFractionDigits, minDigits)
+    : Math.max(hasCents ? 2 : 0, minDigits);
 
   // Determine locale for number formatting based on language and currency
   let locale = 'en-US';
@@ -133,13 +171,7 @@ export function formatCurrency(
 }
 
 export function parseCurrencyInput(value: string | number): number {
-  if (typeof value === 'number') {
-    return isNaN(value) ? 0 : value;
-  }
-  if (!value) return 0;
-  const cleaned = value.toString().replace(/[^0-9.-]/g, '');
-  const parsed = parseFloat(cleaned);
-  return isNaN(parsed) ? 0 : parsed;
+  return sanitizeAmount(value);
 }
 
 /**
