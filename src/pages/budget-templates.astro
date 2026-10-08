@@ -54,7 +54,8 @@ const description = 'Browse our directory of free budget templates. Choose from 
 
           <div class="pt-6 border-t border-[#ebebeb] mt-6 flex flex-col sm:flex-row gap-2">
             <a
-              href={`/budget-planner-template/#${template.id}`}
+              href={template.downloadUrl || `/budget-planner-template/#${template.id}`}
+              download={template.downloadUrl ? true : undefined}
               class="flex-1 inline-flex items-center justify-center h-9 px-4 rounded-full bg-[#171717] text-white text-xs font-medium hover:bg-neutral-800 transition text-center"
               data-mrb-t="templates.get_template"
             >

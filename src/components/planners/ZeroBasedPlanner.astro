@@ -398,6 +398,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
       groups: [
         {
           id: "g_housing_living",
+          groupId: "housing_living_essentials",
           name: "Housing & Living Essentials",
           items: [
             {
@@ -423,6 +424,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
         },
         {
           id: "g_debt",
+          groupId: "debt_payments",
           name: "Debt Payments",
           items: [
             {
@@ -441,6 +443,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
         },
         {
           id: "g_savings",
+          groupId: "savings_sinking_funds",
           name: "Savings & Sinking Funds",
           items: [
             {
@@ -465,6 +468,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
         },
         {
           id: "g_lifestyle",
+          groupId: "lifestyle_fun_money",
           name: "Lifestyle & Fun Money",
           items: [
             {
@@ -489,6 +493,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
         },
         {
           id: "g_buffer",
+          groupId: "miscellaneous_cushion_buffer",
           name: "Miscellaneous Cushion Buffer",
           items: [
             {
@@ -501,6 +506,195 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
         },
       ],
     };
+
+    const defaultDataINR = {
+      income: 75000,
+      groups: [
+        {
+          id: "g_housing_living",
+          groupId: "housing_living_essentials",
+          name: "Housing & Living Essentials",
+          items: [
+            {
+              id: "z1",
+              name: "Rent",
+              amount: 20000,
+              frequency: "monthly",
+            },
+            {
+              id: "z2",
+              name: "Utilities & Internet",
+              amount: 3500,
+              frequency: "monthly",
+            },
+            { id: "z3", name: "Groceries", amount: 3000, frequency: "weekly" },
+            {
+              id: "z4",
+              name: "Transportation & Fuel",
+              amount: 1500,
+              frequency: "weekly",
+            },
+          ],
+        },
+        {
+          id: "g_debt",
+          groupId: "debt_payments",
+          name: "Debt Payments",
+          items: [
+            {
+              id: "z5",
+              name: "Education / Personal Loan",
+              amount: 5000,
+              frequency: "monthly",
+            },
+            {
+              id: "z6",
+              name: "Extra Debt Paydown",
+              amount: 2000,
+              frequency: "monthly",
+            },
+          ],
+        },
+        {
+          id: "g_savings",
+          groupId: "savings_sinking_funds",
+          name: "Savings & Sinking Funds",
+          items: [
+            {
+              id: "z7",
+              name: "Emergency Cushion Fund",
+              amount: 5000,
+              frequency: "monthly",
+            },
+            {
+              id: "z8",
+              name: "SIP / Mutual Fund",
+              amount: 7000,
+              frequency: "monthly",
+            },
+            {
+              id: "z9",
+              name: "PPF / Retirement Savings",
+              amount: 4000,
+              frequency: "monthly",
+            },
+            {
+              id: "z10",
+              name: "Annual Festival / Sinking Fund",
+              amount: 24000,
+              frequency: "yearly",
+            },
+          ],
+        },
+        {
+          id: "g_lifestyle",
+          groupId: "lifestyle_fun_money",
+          name: "Lifestyle & Fun Money",
+          items: [
+            {
+              id: "z11",
+              name: "Dining Out & Entertainment",
+              amount: 3000,
+              frequency: "monthly",
+            },
+            {
+              id: "z12",
+              name: "Subscriptions & Mobile",
+              amount: 1000,
+              frequency: "monthly",
+            },
+            {
+              id: "z13",
+              name: "Personal Care & Shopping",
+              amount: 1000,
+              frequency: "monthly",
+            },
+          ],
+        },
+        {
+          id: "g_buffer",
+          groupId: "miscellaneous_cushion_buffer",
+          name: "Miscellaneous Cushion Buffer",
+          items: [
+            {
+              id: "z14",
+              name: "Account Buffer (Zero cushion)",
+              amount: 2000,
+              frequency: "monthly",
+            },
+          ],
+        },
+      ],
+    };
+
+    function getCurrentCurrencyCode() {
+      if (
+        window._mrb_currency &&
+        typeof window._mrb_currency.get === "function"
+      ) {
+        return window._mrb_currency.get();
+      }
+      return (
+        (typeof localStorage !== "undefined" &&
+          localStorage.getItem("myrealbudget_currency")) ||
+        "USD"
+      );
+    }
+
+    function getDefaultDataForCurrency() {
+      return getCurrentCurrencyCode() === "INR" ? defaultDataINR : defaultData;
+    }
+
+    const BUILTIN_GROUP_ALIASES = {
+      g_housing_living: "housing_living_essentials",
+      g_debt: "debt_payments",
+      g_savings: "savings_sinking_funds",
+      g_lifestyle: "lifestyle_fun_money",
+      g_buffer: "miscellaneous_cushion_buffer",
+    };
+
+    function resolveBuiltinGroupId(grpId, grpName) {
+      if (
+        window._mrb_i18n &&
+        typeof window._mrb_i18n.getBuiltinCategoryId === "function"
+      ) {
+        return window._mrb_i18n.getBuiltinCategoryId(grpId, grpName);
+      }
+      if (grpId && BUILTIN_GROUP_ALIASES[grpId]) {
+        return BUILTIN_GROUP_ALIASES[grpId];
+      }
+      return null;
+    }
+
+    function normalizeGroup(grp) {
+      if (!grp) return grp;
+      const bId = grp.groupId || grp.categoryId || resolveBuiltinGroupId(grp.id, grp.name);
+      if (bId) {
+        grp.groupId = bId;
+        const canon =
+          window._mrb_i18n &&
+          typeof window._mrb_i18n.getCanonicalCategoryName === "function"
+            ? window._mrb_i18n.getCanonicalCategoryName(bId)
+            : null;
+        if (canon) grp.name = canon;
+      }
+      return grp;
+    }
+
+    function getGroupDisplayName(grp) {
+      if (!grp) return "";
+      const idKey = grp.groupId || grp.categoryId;
+      if (
+        window._mrb_i18n &&
+        typeof window._mrb_i18n.translateCategory === "function"
+      ) {
+        if (idKey) {
+          return window._mrb_i18n.translateCategory(idKey);
+        }
+        return window._mrb_i18n.translateCategory(grp.name);
+      }
+      return grp.name;
+    }
 
     let state = loadState();
 
@@ -545,6 +739,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
           ) {
             parsed.income = sanitizeAmount(parsed.income);
             parsed.groups.forEach((g) => {
+              normalizeGroup(g);
               if (Array.isArray(g.items)) {
                 g.items.forEach((i) => (i.amount = sanitizeAmount(i.amount)));
               }
@@ -555,7 +750,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
       } catch (e) {
         console.warn("LocalStorage error:", e);
       }
-      return JSON.parse(JSON.stringify(defaultData));
+      return JSON.parse(JSON.stringify(getDefaultDataForCurrency()));
     }
 
     function saveState() {
@@ -586,7 +781,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
     }
 
     function getAllocationPctInfo(totalAllocated, income, remaining) {
-      if (income <= 0) return { pctStr: "0", pctNum: 0 };
+      if (income <= 0) return { pctStr: "—", pctNum: 0 };
       const rawPct = (totalAllocated / income) * 100;
       if (Math.abs(remaining) < MONEY_TOLERANCE || remaining === 0) {
         return { pctStr: "100", pctNum: 100 };
@@ -681,9 +876,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
             0,
           );
           const isOpen = openGroups.has(grpIdx);
-          const groupDisplayName = window._mrb_i18n
-            ? window._mrb_i18n.translateCategory(grp.name)
-            : grp.name;
+          const groupDisplayName = getGroupDisplayName(grp);
           return `
         <div class="bg-white rounded-[10px] sm:rounded-[12px] border border-[#ebebeb] p-2.5 sm:p-5 shadow-whisper" data-grp-idx="${grpIdx}">
           <!-- Compact Group Header -->
@@ -810,7 +1003,12 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
           grp.items.reduce((s, i) => s + normalize(i.amount, i.frequency), 0),
         );
         totalAllocated += gTot;
-        groupSummaries.push({ name: grp.name, total: gTot });
+        groupSummaries.push({
+          name: grp.name,
+          groupId: grp.groupId,
+          displayName: getGroupDisplayName(grp),
+          total: gTot,
+        });
       });
 
       totalAllocated = cleanMoney(totalAllocated);
@@ -838,13 +1036,21 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
       if (mVal) mVal.textContent = formatMoney(remaining);
       if (mSumInc) mSumInc.textContent = formatMoney(income);
       if (mSumAlloc) mSumAlloc.textContent = formatMoney(totalAllocated);
-      if (mSumPct) mSumPct.textContent = `${pctStr}%`;
+      if (mSumPct) mSumPct.textContent = income <= 0 ? "—" : `${pctStr}%`;
 
       const isBalanced = remaining === 0;
       const isUnder = remaining > 0;
 
       if (sBox && sLabel && sMsg) {
-        if (isBalanced) {
+        if (income <= 0 && totalAllocated > 0) {
+          const over = Math.abs(remaining);
+          sBox.className =
+            "p-4 rounded-[8px] mb-5 border bg-[#fef2f2] border-[#fecaca] text-[#b91c1c]";
+          sLabel.textContent = t("zbb.over_allocated");
+          sMsg.innerHTML = t("zbb.no_income_over_msg", {
+            amount: formatMoney(over),
+          });
+        } else if (isBalanced) {
           sBox.className =
             "p-4 rounded-[8px] mb-5 border bg-[#e6fbf5] border-[#a7f3d0] text-[#047857]";
           sLabel.textContent = t("zbb.budget_balanced");
@@ -869,7 +1075,15 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
       }
 
       if (mBadge && mBadgeText && mSubText) {
-        if (isBalanced) {
+        if (income <= 0 && totalAllocated > 0) {
+          const over = Math.abs(remaining);
+          mBadge.className =
+            "px-2 py-0.5 rounded text-[11px] font-medium bg-[#fef2f2] text-[#b91c1c] border border-[#fecaca]";
+          mBadgeText.textContent = t("zbb.badge_over", {
+            amount: formatMoney(over),
+          });
+          mSubText.textContent = t("zbb.sub_no_income");
+        } else if (isBalanced) {
           mBadge.className =
             "px-2 py-0.5 rounded text-[11px] font-medium bg-[#e6fbf5] text-[#047857] border border-[#a7f3d0]";
           mBadgeText.textContent = t("zbb.badge_balanced", {
@@ -901,18 +1115,32 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
 
       if (sumInc) sumInc.textContent = formatMoney(income);
       if (sumAlloc) sumAlloc.textContent = formatMoney(totalAllocated);
-      if (sumPct) sumPct.textContent = `${pctStr}%`;
+      if (sumPct) sumPct.textContent = income <= 0 ? "—" : `${pctStr}%`;
 
       // Progress Fill
       const pFill = document.getElementById("zbb-progress-fill");
       const pLbl = document.getElementById("zbb-progress-label");
-      if (pLbl) pLbl.textContent = t("zbb.pct_assigned", { pct: pctStr });
+      if (pLbl) {
+        if (income <= 0) {
+          pLbl.textContent = totalAllocated > 0 ? t("zbb.add_income_to_assign") : "—";
+        } else {
+          pLbl.textContent = t("zbb.pct_assigned", { pct: pctStr });
+        }
+      }
       if (pFill) {
-        pFill.style.width = `${Math.min(100, Math.max(0, pctNum))}%`;
-        pFill.className =
-          remaining < 0
-            ? "h-full bg-[#ee0000] transition-all duration-300"
-            : "h-full bg-[#171717] transition-all duration-300";
+        if (income <= 0) {
+          pFill.style.width = totalAllocated > 0 ? "100%" : "0%";
+          pFill.className =
+            totalAllocated > 0
+              ? "h-full bg-[#ee0000] transition-all duration-300"
+              : "h-full bg-[#171717] transition-all duration-300";
+        } else {
+          pFill.style.width = `${Math.min(100, Math.max(0, pctNum))}%`;
+          pFill.className =
+            remaining < 0
+              ? "h-full bg-[#ee0000] transition-all duration-300"
+              : "h-full bg-[#171717] transition-all duration-300";
+        }
       }
 
       // Envelopes List
@@ -924,9 +1152,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
               totalAllocated > 0
                 ? Math.round((g.total / totalAllocated) * 100)
                 : 0;
-            const gDisplayName = window._mrb_i18n
-              ? window._mrb_i18n.translateCategory(g.name)
-              : g.name;
+            const gDisplayName = g.displayName || getGroupDisplayName(g);
             return `
           <div class="flex justify-between items-center text-xs">
             <span class="text-[#4d4d4d] truncate max-w-[170px]">${escapeHtml(gDisplayName)}</span>
@@ -955,12 +1181,32 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
     window._zbb = {
       updateGroupName: function (grpIdx, name) {
         if (!state.groups[grpIdx]) return;
-        state.groups[grpIdx].name = name;
+        const grp = state.groups[grpIdx];
+        const currentDisplay = getGroupDisplayName(grp);
+        const trimmed = (name || "").trim();
+        if (trimmed === currentDisplay.trim()) return;
+
+        const bId = resolveBuiltinGroupId(null, trimmed);
+        if (bId) {
+          grp.groupId = bId;
+          const canon =
+            window._mrb_i18n &&
+            typeof window._mrb_i18n.getCanonicalCategoryName === "function"
+              ? window._mrb_i18n.getCanonicalCategoryName(bId)
+              : null;
+          grp.name = canon || trimmed;
+        } else {
+          delete grp.groupId;
+          delete grp.categoryId;
+          grp.name = trimmed;
+        }
         saveState();
         calculateAndRender();
       },
       removeGroup: function (grpIdx) {
-        const grpName = state.groups[grpIdx] ? state.groups[grpIdx].name : "";
+        const grpName = state.groups[grpIdx]
+          ? getGroupDisplayName(state.groups[grpIdx])
+          : "";
         if (confirm(t("confirm.delete_group", { name: grpName }))) {
           state.groups.splice(grpIdx, 1);
           saveState();
@@ -1099,7 +1345,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
     if (resetBtn) {
       resetBtn.addEventListener("click", () => {
         if (confirm(t("confirm.reset_zbb"))) {
-          state = JSON.parse(JSON.stringify(defaultData));
+          state = JSON.parse(JSON.stringify(getDefaultDataForCurrency()));
           if (incInput) incInput.value = state.income;
           saveState();
           renderGroups();
@@ -1115,6 +1361,10 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
         .forEach((el) => {
           el.textContent = getCurrencySymbol();
         });
+      if (!localStorage.getItem(STORAGE_KEY)) {
+        state = JSON.parse(JSON.stringify(getDefaultDataForCurrency()));
+        if (incInput) incInput.value = state.income;
+      }
       renderGroups();
       calculateAndRender();
     });

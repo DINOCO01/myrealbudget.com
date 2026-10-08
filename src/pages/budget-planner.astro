@@ -15,7 +15,7 @@ const faqSchema = {
       name: 'How does payment frequency normalization work in this budget planner?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Instead of approximating weekly expenses by multiplying by 4, this planner uses annualized conversions: weekly expenses are multiplied by 52 and divided by 12, biweekly by 26/12, quarterly by 4/12, and yearly divided by 12. This helps your monthly cash flow reflect true annual living costs.',
+        text: 'Instead of approximating weekly expenses by multiplying by 4, this planner uses annualized conversions: weekly expenses are multiplied by 52 and divided by 12, biweekly by 26/12, quarterly by 4/12, and yearly divided by 12. This helps your monthly cash flow reflect annualized living costs.',
       },
     },
     {
@@ -88,7 +88,7 @@ const faqSchema = {
           A common reason traditional budgets break down is that income and expenses rarely occur on the same calendar schedule. You might get paid biweekly, pay rent monthly, buy groceries weekly, and pay auto insurance once a year.
         </p>
         <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] space-y-2 text-xs text-[#4d4d4d]">
-          <p class="font-medium text-[#171717]" data-mrb-t="bp.freq_math_title">The math behind true annualized conversion:</p>
+          <p class="font-medium text-[#171717]" data-mrb-t="bp.freq_math_title">The math behind annualized conversion:</p>
           <ul class="space-y-1.5 text-[#4d4d4d]">
             <li data-mrb-t-html="bp.freq_weekly"><strong>Weekly items:</strong> <code>Amount × 52 weeks / 12 months</code>. A $200 weekly grocery budget is not $800/month; it is actually <strong>$866.67/month</strong>. Missing this difference creates an untracked $800 annual cash leak.</li>
             <li data-mrb-t-html="bp.freq_biweekly"><strong>Biweekly paychecks:</strong> <code>Amount × 26 pay periods / 12 months</code>. There are two "three-paycheck months" each year.</li>

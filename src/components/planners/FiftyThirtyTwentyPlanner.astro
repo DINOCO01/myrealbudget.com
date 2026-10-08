@@ -854,6 +854,113 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
       ],
     };
 
+    const defaultDataINR = {
+      income: 75000,
+      incomeFrequency: "monthly",
+      needs: [
+        {
+          id: "n1",
+          name: "Rent",
+          amount: 20000,
+          frequency: "monthly",
+        },
+        {
+          id: "n2",
+          name: "Groceries & Essentials",
+          amount: 2500,
+          frequency: "weekly",
+        },
+        {
+          id: "n3",
+          name: "Utilities & Internet",
+          amount: 3200,
+          frequency: "monthly",
+        },
+        {
+          id: "n4",
+          name: "Commute / Fuel & Transit",
+          amount: 2500,
+          frequency: "monthly",
+        },
+        {
+          id: "n5",
+          name: "Health & Prescriptions",
+          amount: 1000,
+          frequency: "monthly",
+        },
+      ],
+      wants: [
+        {
+          id: "w1",
+          name: "Dining Out & Takeaway",
+          amount: 1000,
+          frequency: "weekly",
+        },
+        {
+          id: "w2",
+          name: "Entertainment & Hobbies",
+          amount: 4500,
+          frequency: "monthly",
+        },
+        {
+          id: "w3",
+          name: "Streaming & Subscriptions",
+          amount: 1200,
+          frequency: "monthly",
+        },
+        {
+          id: "w4",
+          name: "Shopping & Personal Care",
+          amount: 5000,
+          frequency: "monthly",
+        },
+        {
+          id: "w5",
+          name: "Weekend Outings & Travel",
+          amount: 7500,
+          frequency: "monthly",
+        },
+      ],
+      savings: [
+        {
+          id: "s1",
+          name: "Emergency Fund",
+          amount: 5000,
+          frequency: "monthly",
+        },
+        {
+          id: "s2",
+          name: "SIP / Mutual Fund",
+          amount: 6000,
+          frequency: "monthly",
+        },
+        {
+          id: "s3",
+          name: "PPF / Retirement Savings",
+          amount: 4000,
+          frequency: "monthly",
+        },
+      ],
+    };
+
+    function getCurrentCurrencyCode() {
+      if (
+        window._mrb_currency &&
+        typeof window._mrb_currency.get === "function"
+      ) {
+        return window._mrb_currency.get();
+      }
+      return (
+        (typeof localStorage !== "undefined" &&
+          localStorage.getItem("myrealbudget_currency")) ||
+        "USD"
+      );
+    }
+
+    function getDefaultDataForCurrency() {
+      return getCurrentCurrencyCode() === "INR" ? defaultDataINR : defaultData;
+    }
+
     let state = loadState();
 
     const MONEY_TOLERANCE =
@@ -910,7 +1017,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
       } catch (e) {
         console.warn("LocalStorage error:", e);
       }
-      return JSON.parse(JSON.stringify(defaultData));
+      return JSON.parse(JSON.stringify(getDefaultDataForCurrency()));
     }
 
     function saveState() {
@@ -1445,7 +1552,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
     if (resetBtn) {
       resetBtn.addEventListener("click", () => {
         if (confirm(t("confirm.reset_503020"))) {
-          state = JSON.parse(JSON.stringify(defaultData));
+          state = JSON.parse(JSON.stringify(getDefaultDataForCurrency()));
           if (incomeInput) incomeInput.value = state.income;
           updateIncomeFrequencySelect();
           saveState();
@@ -1464,6 +1571,11 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
         .forEach((el) => {
           el.textContent = getCurrencySymbol();
         });
+      if (!localStorage.getItem(STORAGE_KEY)) {
+        state = JSON.parse(JSON.stringify(getDefaultDataForCurrency()));
+        if (incomeInput) incomeInput.value = state.income;
+        updateIncomeFrequencySelect();
+      }
       renderGroup("needs", "f3020-needs-items");
       renderGroup("wants", "f3020-wants-items");
       renderGroup("savings", "f3020-savings-items");

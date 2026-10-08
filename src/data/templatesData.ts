@@ -9,6 +9,7 @@ export interface BudgetTemplateDef {
   methodSlug: string;
   features: string[];
   csvContent: string;
+  downloadUrl?: string;
 }
 
 export const BUDGET_TEMPLATES: BudgetTemplateDef[] = [
@@ -16,6 +17,7 @@ export const BUDGET_TEMPLATES: BudgetTemplateDef[] = [
     id: '50-30-20-template',
     slug: '50-30-20-budget-template',
     name: '50/30/20 Budget Template',
+    downloadUrl: '/templates/my-real-budget-50-30-20-template.xlsx',
     shortDescription: 'The classic framework dividing net income into 50% Needs, 30% Wants, and 20% Savings & Debt.',
     fullDescription: 'A clean, pre-structured spreadsheet worksheet organized around the 50/30/20 framework. Provides ready-to-use rows and columns to map out essential needs, personal lifestyle wants, and savings goals in your preferred spreadsheet software.',
     targetAudience: 'Beginners, professionals, and anyone seeking a high-level, low-maintenance financial plan.',
@@ -47,6 +49,7 @@ Extra Debt Payoff,Savings (20%),200,200,0`,
     id: 'zero-based-template',
     slug: 'zero-based-budget-template',
     name: 'Zero-Based Budget Template',
+    downloadUrl: '/templates/my-real-budget-zero-based-budget-template.xlsx',
     shortDescription: 'Assign every dollar an intentional allocation so Income minus Allocations equals zero before the month starts.',
     fullDescription: 'An intentional budgeting template structured for zero-based allocation. Pre-grouped categories help you plan your income across living expenses, debt payments, and savings cushions so every dollar has a clear destination.',
     targetAudience: 'Goal-oriented planners, individuals tackling aggressive debt payoff, and detail-oriented budgeters.',
@@ -78,6 +81,7 @@ Buffer,Miscellaneous Cushion,150,100,Active`,
     id: 'simple-monthly-template',
     slug: 'simple-monthly-budget-template',
     name: 'Simple Monthly Budget Template',
+    downloadUrl: '/templates/my-real-budget-general-budget-template.xlsx',
     shortDescription: 'A straightforward, clutter-free income vs. expense planner focused on your net bottom line.',
     fullDescription: 'Ideal for those who want an uncomplicated overview of total money coming in versus total bills and discretionary spending going out. Includes reference columns for weekly, monthly, and annual intervals.',
     targetAudience: 'Anyone wanting a clear, no-nonsense snapshot of monthly cash flow without complex rules.',

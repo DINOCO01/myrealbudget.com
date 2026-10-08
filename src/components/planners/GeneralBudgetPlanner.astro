@@ -340,7 +340,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
             class="flex justify-between items-center text-xs pt-1 border-t border-[#f2f2f2]"
           >
             <span class="text-[#8f8f8f]" data-mrb-t="summary.income_spent"
-              >Income Spent</span
+              >Income Allocated</span
             >
             <span id="summary-spent-pct" class="font-semibold text-[#171717]"
               >0%</span
@@ -375,7 +375,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
           >
             <span data-mrb-t="home.preview_distribution">Income Allocation</span
             >
-            <span id="progress-allocation-label">0% spent</span>
+            <span id="progress-allocation-label">0% allocated</span>
           </div>
           <div
             class="w-full h-2 sm:h-2.5 rounded-full bg-[#f2f2f2] overflow-hidden flex"
@@ -553,6 +553,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
       categories: [
         {
           id: "cat_housing",
+          categoryId: "housing",
           name: "Housing",
           items: [
             {
@@ -571,6 +572,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
         },
         {
           id: "cat_utilities",
+          categoryId: "utilities",
           name: "Utilities",
           items: [
             {
@@ -595,6 +597,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
         },
         {
           id: "cat_food",
+          categoryId: "food_groceries",
           name: "Food & Groceries",
           items: [
             {
@@ -613,6 +616,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
         },
         {
           id: "cat_transportation",
+          categoryId: "transportation",
           name: "Transportation",
           items: [
             {
@@ -632,6 +636,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
         },
         {
           id: "cat_insurance",
+          categoryId: "insurance_healthcare",
           name: "Insurance & Healthcare",
           items: [
             {
@@ -656,6 +661,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
         },
         {
           id: "cat_debt",
+          categoryId: "debt_payments",
           name: "Debt Payments",
           items: [
             {
@@ -674,6 +680,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
         },
         {
           id: "cat_subscriptions",
+          categoryId: "subscriptions_lifestyle",
           name: "Subscriptions & Lifestyle",
           items: [
             {
@@ -698,6 +705,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
         },
         {
           id: "cat_savings",
+          categoryId: "savings_investments",
           name: "Savings & Investments",
           isSavings: true,
           items: [
@@ -719,6 +727,283 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
         },
       ],
     };
+
+    const defaultDataINR = {
+      income: [
+        {
+          id: "inc_salary",
+          name: "Primary Salary (Take-home)",
+          amount: 70000,
+          frequency: "monthly",
+        },
+        {
+          id: "inc_side",
+          name: "Side Income",
+          amount: 5000,
+          frequency: "monthly",
+        },
+        {
+          id: "inc_freelance",
+          name: "Freelance & Contract",
+          amount: 0,
+          frequency: "monthly",
+        },
+      ],
+      categories: [
+        {
+          id: "cat_housing",
+          categoryId: "housing",
+          name: "Housing",
+          items: [
+            {
+              id: "h1",
+              name: "Rent",
+              amount: 18000,
+              frequency: "monthly",
+            },
+            {
+              id: "h2",
+              name: "Maintenance & Society Charges",
+              amount: 2000,
+              frequency: "monthly",
+            },
+          ],
+        },
+        {
+          id: "cat_utilities",
+          categoryId: "utilities",
+          name: "Utilities",
+          items: [
+            {
+              id: "u1",
+              name: "Electricity & Gas",
+              amount: 2000,
+              frequency: "monthly",
+            },
+            {
+              id: "u2",
+              name: "Water & Utilities",
+              amount: 500,
+              frequency: "monthly",
+            },
+            {
+              id: "u3",
+              name: "Internet & Mobile Plan",
+              amount: 1000,
+              frequency: "monthly",
+            },
+          ],
+        },
+        {
+          id: "cat_food",
+          categoryId: "food_groceries",
+          name: "Food & Groceries",
+          items: [
+            {
+              id: "f1",
+              name: "Groceries & Essentials",
+              amount: 2500,
+              frequency: "weekly",
+            },
+            {
+              id: "f2",
+              name: "Dining Out & Ordering",
+              amount: 750,
+              frequency: "weekly",
+            },
+          ],
+        },
+        {
+          id: "cat_transportation",
+          categoryId: "transportation",
+          name: "Transportation",
+          items: [
+            {
+              id: "t1",
+              name: "Metro / Commute / Transit",
+              amount: 2500,
+              frequency: "monthly",
+            },
+            { id: "t2", name: "Fuel / Petrol", amount: 750, frequency: "weekly" },
+            {
+              id: "t3",
+              name: "Vehicle Maintenance",
+              amount: 6000,
+              frequency: "yearly",
+            },
+          ],
+        },
+        {
+          id: "cat_insurance",
+          categoryId: "insurance_healthcare",
+          name: "Insurance & Healthcare",
+          items: [
+            {
+              id: "i1",
+              name: "Vehicle Insurance",
+              amount: 6000,
+              frequency: "yearly",
+            },
+            {
+              id: "i2",
+              name: "Health & Term Insurance",
+              amount: 12000,
+              frequency: "yearly",
+            },
+            {
+              id: "i3",
+              name: "Routine Medicines & Healthcare",
+              amount: 1000,
+              frequency: "monthly",
+            },
+          ],
+        },
+        {
+          id: "cat_debt",
+          categoryId: "debt_payments",
+          name: "Debt Payments",
+          items: [
+            {
+              id: "d1",
+              name: "Education / Personal Loan",
+              amount: 4000,
+              frequency: "monthly",
+            },
+            {
+              id: "d2",
+              name: "Credit Card Minimum",
+              amount: 0,
+              frequency: "monthly",
+            },
+          ],
+        },
+        {
+          id: "cat_subscriptions",
+          categoryId: "subscriptions_lifestyle",
+          name: "Subscriptions & Lifestyle",
+          items: [
+            {
+              id: "s1",
+              name: "Streaming & Apps",
+              amount: 600,
+              frequency: "monthly",
+            },
+            {
+              id: "s2",
+              name: "Gym / Fitness Membership",
+              amount: 1500,
+              frequency: "monthly",
+            },
+            {
+              id: "s3",
+              name: "Entertainment & Leisure",
+              amount: 2000,
+              frequency: "monthly",
+            },
+          ],
+        },
+        {
+          id: "cat_savings",
+          categoryId: "savings_investments",
+          name: "Savings & Investments",
+          isSavings: true,
+          items: [
+            {
+              id: "sa1",
+              name: "Emergency Fund",
+              amount: 3000,
+              frequency: "monthly",
+              isSavings: true,
+            },
+            {
+              id: "sa2",
+              name: "SIP / Mutual Fund",
+              amount: 7500,
+              frequency: "monthly",
+              isSavings: true,
+            },
+            {
+              id: "sa3",
+              name: "PPF / Retirement Savings",
+              amount: 5000,
+              frequency: "monthly",
+              isSavings: true,
+            },
+          ],
+        },
+      ],
+    };
+
+    function getCurrentCurrencyCode() {
+      if (
+        window._mrb_currency &&
+        typeof window._mrb_currency.get === "function"
+      ) {
+        return window._mrb_currency.get();
+      }
+      return (
+        (typeof localStorage !== "undefined" &&
+          localStorage.getItem("myrealbudget_currency")) ||
+        "USD"
+      );
+    }
+
+    function getDefaultDataForCurrency() {
+      return getCurrentCurrencyCode() === "INR" ? defaultDataINR : defaultData;
+    }
+
+    const BUILTIN_CATEGORY_ALIASES = {
+      cat_housing: "housing",
+      cat_utilities: "utilities",
+      cat_food: "food_groceries",
+      cat_transportation: "transportation",
+      cat_insurance: "insurance_healthcare",
+      cat_debt: "debt_payments",
+      cat_subscriptions: "subscriptions_lifestyle",
+      cat_savings: "savings_investments",
+    };
+
+    function resolveBuiltinCategoryId(catId, catName) {
+      if (
+        window._mrb_i18n &&
+        typeof window._mrb_i18n.getBuiltinCategoryId === "function"
+      ) {
+        return window._mrb_i18n.getBuiltinCategoryId(catId, catName);
+      }
+      if (catId && BUILTIN_CATEGORY_ALIASES[catId]) {
+        return BUILTIN_CATEGORY_ALIASES[catId];
+      }
+      return null;
+    }
+
+    function normalizeCategory(cat) {
+      if (!cat) return cat;
+      const bId = cat.categoryId || resolveBuiltinCategoryId(cat.id, cat.name);
+      if (bId) {
+        cat.categoryId = bId;
+        const canon =
+          window._mrb_i18n &&
+          typeof window._mrb_i18n.getCanonicalCategoryName === "function"
+            ? window._mrb_i18n.getCanonicalCategoryName(bId)
+            : null;
+        if (canon) cat.name = canon;
+      }
+      return cat;
+    }
+
+    function getCategoryDisplayName(cat) {
+      if (!cat) return "";
+      if (
+        window._mrb_i18n &&
+        typeof window._mrb_i18n.translateCategory === "function"
+      ) {
+        if (cat.categoryId) {
+          return window._mrb_i18n.translateCategory(cat.categoryId);
+        }
+        return window._mrb_i18n.translateCategory(cat.name);
+      }
+      return cat.name;
+    }
 
     const MONEY_TOLERANCE =
       (window._mrb_currency && window._mrb_currency.tolerance) || 0.005;
@@ -764,10 +1049,14 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
               item.amount = sanitizeAmount(item.amount);
             });
             parsed.categories.forEach((cat) => {
+              normalizeCategory(cat);
               if (typeof cat.isSavings !== "boolean") {
                 const catId = (cat.id || "").toLowerCase();
                 const catName = (cat.name || "").toLowerCase();
+                const bId = (cat.categoryId || "").toLowerCase();
                 cat.isSavings =
+                  bId.includes("saving") ||
+                  bId.includes("invest") ||
                   catId.includes("saving") ||
                   catId.includes("invest") ||
                   catName.includes("saving") ||
@@ -789,7 +1078,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
       } catch (e) {
         console.warn("LocalStorage error:", e);
       }
-      return JSON.parse(JSON.stringify(defaultData));
+      return JSON.parse(JSON.stringify(getDefaultDataForCurrency()));
     }
 
     function saveState() {
@@ -950,9 +1239,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
             0,
           ));
           const isOpen = openCategories.has(catIdx);
-          const catDisplayName = window._mrb_i18n
-            ? window._mrb_i18n.translateCategory(cat.name)
-            : cat.name;
+          const catDisplayName = getCategoryDisplayName(cat);
           return `
         <div class="bg-white rounded-[10px] sm:rounded-[12px] border border-[#ebebeb] p-2.5 sm:p-5 shadow-whisper" data-cat-idx="${catIdx}">
           <!-- Compact Category Header -->
@@ -1101,7 +1388,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
         });
         totalExpensesRaw += catTotalRaw;
         savingsTotalRaw += catSavingsRaw;
-        categoryTotals.push({ name: cat.name, total: cleanMoney(catTotalRaw) });
+        categoryTotals.push({ name: getCategoryDisplayName(cat), total: cleanMoney(catTotalRaw) });
       });
 
       const totalExpenses = cleanMoney(totalExpensesRaw);
@@ -1350,9 +1637,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
             totalExpenses > 0
               ? Math.round((cat.total / totalExpenses) * 100)
               : 0;
-          const catDisplayName = window._mrb_i18n
-            ? window._mrb_i18n.translateCategory(cat.name)
-            : cat.name;
+          const catDisplayName = getCategoryDisplayName(cat);
           return `
         <div class="space-y-1">
           <div class="flex justify-between items-center text-xs">
@@ -1452,13 +1737,31 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
       },
       updateCategoryName: function (catIdx, name) {
         if (!state.categories[catIdx]) return;
-        state.categories[catIdx].name = name;
+        const cat = state.categories[catIdx];
+        const currentDisplay = getCategoryDisplayName(cat);
+        const trimmed = (name || "").trim();
+        if (trimmed === currentDisplay.trim()) return;
+
+        const bId = resolveBuiltinCategoryId(null, trimmed);
+        if (bId) {
+          cat.categoryId = bId;
+          const canon =
+            window._mrb_i18n &&
+            typeof window._mrb_i18n.getCanonicalCategoryName === "function"
+              ? window._mrb_i18n.getCanonicalCategoryName(bId)
+              : null;
+          cat.name = canon || trimmed;
+        } else {
+          // Custom category created or renamed by user: preserve verbatim
+          delete cat.categoryId;
+          cat.name = trimmed;
+        }
         saveState();
         calculateAndRenderResults();
       },
       removeCategory: function (catIdx) {
         const catName = state.categories[catIdx]
-          ? state.categories[catIdx].name
+          ? getCategoryDisplayName(state.categories[catIdx])
           : "";
         if (confirm(t("confirm.delete_category", { name: catName }))) {
           state.categories.splice(catIdx, 1);
@@ -1561,7 +1864,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
     if (resetBtn) {
       resetBtn.addEventListener("click", () => {
         if (confirm(t("confirm.reset_general"))) {
-          state = JSON.parse(JSON.stringify(defaultData));
+          state = JSON.parse(JSON.stringify(getDefaultDataForCurrency()));
           saveState();
           renderIncome();
           renderCategories();
@@ -1580,7 +1883,7 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
         });
         state.categories.forEach((cat) => {
           cat.items.forEach((item) => {
-            csv += `Expense,${csvClean(cat.name)},${csvClean(item.name)},${item.frequency},${item.amount},${normalize(item.amount, item.frequency).toFixed(2)}\n`;
+            csv += `Expense,${csvClean(getCategoryDisplayName(cat))},${csvClean(item.name)},${item.frequency},${item.amount},${normalize(item.amount, item.frequency).toFixed(2)}\n`;
           });
         });
 
@@ -1609,6 +1912,9 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
         .forEach((el) => {
           el.textContent = getCurrencySymbol();
         });
+      if (!localStorage.getItem(STORAGE_KEY)) {
+        state = JSON.parse(JSON.stringify(getDefaultDataForCurrency()));
+      }
       renderIncome();
       renderCategories();
       calculateAndRenderResults();

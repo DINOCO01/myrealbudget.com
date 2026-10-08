@@ -180,13 +180,16 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'zbb.goal_reached_msg': '<strong>Goal reached!</strong> Your budget is balanced to zero. Every dollar has a designated purpose.',
     'zbb.left_to_assign_msg': 'You have <strong>{amount}</strong> left to assign. Assign remainder until {zero} remains.',
     'zbb.over_allocated_msg': 'You have allocated <strong class="text-[#ee0000]">{amount}</strong> more than your income.',
+    'zbb.no_income_over_msg': 'You have allocated <strong class="text-[#ee0000]">{amount}</strong> with 0 income. Add income to balance your budget.',
     'zbb.badge_balanced': 'Balanced ({zero})',
     'zbb.badge_left': '{amount} Left to Assign',
     'zbb.badge_over': '{amount} Over Allocated',
     'zbb.sub_balanced': 'All income allocated to zero.',
     'zbb.sub_left': 'Assign remainder until {zero}.',
     'zbb.sub_over': 'Allocated exceeds income.',
+    'zbb.sub_no_income': 'Add income to balance budget.',
     'zbb.pct_assigned': '{pct}% assigned',
+    'zbb.add_income_to_assign': 'Add income to assign',
     'prompt.new_group_default': 'Special Allocation Group',
 
     // Homepage Specific
@@ -259,12 +262,12 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'footer.disclaimer': 'Educational budgeting tools. Not intended as formal investment, tax, or legal advisory.',
 
     // Dynamic Interpretations
-    'interpret.general_surplus': 'Surplus: Your planned spending is {amount} below your income.',
-    'interpret.general_deficit': 'Deficit: Your planned spending is {amount} above your income.',
+    'interpret.general_surplus': 'Surplus: Your planned allocations are {amount} below your income.',
+    'interpret.general_deficit': 'Deficit: Your planned allocations are {amount} above your income.',
     'interpret.general_balanced': 'Balanced: Your budget is balanced. Every dollar of your income is allocated.',
     'interpret.general_empty': 'Enter your monthly income and planned expenses to balance your budget.',
-    'interpret.general_insight_surplus': 'Your planned spending is {amount} below your income ({pct}% of net income remaining).',
-    'interpret.general_insight_deficit': 'Your planned spending exceeds your income by {amount} per month.',
+    'interpret.general_insight_surplus': 'Your planned allocations are {amount} below your income ({pct}% of net income remaining).',
+    'interpret.general_insight_deficit': 'Your planned allocations exceed your income by {amount} per month.',
     'interpret.general_insight_balanced': 'Your budget balances to exactly zero. Every dollar of your income is allocated.',
     'interpret.general_largest': '{name} is your largest category at {amount}/month ({pct}% of expenses, {incPct}% of income).',
     'interpret.general_savings': 'Planned savings rate: {pct}% of net income.',
@@ -335,7 +338,7 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'home.feat4_title': 'Create a Zero-Based Budget',
     'home.feat4_desc': 'Assign purpose to every single dollar until unassigned cash reaches zero, giving you a clearer plan for where your money is intended to go.',
     'home.feat5_title': 'Normalize Billing Frequencies',
-    'home.feat5_desc': 'Convert weekly paychecks, bi-weekly subscriptions, and semi-annual insurance premiums into true monthly mathematical equivalents.',
+    'home.feat5_desc': 'Convert weekly paychecks, bi-weekly subscriptions, and semi-annual insurance premiums into annualized monthly equivalents.',
     'home.feat6_title': 'Use Budget Planner Templates',
     'home.feat6_desc': 'Export ready-to-run worksheets directly formatted for Google Sheets, Microsoft Excel, and offline personal financial recordkeeping.',
 
@@ -345,7 +348,7 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'home.how_it_works_sub': 'A clear, step-by-step workflow designed to replace financial anxiety with clarity.',
     'home.step1_num': 'Step 01',
     'home.step1_title': 'Build',
-    'home.step1_desc': 'Enter your income and planned expenses. Select payment frequencies like weekly groceries or yearly car insurance—our engine normalizes everything into true monthly equivalents.',
+    'home.step1_desc': 'Enter your income and planned expenses. Select payment frequencies like weekly groceries or yearly car insurance—our engine normalizes everything into annualized monthly equivalents.',
     'home.step2_num': 'Step 02',
     'home.step2_title': 'Understand',
     'home.step2_desc': 'See your total inflows, outflows, and remaining cash. Read automated, plain-language insights on your largest spending categories, savings rate, and whether your budget balances.',
@@ -582,13 +585,16 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'zbb.goal_reached_msg': '<strong>¡Objetivo cumplido!</strong> Tu presupuesto está equilibrado a cero. Cada unidad monetaria tiene un destino asignado.',
     'zbb.left_to_assign_msg': 'Tienes <strong>{amount}</strong> por asignar. Asigna el resto hasta que queden {zero}.',
     'zbb.over_allocated_msg': 'Has asignado <strong class="text-[#ee0000]">{amount}</strong> más que tus ingresos.',
+    'zbb.no_income_over_msg': 'Has asignado <strong class="text-[#ee0000]">{amount}</strong> con 0 ingresos. Agrega ingresos para balancear tu presupuesto.',
     'zbb.badge_balanced': 'Equilibrado ({zero})',
     'zbb.badge_left': '{amount} Por Asignar',
     'zbb.badge_over': '{amount} Sobre Asignado',
     'zbb.sub_balanced': 'Todos los ingresos asignados a cero.',
     'zbb.sub_left': 'Asigna el resto hasta {zero}.',
     'zbb.sub_over': 'Lo asignado excede los ingresos.',
+    'zbb.sub_no_income': 'Agrega ingresos para balancear el presupuesto.',
     'zbb.pct_assigned': '{pct}% asignado',
+    'zbb.add_income_to_assign': 'Agrega ingresos para asignar',
     'prompt.new_group_default': 'Grupo de Asignación Especial',
 
     // Homepage Specific
@@ -661,12 +667,12 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'footer.disclaimer': 'Herramientas educativas de presupuesto. No constituye asesoría formal de inversiones, impuestos o legal.',
 
     // Dynamic Interpretations
-    'interpret.general_surplus': 'Superávit: Tus gastos planificados están {amount} por debajo de tus ingresos.',
-    'interpret.general_deficit': 'Déficit: Tus gastos planificados son {amount} superiores a tus ingresos.',
+    'interpret.general_surplus': 'Superávit: Tus asignaciones planificadas están {amount} por debajo de tus ingresos.',
+    'interpret.general_deficit': 'Déficit: Tus asignaciones planificadas son {amount} superiores a tus ingresos.',
     'interpret.general_balanced': 'Equilibrado: Tu presupuesto está equilibrado. Todos tus ingresos están asignados.',
     'interpret.general_empty': 'Ingresa tus ingresos y gastos para balancear tu presupuesto.',
-    'interpret.general_insight_surplus': 'Tus gastos planificados están {amount} por debajo de tus ingresos ({pct}% restante).',
-    'interpret.general_insight_deficit': 'Tus gastos planificados superan tus ingresos por {amount} al mes.',
+    'interpret.general_insight_surplus': 'Tus asignaciones planificadas están {amount} por debajo de tus ingresos ({pct}% restante).',
+    'interpret.general_insight_deficit': 'Tus asignaciones planificadas superan tus ingresos por {amount} al mes.',
     'interpret.general_insight_balanced': 'Tu presupuesto se equilibra exactamente a cero. Todos los ingresos están asignados.',
     'interpret.general_largest': '{name} es tu categoría más grande con {amount}/mes ({pct}% de gastos, {incPct}% de ingresos).',
     'interpret.general_savings': 'Tasa de ahorro planificada: {pct}% de los ingresos netos.',
@@ -737,7 +743,7 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'home.feat4_title': 'Crea un Presupuesto Base Cero',
     'home.feat4_desc': 'Asigna un propósito a cada unidad hasta que lo no asignado llegue a cero.',
     'home.feat5_title': 'Normaliza Frecuencias de Pago',
-    'home.feat5_desc': 'Convierte sueldos semanales, abonos y seguros anuales a equivalentes mensuales exactos.',
+    'home.feat5_desc': 'Convierte sueldos semanales, abonos y seguros anuales en equivalentes mensuales anualizados.',
     'home.feat6_title': 'Usa Plantillas de Presupuesto',
     'home.feat6_desc': 'Exporta hojas de cálculo listas para Google Sheets, Microsoft Excel y registros personales.',
 
@@ -984,13 +990,16 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'zbb.goal_reached_msg': '<strong>Objectif atteint !</strong> Votre budget est équilibré à zéro. Chaque unité a une affectation précise.',
     'zbb.left_to_assign_msg': 'Il vous reste <strong>{amount}</strong> à allouer. Continuez jusqu’à ce qu’il reste {zero}.',
     'zbb.over_allocated_msg': 'Vous avez alloué <strong class="text-[#ee0000]">{amount}</strong> de plus que vos revenus.',
+    'zbb.no_income_over_msg': 'Vous avez alloué <strong class="text-[#ee0000]">{amount}</strong> avec 0 revenu. Ajoutez des revenus pour équilibrer votre budget.',
     'zbb.badge_balanced': 'Équilibré ({zero})',
     'zbb.badge_left': '{amount} Reste à Allouer',
     'zbb.badge_over': '{amount} Sur-Alloué',
     'zbb.sub_balanced': 'Tous les revenus alloués à zéro.',
     'zbb.sub_left': 'Allouez le reste jusqu’à {zero}.',
     'zbb.sub_over': 'Les montants alloués dépassent les revenus.',
+    'zbb.sub_no_income': 'Ajoutez des revenus pour équilibrer.',
     'zbb.pct_assigned': '{pct}% alloué',
+    'zbb.add_income_to_assign': 'Ajoutez des revenus pour allouer',
     'prompt.new_group_default': 'Groupe d\'Allocation Spécial',
 
     // Homepage Specific
@@ -1063,12 +1072,12 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'footer.disclaimer': 'Outils de budgétisation éducatifs. Ne constitue pas un conseil financier, fiscal ou juridique officiel.',
 
     // Dynamic Interpretations
-    'interpret.general_surplus': 'Surplus : Vos dépenses prévues sont {amount} inférieures à vos revenus.',
-    'interpret.general_deficit': 'Déficit : Vos dépenses prévues sont {amount} supérieures à vos revenus.',
+    'interpret.general_surplus': 'Surplus : Vos allocations prévues sont {amount} inférieures à vos revenus.',
+    'interpret.general_deficit': 'Déficit : Vos allocations prévues sont {amount} supérieures à vos revenus.',
     'interpret.general_balanced': 'Équilibré : Votre budget est équilibré. Tous vos revenus sont alloués.',
     'interpret.general_empty': 'Entrez vos revenus et vos dépenses pour équilibrer votre budget.',
-    'interpret.general_insight_surplus': 'Vos dépenses prévues sont {amount} inférieures à vos revenus ({pct}% de revenus restant).',
-    'interpret.general_insight_deficit': 'Vos dépenses prévues dépassent vos revenus de {amount} par mois.',
+    'interpret.general_insight_surplus': 'Vos allocations prévues sont {amount} inférieures à vos revenus ({pct}% de revenus restant).',
+    'interpret.general_insight_deficit': 'Vos allocations prévues dépassent vos revenus de {amount} par mois.',
     'interpret.general_insight_balanced': 'Votre budget s\'équilibre exactement à zéro. Tous les revenus sont alloués.',
     'interpret.general_largest': '{name} est votre plus grande catégorie avec {amount}/mois ({pct}% des dépenses, {incPct}% des revenus).',
     'interpret.general_savings': 'Taux d\'épargne prévu : {pct}% du revenu net.',
@@ -1139,7 +1148,7 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'home.feat4_title': 'Construire un Budget Base Zéro',
     'home.feat4_desc': 'Donnez une mission à chaque euro jusqu\'à ce que le solde non alloué atteigne zéro.',
     'home.feat5_title': 'Normaliser les Fréquences',
-    'home.feat5_desc': 'Convertissez salaires hebdomadaires et assurances annuelles en équivalents mensuels exacts.',
+    'home.feat5_desc': 'Convertissez salaires hebdomadaires et assurances annuelles en équivalents mensuels annualisés.',
     'home.feat6_title': 'Utiliser des Modèles de Budget',
     'home.feat6_desc': 'Exportez des feuilles de calcul prêtes pour Google Sheets, Excel et vos finances personnelles.',
 
@@ -1386,13 +1395,16 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'zbb.goal_reached_msg': '<strong>Ziel erreicht!</strong> Ihr Budget ist auf null ausgeglichen. Jeder Cent hat eine feste Aufgabe.',
     'zbb.left_to_assign_msg': 'Sie haben noch <strong>{amount}</strong> zuzuweisen. Weisen Sie zu, bis {zero} verbleibt.',
     'zbb.over_allocated_msg': 'Sie haben <strong class="text-[#ee0000]">{amount}</strong> mehr zugewiesen als Ihr Einkommen.',
+    'zbb.no_income_over_msg': 'Sie haben <strong class="text-[#ee0000]">{amount}</strong> ohne Einkommen zugewiesen. Fügen Sie Einkommen hinzu, um das Budget auszugleichen.',
     'zbb.badge_balanced': 'Ausgeglichen ({zero})',
     'zbb.badge_left': '{amount} Noch Zuzuweisen',
     'zbb.badge_over': '{amount} Überallokiert',
     'zbb.sub_balanced': 'Gesamtes Einkommen auf Null zugewiesen.',
     'zbb.sub_left': 'Restbetrag zuweisen bis {zero}.',
     'zbb.sub_over': 'Zuweisung übersteigt Einkommen.',
+    'zbb.sub_no_income': 'Einkommen hinzufügen zum Ausgleich.',
     'zbb.pct_assigned': '{pct}% zugewiesen',
+    'zbb.add_income_to_assign': 'Einkommen hinzufügen, um zuzuweisen',
     'prompt.new_group_default': 'Spezielle Zuteilungsgruppe',
 
     // Homepage Specific
@@ -1465,12 +1477,12 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'footer.disclaimer': 'Pädagogische Budgetierungstools. Keine formelle Anlage-, Steuer- oder Rechtsberatung.',
 
     // Dynamic Interpretations
-    'interpret.general_surplus': 'Überschuss: Ihre geplanten Ausgaben liegen {amount} unter Ihrem Einkommen.',
-    'interpret.general_deficit': 'Defizit: Ihre geplanten Ausgaben liegen {amount} über Ihrem Einkommen.',
+    'interpret.general_surplus': 'Überschuss: Ihre geplanten Zuweisungen liegen {amount} unter Ihrem Einkommen.',
+    'interpret.general_deficit': 'Defizit: Ihre geplanten Zuweisungen liegen {amount} über Ihrem Einkommen.',
     'interpret.general_balanced': 'Ausgeglichen: Ihr Budget ist ausgeglichen. Ihr gesamtes Einkommen ist zugewiesen.',
     'interpret.general_empty': 'Geben Sie Ihr Einkommen und Ihre Ausgaben ein, um Ihr Budget auszugleichen.',
-    'interpret.general_insight_surplus': 'Ihre geplanten Ausgaben liegen {amount} unter Ihrem Einkommen ({pct}% verbleibend).',
-    'interpret.general_insight_deficit': 'Ihre geplanten Ausgaben übersteigen Ihr Einkommen um {amount} pro Monat.',
+    'interpret.general_insight_surplus': 'Ihre geplanten Zuweisungen liegen {amount} unter Ihrem Einkommen ({pct}% verbleibend).',
+    'interpret.general_insight_deficit': 'Ihre geplanten Zuweisungen übersteigen Ihr Einkommen um {amount} pro Monat.',
     'interpret.general_insight_balanced': 'Ihr Budget ist genau auf Null ausgeglichen. Jeder Betrag ist zugewiesen.',
     'interpret.general_largest': '{name} ist Ihre größte Kategorie mit {amount}/Monat ({pct}% der Ausgaben, {incPct}% des Einkommens).',
     'interpret.general_savings': 'Geplante Sparquote: {pct}% des Nettoeinkommens.',
@@ -1541,7 +1553,7 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'home.feat4_title': 'Nullbasiertes Budget aufbauen',
     'home.feat4_desc': 'Weisen Sie jedem Euro einen Zweck zu, bis der verbleibende Betrag genau Null ergibt.',
     'home.feat5_title': 'Zahlungsintervalle normalisieren',
-    'home.feat5_desc': 'Wandeln Sie Wochenlöhne, Quartalsbeiträge und Jahresversicherungen in exakte Monatsbeträge um.',
+    'home.feat5_desc': 'Wandeln Sie Wochenlöhne, Quartalsbeiträge und Jahresversicherungen in annualisierte Monatsäquivalente um.',
     'home.feat6_title': 'Budgetvorlagen nutzen',
     'home.feat6_desc': 'Exportieren Sie sofort einsetzbare Tabellen für Google Sheets, Excel und persönliche Aufzeichnungen.',
 
@@ -1788,13 +1800,16 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'zbb.goal_reached_msg': '<strong>Meta alcançada!</strong> Seu orçamento está equilibrado a zero. Cada centavo tem um destino definido.',
     'zbb.left_to_assign_msg': 'Você tem <strong>{amount}</strong> por alocar. Aloque o restante até chegar a {zero}.',
     'zbb.over_allocated_msg': 'Você alocou <strong class="text-[#ee0000]">{amount}</strong> a mais do que sua renda.',
+    'zbb.no_income_over_msg': 'Você alocou <strong class="text-[#ee0000]">{amount}</strong> sem renda. Adicione renda para equilibrar o orçamento.',
     'zbb.badge_balanced': 'Equilibrado ({zero})',
     'zbb.badge_left': '{amount} Por Alocar',
     'zbb.badge_over': '{amount} Superalocado',
     'zbb.sub_balanced': 'Toda a renda alocada a zero.',
     'zbb.sub_left': 'Aloque o restante até {zero}.',
     'zbb.sub_over': 'Alocação excede a renda.',
+    'zbb.sub_no_income': 'Adicione renda para equilibrar o orçamento.',
     'zbb.pct_assigned': '{pct}% alocado',
+    'zbb.add_income_to_assign': 'Adicione renda para alocar',
     'prompt.new_group_default': 'Grupo de Alocação Especial',
 
     // Homepage Specific
@@ -1867,12 +1882,12 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'footer.disclaimer': 'Ferramentas educacionais de orçamento. Não substitui consultoria formal financeira, fiscal ou jurídica.',
 
     // Dynamic Interpretations
-    'interpret.general_surplus': 'Superávit: Seus gastos planejados estão {amount} abaixo da sua renda.',
-    'interpret.general_deficit': 'Déficit: Suas despesas planejadas são {amount} superiores à sua renda.',
+    'interpret.general_surplus': 'Superávit: Suas alocações planejadas estão {amount} abaixo da sua renda.',
+    'interpret.general_deficit': 'Déficit: Suas alocações planejadas são {amount} superiores à sua renda.',
     'interpret.general_balanced': 'Equilibrado: Seu orçamento está equilibrado. Toda a sua renda está alocada.',
     'interpret.general_empty': 'Insira sua renda e despesas para equilibrar seu orçamento.',
-    'interpret.general_insight_surplus': 'Seus gastos planejados estão {amount} abaixo da sua renda ({pct}% restante).',
-    'interpret.general_insight_deficit': 'Suas despesas planejadas superam sua renda em {amount} por mês.',
+    'interpret.general_insight_surplus': 'Suas alocações planejadas estão {amount} abaixo da sua renda ({pct}% restante).',
+    'interpret.general_insight_deficit': 'Suas alocações planejadas superam sua renda em {amount} por mês.',
     'interpret.general_insight_balanced': 'Seu orçamento equilibra exatamente em zero. Toda a renda está alocada.',
     'interpret.general_largest': '{name} é sua maior categoria com {amount}/mês ({pct}% das despesas, {incPct}% da renda).',
     'interpret.general_savings': 'Taxa de poupança planejada: {pct}% da renda líquida.',
@@ -1943,7 +1958,7 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'home.feat4_title': 'Construa um Orçamento Base Zero',
     'home.feat4_desc': 'Atribua um destino a cada unidade monetária até que o valor não alocado chegue a zero.',
     'home.feat5_title': 'Normalize Frequências de Pagamento',
-    'home.feat5_desc': 'Converta salários semanais e seguros anuais em equivalentes mensais exatos.',
+    'home.feat5_desc': 'Converta salários semanais e seguros anuais em equivalentes mensais anualizados.',
     'home.feat6_title': 'Use Modelos de Orçamento',
     'home.feat6_desc': 'Exporte planilhas prontas para Google Sheets, Microsoft Excel e registros pessoais.',
 
@@ -2242,20 +2257,130 @@ export const DEFAULT_ITEM_NAMES: Record<string, Record<string, string>> = {
   'Auto Maintenance & Tires': { en: 'Auto Maintenance & Tires', es: 'Mantenimiento del Auto y Neumáticos', fr: 'Entretien Auto & Pneus', de: 'Autowartung & Reifen', pt: 'Manutenção do Carro e Pneus' },
 };
 
+export const BUILTIN_CATEGORIES: Record<string, Record<string, string>> = {
+  // General Planner built-in categories
+  'housing': { en: 'Housing', es: 'Vivienda', fr: 'Logement', de: 'Wohnen', pt: 'Moradia' },
+  'utilities': { en: 'Utilities', es: 'Servicios públicos', fr: 'Services publics', de: 'Nebenkosten', pt: 'Serviços públicos' },
+  'food_groceries': { en: 'Food & Groceries', es: 'Comida y supermercado', fr: 'Alimentation et courses', de: 'Lebensmittel & Verpflegung', pt: 'Alimentação e compras' },
+  'transportation': { en: 'Transportation', es: 'Transporte', fr: 'Transports', de: 'Transport', pt: 'Transporte' },
+  'insurance': { en: 'Insurance', es: 'Seguros', fr: 'Assurances', de: 'Versicherungen', pt: 'Seguros' },
+  'insurance_healthcare': { en: 'Insurance & Healthcare', es: 'Seguros y Salud', fr: 'Assurance & Santé', de: 'Versicherung & Gesundheit', pt: 'Seguros e Saúde' },
+  'healthcare_medical': { en: 'Healthcare & Medical', es: 'Salud y medicina', fr: 'Santé et soins', de: 'Gesundheit & Medizin', pt: 'Saúde e medicina' },
+  'debt_payments': { en: 'Debt Payments', es: 'Pago de deudas', fr: 'Remboursement de dettes', de: 'Schuldenzahlungen', pt: 'Pagamento de dívidas' },
+  'subscriptions_memberships': { en: 'Subscriptions & Memberships', es: 'Suscripciones y membresías', fr: 'Abonnements', de: 'Abonnements & Mitgliedschaften', pt: 'Assinaturas e membros' },
+  'subscriptions_lifestyle': { en: 'Subscriptions & Lifestyle', es: 'Suscripciones y estilo de vida', fr: 'Abonnements et loisirs', de: 'Abos & Lebensstil', pt: 'Assinaturas e estilo de vida' },
+  'entertainment_leisure': { en: 'Entertainment & Leisure', es: 'Entretenimiento y ocio', fr: 'Divertissement et loisirs', de: 'Unterhaltung & Freizeit', pt: 'Entretenimento e lazer' },
+  'shopping_personal': { en: 'Shopping & Personal', es: 'Compras y personal', fr: 'Achats et personnel', de: 'Shopping & Persönliches', pt: 'Compras e pessoal' },
+  'education_learning': { en: 'Education & Learning', es: 'Educación y aprendizaje', fr: 'Éducation et formation', de: 'Bildung & Lernen', pt: 'Educação e aprendizado' },
+  'travel_vacations': { en: 'Travel & Vacations', es: 'Viajes y vacaciones', fr: 'Voyages et vacances', de: 'Reisen & Urlaub', pt: 'Viagens e férias' },
+  'children_family': { en: 'Children & Family', es: 'Hijos y familia', fr: 'Enfants et famille', de: 'Kinder & Familie', pt: 'Filhos e família' },
+  'savings_emergency': { en: 'Savings & Emergency Fund', es: 'Ahorro y emergencia', fr: 'Épargne et fonds d\'urgence', de: 'Ersparnisse & Notgroschen', pt: 'Poupança e emergência' },
+  'savings_investments': { en: 'Savings & Investments', es: 'Ahorros e inversiones', fr: 'Épargne et investissements', de: 'Ersparnisse & Investitionen', pt: 'Poupança e investimentos' },
+  'investments_retirement': { en: 'Investments & Retirement', es: 'Inversiones y jubilación', fr: 'Investissements et retraite', de: 'Investitionen & Ruhestand', pt: 'Investimentos e aposentadoria' },
+  'retirement_savings': { en: 'Retirement Savings', es: 'Ahorro para la jubilación', fr: 'Épargne retraite', de: 'Altersvorsorge', pt: 'Poupança para aposentadoria' },
+  'other_miscellaneous': { en: 'Other & Miscellaneous', es: 'Otros y varios', fr: 'Autre et divers', de: 'Sonstiges & Verschiedenes', pt: 'Outros e diversos' },
+  // Zero-based group names
+  'monthly_income': { en: 'Monthly Income', es: 'Ingreso Mensual', fr: 'Revenu Mensuel', de: 'Monatliches Einkommen', pt: 'Renda Mensal' },
+  'fixed_essentials_needs': { en: 'Fixed Essentials (Needs)', es: 'Gastos Fijos Esenciales (Necesidades)', fr: 'Dépenses Fixes Essentielles (Besoins)', de: 'Feste Grundausgaben (Bedürfnisse)', pt: 'Essenciais Fixos (Necessidades)' },
+  'variable_living_wants': { en: 'Variable Living (Wants)', es: 'Gastos Variables (Deseos)', fr: 'Dépenses Variables (Envies)', de: 'Variable Lebenshaltung (Wünsche)', pt: 'Gastos Variáveis (Desejos)' },
+  'debt_reduction': { en: 'Debt Reduction', es: 'Reducción de Deuda', fr: 'Réduction de la Dette', de: 'Schuldenabbau', pt: 'Redução de Dívidas' },
+  'savings_goals': { en: 'Savings Goals', es: 'Metas de Ahorro', fr: 'Objectifs d\'Épargne', de: 'Sparziele', pt: 'Metas de Poupança' },
+  'housing_living_essentials': { en: 'Housing & Living Essentials', es: 'Vivienda y Gastos Esenciales', fr: 'Logement et Dépenses Essentielles', de: 'Wohnen & Grundbedarf', pt: 'Moradia e Gastos Essenciais' },
+  'savings_sinking_funds': { en: 'Savings & Sinking Funds', es: 'Ahorros y Fondos de Amortización', fr: 'Épargne et Fonds Dédiés', de: 'Sparen & Rücklagenfonds', pt: 'Poupança e Fundos Específicos' },
+  'lifestyle_fun_money': { en: 'Lifestyle & Fun Money', es: 'Estilo de Vida y Ocio', fr: 'Mode de Vie & Plaisirs', de: 'Lebensstil & Taschengeld', pt: 'Estilo de Vida e Lazer' },
+  'miscellaneous_cushion_buffer': { en: 'Miscellaneous Cushion Buffer', es: 'Colchón para Imprevistos', fr: 'Réserve pour Imprévus', de: 'Puffer für Unvorhergesehenes', pt: 'Reserva para Imprevistos' },
+};
+
+/**
+ * Maps planner default DOM IDs and aliases to canonical category IDs.
+ */
+export const BUILTIN_CATEGORY_ID_ALIASES: Record<string, string> = {
+  'cat_housing': 'housing',
+  'cat_utilities': 'utilities',
+  'cat_food': 'food_groceries',
+  'cat_transportation': 'transportation',
+  'cat_insurance': 'insurance_healthcare',
+  'cat_debt': 'debt_payments',
+  'cat_subscriptions': 'subscriptions_lifestyle',
+  'cat_savings': 'savings_investments',
+  'g_housing_living': 'housing_living_essentials',
+  'g_debt': 'debt_payments',
+  'g_savings': 'savings_sinking_funds',
+  'g_lifestyle': 'lifestyle_fun_money',
+  'g_buffer': 'miscellaneous_cushion_buffer',
+};
+
+/**
+ * Resolves a built-in category ID from an ID, alias, or known name in any language.
+ * Returns null if it cannot be reliably matched (indicating a custom user category).
+ */
+export function getBuiltinCategoryId(id?: string | null, name?: string | null): string | null {
+  if (id) {
+    const cleanId = id.trim().toLowerCase();
+    if (BUILTIN_CATEGORIES[cleanId]) return cleanId;
+    if (BUILTIN_CATEGORY_ID_ALIASES[cleanId]) return BUILTIN_CATEGORY_ID_ALIASES[cleanId];
+  }
+
+  if (name) {
+    const cleanName = name.trim().toLowerCase();
+    for (const [catId, group] of Object.entries(BUILTIN_CATEGORIES)) {
+      if (catId.toLowerCase() === cleanName) return catId;
+      if (group.en && group.en.toLowerCase() === cleanName) return catId;
+    }
+    for (const [catId, group] of Object.entries(BUILTIN_CATEGORIES)) {
+      for (const val of Object.values(group)) {
+        if (val.toLowerCase() === cleanName) return catId;
+      }
+    }
+    for (const [enKey, group] of Object.entries(DEFAULT_CATEGORY_NAMES)) {
+      if (enKey.toLowerCase() === cleanName) {
+        return BUILTIN_CATEGORY_ID_ALIASES[enKey] || getBuiltinCategoryId(null, enKey);
+      }
+      for (const val of Object.values(group)) {
+        if (val.toLowerCase() === cleanName) {
+          return BUILTIN_CATEGORY_ID_ALIASES[enKey] || getBuiltinCategoryId(null, enKey);
+        }
+      }
+    }
+  }
+
+  return null;
+}
+
+/**
+ * Returns the canonical English category name for a built-in category ID.
+ */
+export function getCanonicalCategoryName(categoryId: string): string | null {
+  const resolved = BUILTIN_CATEGORY_ID_ALIASES[categoryId] || categoryId;
+  return (BUILTIN_CATEGORIES[resolved] && BUILTIN_CATEGORIES[resolved].en) || null;
+}
+
 /**
  * Returns the translated category or group name, or the original if not a known default.
  */
 export function translateCategoryName(name: string, lang?: string): string {
   if (!name) return '';
   const activeLang = lang || getSelectedLanguage();
-  if (activeLang === 'en') return name;
 
-  // Direct lookup by English key
-  if (DEFAULT_CATEGORY_NAMES[name] && DEFAULT_CATEGORY_NAMES[name][activeLang]) {
-    return DEFAULT_CATEGORY_NAMES[name][activeLang];
+  // 1. Direct lookup by stable category ID or alias (e.g. "housing", "cat_housing", "retirement_savings")
+  const resolvedId = BUILTIN_CATEGORY_ID_ALIASES[name] || name;
+  if (BUILTIN_CATEGORIES[resolvedId]) {
+    return BUILTIN_CATEGORIES[resolvedId][activeLang] || BUILTIN_CATEGORIES[resolvedId].en || name;
   }
 
-  // Reverse search if name was previously translated from a default
+  // 2. Direct lookup in DEFAULT_CATEGORY_NAMES by English key
+  if (DEFAULT_CATEGORY_NAMES[name]) {
+    return DEFAULT_CATEGORY_NAMES[name][activeLang] || DEFAULT_CATEGORY_NAMES[name].en || name;
+  }
+
+  // 3. Reverse search: if name is a previously translated default from an existing saved budget
+  for (const group of Object.values(BUILTIN_CATEGORIES)) {
+    for (const val of Object.values(group)) {
+      if (val.toLowerCase() === name.trim().toLowerCase()) {
+        return group[activeLang] || group.en || name;
+      }
+    }
+  }
   for (const group of Object.values(DEFAULT_CATEGORY_NAMES)) {
     for (const val of Object.values(group)) {
       if (val.toLowerCase() === name.trim().toLowerCase()) {
@@ -2264,6 +2389,7 @@ export function translateCategoryName(name: string, lang?: string): string {
     }
   }
 
+  // 4. Custom user category: do NOT translate, preserve verbatim
   return name;
 }
 
@@ -2273,10 +2399,9 @@ export function translateCategoryName(name: string, lang?: string): string {
 export function translateItemName(name: string, lang?: string): string {
   if (!name) return '';
   const activeLang = lang || getSelectedLanguage();
-  if (activeLang === 'en') return name;
 
-  if (DEFAULT_ITEM_NAMES[name] && DEFAULT_ITEM_NAMES[name][activeLang]) {
-    return DEFAULT_ITEM_NAMES[name][activeLang];
+  if (DEFAULT_ITEM_NAMES[name]) {
+    return DEFAULT_ITEM_NAMES[name][activeLang] || DEFAULT_ITEM_NAMES[name].en || name;
   }
 
   for (const group of Object.values(DEFAULT_ITEM_NAMES)) {

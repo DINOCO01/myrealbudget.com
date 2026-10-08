@@ -96,16 +96,29 @@ const faqSchema = {
 
             <!-- Download Action Button -->
             <div class="shrink-0 flex flex-col sm:flex-row md:flex-col gap-2.5">
-              <button
-                type="button"
-                data-template-id={template.id}
-                class="btn-download-template inline-flex items-center justify-center gap-2 h-10 px-5 rounded-full bg-[#171717] text-white text-xs font-medium hover:bg-neutral-800 transition shadow-sm"
-              >
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                </svg>
-                <span data-mrb-t="templates.download_csv">Download CSV</span>
-              </button>
+              {template.downloadUrl ? (
+                <a
+                  href={template.downloadUrl}
+                  download
+                  class="btn-download-template inline-flex items-center justify-center gap-2 h-10 px-5 rounded-full bg-[#171717] text-white text-xs font-medium hover:bg-neutral-800 transition shadow-sm"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  </svg>
+                  <span data-mrb-t="templates.download_csv">Download CSV</span>
+                </a>
+              ) : (
+                <button
+                  type="button"
+                  data-template-id={template.id}
+                  class="btn-download-template inline-flex items-center justify-center gap-2 h-10 px-5 rounded-full bg-[#171717] text-white text-xs font-medium hover:bg-neutral-800 transition shadow-sm"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  </svg>
+                  <span data-mrb-t="templates.download_csv">Download CSV</span>
+                </button>
+              )}
               <a
                 href={template.methodSlug}
                 data-mrb-t="templates.use_tool"
@@ -303,7 +316,7 @@ Summary,Total Household Surplus,,,$2396.67`,
     },
   };
 
-  document.querySelectorAll('.btn-download-template').forEach(btn => {
+  document.querySelectorAll('button.btn-download-template').forEach(btn => {
     btn.addEventListener('click', () => {
       const id = btn.getAttribute('data-template-id');
       const item = templates[id];
