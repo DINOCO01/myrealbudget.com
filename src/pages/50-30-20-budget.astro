@@ -5,7 +5,7 @@ import FiftyThirtyTwentyPlanner from '../components/planners/FiftyThirtyTwentyPl
 import { formatCurrency } from '../utils/currency';
 
 const title = '50/30/20 Budget Rule: Calculator, Examples & Practical Guide';
-const description = 'Master the 50/30/20 budget rule. Calculate your Needs (50%), Wants (30%), and Savings (20%) targets with our interactive planner, see real income examples, and balance your actual spending.';
+const description = 'Calculate your Needs (50%), Wants (30%), and Savings (20%) targets with our free interactive planner. See real income examples and balance your monthly budget.';
 
 const incomeExamples = [
   { income: 3000, needs: 1500, wants: 900, savings: 600 },
@@ -98,14 +98,14 @@ const faqSchema = {
       
       <!-- 1. What is the 50/30/20 Rule -->
       <div class="space-y-4">
-        <Eyebrow text="The Breakdown" />
-        <h2 class="text-2xl font-semibold tracking-tight text-[#171717]">
+        <Eyebrow text="The Breakdown" tKey="f3020.breakdown_eyebrow" />
+        <h2 class="text-2xl font-semibold tracking-tight text-[#171717]" data-mrb-t="f3020.what_is_title">
           What Is the 50/30/20 Budget?
         </h2>
-        <p class="text-sm text-[#4d4d4d] leading-relaxed">
+        <p class="text-sm text-[#4d4d4d] leading-relaxed" data-mrb-t-html="f3020.what_is_p1">
           Popularized by bankruptcy expert and Harvard law professor Elizabeth Warren in her book <em>All Your Worth: The Ultimate Lifetime Money Plan</em>, the 50/30/20 rule divides your <strong>after-tax, take-home pay</strong> into three intentional categories.
         </p>
-        <p class="text-sm text-[#4d4d4d] leading-relaxed">
+        <p class="text-sm text-[#4d4d4d] leading-relaxed" data-mrb-t="f3020.what_is_p2">
           Unlike restrictive diets that prohibit dining out or entertainment, the 50/30/20 model explicitly budgets for guilt-free personal spending, providing a straightforward framework for organizing essential spending, discretionary spending, and savings.
         </p>
       </div>
@@ -117,19 +117,19 @@ const faqSchema = {
         <div class="p-6 rounded-[12px] bg-[#fafafa] border border-[#ebebeb] space-y-3">
           <div class="flex items-center justify-between">
             <span class="w-8 h-8 rounded-full bg-[#171717] text-white flex items-center justify-center font-mono text-xs font-semibold">50%</span>
-            <span class="font-mono text-xs text-[#8f8f8f]">Essential</span>
+            <span class="font-mono text-xs text-[#8f8f8f]" data-mrb-t="f3020.needs_badge">Essential</span>
           </div>
-          <h3 class="text-lg font-semibold text-[#171717]">Needs</h3>
-          <p class="text-xs text-[#4d4d4d] leading-relaxed">
+          <h3 class="text-lg font-semibold text-[#171717]" data-mrb-t="f3020.needs_card_title">Needs</h3>
+          <p class="text-xs text-[#4d4d4d] leading-relaxed" data-mrb-t="f3020.needs_card_desc">
             Expenses required to live and work. If you lost your job tomorrow, these would still be necessary.
           </p>
           <ul class="text-xs text-[#4d4d4d] space-y-1 pt-2 border-t border-[#ebebeb]">
-            <li>• Rent or mortgage & HOA fees</li>
-            <li>• Basic groceries & household goods</li>
-            <li>• Water, electricity & gas utilities</li>
-            <li>• Commuter transit & car insurance</li>
-            <li>• Healthcare co-pays & prescriptions</li>
-            <li>• Minimum required debt payments</li>
+            <li data-mrb-t="f3020.needs_i1">• Rent or mortgage & HOA fees</li>
+            <li data-mrb-t="f3020.needs_i2">• Basic groceries & household goods</li>
+            <li data-mrb-t="f3020.needs_i3">• Water, electricity & gas utilities</li>
+            <li data-mrb-t="f3020.needs_i4">• Commuter transit & car insurance</li>
+            <li data-mrb-t="f3020.needs_i5">• Healthcare co-pays & prescriptions</li>
+            <li data-mrb-t="f3020.needs_i6">• Minimum required debt payments</li>
           </ul>
         </div>
 
@@ -137,19 +137,19 @@ const faqSchema = {
         <div class="p-6 rounded-[12px] bg-[#fafafa] border border-[#ebebeb] space-y-3">
           <div class="flex items-center justify-between">
             <span class="w-8 h-8 rounded-full bg-[#7928ca] text-white flex items-center justify-center font-mono text-xs font-semibold">30%</span>
-            <span class="font-mono text-xs text-[#8f8f8f]">Lifestyle</span>
+            <span class="font-mono text-xs text-[#8f8f8f]" data-mrb-t="f3020.wants_badge">Lifestyle</span>
           </div>
-          <h3 class="text-lg font-semibold text-[#171717]">Wants</h3>
-          <p class="text-xs text-[#4d4d4d] leading-relaxed">
+          <h3 class="text-lg font-semibold text-[#171717]" data-mrb-t="f3020.wants_card_title">Wants</h3>
+          <p class="text-xs text-[#4d4d4d] leading-relaxed" data-mrb-t="f3020.wants_card_desc">
             Discretionary choices that enhance quality of life but are not strictly mandatory for survival.
           </p>
           <ul class="text-xs text-[#4d4d4d] space-y-1 pt-2 border-t border-[#ebebeb]">
-            <li>• Restaurant meals, bars & takeaway</li>
-            <li>• Streaming services (Netflix, Spotify)</li>
-            <li>• Concerts, movies & sporting events</li>
-            <li>• Vacations, weekend trips & flights</li>
-            <li>• Non-essential clothing & shoes</li>
-            <li>• Hobbies, fitness clubs & gear</li>
+            <li data-mrb-t="f3020.wants_i1">• Restaurant meals, bars & takeaway</li>
+            <li data-mrb-t="f3020.wants_i2">• Streaming services (Netflix, Spotify)</li>
+            <li data-mrb-t="f3020.wants_i3">• Concerts, movies & sporting events</li>
+            <li data-mrb-t="f3020.wants_i4">• Vacations, weekend trips & flights</li>
+            <li data-mrb-t="f3020.wants_i5">• Non-essential clothing & shoes</li>
+            <li data-mrb-t="f3020.wants_i6">• Hobbies, fitness clubs & gear</li>
           </ul>
         </div>
 
@@ -157,18 +157,18 @@ const faqSchema = {
         <div class="p-6 rounded-[12px] bg-[#fafafa] border border-[#ebebeb] space-y-3">
           <div class="flex items-center justify-between">
             <span class="w-8 h-8 rounded-full bg-[#0070f3] text-white flex items-center justify-center font-mono text-xs font-semibold">20%</span>
-            <span class="font-mono text-xs text-[#8f8f8f]">Future</span>
+            <span class="font-mono text-xs text-[#8f8f8f]" data-mrb-t="f3020.savings_badge">Future</span>
           </div>
-          <h3 class="text-lg font-semibold text-[#171717]">Savings & Extra Debt</h3>
-          <p class="text-xs text-[#4d4d4d] leading-relaxed">
+          <h3 class="text-lg font-semibold text-[#171717]" data-mrb-t="f3020.savings_card_title">Savings & Extra Debt</h3>
+          <p class="text-xs text-[#4d4d4d] leading-relaxed" data-mrb-t="f3020.savings_card_desc">
             Investments in your future resilience and accelerated freedom from high-interest liabilities.
           </p>
           <ul class="text-xs text-[#4d4d4d] space-y-1 pt-2 border-t border-[#ebebeb]">
-            <li>• High-yield emergency buffer funds</li>
-            <li>• Roth IRA & brokerage investments</li>
-            <li>• Extra 401(k) retirement contributions</li>
-            <li>• Extra credit card / debt principal paydown</li>
-            <li>• Sinking funds for future home deposit</li>
+            <li data-mrb-t="f3020.savings_i1">• High-yield emergency buffer funds</li>
+            <li data-mrb-t="f3020.savings_i2">• Roth IRA & brokerage investments</li>
+            <li data-mrb-t="f3020.savings_i3">• Extra 401(k) retirement contributions</li>
+            <li data-mrb-t="f3020.savings_i4">• Extra credit card / debt principal paydown</li>
+            <li data-mrb-t="f3020.savings_i5">• Sinking funds for future home deposit</li>
           </ul>
         </div>
 
@@ -176,11 +176,11 @@ const faqSchema = {
 
       <!-- 3. Real Income Benchmark Table -->
       <div class="space-y-5">
-        <Eyebrow text="Benchmarks" />
-        <h2 class="text-2xl font-semibold tracking-tight text-[#171717]">
+        <Eyebrow text="Benchmarks" tKey="f3020.table_eyebrow" />
+        <h2 class="text-2xl font-semibold tracking-tight text-[#171717]" data-mrb-t="f3020.table_title">
           Example 50/30/20 Budgets Across Different Incomes
         </h2>
-        <p class="text-sm text-[#4d4d4d]">
+        <p class="text-sm text-[#4d4d4d]" data-mrb-t="f3020.table_sub">
           Here is how the numbers break down across common monthly take-home pay thresholds:
         </p>
 
@@ -210,39 +210,41 @@ const faqSchema = {
 
       <!-- 4. Not a Rigid Financial Law: Nuances & Adjustments -->
       <div class="p-6 rounded-[12px] bg-[#fafafa] border border-[#ebebeb] space-y-3">
-        <h3 class="text-base font-semibold text-[#171717]">
+        <h3 class="text-base font-semibold text-[#171717]" data-mrb-t="f3020.flexible_title">
           Important: 50/30/20 is a flexible guide, not a rigid law
         </h3>
-        <p class="text-xs text-[#4d4d4d] leading-relaxed">
+        <p class="text-xs text-[#4d4d4d] leading-relaxed" data-mrb-t="f3020.flexible_p1">
           If you reside in New York, London, Toronto, or San Francisco, spending only 50% on needs may be temporarily impossible when modest rents alone claim 40% of net pay.
         </p>
-        <p class="text-xs text-[#4d4d4d] leading-relaxed">
+        <p class="text-xs text-[#4d4d4d] leading-relaxed" data-mrb-t-html="f3020.flexible_p2">
           In those situations, adopt an honest ratio such as <strong>60/25/15</strong> or <strong>65/20/15</strong>. The purpose of the 50/30/20 rule is not perfection—it is providing a north-star benchmark so you can identify spending creep before it threatens your solvency.
         </p>
       </div>
 
       <!-- 5. FAQ Section -->
       <div class="space-y-6 pt-4 border-t border-[#ebebeb]">
-        <h2 class="text-2xl font-semibold tracking-tight text-[#171717]">
+        <h2 class="text-2xl font-semibold tracking-tight text-[#171717]" data-mrb-t="pagefaq.f3020.heading">
           Frequently Asked Questions About the 50/30/20 Rule
         </h2>
         <div class="space-y-4 text-xs">
           <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] space-y-1.5">
-            <h3 class="font-semibold text-sm text-[#171717]">Do I calculate percentages from gross or net income?</h3>
-            <p class="text-[#4d4d4d] leading-relaxed">
-              The 50/30/20 framework is calculated using <strong>net (after-tax) income</strong> rather than gross salary. You can approach this in one of two ways:
-            </p>
-            <ul class="space-y-1 text-[#4d4d4d] pl-3 list-disc">
-              <li><strong>Take-home pay approach:</strong> Budget strictly from the net amount deposited into your checking account. Pre-tax deductions (like 401(k) contributions or health premiums) are already accounted for before you start.</li>
-              <li><strong>Comprehensive income approach:</strong> Add voluntary paycheck deductions (such as retirement or health benefits) back to your take-home pay, and then list them explicitly under your Savings (retirement) and Needs (health coverage) categories.</li>
-            </ul>
-            <p class="text-[#4d4d4d] leading-relaxed pt-1">
-              Either approach works well—the important part is picking one method and applying it consistently.
-            </p>
+            <h3 class="font-semibold text-sm text-[#171717]" data-mrb-t="pagefaq.f3020.q1">Do I calculate percentages from gross or net income?</h3>
+            <div class="text-[#4d4d4d] leading-relaxed" data-mrb-t-html="pagefaq.f3020.a1">
+              <p>
+                The 50/30/20 framework is calculated using <strong>net (after-tax) income</strong> rather than gross salary. You can approach this in one of two ways:
+              </p>
+              <ul class="space-y-1 text-[#4d4d4d] pl-3 list-disc mt-1">
+                <li><strong>Take-home pay approach:</strong> Budget strictly from the net amount deposited into your checking account. Pre-tax deductions (like 401(k) contributions or health premiums) are already accounted for before you start.</li>
+                <li><strong>Comprehensive income approach:</strong> Add voluntary paycheck deductions (such as retirement or health benefits) back to your take-home pay, and then list them explicitly under your Savings (retirement) and Needs (health coverage) categories.</li>
+              </ul>
+              <p class="text-[#4d4d4d] leading-relaxed pt-1">
+                Either approach works well—the important part is picking one method and applying it consistently.
+              </p>
+            </div>
           </div>
           <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] space-y-1.5">
-            <h3 class="font-semibold text-sm text-[#171717]">What if my Needs exceed 50%?</h3>
-            <p class="text-[#4d4d4d] leading-relaxed">
+            <h3 class="font-semibold text-sm text-[#171717]" data-mrb-t="pagefaq.f3020.q2">What if my Needs exceed 50%?</h3>
+            <p class="text-[#4d4d4d] leading-relaxed" data-mrb-t="pagefaq.f3020.a2">
               When essential living costs are high, temporarily reduce your Wants allocation rather than eliminating savings entirely. Maintaining an ongoing emergency savings cushion helps reduce the need to rely on high-interest credit cards when unexpected car or medical bills arise.
             </p>
           </div>
@@ -252,23 +254,24 @@ const faqSchema = {
       <!-- 6. Template CTA & Interlinking -->
       <div class="p-6 rounded-[12px] bg-white border border-[#ebebeb] shadow-whisper flex flex-col sm:flex-row items-center justify-between gap-4">
         <div class="space-y-1 text-center sm:text-left">
-          <h3 class="font-semibold text-sm text-[#171717]">Prefer a downloadable spreadsheet?</h3>
-          <p class="text-xs text-[#8f8f8f]">Get our free 50/30/20 CSV template ready for Excel and Google Sheets.</p>
+          <h3 class="font-semibold text-sm text-[#171717]" data-mrb-t="pagefaq.f3020.cta_title">Prefer a downloadable spreadsheet?</h3>
+          <p class="text-xs text-[#8f8f8f]" data-mrb-t="pagefaq.f3020.cta_desc">Get our free 50/30/20 CSV template ready for Excel and Google Sheets.</p>
         </div>
         <a
           href="/budget-planner-template/#50-30-20-template"
           class="inline-flex items-center justify-center h-10 px-6 rounded-full bg-[#171717] text-white text-xs font-medium hover:bg-neutral-800 transition"
+          data-mrb-t="pagefaq.f3020.cta_btn"
         >
           Download 50/30/20 Template
         </a>
       </div>
 
       <div class="pt-8 border-t border-[#ebebeb] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8f8f8f]">
-        <span>Explore other budgeting methodologies:</span>
+        <span data-mrb-t="f3020.other_methods_label">Explore other budgeting methodologies:</span>
         <div class="flex items-center gap-3">
-          <a href="/zero-based-budget/" class="text-[#171717] font-medium underline hover:text-[#0070f3]">Zero-Based Budget Guide →</a>
-          <a href="/budget-planner/" class="text-[#171717] font-medium underline hover:text-[#0070f3]">General Budget Planner →</a>
-          <a href="/learn/50-30-20-vs-zero-based-budget/" class="text-[#171717] font-medium underline hover:text-[#0070f3]">50/30/20 vs Zero-Based →</a>
+          <a href="/zero-based-budget/" class="text-[#171717] font-medium underline hover:text-[#0070f3]" data-mrb-t="f3020.zbb_guide_link">Zero-Based Budget Guide →</a>
+          <a href="/budget-planner/" class="text-[#171717] font-medium underline hover:text-[#0070f3]" data-mrb-t="f3020.gbp_link">General Budget Planner →</a>
+          <a href="/learn/50-30-20-vs-zero-based-budget/" class="text-[#171717] font-medium underline hover:text-[#0070f3]" data-mrb-t="f3020.compare_link">50/30/20 vs Zero-Based →</a>
         </div>
       </div>
 

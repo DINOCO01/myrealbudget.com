@@ -4,7 +4,7 @@ import Eyebrow from '../components/ui/Eyebrow.astro';
 import ZeroBasedPlanner from '../components/planners/ZeroBasedPlanner.astro';
 
 const title = 'Zero-Based Budget: How to Give Every Dollar a Job (Free Tool)';
-const description = 'Learn zero-based budgeting (ZBB) with our free interactive planner. Discover the step-by-step process to assign every dollar a job so your monthly income minus allocations equals exactly zero.';
+const description = 'Master zero-based budgeting with our free interactive planner. Discover how to assign every dollar a job so your monthly income minus allocations equals zero.';
 
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -90,24 +90,24 @@ const faqSchema = {
       
       <!-- 1. The Core Philosophy -->
       <div class="space-y-4">
-        <Eyebrow text="The Core Concept" />
-        <h2 class="text-2xl font-semibold tracking-tight text-[#171717]">
+        <Eyebrow text="The Core Concept" tKey="zbb.concept_eyebrow" />
+        <h2 class="text-2xl font-semibold tracking-tight text-[#171717]" data-mrb-t="zbb.what_is_title">
           What Is Zero-Based Budgeting?
         </h2>
-        <p class="text-sm text-[#4d4d4d] leading-relaxed">
+        <p class="text-sm text-[#4d4d4d] leading-relaxed" data-mrb-t-html="zbb.what_is_p1">
           Zero-based budgeting (often abbreviated as ZBB) is a budgeting method where your <strong>monthly income minus all planned allocations equals zero</strong>:
         </p>
-        <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] font-mono text-center text-sm font-semibold text-[#171717]">
+        <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] font-mono text-center text-sm font-semibold text-[#171717]" data-mrb-t="zbb.equation">
           Total Monthly Income − Total Allocations = $0
         </div>
-        <p class="text-sm text-[#4d4d4d] leading-relaxed">
+        <p class="text-sm text-[#4d4d4d] leading-relaxed" data-mrb-t-html="zbb.what_is_p2">
           This does <em>not</em> mean your bank account balance drops to $0. Instead, it means that before the month begins, you decide intentionally what role every incoming dollar will play. If you earn $4,500, you assign all $4,500 toward living expenses, savings, investments, or debt paydown.
         </p>
       </div>
 
       <!-- 2. Step-by-Step Process -->
       <div class="space-y-5">
-        <h2 class="text-2xl font-semibold tracking-tight text-[#171717]">
+        <h2 class="text-2xl font-semibold tracking-tight text-[#171717]" data-mrb-t="zbb.steps_title">
           The 5-Step Process to Build a Zero-Based Budget
         </h2>
         <div class="space-y-4 text-xs">
@@ -115,8 +115,8 @@ const faqSchema = {
           <div class="p-5 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] flex gap-4 items-start">
             <span class="w-6 h-6 rounded-full bg-[#171717] text-white flex items-center justify-center font-mono font-bold shrink-0">1</span>
             <div class="space-y-1">
-              <h3 class="font-semibold text-sm text-[#171717]">Tally Total Income</h3>
-              <p class="text-[#4d4d4d] leading-relaxed">
+              <h3 class="font-semibold text-sm text-[#171717]" data-mrb-t="zbb.s1_title">Tally Total Income</h3>
+              <p class="text-[#4d4d4d] leading-relaxed" data-mrb-t="zbb.s1_desc">
                 Add up all reliable take-home pay, freelancing proceeds, and recurring cash flow for the upcoming month. This represents your available pool.
               </p>
             </div>
@@ -125,8 +125,8 @@ const faqSchema = {
           <div class="p-5 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] flex gap-4 items-start">
             <span class="w-6 h-6 rounded-full bg-[#171717] text-white flex items-center justify-center font-mono font-bold shrink-0">2</span>
             <div class="space-y-1">
-              <h3 class="font-semibold text-sm text-[#171717]">Fund Core Survival Needs First</h3>
-              <p class="text-[#4d4d4d] leading-relaxed">
+              <h3 class="font-semibold text-sm text-[#171717]" data-mrb-t="zbb.s2_title">Fund Core Survival Needs First</h3>
+              <p class="text-[#4d4d4d] leading-relaxed" data-mrb-t="zbb.s2_desc">
                 Protect your four walls: food, utilities, housing (rent/mortgage), and essential transportation to work.
               </p>
             </div>
@@ -135,8 +135,8 @@ const faqSchema = {
           <div class="p-5 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] flex gap-4 items-start">
             <span class="w-6 h-6 rounded-full bg-[#171717] text-white flex items-center justify-center font-mono font-bold shrink-0">3</span>
             <div class="space-y-1">
-              <h3 class="font-semibold text-sm text-[#171717]">Build Sinking Funds for Irregular Bills</h3>
-              <p class="text-[#4d4d4d] leading-relaxed">
+              <h3 class="font-semibold text-sm text-[#171717]" data-mrb-t="zbb.s3_title">Build Sinking Funds for Irregular Bills</h3>
+              <p class="text-[#4d4d4d] leading-relaxed" data-mrb-t="zbb.s3_desc">
                 Instead of being surprised by annual car registration or biannual property taxes, divide the yearly cost into 12 monthly allocations and set aside cash into designated categories.
               </p>
             </div>
@@ -145,8 +145,8 @@ const faqSchema = {
           <div class="p-5 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] flex gap-4 items-start">
             <span class="w-6 h-6 rounded-full bg-[#171717] text-white flex items-center justify-center font-mono font-bold shrink-0">4</span>
             <div class="space-y-1">
-              <h3 class="font-semibold text-sm text-[#171717]">Attack Debt & Boost Savings</h3>
-              <p class="text-[#4d4d4d] leading-relaxed">
+              <h3 class="font-semibold text-sm text-[#171717]" data-mrb-t="zbb.s4_title">Attack Debt & Boost Savings</h3>
+              <p class="text-[#4d4d4d] leading-relaxed" data-mrb-t="zbb.s4_desc">
                 Assign money toward extra principal reduction on credit cards or student loans, and consider directing capital toward retirement accounts or long-term investments, such as a Roth IRA or emergency reserves where applicable.
               </p>
             </div>
@@ -155,8 +155,8 @@ const faqSchema = {
           <div class="p-5 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] flex gap-4 items-start">
             <span class="w-6 h-6 rounded-full bg-[#171717] text-white flex items-center justify-center font-mono font-bold shrink-0">5</span>
             <div class="space-y-1">
-              <h3 class="font-semibold text-sm text-[#171717]">Assign Remaining Cash to Zero</h3>
-              <p class="text-[#4d4d4d] leading-relaxed">
+              <h3 class="font-semibold text-sm text-[#171717]" data-mrb-t="zbb.s5_title">Assign Remaining Cash to Zero</h3>
+              <p class="text-[#4d4d4d] leading-relaxed" data-mrb-t="zbb.s5_desc">
                 Allocate any remaining dollars to personal fun money, dining, or a miscellaneous buffer until your unassigned balance equals exactly $0.
               </p>
             </div>
@@ -167,68 +167,68 @@ const faqSchema = {
 
       <!-- 3. Concrete Example Budget Table -->
       <div class="space-y-4">
-        <Eyebrow text="Worked Example" />
-        <h2 class="text-2xl font-semibold tracking-tight text-[#171717]">
+        <Eyebrow text="Worked Example" tKey="zbb.worked_eyebrow" />
+        <h2 class="text-2xl font-semibold tracking-tight text-[#171717]" data-mrb-t="zbb.worked_title">
           Example of a $4,500 Zero-Based Budget
         </h2>
         <div class="overflow-x-auto rounded-[8px] border border-[#ebebeb]">
           <table class="w-full text-left text-xs border-collapse">
             <thead>
               <tr class="bg-[#fafafa] border-b border-[#ebebeb] font-mono text-[#8f8f8f]">
-                <th class="p-3">Budget Category</th>
-                <th class="p-3">Line Item</th>
-                <th class="p-3">Assigned Amount</th>
-                <th class="p-3">Cumulative Balance</th>
+                <th class="p-3" data-mrb-t="zbb.th_category">Budget Category</th>
+                <th class="p-3" data-mrb-t="zbb.th_item">Line Item</th>
+                <th class="p-3" data-mrb-t="zbb.th_amount">Assigned Amount</th>
+                <th class="p-3" data-mrb-t="zbb.th_balance">Cumulative Balance</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-[#ebebeb] font-mono">
               <tr class="bg-neutral-50/50">
-                <td class="p-3 font-semibold text-[#171717]">Income</td>
-                <td class="p-3">Net Take-Home Pay</td>
+                <td class="p-3 font-semibold text-[#171717]" data-mrb-t="zbb.ex_income_cat">Income</td>
+                <td class="p-3" data-mrb-t="zbb.ex_income_item">Net Take-Home Pay</td>
                 <td class="p-3 text-[#047857]">+$4,500</td>
-                <td class="p-3 font-semibold">$4,500 Available</td>
+                <td class="p-3 font-semibold" data-mrb-t="zbb.ex_income_bal">$4,500 Available</td>
               </tr>
               <tr>
-                <td class="p-3 text-[#4d4d4d]">Housing</td>
-                <td class="p-3">Rent & Utilities</td>
+                <td class="p-3 text-[#4d4d4d]" data-mrb-t="zbb.ex_housing_cat">Housing</td>
+                <td class="p-3" data-mrb-t="zbb.ex_housing_item">Rent & Utilities</td>
                 <td class="p-3 text-[#171717]">-$1,600</td>
-                <td class="p-3 text-[#8f8f8f]">$2,900 Left</td>
+                <td class="p-3 text-[#8f8f8f]" data-mrb-t="zbb.ex_housing_bal">$2,900 Left</td>
               </tr>
               <tr>
-                <td class="p-3 text-[#4d4d4d]">Food</td>
-                <td class="p-3">Groceries & Household Essentials</td>
+                <td class="p-3 text-[#4d4d4d]" data-mrb-t="zbb.ex_food_cat">Food</td>
+                <td class="p-3" data-mrb-t="zbb.ex_food_item">Groceries & Household Essentials</td>
                 <td class="p-3 text-[#171717]">-$500</td>
-                <td class="p-3 text-[#8f8f8f]">$2,400 Left</td>
+                <td class="p-3 text-[#8f8f8f]" data-mrb-t="zbb.ex_food_bal">$2,400 Left</td>
               </tr>
               <tr>
-                <td class="p-3 text-[#4d4d4d]">Transportation</td>
-                <td class="p-3">Car Payment, Fuel & Insurance Sinking Fund</td>
+                <td class="p-3 text-[#4d4d4d]" data-mrb-t="zbb.ex_trans_cat">Transportation</td>
+                <td class="p-3" data-mrb-t="zbb.ex_trans_item">Car Payment, Fuel & Insurance Sinking Fund</td>
                 <td class="p-3 text-[#171717]">-$550</td>
-                <td class="p-3 text-[#8f8f8f]">$1,850 Left</td>
+                <td class="p-3 text-[#8f8f8f]" data-mrb-t="zbb.ex_trans_bal">$1,850 Left</td>
               </tr>
               <tr>
-                <td class="p-3 text-[#4d4d4d]">Debt Elimination</td>
-                <td class="p-3">Student Loan Principal Acceleration</td>
+                <td class="p-3 text-[#4d4d4d]" data-mrb-t="zbb.ex_debt_cat">Debt Elimination</td>
+                <td class="p-3" data-mrb-t="zbb.ex_debt_item">Student Loan Principal Acceleration</td>
                 <td class="p-3 text-[#171717]">-$450</td>
-                <td class="p-3 text-[#8f8f8f]">$1,400 Left</td>
+                <td class="p-3 text-[#8f8f8f]" data-mrb-t="zbb.ex_debt_bal">$1,400 Left</td>
               </tr>
               <tr>
-                <td class="p-3 text-[#4d4d4d]">Savings</td>
-                <td class="p-3">Emergency Cushion + Roth IRA</td>
+                <td class="p-3 text-[#4d4d4d]" data-mrb-t="zbb.ex_savings_cat">Savings</td>
+                <td class="p-3" data-mrb-t="zbb.ex_savings_item">Emergency Cushion + Roth IRA</td>
                 <td class="p-3 text-[#0070f3]">-$900</td>
-                <td class="p-3 text-[#8f8f8f]">$500 Left</td>
+                <td class="p-3 text-[#8f8f8f]" data-mrb-t="zbb.ex_savings_bal">$500 Left</td>
               </tr>
               <tr>
-                <td class="p-3 text-[#4d4d4d]">Discretionary</td>
-                <td class="p-3">Dining Out, Entertainment & Subscriptions</td>
+                <td class="p-3 text-[#4d4d4d]" data-mrb-t="zbb.ex_misc_cat">Discretionary</td>
+                <td class="p-3" data-mrb-t="zbb.ex_misc_item">Dining Out, Entertainment & Subscriptions</td>
                 <td class="p-3 text-[#171717]">-$400</td>
-                <td class="p-3 text-[#8f8f8f]">$100 Left</td>
+                <td class="p-3 text-[#8f8f8f]" data-mrb-t="zbb.ex_misc_bal">$100 Left</td>
               </tr>
               <tr class="bg-[#e6fbf5]">
-                <td class="p-3 font-semibold text-[#047857]">Buffer</td>
-                <td class="p-3 font-semibold text-[#047857]">Checking Account Buffer Cushion</td>
+                <td class="p-3 font-semibold text-[#047857]" data-mrb-t="zbb.ex_buffer_cat">Buffer</td>
+                <td class="p-3 font-semibold text-[#047857]" data-mrb-t="zbb.ex_buffer_item">Checking Account Buffer Cushion</td>
                 <td class="p-3 font-semibold text-[#047857]">-$100</td>
-                <td class="p-3 font-bold text-[#047857]">$0 Remaining (Balanced)</td>
+                <td class="p-3 font-bold text-[#047857]" data-mrb-t="zbb.ex_buffer_bal">$0 Remaining (Balanced)</td>
               </tr>
             </tbody>
           </table>
@@ -237,19 +237,19 @@ const faqSchema = {
 
       <!-- 4. Zero-Based FAQ -->
       <div class="space-y-6 pt-4 border-t border-[#ebebeb]">
-        <h2 class="text-2xl font-semibold tracking-tight text-[#171717]">
+        <h2 class="text-2xl font-semibold tracking-tight text-[#171717]" data-mrb-t="pagefaq.zbb.heading">
           Frequently Asked Questions About Zero-Based Budgeting
         </h2>
         <div class="space-y-4 text-xs">
           <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] space-y-1.5">
-            <h3 class="font-semibold text-sm text-[#171717]">Does zero-based budgeting mean I have $0 in my bank account?</h3>
-            <p class="text-[#4d4d4d] leading-relaxed">
+            <h3 class="font-semibold text-sm text-[#171717]" data-mrb-t="pagefaq.zbb.q1">Does zero-based budgeting mean I have $0 in my bank account?</h3>
+            <p class="text-[#4d4d4d] leading-relaxed" data-mrb-t="pagefaq.zbb.a1">
               No. Zero-based budgeting means that every dollar you earn is assigned on paper or in a spreadsheet to an envelope or category. Your actual bank account balance can hold thousands of dollars across emergency funds and checking cushions.
             </p>
           </div>
           <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] space-y-1.5">
-            <h3 class="font-semibold text-sm text-[#171717]">How does zero-based budgeting compare to the 50/30/20 rule?</h3>
-            <p class="text-[#4d4d4d] leading-relaxed">
+            <h3 class="font-semibold text-sm text-[#171717]" data-mrb-t="pagefaq.zbb.q2">How does zero-based budgeting compare to the 50/30/20 rule?</h3>
+            <p class="text-[#4d4d4d] leading-relaxed" data-mrb-t="pagefaq.zbb.a2">
               The 50/30/20 rule is a high-level macro guideline that separates money into three percentages. Zero-based budgeting is a micro-planning system that gives every specific dollar an envelope. Many people start with 50/30/20 and then use zero-based budgeting to execute within those three buckets.
             </p>
           </div>
@@ -258,11 +258,11 @@ const faqSchema = {
 
       <!-- 5. Navigation Interlinking -->
       <div class="pt-8 border-t border-[#ebebeb] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8f8f8f]">
-        <span>Compare with other tools:</span>
+        <span data-mrb-t="pagefaq.zbb.nav_label">Compare with other tools:</span>
         <div class="flex items-center gap-3">
-          <a href="/50-30-20-budget/" class="text-[#171717] font-medium underline hover:text-[#0070f3]">50/30/20 Budget Rule →</a>
-          <a href="/budget-planner/" class="text-[#171717] font-medium underline hover:text-[#0070f3]">General Budget Planner →</a>
-          <a href="/budget-planner-template/#zero-based-template" class="text-[#171717] font-medium underline hover:text-[#0070f3]">Zero-Based CSV Template →</a>
+          <a href="/50-30-20-budget/" class="text-[#171717] font-medium underline hover:text-[#0070f3]" data-mrb-t="pagefaq.zbb.nav_f3020">50/30/20 Budget Rule →</a>
+          <a href="/budget-planner/" class="text-[#171717] font-medium underline hover:text-[#0070f3]" data-mrb-t="pagefaq.zbb.nav_gbp">General Budget Planner →</a>
+          <a href="/budget-planner-template/#zero-based-template" class="text-[#171717] font-medium underline hover:text-[#0070f3]" data-mrb-t="pagefaq.zbb.nav_tmpl">Zero-Based CSV Template →</a>
         </div>
       </div>
 

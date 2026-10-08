@@ -19,72 +19,72 @@ const articleSchema = {
   <article class="max-w-3xl mx-auto px-4 sm:px-6 py-14">
     <!-- Breadcrumb -->
     <div class="mb-6 flex items-center gap-2 text-xs text-[#8f8f8f] font-mono">
-      <a href="/learn/" class="hover:text-[#171717] underline">Learn</a>
+      <a href="/learn/" class="hover:text-[#171717] underline" data-mrb-t="article.common.learn_breadcrumb">Learn</a>
       <span>/</span>
-      <span>Budgeting Methods</span>
+      <span data-mrb-t="article.fbe.breadcrumb_cat">Budgeting Methods</span>
     </div>
 
-    <Eyebrow text="5 Min Read • Budgeting Methods" class="mb-3" />
+    <Eyebrow text="5 Min Read • Budgeting Methods" tKey="article.fbe.eyebrow" class="mb-3" />
 
-    <h1 class="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-[#171717] leading-tight mb-6">
+    <h1 class="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-[#171717] leading-tight mb-6" data-mrb-t="article.fbe.title">
       50/30/20 Budget Explained: Needs, Wants, and Savings Targets
     </h1>
 
     <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] text-xs text-[#4d4d4d] mb-10 leading-relaxed">
-      <strong>Rule Summary:</strong> 50% of after-tax income for essential Needs, 30% for discretionary Wants, and 20% for Debt elimination and Savings.
+      <strong data-mrb-t="article.fbe.summary_label">Rule Summary:</strong> <span data-mrb-t="article.fbe.summary_text">50% of after-tax income for essential Needs, 30% for discretionary Wants, and 20% for Debt elimination and Savings.</span>
     </div>
 
     <div class="prose max-w-none text-sm text-[#4d4d4d] space-y-6 leading-relaxed">
-      <h2 class="text-xl font-semibold text-[#171717] tracking-tight">The Philosophy of the 50/30/20 Framework</h2>
-      <p>
+      <h2 class="text-xl font-semibold text-[#171717] tracking-tight" data-mrb-t="article.fbe.h2_philosophy">The Philosophy of the 50/30/20 Framework</h2>
+      <p data-mrb-t="article.fbe.p_philosophy">
         The 50/30/20 rule is celebrated because it replaces micro-tracking dozens of individual line items with three clear, intuitive buckets. Instead of logging every pack of gum or cup of coffee, you focus on high-level boundary percentages.
       </p>
 
-      <h2 class="text-xl font-semibold text-[#171717] tracking-tight">Bucket 1: 50% for Needs</h2>
-      <p>
+      <h2 class="text-xl font-semibold text-[#171717] tracking-tight" data-mrb-t="article.fbe.h2_bucket1">Bucket 1: 50% for Needs</h2>
+      <p data-mrb-t="article.fbe.p_bucket1_intro">
         Needs are non-negotiable living costs required to maintain basic health, shelter, and employment.
       </p>
       <ul class="list-disc list-inside space-y-1 pl-2">
-        <li><strong>Housing:</strong> Rent or mortgage payments, property taxes, and condo HOA fees.</li>
-        <li><strong>Utilities:</strong> Water, electricity, heating gas, and basic internet access.</li>
-        <li><strong>Food:</strong> Essential groceries and household staples (excluding restaurant meals and alcohol).</li>
-        <li><strong>Transportation:</strong> Auto loan, fuel, insurance, and public transit passes necessary to commute to work.</li>
-        <li><strong>Healthcare:</strong> Insurance premiums, recurring prescriptions, and necessary doctor visits.</li>
-        <li><strong>Minimum Debt Obligations:</strong> The mandatory contractual minimum payments on credit cards or loans.</li>
+        <li data-mrb-t-html="article.fbe.li_bucket1_1"><strong>Housing:</strong> Rent or mortgage payments, property taxes, and condo HOA fees.</li>
+        <li data-mrb-t-html="article.fbe.li_bucket1_2"><strong>Utilities:</strong> Water, electricity, heating gas, and basic internet access.</li>
+        <li data-mrb-t-html="article.fbe.li_bucket1_3"><strong>Food:</strong> Essential groceries and household staples (excluding restaurant meals and alcohol).</li>
+        <li data-mrb-t-html="article.fbe.li_bucket1_4"><strong>Transportation:</strong> Auto loan, fuel, insurance, and public transit passes necessary to commute to work.</li>
+        <li data-mrb-t-html="article.fbe.li_bucket1_5"><strong>Healthcare:</strong> Insurance premiums, recurring prescriptions, and necessary doctor visits.</li>
+        <li data-mrb-t-html="article.fbe.li_bucket1_6"><strong>Minimum Debt Obligations:</strong> The mandatory contractual minimum payments on credit cards or loans.</li>
       </ul>
 
-      <h2 class="text-xl font-semibold text-[#171717] tracking-tight">Bucket 2: 30% for Wants</h2>
-      <p>
+      <h2 class="text-xl font-semibold text-[#171717] tracking-tight" data-mrb-t="article.fbe.h2_bucket2">Bucket 2: 30% for Wants</h2>
+      <p data-mrb-t="article.fbe.p_bucket2_intro">
         Wants are all discretionary choices that enhance your lifestyle but are not strictly necessary for survival.
       </p>
       <ul class="list-disc list-inside space-y-1 pl-2">
-        <li>Dining out, specialty coffee, and food delivery apps.</li>
-        <li>Streaming subscriptions (Netflix, Spotify, HBO).</li>
-        <li>Vacations, airline tickets, and weekend road trips.</li>
-        <li>Concerts, sporting tickets, and leisure entertainment.</li>
-        <li>Shopping for luxury apparel, tech gadgets, or home decor.</li>
+        <li data-mrb-t="article.fbe.li_bucket2_1">Dining out, specialty coffee, and food delivery apps.</li>
+        <li data-mrb-t="article.fbe.li_bucket2_2">Streaming subscriptions (Netflix, Spotify, HBO).</li>
+        <li data-mrb-t="article.fbe.li_bucket2_3">Vacations, airline tickets, and weekend road trips.</li>
+        <li data-mrb-t="article.fbe.li_bucket2_4">Concerts, sporting tickets, and leisure entertainment.</li>
+        <li data-mrb-t="article.fbe.li_bucket2_5">Shopping for luxury apparel, tech gadgets, or home decor.</li>
       </ul>
 
-      <h2 class="text-xl font-semibold text-[#171717] tracking-tight">Bucket 3: 20% for Savings & Accelerated Debt</h2>
-      <p>
+      <h2 class="text-xl font-semibold text-[#171717] tracking-tight" data-mrb-t="article.fbe.h2_bucket3">Bucket 3: 20% for Savings & Accelerated Debt</h2>
+      <p data-mrb-t="article.fbe.p_bucket3_intro">
         The remaining 20% builds financial resilience and future freedom:
       </p>
       <ul class="list-disc list-inside space-y-1 pl-2">
-        <li>High-yield emergency funds (aiming for 3 to 6 months of living expenses).</li>
-        <li>Retirement contributions (Roth IRA, Traditional IRA, or extra 401(k) allocations).</li>
-        <li>Extra debt principal paydown above the contractual minimums (e.g. paying down 22% APR credit cards).</li>
+        <li data-mrb-t="article.fbe.li_bucket3_1">High-yield emergency funds (aiming for 3 to 6 months of living expenses).</li>
+        <li data-mrb-t-html="article.fbe.li_bucket3_2">Retirement contributions (Roth IRA, Traditional IRA, or extra 401(k) allocations).</li>
+        <li data-mrb-t="article.fbe.li_bucket3_3">Extra debt principal paydown above the contractual minimums (e.g. paying down 22% APR credit cards).</li>
       </ul>
 
-      <h2 class="text-xl font-semibold text-[#171717] tracking-tight">Adapting in High-Cost-of-Living Cities</h2>
-      <p>
+      <h2 class="text-xl font-semibold text-[#171717] tracking-tight" data-mrb-t="article.fbe.h2_hcol">Adapting in High-Cost-of-Living Cities</h2>
+      <p data-mrb-t-html="article.fbe.p_hcol">
         In cities where rent represents 40–50% of your take-home pay alone, hitting the 50% Needs benchmark is often unrealistic. Do not discard the method entirely—instead, shift to an adjusted framework such as <strong>60/20/20</strong> or <strong>60/25/15</strong>.
       </p>
 
       <div class="not-prose pt-6 border-t border-[#ebebeb] flex flex-col sm:flex-row gap-3">
-        <a href="/50-30-20-budget/" class="inline-flex items-center justify-center h-10 px-6 rounded-full bg-[#171717] text-white text-xs font-medium hover:bg-neutral-800 transition">
+        <a href="/50-30-20-budget/" class="inline-flex items-center justify-center h-10 px-6 rounded-full bg-[#171717] text-white text-xs font-medium hover:bg-neutral-800 transition" data-mrb-t="article.common.try_f3020">
           Try the 50/30/20 Budget Tool
         </a>
-        <a href="/50-30-20-vs-zero-based-budget/" class="inline-flex items-center justify-center h-10 px-6 rounded-full bg-white text-[#171717] border border-[#ebebeb] text-xs font-medium hover:bg-neutral-50 transition shadow-whisper">
+        <a href="/learn/50-30-20-vs-zero-based-budget/" class="inline-flex items-center justify-center h-10 px-6 rounded-full bg-white text-[#171717] border border-[#ebebeb] text-xs font-medium hover:bg-neutral-50 transition shadow-whisper" data-mrb-t="article.common.compare_zbb">
           Compare with Zero-Based Budget
         </a>
       </div>

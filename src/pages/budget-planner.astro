@@ -80,76 +80,76 @@ const faqSchema = {
       
       <!-- Section 1: Frequency Normalization -->
       <div id="frequency" class="space-y-4">
-        <Eyebrow text="Core Methodology" />
-        <h2 class="text-2xl font-semibold tracking-tight text-[#171717]">
+        <Eyebrow text="Core Methodology" tKey="bp.freq_eyebrow" />
+        <h2 class="text-2xl font-semibold tracking-tight text-[#171717]" data-mrb-t="bp.freq_title">
           Why Frequency Normalization Matters in Real-Life Budgeting
         </h2>
-        <p class="text-sm text-[#4d4d4d] leading-relaxed">
+        <p class="text-sm text-[#4d4d4d] leading-relaxed" data-mrb-t="bp.freq_p">
           A common reason traditional budgets break down is that income and expenses rarely occur on the same calendar schedule. You might get paid biweekly, pay rent monthly, buy groceries weekly, and pay auto insurance once a year.
         </p>
         <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] space-y-2 text-xs text-[#4d4d4d]">
-          <p class="font-medium text-[#171717]">The math behind true annualized conversion:</p>
+          <p class="font-medium text-[#171717]" data-mrb-t="bp.freq_math_title">The math behind true annualized conversion:</p>
           <ul class="space-y-1.5 text-[#4d4d4d]">
-            <li><strong>Weekly items:</strong> <code>Amount × 52 weeks / 12 months</code>. A $200 weekly grocery budget is not $800/month; it is actually <strong>$866.67/month</strong>. Missing this difference creates an untracked $800 annual cash leak.</li>
-            <li><strong>Biweekly paychecks:</strong> <code>Amount × 26 pay periods / 12 months</code>. There are two "three-paycheck months" each year.</li>
-            <li><strong>Yearly expenses:</strong> <code>Amount / 12 months</code>. A $1,200 annual auto insurance premium should be budgeted as <strong>$100/month</strong> so the money is set aside before the renewal arrives.</li>
+            <li data-mrb-t-html="bp.freq_weekly"><strong>Weekly items:</strong> <code>Amount × 52 weeks / 12 months</code>. A $200 weekly grocery budget is not $800/month; it is actually <strong>$866.67/month</strong>. Missing this difference creates an untracked $800 annual cash leak.</li>
+            <li data-mrb-t-html="bp.freq_biweekly"><strong>Biweekly paychecks:</strong> <code>Amount × 26 pay periods / 12 months</code>. There are two "three-paycheck months" each year.</li>
+            <li data-mrb-t-html="bp.freq_yearly"><strong>Yearly expenses:</strong> <code>Amount / 12 months</code>. A $1,200 annual auto insurance premium should be budgeted as <strong>$100/month</strong> so the money is set aside before the renewal arrives.</li>
           </ul>
         </div>
       </div>
 
       <!-- Section 2: Step-by-Step Guide -->
       <div class="space-y-4">
-        <h2 class="text-2xl font-semibold tracking-tight text-[#171717]">
+        <h2 class="text-2xl font-semibold tracking-tight text-[#171717]" data-mrb-t="bp.steps_title">
           How to Create a Monthly Budget Step-by-Step
         </h2>
-        <p class="text-xs text-[#4d4d4d]">
+        <p class="text-xs text-[#4d4d4d]" data-mrb-t-html="bp.steps_sub">
           Follow these foundational steps to establish a realistic monthly plan. For an in-depth walkthrough, read our <a href="/learn/how-to-create-a-monthly-budget/" class="text-[#0070f3] underline hover:text-blue-700">step-by-step monthly budget guide</a>.
         </p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
           <div class="p-4 rounded-[8px] border border-[#ebebeb] space-y-1.5">
-            <span class="font-mono font-semibold text-[#8f8f8f]">01. Identify Net Income</span>
-            <h3 class="font-semibold text-sm text-[#171717]">Start with Take-Home Pay</h3>
-            <p class="text-[#4d4d4d]">Use your net salary after taxes, health insurance deductions, and retirement contributions.</p>
+            <span class="font-mono font-semibold text-[#8f8f8f]" data-mrb-t="bp.s1_num">01. Identify Net Income</span>
+            <h3 class="font-semibold text-sm text-[#171717]" data-mrb-t="bp.s1_title">Start with Take-Home Pay</h3>
+            <p class="text-[#4d4d4d]" data-mrb-t="bp.s1_desc">Use your net salary after taxes, health insurance deductions, and retirement contributions.</p>
           </div>
           <div class="p-4 rounded-[8px] border border-[#ebebeb] space-y-1.5">
-            <span class="font-mono font-semibold text-[#8f8f8f]">02. List Fixed Bills</span>
-            <h3 class="font-semibold text-sm text-[#171717]">Non-Negotiable Commitments</h3>
-            <p class="text-[#4d4d4d]">Rent/mortgage, utilities, vehicle payments, minimum debt payments, and recurring insurance.</p>
+            <span class="font-mono font-semibold text-[#8f8f8f]" data-mrb-t="bp.s2_num">02. List Fixed Bills</span>
+            <h3 class="font-semibold text-sm text-[#171717]" data-mrb-t="bp.s2_title">Non-Negotiable Commitments</h3>
+            <p class="text-[#4d4d4d]" data-mrb-t="bp.s2_desc">Rent/mortgage, utilities, vehicle payments, minimum debt payments, and recurring insurance.</p>
           </div>
           <div class="p-4 rounded-[8px] border border-[#ebebeb] space-y-1.5">
-            <span class="font-mono font-semibold text-[#8f8f8f]">03. Estimate Variable Outflows</span>
-            <h3 class="font-semibold text-sm text-[#171717]">Groceries, Gas & Dining</h3>
-            <p class="text-[#4d4d4d]">Review the past 60–90 days of bank statements to see honest averages rather than idealistic wishes.</p>
+            <span class="font-mono font-semibold text-[#8f8f8f]" data-mrb-t="bp.s3_num">03. Estimate Variable Outflows</span>
+            <h3 class="font-semibold text-sm text-[#171717]" data-mrb-t="bp.s3_title">Groceries, Gas & Dining</h3>
+            <p class="text-[#4d4d4d]" data-mrb-t="bp.s3_desc">Review the past 60–90 days of bank statements to see honest averages rather than idealistic wishes.</p>
           </div>
           <div class="p-4 rounded-[8px] border border-[#ebebeb] space-y-1.5">
-            <span class="font-mono font-semibold text-[#8f8f8f]">04. Sinking Funds & Savings</span>
-            <h3 class="font-semibold text-sm text-[#171717]">Buffer for the Unexpected</h3>
-            <p class="text-[#4d4d4d]">Direct surplus into high-yield emergency savings and routine vehicle/medical maintenance funds.</p>
+            <span class="font-mono font-semibold text-[#8f8f8f]" data-mrb-t="bp.s4_num">04. Sinking Funds & Savings</span>
+            <h3 class="font-semibold text-sm text-[#171717]" data-mrb-t="bp.s4_title">Buffer for the Unexpected</h3>
+            <p class="text-[#4d4d4d]" data-mrb-t="bp.s4_desc">Direct surplus into high-yield emergency savings and routine vehicle/medical maintenance funds.</p>
           </div>
         </div>
       </div>
 
       <!-- Section 3: FAQ -->
       <div class="space-y-6 pt-4 border-t border-[#ebebeb]">
-        <h2 class="text-2xl font-semibold tracking-tight text-[#171717]">
+        <h2 class="text-2xl font-semibold tracking-tight text-[#171717]" data-mrb-t="pagefaq.gbp.heading">
           Frequently Asked Questions About Budget Planning
         </h2>
         <div class="space-y-4 text-xs">
           <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] space-y-1.5">
-            <h3 class="font-semibold text-sm text-[#171717]">What should I do if my budget shows a monthly deficit?</h3>
-            <p class="text-[#4d4d4d] leading-relaxed">
+            <h3 class="font-semibold text-sm text-[#171717]" data-mrb-t="pagefaq.gbp.q1">What should I do if my budget shows a monthly deficit?</h3>
+            <p class="text-[#4d4d4d] leading-relaxed" data-mrb-t="pagefaq.gbp.a1">
               If your planned expenses exceed your income, do not panic. Start by separating true survival essentials (housing, groceries, utilities, minimum debt payments) from discretionary wants. Look for subscription overlaps, reduce dining out, and look for immediate savings on recurring bills like internet or auto insurance quotes.
             </p>
           </div>
           <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] space-y-1.5">
-            <h3 class="font-semibold text-sm text-[#171717]">How often should I review my budget?</h3>
-            <p class="text-[#4d4d4d] leading-relaxed">
+            <h3 class="font-semibold text-sm text-[#171717]" data-mrb-t="pagefaq.gbp.q2">How often should I review my budget?</h3>
+            <p class="text-[#4d4d4d] leading-relaxed" data-mrb-t="pagefaq.gbp.a2">
               We recommend reviewing your numbers at least once a month before payday, and conducting a deeper seasonal check every quarter when utility bills shift or annual subscriptions renew.
             </p>
           </div>
           <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] space-y-1.5">
-            <h3 class="font-semibold text-sm text-[#171717]">Which budgeting method is best for beginners?</h3>
-            <p class="text-[#4d4d4d] leading-relaxed">
+            <h3 class="font-semibold text-sm text-[#171717]" data-mrb-t="pagefaq.gbp.q3">Which budgeting method is best for beginners?</h3>
+            <p class="text-[#4d4d4d] leading-relaxed" data-mrb-t-html="pagefaq.gbp.a3">
               Beginners often love the <a href="/50-30-20-budget/" class="text-[#0070f3] underline">50/30/20 rule</a> because it only requires tracking three high-level buckets. If you want tighter control over every single dollar, explore <a href="/zero-based-budget/" class="text-[#0070f3] underline">zero-based budgeting</a>.
             </p>
           </div>
@@ -158,11 +158,11 @@ const faqSchema = {
 
       <!-- Related Internal Navigation -->
       <div class="pt-8 border-t border-[#ebebeb] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8f8f8f]">
-        <span>Continue exploring methods:</span>
+        <span data-mrb-t="pagefaq.gbp.nav_label">Continue exploring methods:</span>
         <div class="flex items-center gap-3">
-          <a href="/50-30-20-budget/" class="text-[#171717] font-medium underline hover:text-[#0070f3]">50/30/20 Rule Guide →</a>
-          <a href="/zero-based-budget/" class="text-[#171717] font-medium underline hover:text-[#0070f3]">Zero-Based Method →</a>
-          <a href="/budget-planner-template/" class="text-[#171717] font-medium underline hover:text-[#0070f3]">Download Templates →</a>
+          <a href="/50-30-20-budget/" class="text-[#171717] font-medium underline hover:text-[#0070f3]" data-mrb-t="pagefaq.gbp.nav_f3020">50/30/20 Rule Guide →</a>
+          <a href="/zero-based-budget/" class="text-[#171717] font-medium underline hover:text-[#0070f3]" data-mrb-t="pagefaq.gbp.nav_zbb">Zero-Based Method →</a>
+          <a href="/budget-planner-template/" class="text-[#171717] font-medium underline hover:text-[#0070f3]" data-mrb-t="pagefaq.gbp.nav_tmpl">Download Templates →</a>
         </div>
       </div>
 

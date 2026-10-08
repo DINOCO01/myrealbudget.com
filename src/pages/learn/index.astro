@@ -30,18 +30,18 @@ const description = 'Explore practical guides on budgeting fundamentals, how to 
         <article class="bg-white rounded-[12px] border border-[#ebebeb] p-6 shadow-whisper flex flex-col justify-between hover:border-[#a1a1a1] transition group">
           <div class="space-y-3">
             <div class="flex items-center justify-between text-xs text-[#8f8f8f] font-mono">
-              <span class="px-2 py-0.5 rounded-[4px] bg-[#f2f2f2] text-[#4d4d4d]">{article.category}</span>
-              <span>{article.readTime}</span>
+              <span class="px-2 py-0.5 rounded-[4px] bg-[#f2f2f2] text-[#4d4d4d]" data-mrb-t={`learn.${article.slug}.category`}>{article.category.en}</span>
+              <span data-mrb-t={`learn.${article.slug}.read_time`}>{article.readTime.en}</span>
             </div>
 
             <h2 class="text-lg font-semibold text-[#171717] tracking-tight leading-snug group-hover:text-[#0070f3] transition-colors">
-              <a href={`/learn/${article.slug}/`}>
-                {article.title}
+              <a href={`/learn/${article.slug}/`} data-mrb-t={`learn.${article.slug}.title`}>
+                {article.title.en}
               </a>
             </h2>
 
-            <p class="text-xs text-[#4d4d4d] leading-relaxed">
-              {article.summary}
+            <p class="text-xs text-[#4d4d4d] leading-relaxed" data-mrb-t={`learn.${article.slug}.summary`}>
+              {article.summary.en}
             </p>
           </div>
 
@@ -62,7 +62,7 @@ const description = 'Explore practical guides on budgeting fundamentals, how to 
     <section class="mt-16 p-8 rounded-[12px] bg-[#fafafa] border border-[#ebebeb] text-center max-w-2xl mx-auto space-y-4">
       <Eyebrow text="Put Knowledge Into Practice" tKey="learn.put_into_practice" class="mx-auto" />
       <h3 class="text-xl font-semibold text-[#171717]" data-mrb-t="learn.ready_to_plan">Ready to plan your numbers?</h3>
-      <p class="text-xs text-[#4d4d4d]">
+      <p class="text-xs text-[#4d4d4d]" data-mrb-t="learn.ready_to_plan_desc">
         Reading guides is helpful, but seeing your real cash flow numbers in an interactive tool creates immediate clarity.
       </p>
       <div class="pt-2 flex flex-wrap justify-center gap-3">

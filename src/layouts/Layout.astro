@@ -43,47 +43,103 @@ const resolvedOgImage = ogImage || `${siteUrl}/og-image.png`;
 const resolvedOgTitle = ogTitle || title;
 const resolvedOgDescription = ogDescription || description;
 
-const defaultJsonLd = jsonLd || {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'WebSite',
-      '@id': `${siteUrl}/#website`,
-      url: `${siteUrl}/`,
-      name: 'My Real Budget',
-      description: 'Online budget planner for monthly budgeting, the 50/30/20 rule, zero-based budgeting, and spreadsheet templates.',
-      publisher: {
-        '@id': `${siteUrl}/#organization`,
-      },
-      potentialAction: {
-        '@type': 'SearchAction',
-        target: `${siteUrl}/budget-planner/`,
-        'query-input': 'required name=search_term_string',
-      },
-    },
-    {
-      '@type': 'Organization',
+// Base structured data graph: WebSite & Organization
+const baseGraph: Record<string, any>[] = [
+  {
+    '@type': 'WebSite',
+    '@id': `${siteUrl}/#website`,
+    url: `${siteUrl}/`,
+    name: 'My Real Budget',
+    description: 'Online budget planner for monthly budgeting, the 50/30/20 rule, zero-based budgeting, and spreadsheet templates.',
+    publisher: {
       '@id': `${siteUrl}/#organization`,
-      name: 'My Real Budget',
-      url: `${siteUrl}/`,
-      logo: `${siteUrl}/favicon.svg`,
     },
+  },
+  {
+    '@type': 'Organization',
+    '@id': `${siteUrl}/#organization`,
+    name: 'My Real Budget',
+    url: `${siteUrl}/`,
+    logo: `${siteUrl}/favicon.svg`,
+  },
+];
+
+// WebApplication for planner/interactive routes
+const isPlannerRoute = ['/', '/budget-planner/', '/50-30-20-budget/', '/zero-based-budget/'].includes(normalizedPath);
+if (isPlannerRoute) {
+  baseGraph.push({
+    '@type': 'WebApplication',
+    '@id': `${siteUrl}/#webapp`,
+    name: 'My Real Budget Planner',
+    url: `${siteUrl}/budget-planner/`,
+    applicationCategory: 'FinanceApplication',
+    operatingSystem: 'All',
+    browserRequirements: 'Requires modern web browser with HTML5 and JavaScript enabled.',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    description: 'Free online budget planner for monthly cash flow planning, 50/30/20 budgets, and zero-based budgeting.',
+  });
+}
+
+// Add BreadcrumbList for indexable subpages
+if (normalizedPath !== '/' && !noIndex) {
+  const pathSegments = normalizedPath.split('/').filter(Boolean);
+  const breadcrumbItems: Record<string, any>[] = [
     {
-      '@type': 'WebApplication',
-      '@id': `${siteUrl}/#webapp`,
-      name: 'My Real Budget Planner',
-      url: `${siteUrl}/`,
-      applicationCategory: 'FinanceApplication',
-      operatingSystem: 'All',
-      browserRequirements: 'Requires modern web browser with HTML5 and JavaScript enabled.',
-      offers: {
-        '@type': 'Offer',
-        price: '0',
-        priceCurrency: 'USD',
-      },
-      description: 'Free online budget planner for monthly cash flow planning, 50/30/20 budgets, and zero-based budgeting.',
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: `${siteUrl}/`,
     },
-  ],
+  ];
+
+  if (pathSegments.length === 1) {
+    breadcrumbItems.push({
+      '@type': 'ListItem',
+      position: 2,
+      name: title.split('|')[0].split('—')[0].split(':')[0].trim(),
+      item: canonicalUrl,
+    });
+  } else if (pathSegments.length === 2 && pathSegments[0] === 'learn') {
+    breadcrumbItems.push({
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Learn',
+      item: `${siteUrl}/learn/`,
+    });
+    breadcrumbItems.push({
+      '@type': 'ListItem',
+      position: 3,
+      name: title.split('|')[0].split('—')[0].split(':')[0].trim(),
+      item: canonicalUrl,
+    });
+  }
+
+  baseGraph.push({
+    '@type': 'BreadcrumbList',
+    '@id': `${canonicalUrl}#breadcrumb`,
+    itemListElement: breadcrumbItems,
+  });
+}
+
+// Merge page-specific jsonLd schemas
+if (jsonLd) {
+  const extraItems = Array.isArray(jsonLd)
+    ? jsonLd
+    : ((jsonLd as any)['@graph'] ? (jsonLd as any)['@graph'] : [jsonLd]);
+
+  for (const item of extraItems) {
+    const { '@context': _, ...cleanItem } = item;
+    baseGraph.push(cleanItem);
+  }
+}
+
+const finalJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': baseGraph,
 };
 ---
 
@@ -120,7 +176,7 @@ const defaultJsonLd = jsonLd || {
     <meta property="og:image" content={resolvedOgImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="My Real Budget - Best Budget Planner" />
+    <meta property="og:image:alt" content={resolvedOgTitle} />
     <meta property="og:locale" content="en_US" />
 
     <!-- Twitter Cards -->
@@ -128,7 +184,7 @@ const defaultJsonLd = jsonLd || {
     <meta name="twitter:title" content={resolvedOgTitle} />
     <meta name="twitter:description" content={resolvedOgDescription} />
     <meta name="twitter:image" content={resolvedOgImage} />
-    <meta name="twitter:image:alt" content="My Real Budget - Best Budget Planner" />
+    <meta name="twitter:image:alt" content={resolvedOgTitle} />
 
     <!-- Fonts: Geist & Geist Mono (as specified in DESIGN.md) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -157,7 +213,7 @@ const defaultJsonLd = jsonLd || {
     </script>
 
     <!-- Structured Data -->
-    <script type="application/ld+json" set:html={JSON.stringify(defaultJsonLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(finalJsonLd)} />
   </head>
   <body class="min-h-screen flex flex-col bg-[var(--bg-page)] text-[var(--text-primary)] selection:bg-[var(--text-primary)] selection:text-[var(--bg-page)] antialiased font-sans">
     <Header currentPath={Astro.url.pathname} />

@@ -1,0 +1,237 @@
+export interface LocalizedFAQItem {
+  q: { en: string; es: string; fr: string; de: string; pt: string };
+  a: { en: string; es: string; fr: string; de: string; pt: string };
+}
+
+export const PAGE_FAQ_TRANSLATIONS: Record<string, Record<string, string>> = {
+  en: {
+    // Zero-Based Page FAQ
+    'pagefaq.zbb.heading': 'Frequently Asked Questions About Zero-Based Budgeting',
+    'pagefaq.zbb.q1': 'Does zero-based budgeting mean I have $0 in my bank account?',
+    'pagefaq.zbb.a1': 'No. Zero-based budgeting means that every dollar you earn is assigned on paper or in a spreadsheet to an envelope or category. Your actual bank account balance can hold thousands of dollars across emergency funds and checking cushions.',
+    'pagefaq.zbb.q2': 'How does zero-based budgeting compare to the 50/30/20 rule?',
+    'pagefaq.zbb.a2': 'The 50/30/20 rule is a high-level macro guideline that separates money into three percentages. Zero-based budgeting is a micro-planning system that gives every specific dollar an envelope. Many people start with 50/30/20 and then use zero-based budgeting to execute within those three buckets.',
+    'pagefaq.zbb.nav_label': 'Compare with other tools:',
+    'pagefaq.zbb.nav_f3020': '50/30/20 Budget Rule →',
+    'pagefaq.zbb.nav_gbp': 'General Budget Planner →',
+    'pagefaq.zbb.nav_tmpl': 'Zero-Based CSV Template →',
+
+    // General Budget Planner Page FAQ
+    'pagefaq.gbp.heading': 'Frequently Asked Questions About Budget Planning',
+    'pagefaq.gbp.q1': 'What should I do if my budget shows a monthly deficit?',
+    'pagefaq.gbp.a1': 'If your planned expenses exceed your income, do not panic. Start by separating true survival essentials (housing, groceries, utilities, minimum debt payments) from discretionary wants. Look for subscription overlaps, reduce dining out, and look for immediate savings on recurring bills like internet or auto insurance quotes.',
+    'pagefaq.gbp.q2': 'How often should I review my budget?',
+    'pagefaq.gbp.a2': 'We recommend reviewing your numbers at least once a month before payday, and conducting a deeper seasonal check every quarter when utility bills shift or annual subscriptions renew.',
+    'pagefaq.gbp.q3': 'Which budgeting method is best for beginners?',
+    'pagefaq.gbp.a3': 'Beginners often love the <a href="/50-30-20-budget/" class="text-[#0070f3] underline">50/30/20 rule</a> because it only requires tracking three high-level buckets. If you want tighter control over every single dollar, explore <a href="/zero-based-budget/" class="text-[#0070f3] underline">zero-based budgeting</a>.',
+    'pagefaq.gbp.nav_label': 'Continue exploring methods:',
+    'pagefaq.gbp.nav_f3020': '50/30/20 Rule Guide →',
+    'pagefaq.gbp.nav_zbb': 'Zero-Based Method →',
+    'pagefaq.gbp.nav_tmpl': 'Download Templates →',
+
+    // 50/30/20 Page FAQ
+    'pagefaq.f3020.heading': 'Frequently Asked Questions About the 50/30/20 Rule',
+    'pagefaq.f3020.q1': 'Do I calculate percentages from gross or net income?',
+    'pagefaq.f3020.a1': 'The 50/30/20 framework is calculated using <strong>net (after-tax) income</strong> rather than gross salary. You can approach this in one of two ways:<ul class="space-y-1 text-[#4d4d4d] pl-3 list-disc mt-1"><li><strong>Take-home pay approach:</strong> Budget strictly from the net amount deposited into your checking account. Pre-tax deductions (like 401(k) contributions or health premiums) are already accounted for before you start.</li><li><strong>Comprehensive income approach:</strong> Add voluntary paycheck deductions (such as retirement or health benefits) back to your take-home pay, and then list them explicitly under your Savings (retirement) and Needs (health coverage) categories.</li></ul><p class="text-[#4d4d4d] leading-relaxed pt-1">Either approach works well—the important part is picking one method and applying it consistently.</p>',
+    'pagefaq.f3020.q2': 'What if my Needs exceed 50%?',
+    'pagefaq.f3020.a2': 'When essential living costs are high, temporarily reduce your Wants allocation rather than eliminating savings entirely. Maintaining an ongoing emergency savings cushion helps reduce the need to rely on high-interest credit cards when unexpected car or medical bills arise.',
+    'pagefaq.f3020.cta_title': 'Prefer a downloadable spreadsheet?',
+    'pagefaq.f3020.cta_desc': 'Get our free 50/30/20 CSV template ready for Excel and Google Sheets.',
+    'pagefaq.f3020.cta_btn': 'Download 50/30/20 Template',
+
+    // Budget Planner Template Page FAQ
+    'pagefaq.tmpl.heading': 'Frequently Asked Questions About Budget Templates',
+    'pagefaq.tmpl.q1': 'Can I print these budget templates?',
+    'pagefaq.tmpl.a1': 'Yes. When imported into Google Sheets or Excel, the layouts are formatted to fit cleanly on standard Letter or A4 paper. You can also export directly to PDF for offline tracking.',
+    'pagefaq.tmpl.q2': 'Do I need to pay or provide an email to download?',
+    'pagefaq.tmpl.a2': 'No. All templates on My Real Budget are completely free, open, and instant. We believe practical personal finance tools should be accessible to everyone without friction.',
+    'pagefaq.tmpl.nav_label': 'Prefer an interactive budgeting tool?',
+    'pagefaq.tmpl.nav_gbp': 'General Budget Planner →',
+    'pagefaq.tmpl.nav_f3020': '50/30/20 Planner →',
+    'pagefaq.tmpl.nav_zbb': 'Zero-Based Tool →',
+  },
+  es: {
+    // Zero-Based Page FAQ
+    'pagefaq.zbb.heading': 'Preguntas Frecuentes sobre el Presupuesto Base Cero',
+    'pagefaq.zbb.q1': '¿El presupuesto base cero significa que tengo $0 en mi cuenta bancaria?',
+    'pagefaq.zbb.a1': 'No. El presupuesto base cero significa que cada peso o euro que gana se asigna en papel o en una hoja de cálculo a una categoría específica. El saldo de su cuenta bancaria real puede mantener miles de dólares entre fondos de emergencia y colchones operativos.',
+    'pagefaq.zbb.q2': '¿Cómo se compara el presupuesto base cero con la regla 50/30/20?',
+    'pagefaq.zbb.a2': 'La regla 50/30/20 es una pauta macro general que divide el dinero en tres porcentajes globales. El presupuesto base cero es un sistema de microplanificación que le asigna un sobre a cada moneda específica. Muchas personas comienzan con 50/30/20 y luego usan base cero para ejecutar dentro de esos tres bloques.',
+    'pagefaq.zbb.nav_label': 'Comparar con otras herramientas:',
+    'pagefaq.zbb.nav_f3020': 'Regla de Presupuesto 50/30/20 →',
+    'pagefaq.zbb.nav_gbp': 'Planificador General →',
+    'pagefaq.zbb.nav_tmpl': 'Plantilla CSV Base Cero →',
+
+    // General Budget Planner Page FAQ
+    'pagefaq.gbp.heading': 'Preguntas Frecuentes sobre la Planificación de Presupuesto',
+    'pagefaq.gbp.q1': '¿Qué debo hacer si mi presupuesto muestra un déficit mensual?',
+    'pagefaq.gbp.a1': 'Si sus gastos previstos superan sus ingresos, no se alarme. Empiece separando los gastos de subsistencia esenciales (vivienda, alimentos, servicios, pagos mínimos de deuda) de los deseos discrecionales. Busque duplicidades en suscripciones, reduzca comidas fuera y busque ahorros inmediatos en tarifas de suministros o pólizas de seguro.',
+    'pagefaq.gbp.q2': '¿Con qué frecuencia debo revisar mi presupuesto?',
+    'pagefaq.gbp.a2': 'Recomendamos revisar sus números al menos una vez al mes antes del día de cobro, y hacer una revisión estacional más profunda cada trimestre cuando cambien las facturas de servicios o se renueven seguros anuales.',
+    'pagefaq.gbp.q3': '¿Qué método presupuestario es mejor para principiantes?',
+    'pagefaq.gbp.a3': 'A los principiantes les suele encantar la <a href="/50-30-20-budget/" class="text-[#0070f3] underline">regla 50/30/20</a> porque solo requiere seguir tres categorías amplias. Si prefiere un control riguroso sobre cada centavo, explore el <a href="/zero-based-budget/" class="text-[#0070f3] underline">presupuesto base cero</a>.',
+    'pagefaq.gbp.nav_label': 'Continuar explorando métodos:',
+    'pagefaq.gbp.nav_f3020': 'Guía de la Regla 50/30/20 →',
+    'pagefaq.gbp.nav_zbb': 'Método Base Cero →',
+    'pagefaq.gbp.nav_tmpl': 'Descargar Plantillas →',
+
+    // 50/30/20 Page FAQ
+    'pagefaq.f3020.heading': 'Preguntas Frecuentes sobre la Regla 50/30/20',
+    'pagefaq.f3020.q1': '¿Calculo los porcentajes sobre ingresos brutos o netos?',
+    'pagefaq.f3020.a1': 'El marco 50/30/20 se calcula utilizando <strong>ingresos netos (después de impuestos)</strong> en lugar del salario bruto. Puede enfocarlo de dos maneras:<ul class="space-y-1 text-[#4d4d4d] pl-3 list-disc mt-1"><li><strong>Enfoque de sueldo neto en mano:</strong> Presupueste estrictamente a partir del dinero depositado en su cuenta bancaria. Las deducciones de nómina ya están descontadas antes de comenzar.</li><li><strong>Enfoque de ingreso integral:</strong> Sume las deducciones voluntarias (como aportaciones a jubilación o seguro médico) a su sueldo neto y anótelas expresamente en sus categorías de Ahorro y Necesidades.</li></ul><p class="text-[#4d4d4d] leading-relaxed pt-1">Ambos métodos son válidos; lo esencial es elegir uno y mantenerlo de forma consistente.</p>',
+    'pagefaq.f3020.q2': '¿Qué pasa si mis Necesidades superan el 50%?',
+    'pagefaq.f3020.a2': 'Cuando los gastos indispensables son elevados, reduzca provisionalmente la asignación a Deseos en lugar de suprimir el ahorro por completo. Mantener un colchón de emergencia activo evita recurrir a tarjetas de crédito caras ante averías o urgencias médicas.',
+    'pagefaq.f3020.cta_title': '¿Prefiere una hoja de cálculo descargable?',
+    'pagefaq.f3020.cta_desc': 'Obtenga nuestra plantilla CSV 50/30/20 gratuita lista para Excel y Google Sheets.',
+    'pagefaq.f3020.cta_btn': 'Descargar Plantilla 50/30/20',
+
+    // Budget Planner Template Page FAQ
+    'pagefaq.tmpl.heading': 'Preguntas Frecuentes sobre Plantillas de Presupuesto',
+    'pagefaq.tmpl.q1': '¿Puedo imprimir estas plantillas de presupuesto?',
+    'pagefaq.tmpl.a1': 'Sí. Al importarse en Google Sheets o Excel, las plantillas están ajustadas para imprimirse limpiamente en hojas estándar Carta o A4. También puede exportarlas directamente a PDF para llevar el registro en papel.',
+    'pagefaq.tmpl.q2': '¿Debo pagar o facilitar mi correo electrónico para descargar?',
+    'pagefaq.tmpl.a2': 'No. Todas las plantillas de My Real Budget son 100% gratuitas, abiertas e instantáneas. Creemos que las herramientas prácticas de finanzas personales deben estar disponibles para todos sin trabas.',
+    'pagefaq.tmpl.nav_label': '¿Prefiere una herramienta de presupuesto interactiva?',
+    'pagefaq.tmpl.nav_gbp': 'Planificador General →',
+    'pagefaq.tmpl.nav_f3020': 'Planificador 50/30/20 →',
+    'pagefaq.tmpl.nav_zbb': 'Herramienta Base Cero →',
+  },
+  fr: {
+    // Zero-Based Page FAQ
+    'pagefaq.zbb.heading': 'Foire Aux Questions sur le Budget Base Zéro',
+    'pagefaq.zbb.q1': 'Le budget base zéro signifie-t-il que j\'ai 0 € sur mon compte bancaire ?',
+    'pagefaq.zbb.a1': 'Non. Le budget base zéro signifie que chaque euro gagné est assigné sur papier ou dans un tableur à une enveloppe ou catégorie. Votre solde bancaire réel peut tout à fait conserver plusieurs milliers d\'euros d\'épargne de précaution.',
+    'pagefaq.zbb.q2': 'Comment le budget base zéro se compare-t-il à la règle 50/30/20 ?',
+    'pagefaq.zbb.a2': 'La règle 50/30/20 est une ligne directrice globale qui sépare les finances en trois grands pourcentages. Le budget base zéro est un système de micro-gestion qui attribue une enveloppe à chaque euro. Beaucoup commencent avec le 50/30/20 puis appliquent le base zéro pour gérer leurs enveloppes au quotidien.',
+    'pagefaq.zbb.nav_label': 'Comparer avec d\'autres outils :',
+    'pagefaq.zbb.nav_f3020': 'Règle de Budget 50/30/20 →',
+    'pagefaq.zbb.nav_gbp': 'Planificateur Général →',
+    'pagefaq.zbb.nav_tmpl': 'Modèle CSV Base Zéro →',
+
+    // General Budget Planner Page FAQ
+    'pagefaq.gbp.heading': 'Foire Aux Questions sur la Gestion Budgétaire',
+    'pagefaq.gbp.q1': 'Que faire si mon budget affiche un déficit mensuel ?',
+    'pagefaq.gbp.a1': 'Si vos dépenses prévues excèdent vos revenus, pas de panique. Séparez immédiatement les dépenses vitales (logement, courses, énergie, échéances de crédit) des envies secondaires. Supprimez les abonnements superflus, réduisez les restaurants et renégociez vos contrats d\'assurance ou internet.',
+    'pagefaq.gbp.q2': 'À quelle fréquence dois-je réviser mon budget ?',
+    'pagefaq.gbp.a2': 'Nous recommandons de faire le point au moins une fois par mois avant le versement du salaire, complété d\'un bilan approfondi chaque trimestre lorsque les factures saisonnières varient ou que les contrats annuels se renouvellent.',
+    'pagefaq.gbp.q3': 'Quelle méthode budgétaire convient le mieux aux débutants ?',
+    'pagefaq.gbp.a3': 'Les débutants apprécient généralement la <a href="/50-30-20-budget/" class="text-[#0070f3] underline">règle 50/30/20</a> car elle ne demande le suivi que de trois catégories. Pour un contrôle millimétré de chaque dépense, orientez-vous vers le <a href="/zero-based-budget/" class="text-[#0070f3] underline">budget base zéro</a>.',
+    'pagefaq.gbp.nav_label': 'Poursuivre la découverte des méthodes :',
+    'pagefaq.gbp.nav_f3020': 'Guide de la Règle 50/30/20 →',
+    'pagefaq.gbp.nav_zbb': 'Méthode Base Zéro →',
+    'pagefaq.gbp.nav_tmpl': 'Télécharger les Modèles →',
+
+    // 50/30/20 Page FAQ
+    'pagefaq.f3020.heading': 'Foire Aux Questions sur la Règle 50/30/20',
+    'pagefaq.f3020.q1': 'Dois-je calculer les pourcentages sur le revenu brut ou net ?',
+    'pagefaq.f3020.a1': 'Le cadre 50/30/20 se calcule à partir du <strong>revenu net disponible</strong> (après impôts). Deux approches sont possibles :<ul class="space-y-1 text-[#4d4d4d] pl-3 list-disc mt-1"><li><strong>Approche salaire perçu :</strong> Calculez directement sur le montant net versé sur votre compte bancaire.</li><li><strong>Approche revenu intégral :</strong> Réintégrez les cotisations facultatives (retraite complémentaire, mutuelle) au salaire perçu et inscrivez-les dans l\'épargne et les besoins.</li></ul><p class="text-[#4d4d4d] leading-relaxed pt-1">Les deux méthodes sont valables : l\'important est de s\'y tenir avec constance.</p>',
+    'pagefaq.f3020.q2': 'Que faire si mes Besoins dépassent 50 % ?',
+    'pagefaq.f3020.a2': 'Quand les charges incompressibles sont très élevées, réduisez temporairement la part Envies sans supprimer complètement l\'épargne. Conserver une épargne d\'urgence continue évite de recourir aux crédits à la consommation en cas de coup dur.',
+    'pagefaq.f3020.cta_title': 'Vous préférez un tableur à télécharger ?',
+    'pagefaq.f3020.cta_desc': 'Téléchargez notre modèle CSV 50/30/20 gratuit prêt pour Excel et Google Sheets.',
+    'pagefaq.f3020.cta_btn': 'Télécharger le Modèle 50/30/20',
+
+    // Budget Planner Template Page FAQ
+    'pagefaq.tmpl.heading': 'Foire Aux Questions sur les Modèles de Budget',
+    'pagefaq.tmpl.q1': 'Puis-je imprimer ces modèles de budget ?',
+    'pagefaq.tmpl.a1': 'Oui. Une fois importées dans Google Sheets ou Excel, les feuilles sont calibrées pour s\'imprimer proprement sur papier A4 ou Lettre. Vous pouvez aussi les exporter au format PDF.',
+    'pagefaq.tmpl.q2': 'Dois-je payer ou donner mon adresse e-mail pour télécharger ?',
+    'pagefaq.tmpl.a2': 'Non. Tous les modèles sur My Real Budget sont entièrement gratuits, libres d\'accès et instantanés. Les outils de gestion financière doivent être accessibles à tous sans obstacle.',
+    'pagefaq.tmpl.nav_label': 'Vous préférez un outil de budget interactif ?',
+    'pagefaq.tmpl.nav_gbp': 'Planificateur Général →',
+    'pagefaq.tmpl.nav_f3020': 'Planificateur 50/30/20 →',
+    'pagefaq.tmpl.nav_zbb': 'Outil Base Zéro →',
+  },
+  de: {
+    // Zero-Based Page FAQ
+    'pagefaq.zbb.heading': 'Häufig gestellte Fragen zum Null-basierten Budgetieren',
+    'pagefaq.zbb.q1': 'Bedeutet ein Null-basiertes Budget, dass ich 0 € auf dem Konto habe?',
+    'pagefaq.zbb.a1': 'Nein. Ein Null-basiertes Budget bedeutet lediglich, dass jeder verdiente Euro auf dem Papier oder in der Tabelle einer Kategorie zugewiesen ist. Auf Ihrem eigentlichen Bankkonto verbleiben selbstverständlich Rücklagen und Puffer für unvorhergesehene Ausgaben.',
+    'pagefaq.zbb.q2': 'Wie unterscheidet sich das Null-basierte Budget von der 50/30/20-Regel?',
+    'pagefaq.zbb.a2': 'Die 50/30/20-Regel ist eine übergeordnete Makro-Leitlinie mit drei globalen Prozentwerten. Das Null-basierte Budget ist ein detailliertes Mikro-Planungssystem, das jedem einzelnen Euro einen Umschlag zuweist. Viele kombinieren beides: Sie setzen 50/30/20-Ziele und steuern die monatlichen Ausgaben Null-basiert.',
+    'pagefaq.zbb.nav_label': 'Mit anderen Werkzeugen vergleichen:',
+    'pagefaq.zbb.nav_f3020': '50/30/20-Budgetregel →',
+    'pagefaq.zbb.nav_gbp': 'Allgemeiner Budgetplaner →',
+    'pagefaq.zbb.nav_tmpl': 'Null-basierte CSV-Vorlage →',
+
+    // General Budget Planner Page FAQ
+    'pagefaq.gbp.heading': 'Häufig gestellte Fragen zur Budgetplanung',
+    'pagefaq.gbp.q1': 'Was tun, wenn mein Budget ein monatliches Defizit anzeigt?',
+    'pagefaq.gbp.a1': 'Wenn Ihre geplanten Ausgaben höher sind als Ihre Einnahmen, geraten Sie nicht in Panik. Trennen Sie grundlegende Lebenshaltungskosten (Wohnen, Essen, Energie, Kredite) von verzichtbaren Wünschen. Kündigen Sie doppelte Abonnements, reduzieren Sie Restaurantbesuche und prüfen Sie Einsparpotenziale bei Versicherungen.',
+    'pagefaq.gbp.q2': 'Wie oft sollte ich mein Budget überprüfen?',
+    'pagefaq.gbp.a2': 'Wir empfehlen, das Budget mindestens einmal monatlich vor dem Gehaltseingang abzugleichen sowie vierteljährlich bei saisonalen Kostenveränderungen oder jährlichen Vertragsverlängerungen vertieft zu prüfen.',
+    'pagefaq.gbp.q3': 'Welche Budgetmethode eignet sich am besten für Einsteiger?',
+    'pagefaq.gbp.a3': 'Einsteiger schätzen die <a href="/50-30-20-budget/" class="text-[#0070f3] underline">50/30/20-Regel</a>, weil sie nur drei große Kategorien erfordert. Wenn Sie maximale Kontrolle über jeden Cent wünschen, empfiehlt sich das <a href="/zero-based-budget/" class="text-[#0070f3] underline">Null-basierte Budgetieren</a>.',
+    'pagefaq.gbp.nav_label': 'Weitere Methoden kennenlernen:',
+    'pagefaq.gbp.nav_f3020': '50/30/20-Leitfaden →',
+    'pagefaq.gbp.nav_zbb': 'Null-basierte Methode →',
+    'pagefaq.gbp.nav_tmpl': 'Vorlagen herunterladen →',
+
+    // 50/30/20 Page FAQ
+    'pagefaq.f3020.heading': 'Häufig gestellte Fragen zur 50/30/20-Regel',
+    'pagefaq.f3020.q1': 'Berechne ich die Prozente vom Brutto- oder Nettoeinkommen?',
+    'pagefaq.f3020.a1': 'Die 50/30/20-Methode basiert auf dem <strong>Nettoeinkommen</strong> nach Steuern und Sozialabgaben. Sie können zwei Wege wählen:<ul class="space-y-1 text-[#4d4d4d] pl-3 list-disc mt-1"><li><strong>Auszahlungsansatz:</strong> Planen Sie strikt mit dem Betrag, der auf Ihrem Girokonto eingeht.</li><li><strong>Gesamteinkommensansatz:</strong> Rechnen Sie freiwillige Gehaltsabzüge (Altersvorsorge, Zusatzversicherungen) wieder hinzu und listen Sie diese separat bei Sparen und Grundbedarf auf.</li></ul><p class="text-[#4d4d4d] leading-relaxed pt-1">Beide Varianten funktionieren – wichtig ist die einheitliche Anwendung.</p>',
+    'pagefaq.f3020.q2': 'Was mache ich, wenn meine Grundbedürfnisse 50 % übersteigen?',
+    'pagefaq.f3020.a2': 'Wenn unvermeidbare Fixkosten sehr hoch sind, reduzieren Sie vorübergehend die Ausgaben für persönliche Wünsche, anstatt das Sparen ganz aufzugeben. Ein laufender Notgroschen schützt davor, bei Reparaturen teure Kredite aufnehmen zu müssen.',
+    'pagefaq.f3020.cta_title': 'Bevorzugen Sie eine Tabellenvorlage zum Herunterladen?',
+    'pagefaq.f3020.cta_desc': 'Holen Sie sich unsere kostenlose 50/30/20-CSV-Vorlage für Excel und Google Sheets.',
+    'pagefaq.f3020.cta_btn': '50/30/20-Vorlage herunterladen',
+
+    // Budget Planner Template Page FAQ
+    'pagefaq.tmpl.heading': 'Häufig gestellte Fragen zu Budget-Vorlagen',
+    'pagefaq.tmpl.q1': 'Kann ich diese Budget-Vorlagen ausdrucken?',
+    'pagefaq.tmpl.a1': 'Ja. Nach dem Import in Google Sheets oder Excel sind die Tabellen so formatiert, dass sie sauber auf A4-Papier gedruckt oder als PDF exportiert werden können.',
+    'pagefaq.tmpl.q2': 'Muss ich bezahlen oder eine E-Mail-Adresse angeben?',
+    'pagefaq.tmpl.a2': 'Nein. Alle Vorlagen auf My Real Budget sind vollständig kostenlos, frei zugänglich und sofort verfügbar. Praktische Finanzwerkzeuge sollten jedem ohne Einstiegshürden offenstehen.',
+    'pagefaq.tmpl.nav_label': 'Lieber ein interaktives Budget-Tool nutzen?',
+    'pagefaq.tmpl.nav_gbp': 'Allgemeiner Budgetplaner →',
+    'pagefaq.tmpl.nav_f3020': '50/30/20-Planer →',
+    'pagefaq.tmpl.nav_zbb': 'Null-basiertes Tool →',
+  },
+  pt: {
+    // Zero-Based Page FAQ
+    'pagefaq.zbb.heading': 'Perguntas Frequentes sobre Orçamento Base Zero',
+    'pagefaq.zbb.q1': 'O orçamento base zero significa que fico com R$ 0 na minha conta bancária?',
+    'pagefaq.zbb.a1': 'Não. O orçamento base zero significa que cada real recebido é atribuído no papel ou na planilha a uma categoria ou envelope. O saldo da sua conta real continua com sua reserva de emergência e valores de segurança intactos.',
+    'pagefaq.zbb.q2': 'Qual a diferença entre o orçamento base zero e a regra 50/30/20?',
+    'pagefaq.zbb.a2': 'A regra 50/30/20 é uma diretriz ampla em três grandes porcentagens. O orçamento base zero é um sistema de planejamento minucioso que dá um envelope a cada real específico. Muitas pessoas combinam os dois: usam a meta 50/30/20 e organizam os envelopes com base zero.',
+    'pagefaq.zbb.nav_label': 'Comparar com outras ferramentas:',
+    'pagefaq.zbb.nav_f3020': 'Regra de Orçamento 50/30/20 →',
+    'pagefaq.zbb.nav_gbp': 'Planejador Geral de Orçamento →',
+    'pagefaq.zbb.nav_tmpl': 'Modelo CSV Base Zero →',
+
+    // General Budget Planner Page FAQ
+    'pagefaq.gbp.heading': 'Perguntas Frequentes sobre Planejamento de Orçamento',
+    'pagefaq.gbp.q1': 'O que fazer se o meu orçamento mostrar um déficit mensal?',
+    'pagefaq.gbp.a1': 'Se os gastos planejados superarem as receitas, mantenha a calma. Comece separando as necessidades essenciais (moradia, comida, água/luz, parcelas de dívidas) dos gastos supérfluos. Cancele assinaturas duplicadas, reduza delivery e busque economias em planos de internet ou seguros.',
+    'pagefaq.gbp.q2': 'Com que frequência devo revisar meu orçamento?',
+    'pagefaq.gbp.a2': 'Recomendamos conferir seus números ao menos uma vez por mês antes do dia do pagamento, e fazer uma revisão trimestral mais profunda quando contas sazonais variarem ou contratos anuais vencerem.',
+    'pagefaq.gbp.q3': 'Qual método de orçamento é melhor para iniciantes?',
+    'pagefaq.gbp.a3': 'Iniciantes adoram a <a href="/50-30-20-budget/" class="text-[#0070f3] underline">regra 50/30/20</a> porque ela exige acompanhar apenas três grupos amplos. Se quiser controle cirúrgico de cada real, conheça o <a href="/zero-based-budget/" class="text-[#0070f3] underline">orçamento base zero</a>.',
+    'pagefaq.gbp.nav_label': 'Continuar explorando métodos:',
+    'pagefaq.gbp.nav_f3020': 'Guia da Regra 50/30/20 →',
+    'pagefaq.gbp.nav_zbb': 'Método Base Zero →',
+    'pagefaq.gbp.nav_tmpl': 'Baixar Modelos de Planilha →',
+
+    // 50/30/20 Page FAQ
+    'pagefaq.f3020.heading': 'Perguntas Frequentes sobre a Regra 50/30/20',
+    'pagefaq.f3020.q1': 'Devo calcular as porcentagens sobre a renda bruta ou líquida?',
+    'pagefaq.f3020.a1': 'A regra 50/30/20 é calculada sobre a <strong>renda líquida (após impostos)</strong>. Você pode adotar dois caminhos:<ul class="space-y-1 text-[#4d4d4d] pl-3 list-disc mt-1"><li><strong>Abordagem do salário líquido:</strong> Planeje estritamente sobre o valor que cai na sua conta corrente.</li><li><strong>Abordagem da renda abrangente:</strong> Some descontos voluntários (como previdência privada ou plano de saúde) e liste-os nas categorias de Poupança e Necessidades.</li></ul><p class="text-[#4d4d4d] leading-relaxed pt-1">Ambos funcionam bem: o importante é manter a consistência.</p>',
+    'pagefaq.f3020.q2': 'E se as minhas Necessidades ultrapassarem 50%?',
+    'pagefaq.f3020.a2': 'Quando os custos básicos forem altos, diminua temporariamente a fatia de Desejos em vez de zerar a poupança. Manter uma reserva em formação evita ter que recorrer a empréstimos caros em emergências médicas ou domésticas.',
+    'pagefaq.f3020.cta_title': 'Prefere uma planilha para download?',
+    'pagefaq.f3020.cta_desc': 'Baixe nosso modelo CSV 50/30/20 gratuito para Excel e Google Planilhas.',
+    'pagefaq.f3020.cta_btn': 'Baixar Modelo 50/30/20',
+
+    // Budget Planner Template Page FAQ
+    'pagefaq.tmpl.heading': 'Perguntas Frequentes sobre Modelos de Orçamento',
+    'pagefaq.tmpl.q1': 'Posso imprimir estes modelos de orçamento?',
+    'pagefaq.tmpl.a1': 'Sim. Ao abrir no Google Planilhas ou Excel, as folhas estão formatadas para impressão nítida em papel A4 ou Carta. Você também pode exportar diretamente para PDF.',
+    'pagefaq.tmpl.q2': 'Preciso pagar ou cadastrar e-mail para baixar?',
+    'pagefaq.tmpl.a2': 'Não. Todos os modelos no My Real Budget são 100% gratuitos, livres e imediatos. Acreditamos que ferramentas financeiras práticas devem estar disponíveis para todos sem burocracia.',
+    'pagefaq.tmpl.nav_label': 'Prefere uma ferramenta de orçamento interativa?',
+    'pagefaq.tmpl.nav_gbp': 'Planejador Geral →',
+    'pagefaq.tmpl.nav_f3020': 'Planejador 50/30/20 →',
+    'pagefaq.tmpl.nav_zbb': 'Ferramenta Base Zero →',
+  },
+};

@@ -28,19 +28,19 @@ const aboutSchema = {
       <div class="max-w-3xl space-y-4">
         <!-- Breadcrumb -->
         <nav class="flex items-center gap-2 text-xs font-mono text-[#64748b] dark:text-[#94a3b8]" aria-label="Breadcrumb">
-          <a href="/" class="hover:text-[#0e6e55] dark:hover:text-[#10b981] transition-colors">Home</a>
+          <a href="/" class="hover:text-[#0e6e55] dark:hover:text-[#10b981] transition-colors" data-mrb-t="error.home_breadcrumb">Home</a>
           <span aria-hidden="true">/</span>
-          <span class="text-[#0f172a] dark:text-[#f8fafc] font-medium">About Us</span>
+          <span class="text-[#0f172a] dark:text-[#f8fafc] font-medium" data-mrb-t="about.breadcrumb">About Us</span>
         </nav>
 
-        <Eyebrow text="Mission & Principles" />
+        <Eyebrow text="Mission & Principles" tKey="about.eyebrow" />
 
-        <h1 class="text-3xl sm:text-5xl font-semibold tracking-[-0.035em] text-[#0f172a] dark:text-[#f8fafc] leading-[1.15]">
+        <h1 class="text-3xl sm:text-5xl font-semibold tracking-[-0.035em] text-[#0f172a] dark:text-[#f8fafc] leading-[1.15]" data-mrb-t-html="about.h1">
           Personal Finance Tools Built for Real Life, <br class="hidden sm:inline" />
           <span class="text-[#0e6e55] dark:text-[#10b981]">Not Bank Upsells</span>
         </h1>
 
-        <p class="text-base sm:text-lg text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+        <p class="text-base sm:text-lg text-[#475569] dark:text-[#94a3b8] leading-relaxed" data-mrb-t="about.hero_p">
           My Real Budget was created with a straightforward goal: provide fast, private, and mathematically sound budgeting tools that help people organize their cash flow without handing over bank credentials or paying monthly subscriptions.
         </p>
       </div>
@@ -52,31 +52,31 @@ const aboutSchema = {
     <!-- STORY & THE PROBLEM -->
     <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
       <div class="lg:col-span-5 space-y-3">
-        <Eyebrow text="The Origin" />
-        <h2 class="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#0f172a] dark:text-[#f8fafc]">
+        <Eyebrow text="The Origin" tKey="about.origin_eyebrow" />
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#0f172a] dark:text-[#f8fafc]" data-mrb-t="about.origin_title">
           Why Many Budgeting Apps Create Friction for Users
         </h2>
-        <p class="text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+        <p class="text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed" data-mrb-t="about.origin_p">
           Traditional finance software has gradually become more about monetizing customer transaction data than solving actual budgeting problems.
         </p>
       </div>
 
       <div class="lg:col-span-7 bg-white dark:bg-[#111827] rounded-[14px] border border-[#e5e0d8] dark:border-[#1e293b] p-6 sm:p-8 shadow-whisper space-y-4 text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
-        <p>
+        <p data-mrb-t="about.prob_intro">
           Over the last decade, most budgeting applications moved toward mandatory bank-linking protocols, automated transaction feeds, and recurring paid subscriptions. While automated syncing sounds convenient, it regularly introduces severe downsides:
         </p>
         <ul class="space-y-2.5 list-disc pl-5">
           <li>
-            <strong class="text-[#0f172a] dark:text-[#f8fafc]">Connection fatigue:</strong> Bank APIs break constantly, requiring repeated two-factor authorizations and manual troubleshooting.
+            <strong class="text-[#0f172a] dark:text-[#f8fafc]" data-mrb-t="about.prob_li1_title">Connection fatigue:</strong> <span data-mrb-t="about.prob_li1_desc">Bank APIs break constantly, requiring repeated two-factor authorizations and manual troubleshooting.</span>
           </li>
           <li>
-            <strong class="text-[#0f172a] dark:text-[#f8fafc]">Privacy erosion:</strong> Detailed spending history, payroll data, and account numbers are uploaded to third-party cloud servers and frequently aggregated for marketing.
+            <strong class="text-[#0f172a] dark:text-[#f8fafc]" data-mrb-t="about.prob_li2_title">Privacy erosion:</strong> <span data-mrb-t="about.prob_li2_desc">Detailed spending history, payroll data, and account numbers are uploaded to third-party cloud servers and frequently aggregated for marketing.</span>
           </li>
           <li>
-            <strong class="text-[#0f172a] dark:text-[#f8fafc]">Passive tracking vs. intentional planning:</strong> Looking at automated categorized charts from two weeks ago is historical accounting; it doesn't give you a forward-looking plan for the money sitting in your checking account today.
+            <strong class="text-[#0f172a] dark:text-[#f8fafc]" data-mrb-t="about.prob_li3_title">Passive tracking vs. intentional planning:</strong> <span data-mrb-t="about.prob_li3_desc">Looking at automated categorized charts from two weeks ago is historical accounting; it doesn't give you a forward-looking plan for the money sitting in your checking account today.</span>
           </li>
         </ul>
-        <p class="pt-2 border-t border-[#f4f0ea] dark:border-[#1e293b]">
+        <p class="pt-2 border-t border-[#f4f0ea] dark:border-[#1e293b]" data-mrb-t-html="about.prob_conclusion">
           We built <strong>My Real Budget</strong> to bring back intentionality. You plan with real numbers, test scenarios, normalize irregular billing frequencies, and retain complete control over your private records.
         </p>
       </div>
@@ -85,11 +85,11 @@ const aboutSchema = {
     <!-- CORE PILLARS / VALUES -->
     <section class="space-y-8">
       <div class="text-center max-w-2xl mx-auto space-y-2">
-        <Eyebrow text="What Guides Us" />
-        <h2 class="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#0f172a] dark:text-[#f8fafc]">
+        <Eyebrow text="What Guides Us" tKey="about.prin_eyebrow" class="mx-auto" />
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#0f172a] dark:text-[#f8fafc]" data-mrb-t="about.prin_title">
           Our Foundational Principles
         </h2>
-        <p class="text-sm sm:text-base text-[#475569] dark:text-[#94a3b8]">
+        <p class="text-sm sm:text-base text-[#475569] dark:text-[#94a3b8]" data-mrb-t="about.prin_sub">
           Every feature, formula, and template we design follows four non-negotiable standards.
         </p>
       </div>
@@ -100,11 +100,11 @@ const aboutSchema = {
           <div class="w-10 h-10 rounded-[8px] bg-[#e8f5f1] dark:bg-[rgba(16,185,129,0.15)] text-[#0e6e55] dark:text-[#10b981] flex items-center justify-center font-mono font-bold text-sm">
             01
           </div>
-          <h3 class="text-lg font-semibold text-[#0f172a] dark:text-[#f8fafc] tracking-tight">
+          <h3 class="text-lg font-semibold text-[#0f172a] dark:text-[#f8fafc] tracking-tight" data-mrb-t="about.p1_title">
             100% Private & Local by Design
           </h3>
-          <p class="text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
-            Your financial calculations are computed and saved exclusively in your web browser via <code class="font-mono text-xs bg-[#f4f0ea] dark:bg-[#172033] px-1.5 py-0.5 rounded">localStorage</code>. We do not store your salary, expenses, or debts on our servers, and we never ask for your bank account login.
+          <p class="text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed" data-mrb-t="about.p1_desc">
+            Your financial calculations are computed and saved exclusively in your web browser via localStorage. We do not store your salary, expenses, or debts on our servers, and we never ask for your bank account login.
           </p>
         </div>
 
@@ -113,10 +113,10 @@ const aboutSchema = {
           <div class="w-10 h-10 rounded-[8px] bg-[#e8f5f1] dark:bg-[rgba(16,185,129,0.15)] text-[#0e6e55] dark:text-[#10b981] flex items-center justify-center font-mono font-bold text-sm">
             02
           </div>
-          <h3 class="text-lg font-semibold text-[#0f172a] dark:text-[#f8fafc] tracking-tight">
+          <h3 class="text-lg font-semibold text-[#0f172a] dark:text-[#f8fafc] tracking-tight" data-mrb-t="about.p2_title">
             Normalized Payment Frequencies
           </h3>
-          <p class="text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+          <p class="text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed" data-mrb-t="about.p2_desc">
             Real life rarely happens in neat monthly cycles. People get paid bi-weekly, buy groceries weekly, pay car insurance semi-annually, and cover annual taxes. Our engine normalizes every inflow and outflow to give you an accurate, synchronized cash flow picture.
           </p>
         </div>
@@ -126,11 +126,11 @@ const aboutSchema = {
           <div class="w-10 h-10 rounded-[8px] bg-[#e8f5f1] dark:bg-[rgba(16,185,129,0.15)] text-[#0e6e55] dark:text-[#10b981] flex items-center justify-center font-mono font-bold text-sm">
             03
           </div>
-          <h3 class="text-lg font-semibold text-[#0f172a] dark:text-[#f8fafc] tracking-tight">
+          <h3 class="text-lg font-semibold text-[#0f172a] dark:text-[#f8fafc] tracking-tight" data-mrb-t="about.p3_title">
             Proven Budgeting Methodologies
           </h3>
-          <p class="text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
-            We don't force a one-size-fits-all ideology. Whether you prefer the balanced percentage guidelines of the <strong>50/30/20 rule</strong>, the granular precision of <strong>zero-based budgeting</strong>, or a custom monthly ledger, our suite supports your style.
+          <p class="text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed" data-mrb-t="about.p3_desc">
+            We don't force a one-size-fits-all ideology. Whether you prefer the balanced percentage guidelines of the 50/30/20 rule, the granular precision of zero-based budgeting, or a custom monthly ledger, our suite supports your style.
           </p>
         </div>
 
@@ -139,10 +139,10 @@ const aboutSchema = {
           <div class="w-10 h-10 rounded-[8px] bg-[#e8f5f1] dark:bg-[rgba(16,185,129,0.15)] text-[#0e6e55] dark:text-[#10b981] flex items-center justify-center font-mono font-bold text-sm">
             04
           </div>
-          <h3 class="text-lg font-semibold text-[#0f172a] dark:text-[#f8fafc] tracking-tight">
+          <h3 class="text-lg font-semibold text-[#0f172a] dark:text-[#f8fafc] tracking-tight" data-mrb-t="about.p4_title">
             Zero Barriers & Truly Free
           </h3>
-          <p class="text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+          <p class="text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed" data-mrb-t="about.p4_desc">
             Practical budgeting resources should be universally accessible. All our browser planners and downloadable CSV spreadsheet templates are free with no account creation, email paywalls, or credit card requirements.
           </p>
         </div>
@@ -152,42 +152,42 @@ const aboutSchema = {
     <!-- WHAT WE OFFER -->
     <section class="bg-white dark:bg-[#111827] rounded-[16px] border border-[#e5e0d8] dark:border-[#1e293b] p-6 sm:p-10 shadow-whisper space-y-6">
       <div class="space-y-2">
-        <Eyebrow text="Product Suite" />
-        <h2 class="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#0f172a] dark:text-[#f8fafc]">
+        <Eyebrow text="Product Suite" tKey="about.suite_eyebrow" />
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#0f172a] dark:text-[#f8fafc]" data-mrb-t="about.suite_title">
           What You Can Do on My Real Budget
         </h2>
-        <p class="text-sm sm:text-base text-[#475569] dark:text-[#94a3b8]">
+        <p class="text-sm sm:text-base text-[#475569] dark:text-[#94a3b8]" data-mrb-t="about.suite_desc">
           Explore the tools and guides available on our platform:
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
         <div class="p-5 rounded-[12px] bg-[#f8f7f4] dark:bg-[#172033] border border-[#e5e0d8] dark:border-[#1e293b] space-y-2.5">
-          <h3 class="font-semibold text-base text-[#0f172a] dark:text-[#f8fafc]">Online Budget Planners</h3>
-          <p class="text-xs text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+          <h3 class="font-semibold text-base text-[#0f172a] dark:text-[#f8fafc]" data-mrb-t="about.suite_c1_title">Online Budget Planners</h3>
+          <p class="text-xs text-[#475569] dark:text-[#94a3b8] leading-relaxed" data-mrb-t="about.suite_c1_desc">
             Interactive, browser-based tools for general cash flow, 50/30/20 proportions, and zero-based allocations with automated feedback.
           </p>
-          <a href="/budget-planner/" class="inline-flex text-xs font-medium text-[#0e6e55] dark:text-[#10b981] hover:underline pt-1">
+          <a href="/budget-planner/" class="inline-flex text-xs font-medium text-[#0e6e55] dark:text-[#10b981] hover:underline pt-1" data-mrb-t="about.suite_c1_btn">
             Launch Planner →
           </a>
         </div>
 
         <div class="p-5 rounded-[12px] bg-[#f8f7f4] dark:bg-[#172033] border border-[#e5e0d8] dark:border-[#1e293b] space-y-2.5">
-          <h3 class="font-semibold text-base text-[#0f172a] dark:text-[#f8fafc]">Spreadsheet Templates</h3>
-          <p class="text-xs text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+          <h3 class="font-semibold text-base text-[#0f172a] dark:text-[#f8fafc]" data-mrb-t="about.suite_c2_title">Spreadsheet Templates</h3>
+          <p class="text-xs text-[#475569] dark:text-[#94a3b8] leading-relaxed" data-mrb-t="about.suite_c2_desc">
             Clean, pre-formatted CSV worksheets that import seamlessly into Google Sheets, Microsoft Excel, and Apple Numbers without subscriptions.
           </p>
-          <a href="/budget-templates/" class="inline-flex text-xs font-medium text-[#0e6e55] dark:text-[#10b981] hover:underline pt-1">
+          <a href="/budget-templates/" class="inline-flex text-xs font-medium text-[#0e6e55] dark:text-[#10b981] hover:underline pt-1" data-mrb-t="about.suite_c2_btn">
             Browse Templates →
           </a>
         </div>
 
         <div class="p-5 rounded-[12px] bg-[#f8f7f4] dark:bg-[#172033] border border-[#e5e0d8] dark:border-[#1e293b] space-y-2.5">
-          <h3 class="font-semibold text-base text-[#0f172a] dark:text-[#f8fafc]">Learning Library</h3>
-          <p class="text-xs text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+          <h3 class="font-semibold text-base text-[#0f172a] dark:text-[#f8fafc]" data-mrb-t="about.suite_c3_title">Learning Library</h3>
+          <p class="text-xs text-[#475569] dark:text-[#94a3b8] leading-relaxed" data-mrb-t="about.suite_c3_desc">
             In-depth editorial articles explaining foundational budgeting concepts, comparing methodologies, and providing actionable cash flow advice.
           </p>
-          <a href="/learn/" class="inline-flex text-xs font-medium text-[#0e6e55] dark:text-[#10b981] hover:underline pt-1">
+          <a href="/learn/" class="inline-flex text-xs font-medium text-[#0e6e55] dark:text-[#10b981] hover:underline pt-1" data-mrb-t="about.suite_c3_btn">
             Read Guides →
           </a>
         </div>
@@ -197,10 +197,10 @@ const aboutSchema = {
     <!-- CALL TO ACTION BANNER -->
     <section class="rounded-[16px] bg-[#f4f0ea] dark:bg-[#172033] border border-[#e5e0d8] dark:border-[#1e293b] p-8 sm:p-12 text-center space-y-6">
       <div class="max-w-2xl mx-auto space-y-3">
-        <h2 class="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#0f172a] dark:text-[#f8fafc]">
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#0f172a] dark:text-[#f8fafc]" data-mrb-t="about.cta_title">
           Start Taking Control of Your Money Today
         </h2>
-        <p class="text-sm sm:text-base text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+        <p class="text-sm sm:text-base text-[#475569] dark:text-[#94a3b8] leading-relaxed" data-mrb-t="about.cta_desc">
           No sign-ups, no software downloads, and no credit card required. Experience how empowering an intentional cash flow budget can be.
         </p>
       </div>
@@ -209,12 +209,14 @@ const aboutSchema = {
         <a
           href="/budget-planner/"
           class="inline-flex items-center justify-center h-11 px-7 rounded-full bg-[#0e6e55] hover:bg-[#0a5240] dark:bg-[#10b981] dark:hover:bg-[#34d399] text-white dark:text-[#042f24] text-sm font-medium transition shadow-sm"
+          data-mrb-t="about.cta_btn1"
         >
           Open Free Budget Planner
         </a>
         <a
           href="/contact/"
           class="inline-flex items-center justify-center h-11 px-7 rounded-full bg-white dark:bg-[#111827] text-[#0f172a] dark:text-[#f8fafc] border border-[#e5e0d8] dark:border-[#1e293b] text-sm font-medium hover:bg-[#f8f7f4] dark:hover:bg-[#1f293d] transition shadow-whisper"
+          data-mrb-t="about.cta_btn_contact"
         >
           Contact Our Team
         </a>

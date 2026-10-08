@@ -3,7 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import Eyebrow from '../../components/ui/Eyebrow.astro';
 
 const title = 'How to Create a Monthly Budget: Step-by-Step Guide for Real Life';
-const description = 'Learn how to build a monthly budget that actually balances. Step-by-step guidance on calculating net income, listing fixed and variable expenses, and normalizing payment frequencies.';
+const description = 'Learn how to build a monthly budget that balances. Step-by-step guidance on calculating net income, listing fixed and variable expenses, and managing cash flow.';
 
 const articleSchema = {
   '@context': 'https://schema.org',
@@ -19,79 +19,79 @@ const articleSchema = {
   <article class="max-w-3xl mx-auto px-4 sm:px-6 py-14">
     <!-- Breadcrumb -->
     <div class="mb-6 flex items-center gap-2 text-xs text-[#8f8f8f] font-mono">
-      <a href="/learn/" class="hover:text-[#171717] underline">Learn</a>
+      <a href="/learn/" class="hover:text-[#171717] underline" data-mrb-t="article.common.learn_breadcrumb">Learn</a>
       <span>/</span>
-      <span>Guides & Walkthroughs</span>
+      <span data-mrb-t="article.hcb.breadcrumb_cat">Guides & Walkthroughs</span>
     </div>
 
-    <Eyebrow text="6 Min Read • Step-by-Step Guide" class="mb-3" />
+    <Eyebrow text="6 Min Read • Step-by-Step Guide" tKey="article.hcb.eyebrow" class="mb-3" />
 
-    <h1 class="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-[#171717] leading-tight mb-6">
+    <h1 class="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-[#171717] leading-tight mb-6" data-mrb-t="article.hcb.title">
       How to Create a Monthly Budget: Step-by-Step Guide for Real Life
     </h1>
 
     <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] text-xs text-[#4d4d4d] mb-10 leading-relaxed">
-      <strong>Overview:</strong> Follow this practical 5-step roadmap to establish your first realistic monthly budget, account for annual surprises with sinking funds, and build a sustainable habit.
+      <strong data-mrb-t="article.hcb.overview_label">Overview:</strong> <span data-mrb-t="article.hcb.overview_text">Follow this practical 5-step roadmap to establish your first realistic monthly budget, account for annual surprises with sinking funds, and build a sustainable habit.</span>
     </div>
 
     <div class="prose max-w-none text-sm text-[#4d4d4d] space-y-6 leading-relaxed">
-      <h2 class="text-xl font-semibold text-[#171717] tracking-tight">Step 1: Calculate Your True Net Income</h2>
-      <p>
+      <h2 class="text-xl font-semibold text-[#171717] tracking-tight" data-mrb-t="article.hcb.h2_step1">Step 1: Calculate Your True Net Income</h2>
+      <p data-mrb-t-html="article.hcb.p_step1_1">
         Always base your budget on your <strong>net take-home pay</strong>—the actual amount that lands in your checking account after taxes, Medicare, Social Security, and health insurance premiums.
       </p>
-      <p>
+      <p data-mrb-t="article.hcb.p_step1_2">
         If your pay fluctuates due to commissions, freelance invoices, or seasonal shifts, look at your lowest-earning month over the past year. Use that conservative baseline as your planning foundation; any surplus in bigger months can be saved into a buffer account.
       </p>
 
-      <h2 class="text-xl font-semibold text-[#171717] tracking-tight">Step 2: List Fixed Living Essentials</h2>
-      <p>
+      <h2 class="text-xl font-semibold text-[#171717] tracking-tight" data-mrb-t="article.hcb.h2_step2">Step 2: List Fixed Living Essentials</h2>
+      <p data-mrb-t="article.hcb.p_step2_intro">
         Fixed expenses are bills that cost the exact same amount on a predictable calendar cycle:
       </p>
       <ul class="list-disc list-inside space-y-1.5 pl-2">
-        <li>Rent or mortgage payment</li>
-        <li>Auto loan or lease payment</li>
-        <li>Student loan minimums or debt commitments</li>
-        <li>Fixed monthly utilities (e.g., broadband internet, mobile phone plan)</li>
-        <li>Childcare or tuition costs</li>
+        <li data-mrb-t="article.hcb.li_step2_1">Rent or mortgage payment</li>
+        <li data-mrb-t="article.hcb.li_step2_2">Auto loan or lease payment</li>
+        <li data-mrb-t="article.hcb.li_step2_3">Student loan minimums or debt commitments</li>
+        <li data-mrb-t="article.hcb.li_step2_4">Fixed monthly utilities (e.g., broadband internet, mobile phone plan)</li>
+        <li data-mrb-t="article.hcb.li_step2_5">Childcare or tuition costs</li>
       </ul>
 
-      <h2 class="text-xl font-semibold text-[#171717] tracking-tight">Step 3: Account for Payment Frequency Discrepancies</h2>
-      <p>
+      <h2 class="text-xl font-semibold text-[#171717] tracking-tight" data-mrb-t="article.hcb.h2_step3">Step 3: Account for Payment Frequency Discrepancies</h2>
+      <p data-mrb-t="article.hcb.p_step3_1">
         Here is where most beginner budgets fall apart: treating weekly expenses as if they happen 4 times a month.
       </p>
       <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] not-prose text-xs space-y-2">
-        <strong class="text-[#171717] block">The Annualized Frequency Formula:</strong>
-        <p>Because there are 52 weeks in a year (not 48), calculating weekly groceries as <code>$150 × 4 = $600</code> leaves out 4 full weeks of food each year.</p>
-        <p>Instead, use: <code>($150 × 52) ÷ 12 = $650 per month</code>. That $50 difference compounds across all weekly habits.</p>
+        <strong class="text-[#171717] block" data-mrb-t="article.hcb.formula_title">The Annualized Frequency Formula:</strong>
+        <p data-mrb-t-html="article.hcb.formula_p1">Because there are 52 weeks in a year (not 48), calculating weekly groceries as <code>$150 × 4 = $600</code> leaves out 4 full weeks of food each year.</p>
+        <p data-mrb-t-html="article.hcb.formula_p2">Instead, use: <code>($150 × 52) ÷ 12 = $650 per month</code>. That $50 difference compounds across all weekly habits.</p>
       </div>
 
-      <h2 class="text-xl font-semibold text-[#171717] tracking-tight">Step 4: Establish Sinking Funds for Irregular Bills</h2>
-      <p>
+      <h2 class="text-xl font-semibold text-[#171717] tracking-tight" data-mrb-t="article.hcb.h2_step4">Step 4: Establish Sinking Funds for Irregular Bills</h2>
+      <p data-mrb-t="article.hcb.p_step4_1">
         An expense that happens once a year is not an emergency—it is an expected event that simply has a slow frequency. Examples include auto insurance premiums, holiday gift shopping, Amazon Prime renewals, and annual vet checkups.
       </p>
-      <p>
+      <p data-mrb-t="article.hcb.p_step4_2">
         Take the total yearly cost, divide it by 12, and set that amount aside into a high-yield savings sub-account each month. When the bill arrives, the cash is waiting.
       </p>
 
-      <h2 class="text-xl font-semibold text-[#171717] tracking-tight">Step 5: Review, Balance & Refine</h2>
-      <p>
+      <h2 class="text-xl font-semibold text-[#171717] tracking-tight" data-mrb-t="article.hcb.h2_step5">Step 5: Review, Balance & Refine</h2>
+      <p data-mrb-t="article.hcb.p_step5_intro">
         Subtract your total normalized expenses from your net income:
       </p>
       <ul class="list-disc list-inside space-y-2 pl-2">
-        <li><strong>Positive Surplus:</strong> Allocate to high-yield emergency reserves or extra principal debt reduction.</li>
-        <li><strong>Balanced ($0):</strong> Every dollar has an assigned destination (zero-based budgeting).</li>
-        <li><strong>Negative Deficit:</strong> Immediate adjustments are needed. Audit subscription cancellations, dining limits, and temporary discretionary holds.</li>
+        <li data-mrb-t-html="article.hcb.li_step5_1"><strong>Positive Surplus:</strong> Allocate to high-yield emergency reserves or extra principal debt reduction.</li>
+        <li data-mrb-t-html="article.hcb.li_step5_2"><strong>Balanced ($0):</strong> Every dollar has an assigned destination (zero-based budgeting).</li>
+        <li data-mrb-t-html="article.hcb.li_step5_3"><strong>Negative Deficit:</strong> Immediate adjustments are needed. Audit subscription cancellations, dining limits, and temporary discretionary holds.</li>
       </ul>
 
-      <h2 class="text-xl font-semibold text-[#171717] tracking-tight">Put It into Practice</h2>
-      <p>
+      <h2 class="text-xl font-semibold text-[#171717] tracking-tight" data-mrb-t="article.common.put_into_practice">Put It into Practice</h2>
+      <p data-mrb-t="article.hcb.p_practice">
         Try our free online tools with built-in frequency normalization to put this workflow into action:
       </p>
       <div class="not-prose pt-4 flex flex-col sm:flex-row gap-3">
-        <a href="/budget-planner/" class="inline-flex items-center justify-center h-10 px-6 rounded-full bg-[#171717] text-white text-xs font-medium hover:bg-neutral-800 transition">
+        <a href="/budget-planner/" class="inline-flex items-center justify-center h-10 px-6 rounded-full bg-[#171717] text-white text-xs font-medium hover:bg-neutral-800 transition" data-mrb-t="article.common.launch_gbp">
           Launch Budget Planner
         </a>
-        <a href="/budget-planner-template/" class="inline-flex items-center justify-center h-10 px-6 rounded-full bg-white text-[#171717] border border-[#ebebeb] text-xs font-medium hover:bg-neutral-50 transition shadow-whisper">
+        <a href="/budget-planner-template/" class="inline-flex items-center justify-center h-10 px-6 rounded-full bg-white text-[#171717] border border-[#ebebeb] text-xs font-medium hover:bg-neutral-50 transition shadow-whisper" data-mrb-t="article.common.download_monthly_tmpl">
           Download Monthly Template
         </a>
       </div>

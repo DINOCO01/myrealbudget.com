@@ -4,7 +4,7 @@ import Eyebrow from '../components/ui/Eyebrow.astro';
 import { BUDGET_TEMPLATES } from '../data/templatesData';
 
 const title = 'Free Budget Planner Templates: Excel, Sheets & Printable CSV';
-const description = 'Download free budget planner templates for Excel, Google Sheets, and CSV. Choose from 50/30/20, Zero-Based, Simple Monthly, Student, and Couples household budget templates.';
+const description = 'Download free budget planner templates for Excel, Google Sheets, and CSV. Choose from 50/30/20, Zero-Based, Simple Monthly, and household budget templates.';
 
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -61,10 +61,10 @@ const faqSchema = {
     
     <!-- Introduction: What is a budget template -->
     <div class="max-w-3xl space-y-4">
-      <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-[#171717]">
+      <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-[#171717]" data-mrb-t="templates.why_use_title">
         Why Use a Pre-Formatted Budget Template?
       </h2>
-      <p class="text-sm text-[#4d4d4d] leading-relaxed">
+      <p class="text-sm text-[#4d4d4d] leading-relaxed" data-mrb-t="templates.why_use_desc">
         Starting a budget on a blank spreadsheet often causes decision fatigue: which categories should you track? How do you organize annual insurance or weekly groceries? Our templates solve this by providing pre-structured line items, categories, and practical starting layouts tailored to specific budgeting methodologies.
       </p>
     </div>
@@ -80,14 +80,16 @@ const faqSchema = {
             <div class="space-y-2 max-w-2xl">
               <div class="flex items-center gap-2">
                 <span class="font-mono text-xs font-semibold px-2.5 py-0.5 rounded-[6px] bg-[#f2f2f2] text-[#171717]">
-                  Template #{idx + 1}
+                  <span data-mrb-t="templates.template_label">Template</span> #{idx + 1}
                 </span>
-                <span class="text-xs font-mono text-[#8f8f8f]">Method: {template.method}</span>
+                <span class="text-xs font-mono text-[#8f8f8f]">
+                  <span data-mrb-t="templates.method_badge">Method:</span> <span data-mrb-t={`tmpl.${template.id}.method`}>{template.method}</span>
+                </span>
               </div>
-              <h3 class="text-2xl font-semibold text-[#171717] tracking-tight">
+              <h3 class="text-2xl font-semibold text-[#171717] tracking-tight" data-mrb-t={`tmpl.${template.id}.name`}>
                 {template.name}
               </h3>
-              <p class="text-sm text-[#4d4d4d] leading-relaxed">
+              <p class="text-sm text-[#4d4d4d] leading-relaxed" data-mrb-t={`tmpl.${template.id}.full_desc`}>
                 {template.fullDescription}
               </p>
             </div>
@@ -120,7 +122,7 @@ const faqSchema = {
               <h4 class="font-mono font-medium uppercase tracking-wider text-[#8f8f8f]" data-mrb-t="templates.best_for">
                 Best For & Target Audience
               </h4>
-              <p class="text-[#4d4d4d] leading-relaxed">
+              <p class="text-[#4d4d4d] leading-relaxed" data-mrb-t={`tmpl.${template.id}.audience`}>
                 {template.targetAudience}
               </p>
             </div>
@@ -130,10 +132,10 @@ const faqSchema = {
                 Template Structure & Highlights
               </h4>
               <ul class="space-y-1.5 text-[#4d4d4d]">
-                {template.features.map(f => (
+                {template.features.map((f, fIdx) => (
                   <li class="flex items-center gap-2">
                     <svg class="w-3.5 h-3.5 text-[#047857]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                    <span>{f}</span>
+                    <span data-mrb-t={`tmpl.${template.id}.f${fIdx + 1}`}>{f}</span>
                   </li>
                 ))}
               </ul>
@@ -143,8 +145,8 @@ const faqSchema = {
           <!-- Raw CSV Code Preview Block from DESIGN.md -->
           <div class="space-y-2 pt-2">
             <div class="flex items-center justify-between text-xs text-[#8f8f8f] font-mono">
-              <span>Preview (CSV Header & Top Rows)</span>
-              <span>Formatted for Excel / Google Sheets</span>
+              <span data-mrb-t="templates.preview_header">Preview (CSV Header & Top Rows)</span>
+              <span data-mrb-t="templates.preview_sub">Formatted for Excel / Google Sheets</span>
             </div>
             <pre class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] font-mono text-xs text-[#171717] overflow-x-auto leading-relaxed">{template.csvContent.split('\n').slice(0, 6).join('\n') + '\n...'}</pre>
           </div>
@@ -154,27 +156,27 @@ const faqSchema = {
 
     <!-- HOW TO IMPORT IN GOOGLE SHEETS & EXCEL -->
     <section class="border-t border-[#ebebeb] pt-12 space-y-6">
-      <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-[#171717]">
+      <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-[#171717]" data-mrb-t="templates.how_to_use_heading">
         How to Use These Templates in Excel or Google Sheets
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-[#4d4d4d]">
         <div class="p-5 rounded-[12px] bg-white border border-[#ebebeb] shadow-whisper space-y-2">
-          <h3 class="font-semibold text-sm text-[#171717]">Opening in Google Sheets</h3>
+          <h3 class="font-semibold text-sm text-[#171717]" data-mrb-t="templates.sheets_heading">Opening in Google Sheets</h3>
           <ol class="space-y-1.5 list-decimal list-inside leading-relaxed text-[#4d4d4d]">
-            <li>Click <strong>Download CSV</strong> on any template above.</li>
-            <li>Go to <a href="https://sheets.new" target="_blank" rel="noopener" class="text-[#0070f3] underline">sheets.new</a> in your browser.</li>
-            <li>Click <strong>File &gt; Import &gt; Upload</strong> and choose the downloaded file.</li>
-            <li>Select <strong>Replace current sheet</strong> and click <em>Import data</em>.</li>
+            <li data-mrb-t="templates.sheets_step1">Click <strong>Download CSV</strong> on any template above.</li>
+            <li data-mrb-t="templates.sheets_step2">Go to <a href="https://sheets.new" target="_blank" rel="noopener" class="text-[#0070f3] underline">sheets.new</a> in your browser.</li>
+            <li data-mrb-t="templates.sheets_step3">Click <strong>File &gt; Import &gt; Upload</strong> and choose the downloaded file.</li>
+            <li data-mrb-t="templates.sheets_step4">Select <strong>Replace current sheet</strong> and click <em>Import data</em>.</li>
           </ol>
         </div>
 
         <div class="p-5 rounded-[12px] bg-white border border-[#ebebeb] shadow-whisper space-y-2">
-          <h3 class="font-semibold text-sm text-[#171717]">Opening in Microsoft Excel</h3>
+          <h3 class="font-semibold text-sm text-[#171717]" data-mrb-t="templates.excel_heading">Opening in Microsoft Excel</h3>
           <ol class="space-y-1.5 list-decimal list-inside leading-relaxed text-[#4d4d4d]">
-            <li>Download the desired template CSV file.</li>
-            <li>Open Excel and click <strong>File &gt; Open</strong>.</li>
-            <li>Select the downloaded <code>.csv</code> file.</li>
-            <li>Format the currency columns as Currency ($) and save as <code>.xlsx</code> to preserve custom formulas.</li>
+            <li data-mrb-t="templates.excel_step1">Download the desired template CSV file.</li>
+            <li data-mrb-t="templates.excel_step2">Open Excel and click <strong>File &gt; Open</strong>.</li>
+            <li data-mrb-t="templates.excel_step3">Select the downloaded <code>.csv</code> file.</li>
+            <li data-mrb-t="templates.excel_step4">Format the currency columns as Currency ($) and save as <code>.xlsx</code> to preserve custom formulas.</li>
           </ol>
         </div>
       </div>
@@ -182,19 +184,19 @@ const faqSchema = {
 
     <!-- FAQs -->
     <section class="border-t border-[#ebebeb] pt-12 space-y-6">
-      <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-[#171717]">
+      <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-[#171717]" data-mrb-t="pagefaq.tmpl.heading">
         Frequently Asked Questions About Budget Templates
       </h2>
       <div class="space-y-4 text-xs">
         <div class="p-4 rounded-[8px] bg-white border border-[#ebebeb] space-y-1.5">
-          <h3 class="font-semibold text-sm text-[#171717]">Can I print these budget templates?</h3>
-          <p class="text-[#4d4d4d] leading-relaxed">
+          <h3 class="font-semibold text-sm text-[#171717]" data-mrb-t="pagefaq.tmpl.q1">Can I print these budget templates?</h3>
+          <p class="text-[#4d4d4d] leading-relaxed" data-mrb-t="pagefaq.tmpl.a1">
             Yes. When imported into Google Sheets or Excel, the layouts are formatted to fit cleanly on standard Letter or A4 paper. You can also export directly to PDF for offline tracking.
           </p>
         </div>
         <div class="p-4 rounded-[8px] bg-white border border-[#ebebeb] space-y-1.5">
-          <h3 class="font-semibold text-sm text-[#171717]">Do I need to pay or provide an email to download?</h3>
-          <p class="text-[#4d4d4d] leading-relaxed">
+          <h3 class="font-semibold text-sm text-[#171717]" data-mrb-t="pagefaq.tmpl.q2">Do I need to pay or provide an email to download?</h3>
+          <p class="text-[#4d4d4d] leading-relaxed" data-mrb-t="pagefaq.tmpl.a2">
             No. All templates on My Real Budget are completely free, open, and instant. We believe practical personal finance tools should be accessible to everyone without friction.
           </p>
         </div>
@@ -203,11 +205,11 @@ const faqSchema = {
 
     <!-- Cross-Linking -->
     <div class="pt-8 border-t border-[#ebebeb] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8f8f8f]">
-      <span>Prefer an interactive budgeting tool?</span>
+      <span data-mrb-t="pagefaq.tmpl.nav_label">Prefer an interactive budgeting tool?</span>
       <div class="flex items-center gap-3">
-        <a href="/budget-planner/" class="text-[#171717] font-medium underline hover:text-[#0070f3]">General Budget Planner →</a>
-        <a href="/50-30-20-budget/" class="text-[#171717] font-medium underline hover:text-[#0070f3]">50/30/20 Planner →</a>
-        <a href="/zero-based-budget/" class="text-[#171717] font-medium underline hover:text-[#0070f3]">Zero-Based Tool →</a>
+        <a href="/budget-planner/" class="text-[#171717] font-medium underline hover:text-[#0070f3]" data-mrb-t="pagefaq.tmpl.nav_gbp">General Budget Planner →</a>
+        <a href="/50-30-20-budget/" class="text-[#171717] font-medium underline hover:text-[#0070f3]" data-mrb-t="pagefaq.tmpl.nav_f3020">50/30/20 Planner →</a>
+        <a href="/zero-based-budget/" class="text-[#171717] font-medium underline hover:text-[#0070f3]" data-mrb-t="pagefaq.tmpl.nav_zbb">Zero-Based Tool →</a>
       </div>
     </div>
   </main>

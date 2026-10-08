@@ -19,74 +19,74 @@ const articleSchema = {
   <article class="max-w-3xl mx-auto px-4 sm:px-6 py-14">
     <!-- Breadcrumb & Eyebrow -->
     <div class="mb-6 flex items-center gap-2 text-xs text-[#8f8f8f] font-mono">
-      <a href="/learn/" class="hover:text-[#171717] underline">Learn</a>
+      <a href="/learn/" class="hover:text-[#171717] underline" data-mrb-t="article.common.learn_breadcrumb">Learn</a>
       <span>/</span>
-      <span>Budgeting Fundamentals</span>
+      <span data-mrb-t="article.wib.breadcrumb_cat">Budgeting Fundamentals</span>
     </div>
 
-    <Eyebrow text="4 Min Read • Budgeting Fundamentals" class="mb-3" />
+    <Eyebrow text="4 Min Read • Budgeting Fundamentals" tKey="article.wib.eyebrow" class="mb-3" />
 
-    <h1 class="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-[#171717] leading-tight mb-6">
+    <h1 class="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-[#171717] leading-tight mb-6" data-mrb-t="article.wib.title">
       What Is a Budget? The Real Purpose of Managing Your Cash Flow
     </h1>
 
     <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] text-xs text-[#4d4d4d] mb-10 leading-relaxed">
-      <strong>Core takeaway:</strong> A budget is not a restriction or punishment. It is an intentional allocation plan that tells your money where to go before the month starts, eliminating guilt and preventing unexpected shortfalls.
+      <strong data-mrb-t="article.wib.takeaway_label">Core takeaway:</strong> <span data-mrb-t="article.wib.takeaway_text">A budget is not a restriction or punishment. It is an intentional allocation plan that tells your money where to go before the month starts, eliminating guilt and preventing unexpected shortfalls.</span>
     </div>
 
     <!-- Article Body -->
     <div class="prose max-w-none text-sm text-[#4d4d4d] space-y-6 leading-relaxed">
-      <h2 class="text-xl font-semibold text-[#171717] tracking-tight">The Problem With Traditional "Budgets"</h2>
-      <p>
+      <h2 class="text-xl font-semibold text-[#171717] tracking-tight" data-mrb-t="article.wib.h2_problem">The Problem With Traditional "Budgets"</h2>
+      <p data-mrb-t="article.wib.p_problem_1">
         Most people view a budget the same way they view an extreme crash diet: an exhausting exercise in deprivation where every small pleasure is scrutinized and denied. Unsurprisingly, restrictive budgets fail for the same reasons crash diets fail—human beings cannot sustain perpetual deprivation.
       </p>
-      <p>
+      <p data-mrb-t="article.wib.p_problem_2">
         When you tell yourself you are "not allowed" to buy coffee, meet friends for dinner, or purchase books, you eventually experience willpower fatigue, abandon the spreadsheet entirely, and return to anxious guesswork.
       </p>
 
-      <h2 class="text-xl font-semibold text-[#171717] tracking-tight">What a Real Budget Actually Is</h2>
-      <p>
+      <h2 class="text-xl font-semibold text-[#171717] tracking-tight" data-mrb-t="article.wib.h2_what_real">What a Real Budget Actually Is</h2>
+      <p data-mrb-t-html="article.wib.p_what_real_intro">
         In modern personal finance, a budget is simply a <strong>written or digital cash flow roadmap</strong>. It answers three fundamental questions:
       </p>
       <ul class="list-disc list-inside space-y-2 pl-2">
-        <li><strong>How much money comes in?</strong> Net take-home pay after taxes and mandatory payroll deductions.</li>
-        <li><strong>What must be paid to survive?</strong> Rent or mortgage, groceries, utilities, commuting fuel, and basic healthcare.</li>
-        <li><strong>What choices will I make with the remainder?</strong> How much goes toward future security (savings, debt elimination) versus present enjoyment (dining, entertainment, hobbies).</li>
+        <li data-mrb-t-html="article.wib.li_what_real_1"><strong>How much money comes in?</strong> Net take-home pay after taxes and mandatory payroll deductions.</li>
+        <li data-mrb-t-html="article.wib.li_what_real_2"><strong>What must be paid to survive?</strong> Rent or mortgage, groceries, utilities, commuting fuel, and basic healthcare.</li>
+        <li data-mrb-t-html="article.wib.li_what_real_3"><strong>What choices will I make with the remainder?</strong> How much goes toward future security (savings, debt elimination) versus present enjoyment (dining, entertainment, hobbies).</li>
       </ul>
 
-      <h2 class="text-xl font-semibold text-[#171717] tracking-tight">Permission to Spend Guilt-Free</h2>
-      <p>
+      <h2 class="text-xl font-semibold text-[#171717] tracking-tight" data-mrb-t="article.wib.h2_guilt_free">Permission to Spend Guilt-Free</h2>
+      <p data-mrb-t-html="article.wib.p_guilt_free">
         The greatest psychological benefit of an intentional budget is <em>permission to spend</em>. When you have consciously set aside $1,500 for rent, $500 for groceries, $400 for emergency savings, and $250 for dining out, you can spend that $250 on dinners with zero lingering guilt. You know with mathematical certainty that your essential bills and future goals are already fully funded.
       </p>
 
-      <h2 class="text-xl font-semibold text-[#171717] tracking-tight">The Three Core Elements of Every Successful Budget</h2>
+      <h2 class="text-xl font-semibold text-[#171717] tracking-tight" data-mrb-t="article.wib.h2_elements">The Three Core Elements of Every Successful Budget</h2>
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 not-prose my-6 text-xs">
         <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] space-y-1">
-          <span class="font-mono text-[#8f8f8f] block">Element 1</span>
-          <strong class="text-[#171717] block">Frequency Realism</strong>
-          <p class="text-[#4d4d4d]">Accounting for weekly groceries and annual car insurance at their true annualized rates.</p>
+          <span class="font-mono text-[#8f8f8f] block" data-mrb-t="article.wib.elem_1_tag">Element 1</span>
+          <strong class="text-[#171717] block" data-mrb-t="article.wib.elem_1_title">Frequency Realism</strong>
+          <p class="text-[#4d4d4d]" data-mrb-t="article.wib.elem_1_desc">Accounting for weekly groceries and annual car insurance at their true annualized rates.</p>
         </div>
         <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] space-y-1">
-          <span class="font-mono text-[#8f8f8f] block">Element 2</span>
-          <strong class="text-[#171717] block">Simplicity</strong>
-          <p class="text-[#4d4d4d]">Keeping category counts manageable so tracking doesn't become a second full-time job.</p>
+          <span class="font-mono text-[#8f8f8f] block" data-mrb-t="article.wib.elem_2_tag">Element 2</span>
+          <strong class="text-[#171717] block" data-mrb-t="article.wib.elem_2_title">Simplicity</strong>
+          <p class="text-[#4d4d4d]" data-mrb-t="article.wib.elem_2_desc">Keeping category counts manageable so tracking doesn't become a second full-time job.</p>
         </div>
         <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] space-y-1">
-          <span class="font-mono text-[#8f8f8f] block">Element 3</span>
-          <strong class="text-[#171717] block">Room for Fun</strong>
-          <p class="text-[#4d4d4d]">Budgeting for personal wants so you don't burn out and abandon the process.</p>
+          <span class="font-mono text-[#8f8f8f] block" data-mrb-t="article.wib.elem_3_tag">Element 3</span>
+          <strong class="text-[#171717] block" data-mrb-t="article.wib.elem_3_title">Room for Fun</strong>
+          <p class="text-[#4d4d4d]" data-mrb-t="article.wib.elem_3_desc">Budgeting for personal wants so you don't burn out and abandon the process.</p>
         </div>
       </div>
 
-      <h2 class="text-xl font-semibold text-[#171717] tracking-tight">Next Steps: Build Your Plan</h2>
-      <p>
+      <h2 class="text-xl font-semibold text-[#171717] tracking-tight" data-mrb-t="article.common.next_steps">Next Steps: Build Your Plan</h2>
+      <p data-mrb-t="article.wib.p_next_steps">
         Ready to take control of your monthly cash flow? Explore our interactive tools to calculate your numbers today:
       </p>
       <div class="not-prose pt-4 flex flex-col sm:flex-row gap-3">
-        <a href="/budget-planner/" class="inline-flex items-center justify-center h-10 px-6 rounded-full bg-[#171717] text-white text-xs font-medium hover:bg-neutral-800 transition">
+        <a href="/budget-planner/" class="inline-flex items-center justify-center h-10 px-6 rounded-full bg-[#171717] text-white text-xs font-medium hover:bg-neutral-800 transition" data-mrb-t="article.common.open_gbp">
           Open General Budget Planner
         </a>
-        <a href="/50-30-20-budget/" class="inline-flex items-center justify-center h-10 px-6 rounded-full bg-white text-[#171717] border border-[#ebebeb] text-xs font-medium hover:bg-neutral-50 transition shadow-whisper">
+        <a href="/50-30-20-budget/" class="inline-flex items-center justify-center h-10 px-6 rounded-full bg-white text-[#171717] border border-[#ebebeb] text-xs font-medium hover:bg-neutral-50 transition shadow-whisper" data-mrb-t="article.common.open_f3020">
           Explore 50/30/20 Rule
         </a>
       </div>

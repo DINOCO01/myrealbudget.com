@@ -27,7 +27,7 @@ export default defineConfig({
 				) {
 					item.changefreq = ChangeFreqEnum.WEEKLY;
 					item.priority = 0.9;
-				} else if (item.url.includes('/template')) {
+				} else if (item.url.includes('template')) {
 					item.changefreq = ChangeFreqEnum.MONTHLY;
 					item.priority = 0.8;
 				} else if (item.url.includes('/learn/')) {

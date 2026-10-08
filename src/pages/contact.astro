@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Eyebrow from '../components/ui/Eyebrow.astro';
 
-const title = 'Contact Us | My Real Budget';
+const title = 'Contact Us | My Real Budget Support & Feedback';
 const description = 'Get in touch with My Real Budget. Send us feedback, suggest new budget planner templates, or ask questions about our free cash flow tools.';
 const canonical = 'https://myrealbudget.com/contact/';
 
@@ -28,18 +28,18 @@ const contactSchema = {
       <div class="max-w-3xl space-y-4">
         <!-- Breadcrumb -->
         <nav class="flex items-center gap-2 text-xs font-mono text-[#64748b] dark:text-[#94a3b8]" aria-label="Breadcrumb">
-          <a href="/" class="hover:text-[#0e6e55] dark:hover:text-[#10b981] transition-colors">Home</a>
+          <a href="/" class="hover:text-[#0e6e55] dark:hover:text-[#10b981] transition-colors" data-mrb-t="error.home_breadcrumb">Home</a>
           <span aria-hidden="true">/</span>
-          <span class="text-[#0f172a] dark:text-[#f8fafc] font-medium">Contact Us</span>
+          <span class="text-[#0f172a] dark:text-[#f8fafc] font-medium" data-mrb-t="contact.breadcrumb">Contact Us</span>
         </nav>
 
-        <Eyebrow text="Support & Community" />
+        <Eyebrow text="Support & Community" tKey="contact.eyebrow" />
 
-        <h1 class="text-3xl sm:text-5xl font-semibold tracking-[-0.035em] text-[#0f172a] dark:text-[#f8fafc] leading-[1.15]">
+        <h1 class="text-3xl sm:text-5xl font-semibold tracking-[-0.035em] text-[#0f172a] dark:text-[#f8fafc] leading-[1.15]" data-mrb-t="contact.h1">
           Get in Touch with Our Team
         </h1>
 
-        <p class="text-base sm:text-lg text-[#475569] dark:text-[#94a3b8] leading-relaxed max-w-2xl">
+        <p class="text-base sm:text-lg text-[#475569] dark:text-[#94a3b8] leading-relaxed max-w-2xl" data-mrb-t="contact.hero_p">
           Have an idea for a new budget template, noticed an issue with a calculation, or want to share your experience? We read every message and look forward to hearing from you.
         </p>
       </div>
@@ -53,10 +53,10 @@ const contactSchema = {
       <div class="lg:col-span-7">
         <div class="bg-white dark:bg-[#111827] rounded-[16px] border border-[#e5e0d8] dark:border-[#1e293b] p-6 sm:p-9 shadow-whisper space-y-6">
           <div class="space-y-1.5">
-            <h2 class="text-xl sm:text-2xl font-semibold tracking-[-0.03em] text-[#0f172a] dark:text-[#f8fafc]">
+            <h2 class="text-xl sm:text-2xl font-semibold tracking-[-0.03em] text-[#0f172a] dark:text-[#f8fafc]" data-mrb-t="contact.form_title">
               Send Us a Message
             </h2>
-            <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8]">
+            <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8]" data-mrb-t="contact.form_desc">
               Fill out the form below. We usually respond within 24 to 48 business hours.
             </p>
           </div>
@@ -70,15 +70,16 @@ const contactSchema = {
               <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span>Message Sent Successfully!</span>
+              <span data-mrb-t="contact.success_title">Message Sent Successfully!</span>
             </div>
-            <p class="text-xs text-[#0e6e55] dark:text-[#10b981] leading-relaxed">
+            <p class="text-xs text-[#0e6e55] dark:text-[#10b981] leading-relaxed" data-mrb-t="contact.success_p">
               Thank you for reaching out. Your feedback has been safely submitted. We will review your note and respond back to your email if a reply is requested.
             </p>
             <button
               type="button"
               id="send-another-btn"
               class="mt-2 inline-flex items-center text-xs font-mono font-medium text-[#0e6e55] dark:text-[#10b981] underline hover:opacity-80"
+              data-mrb-t="contact.send_another"
             >
               Send another message
             </button>
@@ -89,7 +90,7 @@ const contactSchema = {
             <!-- Full Name -->
             <div class="space-y-1.5">
               <label for="name" class="block text-xs font-mono font-medium text-[#0f172a] dark:text-[#f8fafc]">
-                Full Name <span class="text-[#dc2626]">*</span>
+                <span data-mrb-t="contact.name_label">Full Name</span> <span class="text-[#dc2626]">*</span>
               </label>
               <input
                 type="text"
@@ -97,15 +98,16 @@ const contactSchema = {
                 name="name"
                 required
                 placeholder="Jane Doe"
+                data-mrb-t-placeholder="contact.name_ph"
                 class="w-full h-11 px-3.5 rounded-[8px] bg-white dark:bg-[#172033] border border-[#d6d0c4] dark:border-[#1e293b] text-sm text-[#0f172a] dark:text-[#f8fafc] placeholder-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#0e6e55] dark:focus:ring-[#10b981] transition shadow-xs"
               />
-              <span id="name-error" class="hidden text-xs text-[#dc2626]">Please provide your name.</span>
+              <span id="name-error" class="hidden text-xs text-[#dc2626]" data-mrb-t="contact.name_err">Please provide your name.</span>
             </div>
 
             <!-- Email Address -->
             <div class="space-y-1.5">
               <label for="email" class="block text-xs font-mono font-medium text-[#0f172a] dark:text-[#f8fafc]">
-                Email Address <span class="text-[#dc2626]">*</span>
+                <span data-mrb-t="contact.email_label">Email Address</span> <span class="text-[#dc2626]">*</span>
               </label>
               <input
                 type="email"
@@ -113,15 +115,16 @@ const contactSchema = {
                 name="email"
                 required
                 placeholder="jane@example.com"
+                data-mrb-t-placeholder="contact.email_ph"
                 class="w-full h-11 px-3.5 rounded-[8px] bg-white dark:bg-[#172033] border border-[#d6d0c4] dark:border-[#1e293b] text-sm text-[#0f172a] dark:text-[#f8fafc] placeholder-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#0e6e55] dark:focus:ring-[#10b981] transition shadow-xs"
               />
-              <span id="email-error" class="hidden text-xs text-[#dc2626]">Please provide a valid email address.</span>
+              <span id="email-error" class="hidden text-xs text-[#dc2626]" data-mrb-t="contact.email_err">Please provide a valid email address.</span>
             </div>
 
             <!-- Topic / Subject -->
             <div class="space-y-1.5">
               <label for="topic" class="block text-xs font-mono font-medium text-[#0f172a] dark:text-[#f8fafc]">
-                Topic / Subject <span class="text-[#dc2626]">*</span>
+                <span data-mrb-t="contact.topic_label">Topic / Subject</span> <span class="text-[#dc2626]">*</span>
               </label>
               <select
                 id="topic"
@@ -129,18 +132,18 @@ const contactSchema = {
                 required
                 class="w-full h-11 px-3 rounded-[8px] bg-white dark:bg-[#172033] border border-[#d6d0c4] dark:border-[#1e293b] text-sm text-[#0f172a] dark:text-[#f8fafc] focus:outline-none focus:ring-2 focus:ring-[#0e6e55] dark:focus:ring-[#10b981] transition shadow-xs"
               >
-                <option value="feedback">General Feedback & Suggestions</option>
-                <option value="template">Request a Budget Template (Google Sheets / Excel)</option>
-                <option value="bug">Report a Bug or Calculation Issue</option>
-                <option value="partnership">Media, Partnerships & Inquiries</option>
-                <option value="privacy">Privacy & Legal Inquiry</option>
+                <option value="feedback" data-mrb-t="contact.topic_opt1">General Feedback & Suggestions</option>
+                <option value="template" data-mrb-t="contact.topic_opt2">Request a Budget Template (Google Sheets / Excel)</option>
+                <option value="bug" data-mrb-t="contact.topic_opt3">Report a Bug or Calculation Issue</option>
+                <option value="partnership" data-mrb-t="contact.topic_opt4">Privacy or Security Inquiry</option>
+                <option value="privacy" data-mrb-t="contact.topic_opt5">Other</option>
               </select>
             </div>
 
             <!-- Message -->
             <div class="space-y-1.5">
               <label for="message" class="block text-xs font-mono font-medium text-[#0f172a] dark:text-[#f8fafc]">
-                Your Message <span class="text-[#dc2626]">*</span>
+                <span data-mrb-t="contact.message_label">Your Message</span> <span class="text-[#dc2626]">*</span>
               </label>
               <textarea
                 id="message"
@@ -148,9 +151,10 @@ const contactSchema = {
                 rows="5"
                 required
                 placeholder="Tell us what you have in mind..."
+                data-mrb-t-placeholder="contact.message_ph"
                 class="w-full p-3.5 rounded-[8px] bg-white dark:bg-[#172033] border border-[#d6d0c4] dark:border-[#1e293b] text-sm text-[#0f172a] dark:text-[#f8fafc] placeholder-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#0e6e55] dark:focus:ring-[#10b981] transition shadow-xs resize-y"
               ></textarea>
-              <span id="message-error" class="hidden text-xs text-[#dc2626]">Please enter a message (at least 10 characters).</span>
+              <span id="message-error" class="hidden text-xs text-[#dc2626]" data-mrb-t="contact.message_err">Please enter a message (at least 10 characters).</span>
             </div>
 
             <!-- Submit Button -->
@@ -160,14 +164,14 @@ const contactSchema = {
                 id="submit-btn"
                 class="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-11 px-8 rounded-full bg-[#0e6e55] hover:bg-[#0a5240] dark:bg-[#10b981] dark:hover:bg-[#34d399] text-white dark:text-[#042f24] text-sm font-medium transition shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0e6e55]/30 cursor-pointer"
               >
-                <span>Send Message</span>
+                <span data-mrb-t="contact.submit_btn">Send Message</span>
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
               </button>
             </div>
 
-            <p class="text-[11px] text-[#64748b] dark:text-[#94a3b8] font-mono">
+            <p class="text-[11px] text-[#64748b] dark:text-[#94a3b8] font-mono" data-mrb-t="contact.privacy_note">
               Privacy guarantee: Your email is used exclusively to answer your question. We never send unsolicited spam.
             </p>
           </form>
@@ -185,22 +189,22 @@ const contactSchema = {
           </div>
 
           <div class="space-y-1">
-            <h3 class="font-semibold text-base text-[#0f172a] dark:text-[#f8fafc]">Direct Email Channels</h3>
-            <p class="text-xs text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+            <h3 class="font-semibold text-base text-[#0f172a] dark:text-[#f8fafc]" data-mrb-t="contact.card_email_title">Direct Email Channels</h3>
+            <p class="text-xs text-[#475569] dark:text-[#94a3b8] leading-relaxed" data-mrb-t="contact.card_email_sub">
               If you prefer emailing directly from your email client:
             </p>
           </div>
 
           <div class="space-y-2 text-xs font-mono pt-1">
             <div class="p-2.5 rounded-[8px] bg-[#f8f7f4] dark:bg-[#172033] border border-[#e5e0d8] dark:border-[#1e293b]">
-              <span class="text-[#64748b] dark:text-[#94a3b8] block">General Support & Feedback:</span>
+              <span class="text-[#64748b] dark:text-[#94a3b8] block" data-mrb-t="contact.card_gen_support">General Support & Feedback:</span>
               <a href="mailto:support@myrealbudget.com" class="text-[#0e6e55] dark:text-[#10b981] font-semibold hover:underline">
                 support@myrealbudget.com
               </a>
             </div>
 
             <div class="p-2.5 rounded-[8px] bg-[#f8f7f4] dark:bg-[#172033] border border-[#e5e0d8] dark:border-[#1e293b]">
-              <span class="text-[#64748b] dark:text-[#94a3b8] block">Privacy & Data Inquiries:</span>
+              <span class="text-[#64748b] dark:text-[#94a3b8] block" data-mrb-t="contact.card_priv_inquiry">Privacy & Data Inquiries:</span>
               <a href="mailto:privacy@myrealbudget.com" class="text-[#0e6e55] dark:text-[#10b981] font-semibold hover:underline">
                 privacy@myrealbudget.com
               </a>
@@ -214,33 +218,33 @@ const contactSchema = {
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <h4 class="font-mono text-xs font-semibold uppercase tracking-wider text-[#64748b] dark:text-[#94a3b8]">
+            <h4 class="font-mono text-xs font-semibold uppercase tracking-wider text-[#64748b] dark:text-[#94a3b8]" data-mrb-t="contact.card_hours_title">
               Response Time
             </h4>
           </div>
-          <p class="text-xs text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+          <p class="text-xs text-[#475569] dark:text-[#94a3b8] leading-relaxed" data-mrb-t="contact.card_hours_desc">
             We review incoming emails Monday through Friday. While we strive to answer questions within <strong>24 to 48 hours</strong>, technical feedback or template requests might take a bit longer as we review calculations.
           </p>
         </div>
 
         <!-- Common Quick Answers -->
         <div class="bg-white dark:bg-[#111827] rounded-[16px] border border-[#e5e0d8] dark:border-[#1e293b] p-6 shadow-whisper space-y-4">
-          <h3 class="font-semibold text-sm text-[#0f172a] dark:text-[#f8fafc]">Frequently Asked Questions</h3>
+          <h3 class="font-semibold text-sm text-[#0f172a] dark:text-[#f8fafc]" data-mrb-t="contact.card_faq_title">Frequently Asked Questions</h3>
 
           <div class="space-y-3 text-xs text-[#475569] dark:text-[#94a3b8] leading-relaxed">
             <div class="space-y-1">
-              <strong class="text-[#0f172a] dark:text-[#f8fafc] block">Can I request a custom budget template?</strong>
-              <p>Yes! Tell us what categories or layout you need (e.g. freelancer taxes, couple's budget, debt snowball), and we may add it to our <a href="/budget-templates/" class="text-[#0e6e55] dark:text-[#10b981] underline">template library</a>.</p>
+              <strong class="text-[#0f172a] dark:text-[#f8fafc] block" data-mrb-t="contact.card_faq_q1">Can I request a custom budget template?</strong>
+              <p data-mrb-t-html="contact.card_faq_a1">Yes! Tell us what categories or layout you need (e.g. freelancer taxes, couple's budget, debt snowball), and we may add it to our <a href="/budget-templates/" class="text-[#0e6e55] dark:text-[#10b981] underline">template library</a>.</p>
             </div>
 
             <div class="space-y-1 pt-2 border-t border-[#f4f0ea] dark:border-[#1e293b]">
-              <strong class="text-[#0f172a] dark:text-[#f8fafc] block">Do you offer 1-on-1 financial advising?</strong>
-              <p>No. We build self-directed software tools, interactive planners, and educational guides, but we do not provide individualized financial or investment advising.</p>
+              <strong class="text-[#0f172a] dark:text-[#f8fafc] block" data-mrb-t="contact.card_faq_q2">Do you offer 1-on-1 financial advising?</strong>
+              <p data-mrb-t="contact.card_faq_a2">No. We build self-directed software tools, interactive planners, and educational guides, but we do not provide individualized financial or investment advising.</p>
             </div>
 
             <div class="space-y-1 pt-2 border-t border-[#f4f0ea] dark:border-[#1e293b]">
-              <strong class="text-[#0f172a] dark:text-[#f8fafc] block">How do I reset my saved budget?</strong>
-              <p>Simply click the "Reset" button located directly on the planner or clear your browser's local cache.</p>
+              <strong class="text-[#0f172a] dark:text-[#f8fafc] block" data-mrb-t="contact.card_faq_q3">How do I reset my saved budget?</strong>
+              <p data-mrb-t="contact.card_faq_a3">Simply click the "Reset" button located directly on the planner or clear your browser's local cache.</p>
             </div>
           </div>
         </div>

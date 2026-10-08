@@ -5,10 +5,10 @@ import { BUDGET_TEMPLATES } from '../data/templatesData';
 import { LEARN_ARTICLES } from '../data/learnArticles';
 import { HOME_FAQS } from '../data/homeFaqs';
 
-const title = 'Best Budget Planner | 50/30/20 & Zero-Based Budget | My Real Budget';
+const title = 'Free Budget Planner: 50/30/20 & Zero-Based | My Real Budget';
 const description = 'Plan your money with My Real Budget, an online budget planner for monthly budgets, the 50/30/20 rule, zero-based budgeting and budget templates.';
 const canonical = 'https://myrealbudget.com/';
-const ogTitle = 'Best Budget Planner | 50/30/20 & Zero-Based Budget | My Real Budget';
+const ogTitle = 'Free Budget Planner: 50/30/20 & Zero-Based | My Real Budget';
 const ogDescription = 'Plan your money with an online budget planner, 50/30/20 budgeting tools, zero-based budgeting and practical budget templates.';
 
 const faqPageJsonLd = {
@@ -16,10 +16,10 @@ const faqPageJsonLd = {
   '@type': 'FAQPage',
   mainEntity: HOME_FAQS.map((faq) => ({
     '@type': 'Question',
-    name: faq.question,
+    name: faq.question.en,
     acceptedAnswer: {
       '@type': 'Answer',
-      text: faq.answerText,
+      text: faq.answerText.en,
     },
   })),
 };
@@ -31,6 +31,7 @@ const faqPageJsonLd = {
   canonical={canonical}
   ogTitle={ogTitle}
   ogDescription={ogDescription}
+  jsonLd={faqPageJsonLd}
 >
   <!-- HERO SECTION WITH COMPACT EDITORIAL SPLIT LAYOUT -->
   <section class="relative pt-10 pb-14 sm:pt-14 sm:pb-18 border-b border-[#e5e0d8] dark:border-[#1e293b] bg-[#faf8f5] dark:bg-[#0b1220] transition-colors">
@@ -480,15 +481,15 @@ const faqPageJsonLd = {
     
     <!-- Section 1: Best Budget Planner Overview -->
     <article class="space-y-4">
-      <Eyebrow text="Planning Guide" />
-      <h2 class="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#0f172a] dark:text-[#f8fafc]">
+      <Eyebrow text="Planning Guide" tKey="home.ed_guide_eyebrow" />
+      <h2 class="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#0f172a] dark:text-[#f8fafc]" data-mrb-t="home.ed_s1_title">
         Best Budget Planner for Building a Budget That Works
       </h2>
       <div class="prose prose-slate dark:prose-invert text-base leading-relaxed text-[#334155] dark:text-[#cbd5e1] space-y-3">
-        <p>
+        <p data-mrb-t-html="home.ed_s1_p1">
           Managing money should not require complex spreadsheets or costly app subscriptions. The <strong class="text-[#0f172a] dark:text-[#f8fafc]">best budget planner</strong> is simple to update, easy to understand, and built around your real lifestyle. <strong class="text-[#0f172a] dark:text-[#f8fafc]">My Real Budget</strong> gives you a fast, private <strong class="text-[#0f172a] dark:text-[#f8fafc]">online budget planner</strong> to map out income, manage recurring obligations, and plan daily spending without sharing banking credentials.
         </p>
-        <p>
+        <p data-mrb-t-html="home.ed_s1_p2">
           Whether you prefer the percentage guidelines of the <a href="/50-30-20-budget/" class="text-[#0e6e55] dark:text-[#10b981] font-medium underline underline-offset-2 hover:opacity-80">50/30/20 budget</a> or the dollar-by-dollar control of <a href="/zero-based-budget/" class="text-[#0e6e55] dark:text-[#10b981] font-medium underline underline-offset-2 hover:opacity-80">zero-based budgeting</a>, our tools normalize varied paychecks and bill cycles into a clear <a href="/budget-planner/" class="text-[#0e6e55] dark:text-[#10b981] font-medium underline underline-offset-2 hover:opacity-80">monthly budget planner</a> you can rely on.
         </p>
       </div>
@@ -496,43 +497,43 @@ const faqPageJsonLd = {
 
     <!-- Section 2: What Is a Budget Planner? -->
     <article class="space-y-4">
-      <h2 class="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#0f172a] dark:text-[#f8fafc]">
+      <h2 class="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#0f172a] dark:text-[#f8fafc]" data-mrb-t="home.ed_s2_title">
         What Is a Budget Planner?
       </h2>
       <div class="prose prose-slate dark:prose-invert text-base leading-relaxed text-[#334155] dark:text-[#cbd5e1] space-y-3">
-        <p>
+        <p data-mrb-t-html="home.ed_s2_p1">
           A <strong class="text-[#0f172a] dark:text-[#f8fafc]">budget planner</strong> is a forward-looking financial roadmap. While expense tracking looks backward to record past spending, a planner directs each dollar before the month starts.
         </p>
-        <p>
+        <p data-mrb-t-html="home.ed_s2_p2">
           An effective <strong class="text-[#0f172a] dark:text-[#f8fafc]">monthly budget planner</strong> balances seven core financial elements:
         </p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-3 not-prose">
           <div class="p-3 rounded-[10px] bg-white dark:bg-[#111827] border border-[#e5e0d8] dark:border-[#1e293b]">
-            <h3 class="text-xs font-mono font-semibold uppercase tracking-wider text-[#0e6e55] dark:text-[#10b981]">Net Income</h3>
-            <p class="text-xs text-[#475569] dark:text-[#94a3b8] mt-0.5">Reliable take-home pay from all salary, hourly, or freelance sources.</p>
+            <h3 class="text-xs font-mono font-semibold uppercase tracking-wider text-[#0e6e55] dark:text-[#10b981]" data-mrb-t="home.ed_s2_c1_title">Net Income</h3>
+            <p class="text-xs text-[#475569] dark:text-[#94a3b8] mt-0.5" data-mrb-t="home.ed_s2_c1_desc">Reliable take-home pay from all salary, hourly, or freelance sources.</p>
           </div>
           <div class="p-3 rounded-[10px] bg-white dark:bg-[#111827] border border-[#e5e0d8] dark:border-[#1e293b]">
-            <h3 class="text-xs font-mono font-semibold uppercase tracking-wider text-[#0e6e55] dark:text-[#10b981]">Fixed Expenses</h3>
-            <p class="text-xs text-[#475569] dark:text-[#94a3b8] mt-0.5">Non-negotiable recurring essentials like rent, mortgage, insurance, and utilities.</p>
+            <h3 class="text-xs font-mono font-semibold uppercase tracking-wider text-[#0e6e55] dark:text-[#10b981]" data-mrb-t="home.ed_s2_c2_title">Fixed Expenses</h3>
+            <p class="text-xs text-[#475569] dark:text-[#94a3b8] mt-0.5" data-mrb-t="home.ed_s2_c2_desc">Non-negotiable recurring essentials like rent, mortgage, insurance, and utilities.</p>
           </div>
           <div class="p-3 rounded-[10px] bg-white dark:bg-[#111827] border border-[#e5e0d8] dark:border-[#1e293b]">
-            <h3 class="text-xs font-mono font-semibold uppercase tracking-wider text-[#0e6e55] dark:text-[#10b981]">Variable Expenses</h3>
-            <p class="text-xs text-[#475569] dark:text-[#94a3b8] mt-0.5">Essential categories that vary each month, including groceries and transportation.</p>
+            <h3 class="text-xs font-mono font-semibold uppercase tracking-wider text-[#0e6e55] dark:text-[#10b981]" data-mrb-t="home.ed_s2_c3_title">Variable Expenses</h3>
+            <p class="text-xs text-[#475569] dark:text-[#94a3b8] mt-0.5" data-mrb-t="home.ed_s2_c3_desc">Essential categories that vary each month, including groceries and transportation.</p>
           </div>
           <div class="p-3 rounded-[10px] bg-white dark:bg-[#111827] border border-[#e5e0d8] dark:border-[#1e293b]">
-            <h3 class="text-xs font-mono font-semibold uppercase tracking-wider text-[#0e6e55] dark:text-[#10b981]">Savings & Emergency Funds</h3>
-            <p class="text-xs text-[#475569] dark:text-[#94a3b8] mt-0.5">Intentional reserves for unexpected events and long-term security.</p>
+            <h3 class="text-xs font-mono font-semibold uppercase tracking-wider text-[#0e6e55] dark:text-[#10b981]" data-mrb-t="home.ed_s2_c4_title">Savings & Emergency Funds</h3>
+            <p class="text-xs text-[#475569] dark:text-[#94a3b8] mt-0.5" data-mrb-t="home.ed_s2_c4_desc">Intentional reserves for unexpected events and long-term security.</p>
           </div>
           <div class="p-3 rounded-[10px] bg-white dark:bg-[#111827] border border-[#e5e0d8] dark:border-[#1e293b]">
-            <h3 class="text-xs font-mono font-semibold uppercase tracking-wider text-[#0e6e55] dark:text-[#10b981]">Debt Payments</h3>
-            <p class="text-xs text-[#475569] dark:text-[#94a3b8] mt-0.5">Scheduled principal and interest payments for credit cards, loans, or student debt.</p>
+            <h3 class="text-xs font-mono font-semibold uppercase tracking-wider text-[#0e6e55] dark:text-[#10b981]" data-mrb-t="home.ed_s2_c5_title">Debt Payments</h3>
+            <p class="text-xs text-[#475569] dark:text-[#94a3b8] mt-0.5" data-mrb-t="home.ed_s2_c5_desc">Scheduled principal and interest payments for credit cards, loans, or student debt.</p>
           </div>
           <div class="p-3 rounded-[10px] bg-white dark:bg-[#111827] border border-[#e5e0d8] dark:border-[#1e293b]">
-            <h3 class="text-xs font-mono font-semibold uppercase tracking-wider text-[#0e6e55] dark:text-[#10b981]">Discretionary Spending</h3>
-            <p class="text-xs text-[#475569] dark:text-[#94a3b8] mt-0.5">Lifestyle choices like dining out, entertainment, and personal hobbies.</p>
+            <h3 class="text-xs font-mono font-semibold uppercase tracking-wider text-[#0e6e55] dark:text-[#10b981]" data-mrb-t="home.ed_s2_c6_title">Discretionary Spending</h3>
+            <p class="text-xs text-[#475569] dark:text-[#94a3b8] mt-0.5" data-mrb-t="home.ed_s2_c6_desc">Lifestyle choices like dining out, entertainment, and personal hobbies.</p>
           </div>
         </div>
-        <p>
+        <p data-mrb-t="home.ed_s2_p3">
           Organizing these categories into a single plan helps you eliminate surprises and fund meaningful financial goals consistently.
         </p>
       </div>
@@ -540,150 +541,136 @@ const faqPageJsonLd = {
 
     <!-- Section 3: How the 50/30/20 Rule Works -->
     <article class="space-y-4">
-      <h2 class="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#0f172a] dark:text-[#f8fafc]">
+      <h2 class="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#0f172a] dark:text-[#f8fafc]" data-mrb-t="home.ed_s3_title">
         How the 50/30/20 Rule Works
       </h2>
       <div class="prose prose-slate dark:prose-invert text-base leading-relaxed text-[#334155] dark:text-[#cbd5e1] space-y-3">
-        <p>
+        <p data-mrb-t-html="home.ed_s3_p1">
           If you want to know <strong class="text-[#0f172a] dark:text-[#f8fafc]">what is the 50/30/20 rule</strong>, it is an intuitive proportional framework that splits take-home pay into three clear target categories:
         </p>
         <ul class="list-disc pl-5 space-y-1.5">
-          <li>
+          <li data-mrb-t-html="home.ed_s3_li1">
             <strong class="text-[#0f172a] dark:text-[#f8fafc]">50% Needs:</strong> Essential living expenses required for survival and work—housing, groceries, utilities, basic transportation, and minimum loan payments.
           </li>
-          <li>
+          <li data-mrb-t-html="home.ed_s3_li2">
             <strong class="text-[#0f172a] dark:text-[#f8fafc]">30% Wants:</strong> Non-essential lifestyle expenses like dining out, hobbies, subscriptions, travel, and entertainment.
           </li>
-          <li>
+          <li data-mrb-t-html="home.ed_s3_li3">
             <strong class="text-[#0f172a] dark:text-[#f8fafc]">20% Savings & Debt Repayment:</strong> Future stability funds, including emergency savings, retirement accounts, and extra debt principal reduction.
           </li>
         </ul>
-        <p>
+        <p data-mrb-t-html="home.ed_s3_p2">
           The <strong class="text-[#0f172a] dark:text-[#f8fafc]">50/30/20 rule</strong> (also called the <strong class="text-[#0f172a] dark:text-[#f8fafc]">50 30 20 rule</strong> or <strong class="text-[#0f172a] dark:text-[#f8fafc]">50 30 20 budget rule</strong>) provides a broad benchmark rather than an inflexible mandate. Calculate your target amounts instantly in our <a href="/50-30-20-budget/" class="text-[#0e6e55] dark:text-[#10b981] font-medium underline underline-offset-2 hover:opacity-80">50/30/20 budget calculator</a>.
         </p>
       </div>
     </article>
 
-    <!-- Section 4: When Might 50/30/20 Not Be the Best Strategy? -->
+    <!-- Section 4: What Is a Zero-Based Budget? -->
     <article class="space-y-4">
-      <h2 class="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#0f172a] dark:text-[#f8fafc]">
-        When Might the 50/30/20 Rule Not Be the Best Saving Strategy to Use?
-      </h2>
-      <div class="prose prose-slate dark:prose-invert text-base leading-relaxed text-[#334155] dark:text-[#cbd5e1] space-y-3">
-        <p>
-          Understanding <em class="text-[#0f172a] dark:text-[#f8fafc]">when might the 50/30/20 rule not be the best saving strategy to use</em> is essential because rigid ratios do not fit every financial situation:
-        </p>
-        <div class="space-y-2.5 my-3 not-prose">
-          <div class="p-3.5 rounded-[10px] bg-[#f8f7f4] dark:bg-[#172033] border border-[#e5e0d8] dark:border-[#1e293b]">
-            <h3 class="text-sm font-semibold text-[#0f172a] dark:text-[#f8fafc]">Very High Housing Costs</h3>
-            <p class="text-xs text-[#475569] dark:text-[#94a3b8] mt-1 leading-relaxed">In high-cost cities, rent or mortgage payments alone often exceed 40% to 50% of net income, requiring a realistic 60/20/20 or 70/15/15 target instead.</p>
-          </div>
-          <div class="p-3.5 rounded-[10px] bg-[#f8f7f4] dark:bg-[#172033] border border-[#e5e0d8] dark:border-[#1e293b]">
-            <h3 class="text-sm font-semibold text-[#0f172a] dark:text-[#f8fafc]">High-Interest Consumer Debt</h3>
-            <p class="text-xs text-[#475569] dark:text-[#94a3b8] mt-1 leading-relaxed">When carrying 20%+ APR credit card balances, spending 30% on wants while slowly paying off debt can cost thousands in interest. Aggressive debt repayment frameworks recommend temporarily slashing wants to extinguish debt faster.</p>
-          </div>
-          <div class="p-3.5 rounded-[10px] bg-[#f8f7f4] dark:bg-[#172033] border border-[#e5e0d8] dark:border-[#1e293b]">
-            <h3 class="text-sm font-semibold text-[#0f172a] dark:text-[#f8fafc]">Irregular or Commission Income</h3>
-            <p class="text-xs text-[#475569] dark:text-[#94a3b8] mt-1 leading-relaxed">Freelancers and gig workers face fluctuating paychecks. Fixed percentages can lead to shortfalls during lean months, making baseline needs budgeting more effective.</p>
-          </div>
-          <div class="p-3.5 rounded-[10px] bg-[#f8f7f4] dark:bg-[#172033] border border-[#e5e0d8] dark:border-[#1e293b]">
-            <h3 class="text-sm font-semibold text-[#0f172a] dark:text-[#f8fafc]">Low Income & Immediate Emergency Gaps</h3>
-            <p class="text-xs text-[#475569] dark:text-[#94a3b8] mt-1 leading-relaxed">When essential bills consume most earnings, a strict 20% savings target may be unrealistic. Modifying targets to build an initial emergency fund builds confidence without discouragement.</p>
-          </div>
-        </div>
-        <p class="text-xs text-[#64748b] dark:text-[#94a3b8] italic">
-          Educational note: Budgeting frameworks provide helpful benchmarks, not tailored investment or financial advisory services.
-        </p>
-      </div>
-    </article>
-
-    <!-- Section 5: What Is a Zero-Based Budget? -->
-    <article class="space-y-4">
-      <h2 class="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#0f172a] dark:text-[#f8fafc]">
+      <h2 class="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#0f172a] dark:text-[#f8fafc]" data-mrb-t="home.ed_s4_title">
         What Is a Zero-Based Budget?
       </h2>
       <div class="prose prose-slate dark:prose-invert text-base leading-relaxed text-[#334155] dark:text-[#cbd5e1] space-y-3">
-        <p>
+        <p data-mrb-t-html="home.ed_s4_p1">
           If you are researching <strong class="text-[#0f172a] dark:text-[#f8fafc]">what is a 0 based budget</strong>, it is a method where every single dollar of monthly income is assigned a clear job until none remains unallocated:
         </p>
         <div class="p-3.5 rounded-[10px] bg-white dark:bg-[#111827] border border-[#e5e0d8] dark:border-[#1e293b] font-mono text-sm text-center font-semibold text-[#0e6e55] dark:text-[#10b981] not-prose shadow-whisper">
           Income − Planned Expenses − Savings − Debt Payments = $0
         </div>
-        <p>
+        <p data-mrb-t-html="home.ed_s4_p2">
           A <strong class="text-[#0f172a] dark:text-[#f8fafc]">zero based budget</strong> (or <strong class="text-[#0f172a] dark:text-[#f8fafc]">0 based budget</strong>) does not mean spending down your bank account to zero. Rather, it means giving every dollar a defined destination—bills, groceries, emergency savings, or debt payoff. By preventing unallocated funds from sitting idly, you stop accidental overspending and stay in control. Test this workflow in our <a href="/zero-based-budget/" class="text-[#0e6e55] dark:text-[#10b981] font-medium underline underline-offset-2 hover:opacity-80">zero-based budget tool</a>.
         </p>
       </div>
     </article>
 
-    <!-- Section 6: Monthly and Weekly Budget Planning -->
+    <!-- Section 5: Monthly and Weekly Budget Planning -->
     <article class="space-y-4">
-      <h2 class="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#0f172a] dark:text-[#f8fafc]">
-        Monthly and Weekly Budget Planning
+      <h2 class="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#0f172a] dark:text-[#f8fafc]" data-mrb-t="home.ed_s5_title">
+        Budgeting Frequency Normalization Explained
       </h2>
       <div class="prose prose-slate dark:prose-invert text-base leading-relaxed text-[#334155] dark:text-[#cbd5e1] space-y-3">
-        <p>
-          Successful money management combines big-picture monthly structure with practical weekly pacing. A <strong class="text-[#0f172a] dark:text-[#f8fafc]">monthly budget planner</strong> provides an overarching framework: tracking major bill due dates, matching paychecks, and locking in monthly savings targets.
+        <p data-mrb-t="home.ed_s5_p1">
+          Real cash flows rarely match monthly cycles. You might receive weekly paychecks or pay semi-annual insurance. Standard budgeting tools often produce inaccurate totals by assuming a month is four weeks (28 days instead of 30.4 days).
         </p>
-        <p>
-          Meanwhile, a <strong class="text-[#0f172a] dark:text-[#f8fafc]">weekly budget planner</strong> breaks variable categories like groceries and entertainment into manageable 7-day allowances. This pacing helps prevent exhausting your flexible spending early in the month.
-        </p>
-        <p>
-          Our <strong class="text-[#0f172a] dark:text-[#f8fafc]">online budget planner</strong> automatically handles payment frequency conversion, translating bi-weekly wages, monthly rents, and annual insurance premiums into synchronized monthly figures.
+        <p data-mrb-t="home.ed_s5_p2">
+          Our engine performs annualized frequency conversion: weekly items are multiplied by 52 and divided by 12 (4.33 weeks per month), while biweekly items use 26 pay periods divided by 12. This ensures your monthly numbers reflect true annual cash flows.
         </p>
       </div>
     </article>
 
-    <!-- Section 7: Budget Planner Templates -->
+    <!-- Section 6: Budget Planner Templates -->
     <article class="space-y-4">
-      <h2 class="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#0f172a] dark:text-[#f8fafc]">
-        Budget Planner Templates
+      <h2 class="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#0f172a] dark:text-[#f8fafc]" data-mrb-t="home.ed_s6_title">
+        Using Free Budget Planner Templates
       </h2>
       <div class="prose prose-slate dark:prose-invert text-base leading-relaxed text-[#334155] dark:text-[#cbd5e1] space-y-3">
-        <p>
-          For people who prefer customizing their cash flow in spreadsheets, a pre-formatted <strong class="text-[#0f172a] dark:text-[#f8fafc]">budget planner template</strong> saves hours of manual formula setup and offers total data privacy.
+        <p data-mrb-t-html="home.ed_s6_p1">
+          Spreadsheets remain one of the most versatile ways to manage money. Our free <a href="/budget-planner-template/" class="text-[#0e6e55] dark:text-[#10b981] font-medium underline underline-offset-2 hover:opacity-80">budget planner templates</a> work with Google Sheets, Microsoft Excel, and Apple Numbers without paid macros or locked cells.
         </p>
-        <p>
-          My Real Budget offers free downloadable CSV templates that import cleanly into Excel, Numbers, and Google Drive as a <strong class="text-[#0f172a] dark:text-[#f8fafc]">budget planner template Google Sheets</strong> worksheet. Explore pre-built layouts for simple monthly budgets, college students, and dual-income households in our <a href="/budget-planner-template/" class="text-[#0e6e55] dark:text-[#10b981] font-medium underline underline-offset-2 hover:opacity-80">budget planner templates library</a>.
-        </p>
-        <p>
-          If you are considering a printed <strong class="text-[#0f172a] dark:text-[#f8fafc]">budget planner book</strong>, paper ledgers offer a nice tactile habit, but digital spreadsheets and web planners automate the math, eliminate calculation errors, and update instantly when life changes.
-        </p>
+      </div>
+    </article>
+
+    <!-- Section 7: How to Build a Budget in 5 Steps -->
+    <article class="space-y-4">
+      <h2 class="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#0f172a] dark:text-[#f8fafc]" data-mrb-t="home.ed_s7_title">
+        How to Build a Budget in 5 Steps
+      </h2>
+      <div class="prose prose-slate dark:prose-invert text-base leading-relaxed text-[#334155] dark:text-[#cbd5e1] space-y-3">
+        <ul class="list-disc pl-5 space-y-1.5">
+          <li data-mrb-t-html="home.ed_s7_step1">
+            <strong>1. Calculate Reliable Take-Home Income:</strong> Start with after-tax earnings from all steady streams.
+          </li>
+          <li data-mrb-t-html="home.ed_s7_step2">
+            <strong>2. Categorize Core Living Obligations:</strong> Identify essential survival costs like housing, groceries, and utilities.
+          </li>
+          <li data-mrb-t-html="home.ed_s7_step3">
+            <strong>3. Select a Budgeting Method:</strong> Pick 50/30/20 for simplicity or zero-based for granular control.
+          </li>
+          <li data-mrb-t-html="home.ed_s7_step4">
+            <strong>4. Normalize Payment Frequencies:</strong> Convert weekly groceries and annual premiums to exact monthly values.
+          </li>
+          <li data-mrb-t-html="home.ed_s7_step5">
+            <strong>5. Review and Adjust Monthly:</strong> Compare actual results against targets and adapt as life evolves.
+          </li>
+        </ul>
       </div>
     </article>
 
     <!-- Section 8: Choose a Budgeting Method That Fits Your Life -->
     <article class="space-y-4">
-      <h2 class="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#0f172a] dark:text-[#f8fafc]">
+      <h2 class="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#0f172a] dark:text-[#f8fafc]" data-mrb-t="home.ed_s8_title">
         Choose a Budgeting Method That Fits Your Life
       </h2>
       <div class="prose prose-slate dark:prose-invert text-base leading-relaxed text-[#334155] dark:text-[#cbd5e1] space-y-3">
-        <p>
+        <p data-mrb-t="home.ed_s8_p1">
           No single budgeting technique works for everyone. The best system is the one that aligns with your income rhythm and current financial stage:
         </p>
         <ul class="list-disc pl-5 space-y-1.5">
-          <li>
+          <li data-mrb-t-html="home.ed_s8_b1">
             <strong class="text-[#0f172a] dark:text-[#f8fafc]">50/30/20 Rule:</strong> Best for hands-off consistency and high-level balance without micro-tracking every receipt.
           </li>
-          <li>
+          <li data-mrb-t-html="home.ed_s8_b2">
             <strong class="text-[#0f172a] dark:text-[#f8fafc]">Zero-Based Budgeting:</strong> Ideal for paying down high-interest debt aggressively and stopping cash leaks.
           </li>
-          <li>
+          <li data-mrb-t-html="home.ed_s8_b3">
             <strong class="text-[#0f172a] dark:text-[#f8fafc]">General Planner:</strong> Perfect for irregular pay schedules, customized categories, and normalized bill frequencies.
           </li>
         </ul>
-        <p>
+        <p data-mrb-t="home.ed_s8_p2">
           Take control of your cash flow with practical, private tools designed for real life.
         </p>
         <div class="pt-3 not-prose flex flex-wrap gap-3">
           <a
             href="/budget-planner/"
             class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#0e6e55] hover:bg-[#0a5240] dark:bg-[#10b981] dark:hover:bg-[#34d399] text-white dark:text-[#042f24] text-sm font-medium transition shadow-sm"
+            data-mrb-t="home.open_free_planner"
           >
             Start Budget Planner
           </a>
           <a
             href="/budget-templates/"
             class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white dark:bg-[#111827] text-[#0f172a] dark:text-[#f8fafc] border border-[#e5e0d8] dark:border-[#1e293b] text-sm font-medium hover:bg-[#f4f0ea] dark:hover:bg-[#172033] transition shadow-whisper"
+            data-mrb-t="home.download_templates"
           >
             Download Free Templates
           </a>
@@ -716,13 +703,13 @@ const faqPageJsonLd = {
       {BUDGET_TEMPLATES.slice(0, 3).map((template) => (
         <div class="bg-white dark:bg-[#111827] rounded-[12px] border border-[#e5e0d8] dark:border-[#1e293b] p-6 shadow-whisper flex flex-col justify-between hover:border-[#cbd5e1] dark:hover:border-[#334155] transition">
           <div class="space-y-3">
-            <span class="inline-block px-2.5 py-0.5 rounded-[6px] bg-[#f4f0ea] dark:bg-[#172033] border border-[#e5e0d8] dark:border-[#1e293b] text-xs font-mono text-[#475569] dark:text-[#94a3b8]">
+            <span class="inline-block px-2.5 py-0.5 rounded-[6px] bg-[#f4f0ea] dark:bg-[#172033] border border-[#e5e0d8] dark:border-[#1e293b] text-xs font-mono text-[#475569] dark:text-[#94a3b8]" data-mrb-t={`tmpl.${template.id}.method`}>
               {template.method}
             </span>
-            <h3 class="text-base font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+            <h3 class="text-base font-semibold text-[#0f172a] dark:text-[#f8fafc]" data-mrb-t={`tmpl.${template.id}.name`}>
               {template.name}
             </h3>
-            <p class="text-xs text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+            <p class="text-xs text-[#475569] dark:text-[#94a3b8] leading-relaxed" data-mrb-t={`tmpl.${template.id}.short_desc`}>
               {template.shortDescription}
             </p>
           </div>
@@ -766,16 +753,16 @@ const faqPageJsonLd = {
           <article class="bg-white dark:bg-[#111827] rounded-[12px] border border-[#e5e0d8] dark:border-[#1e293b] p-6 shadow-whisper flex flex-col justify-between hover:border-[#cbd5e1] dark:hover:border-[#334155] transition">
             <div class="space-y-3">
               <div class="flex items-center justify-between text-xs text-[#64748b] dark:text-[#94a3b8] font-mono">
-                <span>{article.category}</span>
-                <span>{article.readTime}</span>
+                <span data-mrb-t={`learn.${article.slug}.category`}>{article.category.en}</span>
+                <span data-mrb-t={`learn.${article.slug}.read_time`}>{article.readTime.en}</span>
               </div>
               <h3 class="text-base font-semibold text-[#0f172a] dark:text-[#f8fafc] leading-snug">
-                <a href={`/learn/${article.slug}/`} class="hover:underline">
-                  {article.title}
+                <a href={`/learn/${article.slug}/`} class="hover:underline" data-mrb-t={`learn.${article.slug}.title`}>
+                  {article.title.en}
                 </a>
               </h3>
-              <p class="text-xs text-[#475569] dark:text-[#94a3b8] leading-relaxed">
-                {article.summary}
+              <p class="text-xs text-[#475569] dark:text-[#94a3b8] leading-relaxed" data-mrb-t={`learn.${article.slug}.summary`}>
+                {article.summary.en}
               </p>
             </div>
             <div class="pt-4 mt-4 border-t border-[#ede9e1] dark:border-[#1e293b]">
@@ -809,8 +796,8 @@ const faqPageJsonLd = {
       {HOME_FAQS.map((faq) => (
         <details class="group bg-white dark:bg-[#111827] border border-[#e5e0d8] dark:border-[#1e293b] rounded-[12px] p-5 shadow-whisper transition-colors">
           <summary class="flex items-center justify-between cursor-pointer list-none select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0e6e55]/30 rounded-[6px] [&::-webkit-details-marker]:hidden">
-            <h3 class="text-base sm:text-[17px] font-semibold text-[#0f172a] dark:text-[#f8fafc] pr-4 leading-snug">
-              {faq.question}
+            <h3 class="text-base sm:text-[17px] font-semibold text-[#0f172a] dark:text-[#f8fafc] pr-4 leading-snug" data-mrb-t={`faq.${faq.id}.q`}>
+              {faq.question.en}
             </h3>
             <span class="text-[#0e6e55] dark:text-[#10b981] transition-transform duration-200 group-open:rotate-180 flex-shrink-0" aria-hidden="true">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -820,14 +807,12 @@ const faqPageJsonLd = {
           </summary>
           <div
             class="pt-3.5 text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed border-t border-[#f4f0ea] dark:border-[#1e293b] mt-3.5"
-            set:html={faq.answerHtml}
+            data-mrb-t-html={`faq.${faq.id}.a`}
+            set:html={faq.answerHtml.en}
           />
         </details>
       ))}
     </div>
-
-    <!-- FAQPage JSON-LD Structured Data -->
-    <script type="application/ld+json" set:html={JSON.stringify(faqPageJsonLd)} />
   </section>
 
   <!-- FINAL CTA BAND -->

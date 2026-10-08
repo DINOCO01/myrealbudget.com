@@ -30,23 +30,23 @@ const description = 'Browse our directory of free budget templates. Choose from 
         <article class="bg-white rounded-[12px] border border-[#ebebeb] p-6 shadow-whisper flex flex-col justify-between hover:border-[#a1a1a1] transition">
           <div class="space-y-4">
             <div class="flex items-center justify-between">
-              <span class="inline-block px-2.5 py-0.5 rounded-[6px] bg-[#f2f2f2] text-xs font-mono text-[#4d4d4d]">
+              <span class="inline-block px-2.5 py-0.5 rounded-[6px] bg-[#f2f2f2] text-xs font-mono text-[#4d4d4d]" data-mrb-t={`tmpl.${template.id}.method`}>
                 {template.method}
               </span>
               <span class="text-xs text-[#8f8f8f] font-mono">CSV / Sheets</span>
             </div>
 
-            <h2 class="text-lg font-semibold text-[#171717] tracking-tight">
+            <h2 class="text-lg font-semibold text-[#171717] tracking-tight" data-mrb-t={`tmpl.${template.id}.name`}>
               {template.name}
             </h2>
 
-            <p class="text-xs text-[#4d4d4d] leading-relaxed">
+            <p class="text-xs text-[#4d4d4d] leading-relaxed" data-mrb-t={`tmpl.${template.id}.short_desc`}>
               {template.shortDescription}
             </p>
 
             <div class="pt-2 border-t border-[#f2f2f2] space-y-1">
               <span class="text-[11px] font-mono uppercase text-[#8f8f8f] block" data-mrb-t="templates.who_for">Who it is for:</span>
-              <p class="text-xs text-[#171717]">
+              <p class="text-xs text-[#171717]" data-mrb-t={`tmpl.${template.id}.audience`}>
                 {template.targetAudience}
               </p>
             </div>
@@ -75,8 +75,8 @@ const description = 'Browse our directory of free budget templates. Choose from 
     <!-- Bottom Guidance -->
     <div class="mt-16 p-8 rounded-[12px] bg-white border border-[#ebebeb] shadow-whisper text-center max-w-2xl mx-auto space-y-4">
       <h3 class="text-lg font-semibold text-[#171717]" data-mrb-t="templates.help_title">Need help picking a template?</h3>
-      <p class="text-xs text-[#4d4d4d] leading-relaxed">
-        If you are completely new to budgeting, start with the <a href="/50-30-20-budget/" class="text-[#0070f3] underline font-medium">50/30/20 template</a>. If you have aggressive debt payoff goals, choose the <a href="/zero-based-budget/" class="text-[#0070f3] underline font-medium">Zero-Based template</a>.
+      <p class="text-xs text-[#4d4d4d] leading-relaxed" data-mrb-t="templates.help_desc">
+        If you are completely new to budgeting, start with the 50/30/20 template. If you have aggressive debt payoff goals, choose the Zero-Based template.
       </p>
     </div>
   </main>

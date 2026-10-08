@@ -8,6 +8,14 @@
  * - pt: Portuguese (Português)
  */
 
+import { HOME_FAQ_TRANSLATIONS } from '../data/homeFaqs';
+import { LEARN_TRANSLATIONS } from '../data/learnArticles';
+import { PAGE_FAQ_TRANSLATIONS } from '../data/pageFaqs';
+import { ARTICLE_CONTENT_TRANSLATIONS } from '../data/learnArticleContent';
+import { TEMPLATES_TRANSLATIONS } from '../data/templatesTranslations';
+import { EDITORIAL_TRANSLATIONS } from '../data/editorialTranslations';
+import { SECONDARY_PAGES_TRANSLATIONS } from '../data/secondaryPagesTranslations';
+
 export interface LanguageConfig {
   code: string;
   label: string;
@@ -2011,6 +2019,69 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'aria.switch_dark': 'Alternar para modo escuro',
   },
 };
+
+// Integrate localized FAQ, Learn card metadata, subpage FAQs, and article content into TRANSLATIONS
+const FAQ_LEARN_EXTRAS: Record<string, Record<string, string>> = {
+  en: {
+    'home.faq_heading': 'Frequently Asked Questions About Budget Planning',
+    'home.faq_sub': 'Everything you need to know about setting up a realistic budget, choosing between the 50/30/20 rule and zero-based budgeting, and using free planner templates.',
+    'home.learn_heading': 'Master Your Money With Real Guides',
+    'home.learn_sub': 'In-depth guides on budgeting fundamentals, method comparisons, and realistic cash flow strategies.',
+    'home.view_guides': 'View all guides →',
+    'home.read_article': 'Read full article →',
+    'learn.ready_to_plan_desc': 'Reading guides is helpful, but seeing your real cash flow numbers in an interactive tool creates immediate clarity.',
+  },
+  es: {
+    'home.faq_heading': 'Preguntas Frecuentes sobre la Planificación de Presupuesto',
+    'home.faq_sub': 'Todo lo que necesita saber para crear un presupuesto realista, elegir entre la regla 50/30/20 y el presupuesto base cero, y utilizar plantillas gratuitas.',
+    'home.learn_heading': 'Domine su Dinero con Guías Prácticas',
+    'home.learn_sub': 'Guías detalladas sobre fundamentos presupuestarios, comparativas de métodos y estrategias reales de flujo de caja.',
+    'home.view_guides': 'Ver todas las guías →',
+    'home.read_article': 'Leer artículo completo →',
+    'learn.ready_to_plan_desc': 'Leer guías es útil, pero ver sus cifras reales en una herramienta interactiva aporta claridad inmediata.',
+  },
+  fr: {
+    'home.faq_heading': 'Foire Aux Questions sur la Gestion Budgétaire',
+    'home.faq_sub': 'Tout ce qu\'il faut savoir pour concevoir un budget réaliste, choisir entre la règle 50/30/20 et le budget base zéro, et utiliser nos modèles gratuits.',
+    'home.learn_heading': 'Maîtrisez Vos Finances avec des Guides Concrets',
+    'home.learn_sub': 'Des guides détaillés sur les fondamentaux du budget, la comparaison des méthodes et les stratégies de trésorerie concrètes.',
+    'home.view_guides': 'Voir tous les guides →',
+    'home.read_article': 'Lire l\'article complet →',
+    'learn.ready_to_plan_desc': 'Lire des guides est utile, mais visualiser ses vrais chiffres dans un outil interactif apporte une clarté immédiate.',
+  },
+  de: {
+    'home.faq_heading': 'Häufig gestellte Fragen zur Budgetplanung',
+    'home.faq_sub': 'Alles, was Sie wissen müssen, um ein realistisches Budget aufzustellen, zwischen 50/30/20 und Null-basiertem Planen zu wählen und Vorlagen zu nutzen.',
+    'home.learn_heading': 'Meistern Sie Ihre Finanzen mit praxisnahen Leitfäden',
+    'home.learn_sub': 'Fundierte Leitfäden zu Budget-Grundlagen, Methodenvergleichen und realistischen Cashflow-Strategien.',
+    'home.view_guides': 'Alle Leitfäden ansehen →',
+    'home.read_article': 'Vollständigen Artikel lesen →',
+    'learn.ready_to_plan_desc': 'Leitfäden zu lesen hilft, doch erst reale Zahlen in einem interaktiven Werkzeug schaffen sofortige Klarheit.',
+  },
+  pt: {
+    'home.faq_heading': 'Perguntas Frequentes sobre Planejamento de Orçamento',
+    'home.faq_sub': 'Tudo o que você precisa saber para montar um orçamento realista, escolher entre a regra 50/30/20 e o base zero, e usar modelos gratuitos.',
+    'home.learn_heading': 'Domine suas Finanças com Guias Práticos',
+    'home.learn_sub': 'Guias completos sobre fundamentos de orçamento, comparações de métodos e estratégias reais de fluxo de caixa.',
+    'home.view_guides': 'Ver todos os guias →',
+    'home.read_article': 'Ler artigo completo →',
+    'learn.ready_to_plan_desc': 'Ler guias ajuda, mas ver seus números reais em uma ferramenta interativa traz clareza imediata.',
+  },
+};
+
+(['en', 'es', 'fr', 'de', 'pt'] as const).forEach((lang) => {
+  Object.assign(
+    TRANSLATIONS[lang],
+    FAQ_LEARN_EXTRAS[lang] || {},
+    HOME_FAQ_TRANSLATIONS[lang] || {},
+    LEARN_TRANSLATIONS[lang] || {},
+    PAGE_FAQ_TRANSLATIONS[lang] || {},
+    ARTICLE_CONTENT_TRANSLATIONS[lang] || {},
+    TEMPLATES_TRANSLATIONS[lang] || {},
+    EDITORIAL_TRANSLATIONS[lang] || {},
+    SECONDARY_PAGES_TRANSLATIONS[lang] || {}
+  );
+});
 
 /**
  * Default Category and Group Display Names for all 5 languages.

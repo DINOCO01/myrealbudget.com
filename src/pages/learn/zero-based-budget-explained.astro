@@ -19,63 +19,63 @@ const articleSchema = {
   <article class="max-w-3xl mx-auto px-4 sm:px-6 py-14">
     <!-- Breadcrumb -->
     <div class="mb-6 flex items-center gap-2 text-xs text-[#8f8f8f] font-mono">
-      <a href="/learn/" class="hover:text-[#171717] underline">Learn</a>
+      <a href="/learn/" class="hover:text-[#171717] underline" data-mrb-t="article.common.learn_breadcrumb">Learn</a>
       <span>/</span>
-      <span>Budgeting Methods</span>
+      <span data-mrb-t="article.zbe.breadcrumb_cat">Budgeting Methods</span>
     </div>
 
-    <Eyebrow text="5 Min Read • Budgeting Methods" class="mb-3" />
+    <Eyebrow text="5 Min Read • Budgeting Methods" tKey="article.zbe.eyebrow" class="mb-3" />
 
-    <h1 class="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-[#171717] leading-tight mb-6">
+    <h1 class="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-[#171717] leading-tight mb-6" data-mrb-t="article.zbe.title">
       Zero-Based Budget Explained: How to Give Every Dollar a Job
     </h1>
 
     <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] text-xs text-[#4d4d4d] mb-10 leading-relaxed">
-      <strong>Core concept:</strong> In zero-based budgeting (ZBB), your income minus every planned expense, debt payment, and savings deposit equals exactly zero before the month begins.
+      <strong data-mrb-t="article.zbe.concept_label">Core concept:</strong> <span data-mrb-t="article.zbe.concept_text">In zero-based budgeting (ZBB), your income minus every planned expense, debt payment, and savings deposit equals exactly zero before the month begins.</span>
     </div>
 
     <div class="prose max-w-none text-sm text-[#4d4d4d] space-y-6 leading-relaxed">
-      <h2 class="text-xl font-semibold text-[#171717] tracking-tight">The Origin & Meaning of "Zero-Based"</h2>
-      <p>
+      <h2 class="text-xl font-semibold text-[#171717] tracking-tight" data-mrb-t="article.zbe.h2_origin">The Origin & Meaning of "Zero-Based"</h2>
+      <p data-mrb-t="article.zbe.p_origin_1">
         Zero-based budgeting originated in corporate cost accounting (pioneered by Texas Instruments in the 1970s), where managers had to justify every single department expense from a starting baseline of zero, rather than carrying over last year's budget with an automatic cost increase.
       </p>
-      <p>
+      <p data-mrb-t="article.zbe.p_origin_2">
         In personal finance, zero-based budgeting means that every incoming dollar has an explicitly assigned mission before you spend it. Unassigned cash is viewed as a liability because idle money in a checking account tends to drift away on untracked convenience purchases.
       </p>
 
-      <h2 class="text-xl font-semibold text-[#171717] tracking-tight">The Formula: Income − Allocations = $0</h2>
-      <p>
+      <h2 class="text-xl font-semibold text-[#171717] tracking-tight" data-mrb-t="article.zbe.h2_formula">The Formula: Income − Allocations = $0</h2>
+      <p data-mrb-t="article.zbe.p_formula_1">
         The mathematical requirement is straightforward:
       </p>
-      <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] not-prose font-mono text-center text-sm font-semibold text-[#171717]">
+      <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] not-prose font-mono text-center text-sm font-semibold text-[#171717]" data-mrb-t="article.zbe.formula_text">
         Net Income − (Expenses + Debt Payments + Savings) = $0
       </div>
-      <p>
+      <p data-mrb-t="article.zbe.p_formula_2">
         Notice that savings and debt payoffs are treated as planned allocations alongside rent and groceries. You do not wait to see "what is left over at the end of the month" to save; savings is an active job assigned to your dollars upfront.
       </p>
 
-      <h2 class="text-xl font-semibold text-[#171717] tracking-tight">Why It Works So Well for Debt Elimination</h2>
-      <p>
+      <h2 class="text-xl font-semibold text-[#171717] tracking-tight" data-mrb-t="article.zbe.h2_debt">Why It Works So Well for Debt Elimination</h2>
+      <p data-mrb-t="article.zbe.p_debt">
         If you are working to eliminate high-interest credit card debt or aggressive student loans, zero-based budgeting gives you unmatched clarity. When your bills and baseline living costs total $3,200 and your take-home pay is $4,200, you know you have an exact $1,000 surplus to throw as an extra principal payment every single month.
       </p>
 
-      <h2 class="text-xl font-semibold text-[#171717] tracking-tight">Common Misconceptions</h2>
+      <h2 class="text-xl font-semibold text-[#171717] tracking-tight" data-mrb-t="article.zbe.h2_misconceptions">Common Misconceptions</h2>
       <div class="space-y-3 not-prose text-xs">
         <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] space-y-1">
-          <strong class="text-[#171717] block">Myth 1: "My bank balance goes to $0."</strong>
-          <p class="text-[#4d4d4d]">False. Your account balance remains cushioned. The "zero" refers purely to the unassigned dollars in your planning worksheet.</p>
+          <strong class="text-[#171717] block" data-mrb-t="article.zbe.myth1_title">Myth 1: "My bank balance goes to $0."</strong>
+          <p class="text-[#4d4d4d]" data-mrb-t="article.zbe.myth1_desc">False. Your account balance remains cushioned. The "zero" refers purely to the unassigned dollars in your planning worksheet.</p>
         </div>
         <div class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] space-y-1">
-          <strong class="text-[#171717] block">Myth 2: "It takes hours every week."</strong>
-          <p class="text-[#4d4d4d]">After the initial setup, maintaining a zero-based budget usually takes 10 to 15 minutes each month to reconcile categories.</p>
+          <strong class="text-[#171717] block" data-mrb-t="article.zbe.myth2_title">Myth 2: "It takes hours every week."</strong>
+          <p class="text-[#4d4d4d]" data-mrb-t="article.zbe.myth2_desc">After the initial setup, maintaining a zero-based budget usually takes 10 to 15 minutes each month to reconcile categories.</p>
         </div>
       </div>
 
       <div class="not-prose pt-6 border-t border-[#ebebeb] flex flex-col sm:flex-row gap-3">
-        <a href="/zero-based-budget/" class="inline-flex items-center justify-center h-10 px-6 rounded-full bg-[#171717] text-white text-xs font-medium hover:bg-neutral-800 transition">
+        <a href="/zero-based-budget/" class="inline-flex items-center justify-center h-10 px-6 rounded-full bg-[#171717] text-white text-xs font-medium hover:bg-neutral-800 transition" data-mrb-t="article.common.build_zbb">
           Build a Zero-Based Budget
         </a>
-        <a href="/budget-planner-template/#zero-based-template" class="inline-flex items-center justify-center h-10 px-6 rounded-full bg-white text-[#171717] border border-[#ebebeb] text-xs font-medium hover:bg-neutral-50 transition shadow-whisper">
+        <a href="/budget-planner-template/#zero-based-template" class="inline-flex items-center justify-center h-10 px-6 rounded-full bg-white text-[#171717] border border-[#ebebeb] text-xs font-medium hover:bg-neutral-50 transition shadow-whisper" data-mrb-t="article.common.download_zbb_tmpl">
           Download Zero-Based Spreadsheet
         </a>
       </div>
