@@ -32,14 +32,14 @@ const faqSchema = {
 
 <Layout title={title} description={description} jsonLd={faqSchema}>
   <!-- HERO INTRO -->
-  <section class="border-b border-[#ebebeb] bg-white pt-12 pb-14">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+  <section class="border-b border-[#ebebeb] bg-white pt-12 pb-14 w-full">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 w-full min-w-0">
       <div class="max-w-3xl space-y-4">
         <Eyebrow text="Free Spreadsheets & Worksheets" tKey="templates.eyebrow" />
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-[#171717] leading-tight" data-mrb-t="templates.heading">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-[#171717] leading-tight break-words" data-mrb-t="templates.heading">
           Budget Planner Templates
         </h1>
-        <p class="text-base sm:text-lg text-[#4d4d4d] leading-relaxed" data-mrb-t="templates.desc">
+        <p class="text-base sm:text-lg text-[#4d4d4d] leading-relaxed break-words" data-mrb-t="templates.desc">
           Clean, purpose-built budget planner templates for Google Sheets, Microsoft Excel, and printable use. Download directly with zero paywalls or account sign-ups.
         </p>
       </div>
@@ -48,7 +48,7 @@ const faqSchema = {
       <div class="mt-8 pt-6 border-t border-[#f2f2f2] flex flex-wrap items-center gap-2 text-xs">
         <span class="text-[#8f8f8f] font-mono mr-2" data-mrb-t="templates.quick_jump">Quick Jump:</span>
         {BUDGET_TEMPLATES.map(t => (
-          <a href={`#${t.id}`} class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition">
+          <a href={`#${t.id}`} class="px-3 py-1.5 rounded-full bg-[#f2f2f2] text-[#4d4d4d] hover:text-[#171717] hover:bg-[#ebebeb] transition text-center break-words">
             {t.name}
           </a>
         ))}
@@ -57,52 +57,52 @@ const faqSchema = {
   </section>
 
   <!-- TEMPLATES DIRECTORY & INSTANT DOWNLOADS -->
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-16">
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-16 w-full min-w-0">
     
     <!-- Introduction: What is a budget template -->
-    <div class="max-w-3xl space-y-4">
-      <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-[#171717]" data-mrb-t="templates.why_use_title">
+    <div class="max-w-3xl space-y-4 w-full min-w-0">
+      <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-[#171717] break-words" data-mrb-t="templates.why_use_title">
         Why Use a Pre-Formatted Budget Template?
       </h2>
-      <p class="text-sm text-[#4d4d4d] leading-relaxed" data-mrb-t="templates.why_use_desc">
+      <p class="text-sm text-[#4d4d4d] leading-relaxed break-words" data-mrb-t="templates.why_use_desc">
         Starting a budget on a blank spreadsheet often causes decision fatigue: which categories should you track? How do you organize annual insurance or weekly groceries? Our templates solve this by providing pre-structured line items, categories, and practical starting layouts tailored to specific budgeting methodologies.
       </p>
     </div>
 
     <!-- Template Cards -->
-    <div class="space-y-12">
+    <div class="space-y-12 w-full min-w-0">
       {BUDGET_TEMPLATES.map((template, idx) => (
         <article
           id={template.id}
-          class="bg-white rounded-[12px] border border-[#ebebeb] p-6 sm:p-8 shadow-whisper scroll-mt-24 space-y-6"
+          class="bg-white rounded-[12px] border border-[#ebebeb] p-4 sm:p-8 shadow-whisper scroll-mt-24 space-y-6 w-full min-w-0 max-w-full"
         >
-          <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 pb-6 border-b border-[#ebebeb]">
-            <div class="space-y-2 max-w-2xl">
-              <div class="flex items-center gap-2">
-                <span class="font-mono text-xs font-semibold px-2.5 py-0.5 rounded-[6px] bg-[#f2f2f2] text-[#171717]">
+          <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 pb-6 border-b border-[#ebebeb] w-full min-w-0">
+            <div class="space-y-2 max-w-2xl min-w-0 flex-1">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="font-mono text-xs font-semibold px-2.5 py-0.5 rounded-[6px] bg-[#f2f2f2] text-[#171717] whitespace-nowrap">
                   <span data-mrb-t="templates.template_label">Template</span> #{idx + 1}
                 </span>
-                <span class="text-xs font-mono text-[#8f8f8f]">
+                <span class="text-xs font-mono text-[#8f8f8f] break-words">
                   <span data-mrb-t="templates.method_badge">Method:</span> <span data-mrb-t={`tmpl.${template.id}.method`}>{template.method}</span>
                 </span>
               </div>
-              <h3 class="text-2xl font-semibold text-[#171717] tracking-tight" data-mrb-t={`tmpl.${template.id}.name`}>
+              <h3 class="text-xl sm:text-2xl font-semibold text-[#171717] tracking-tight break-words" data-mrb-t={`tmpl.${template.id}.name`}>
                 {template.name}
               </h3>
-              <p class="text-sm text-[#4d4d4d] leading-relaxed" data-mrb-t={`tmpl.${template.id}.full_desc`}>
+              <p class="text-sm text-[#4d4d4d] leading-relaxed break-words" data-mrb-t={`tmpl.${template.id}.full_desc`}>
                 {template.fullDescription}
               </p>
             </div>
 
             <!-- Download Action Button -->
-            <div class="shrink-0 flex flex-col sm:flex-row md:flex-col gap-2.5">
+            <div class="w-full md:w-auto shrink-0 flex flex-col sm:flex-row md:flex-col gap-2.5 min-w-0">
               {template.downloadUrl ? (
                 <a
                   href={template.downloadUrl}
                   download
-                  class="btn-download-template inline-flex items-center justify-center gap-2 h-10 px-5 rounded-full bg-[#171717] text-white text-xs font-medium hover:bg-neutral-800 transition shadow-sm"
+                  class="btn-download-template w-full md:w-auto inline-flex items-center justify-center gap-2 h-10 px-5 rounded-full bg-[#171717] text-white text-xs font-medium hover:bg-neutral-800 transition shadow-sm text-center"
                 >
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                   </svg>
                   <span data-mrb-t="templates.download_csv">Download CSV</span>
@@ -111,9 +111,9 @@ const faqSchema = {
                 <button
                   type="button"
                   data-template-id={template.id}
-                  class="btn-download-template inline-flex items-center justify-center gap-2 h-10 px-5 rounded-full bg-[#171717] text-white text-xs font-medium hover:bg-neutral-800 transition shadow-sm"
+                  class="btn-download-template w-full md:w-auto inline-flex items-center justify-center gap-2 h-10 px-5 rounded-full bg-[#171717] text-white text-xs font-medium hover:bg-neutral-800 transition shadow-sm text-center"
                 >
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                   </svg>
                   <span data-mrb-t="templates.download_csv">Download CSV</span>
@@ -122,7 +122,7 @@ const faqSchema = {
               <a
                 href={template.methodSlug}
                 data-mrb-t="templates.use_tool"
-                class="inline-flex items-center justify-center h-10 px-5 rounded-full bg-white text-[#171717] border border-[#ebebeb] text-xs font-medium hover:bg-neutral-50 transition shadow-whisper text-center"
+                class="w-full md:w-auto inline-flex items-center justify-center h-10 px-5 rounded-full bg-white text-[#171717] border border-[#ebebeb] text-xs font-medium hover:bg-neutral-50 transition shadow-whisper text-center"
               >
                 Use Interactive Tool
               </a>
@@ -130,25 +130,25 @@ const faqSchema = {
           </div>
 
           <!-- Template Details Grid -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
-            <div class="space-y-2">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs w-full min-w-0">
+            <div class="space-y-2 min-w-0">
               <h4 class="font-mono font-medium uppercase tracking-wider text-[#8f8f8f]" data-mrb-t="templates.best_for">
                 Best For & Target Audience
               </h4>
-              <p class="text-[#4d4d4d] leading-relaxed" data-mrb-t={`tmpl.${template.id}.audience`}>
+              <p class="text-[#4d4d4d] leading-relaxed break-words" data-mrb-t={`tmpl.${template.id}.audience`}>
                 {template.targetAudience}
               </p>
             </div>
 
-            <div class="space-y-2">
+            <div class="space-y-2 min-w-0">
               <h4 class="font-mono font-medium uppercase tracking-wider text-[#8f8f8f]" data-mrb-t="templates.structure_highlights">
                 Template Structure & Highlights
               </h4>
-              <ul class="space-y-1.5 text-[#4d4d4d]">
+              <ul class="space-y-1.5 text-[#4d4d4d] min-w-0">
                 {template.features.map((f, fIdx) => (
-                  <li class="flex items-center gap-2">
-                    <svg class="w-3.5 h-3.5 text-[#047857]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                    <span data-mrb-t={`tmpl.${template.id}.f${fIdx + 1}`}>{f}</span>
+                  <li class="flex items-start gap-2 min-w-0">
+                    <svg class="w-3.5 h-3.5 text-[#047857] shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                    <span class="break-words min-w-0 flex-1" data-mrb-t={`tmpl.${template.id}.f${fIdx + 1}`}>{f}</span>
                   </li>
                 ))}
               </ul>
@@ -156,24 +156,24 @@ const faqSchema = {
           </div>
 
           <!-- Raw CSV Code Preview Block from DESIGN.md -->
-          <div class="space-y-2 pt-2">
-            <div class="flex items-center justify-between text-xs text-[#8f8f8f] font-mono">
-              <span data-mrb-t="templates.preview_header">Preview (CSV Header & Top Rows)</span>
-              <span data-mrb-t="templates.preview_sub">Formatted for Excel / Google Sheets</span>
+          <div class="space-y-2 pt-2 w-full min-w-0">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-xs text-[#8f8f8f] font-mono min-w-0">
+              <span class="break-words" data-mrb-t="templates.preview_header">Preview (CSV Header & Top Rows)</span>
+              <span class="break-words" data-mrb-t="templates.preview_sub">Formatted for Excel / Google Sheets</span>
             </div>
-            <pre class="p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] font-mono text-xs text-[#171717] overflow-x-auto leading-relaxed">{template.csvContent.split('\n').slice(0, 6).join('\n') + '\n...'}</pre>
+            <pre class="p-3 sm:p-4 rounded-[8px] bg-[#fafafa] border border-[#ebebeb] font-mono text-xs text-[#171717] overflow-x-auto w-full max-w-full block leading-relaxed">{template.csvContent.split('\n').slice(0, 6).join('\n') + '\n...'}</pre>
           </div>
         </article>
       ))}
     </div>
 
     <!-- HOW TO IMPORT IN GOOGLE SHEETS & EXCEL -->
-    <section class="border-t border-[#ebebeb] pt-12 space-y-6">
-      <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-[#171717]" data-mrb-t="templates.how_to_use_heading">
+    <section class="border-t border-[#ebebeb] pt-12 space-y-6 w-full min-w-0">
+      <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-[#171717] break-words" data-mrb-t="templates.how_to_use_heading">
         How to Use These Templates in Excel or Google Sheets
       </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-[#4d4d4d]">
-        <div class="p-5 rounded-[12px] bg-white border border-[#ebebeb] shadow-whisper space-y-2">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-[#4d4d4d] w-full min-w-0">
+        <div class="p-5 rounded-[12px] bg-white border border-[#ebebeb] shadow-whisper space-y-2 min-w-0">
           <h3 class="font-semibold text-sm text-[#171717]" data-mrb-t="templates.sheets_heading">Opening in Google Sheets</h3>
           <ol class="space-y-1.5 list-decimal list-inside leading-relaxed text-[#4d4d4d]">
             <li data-mrb-t="templates.sheets_step1">Click <strong>Download CSV</strong> on any template above.</li>
@@ -183,7 +183,7 @@ const faqSchema = {
           </ol>
         </div>
 
-        <div class="p-5 rounded-[12px] bg-white border border-[#ebebeb] shadow-whisper space-y-2">
+        <div class="p-5 rounded-[12px] bg-white border border-[#ebebeb] shadow-whisper space-y-2 min-w-0">
           <h3 class="font-semibold text-sm text-[#171717]" data-mrb-t="templates.excel_heading">Opening in Microsoft Excel</h3>
           <ol class="space-y-1.5 list-decimal list-inside leading-relaxed text-[#4d4d4d]">
             <li data-mrb-t="templates.excel_step1">Download the desired template CSV file.</li>
@@ -196,20 +196,20 @@ const faqSchema = {
     </section>
 
     <!-- FAQs -->
-    <section class="border-t border-[#ebebeb] pt-12 space-y-6">
-      <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-[#171717]" data-mrb-t="pagefaq.tmpl.heading">
+    <section class="border-t border-[#ebebeb] pt-12 space-y-6 w-full min-w-0">
+      <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-[#171717] break-words" data-mrb-t="pagefaq.tmpl.heading">
         Frequently Asked Questions About Budget Templates
       </h2>
-      <div class="space-y-4 text-xs">
-        <div class="p-4 rounded-[8px] bg-white border border-[#ebebeb] space-y-1.5">
+      <div class="space-y-4 text-xs w-full min-w-0">
+        <div class="p-4 rounded-[8px] bg-white border border-[#ebebeb] space-y-1.5 min-w-0">
           <h3 class="font-semibold text-sm text-[#171717]" data-mrb-t="pagefaq.tmpl.q1">Can I print these budget templates?</h3>
-          <p class="text-[#4d4d4d] leading-relaxed" data-mrb-t="pagefaq.tmpl.a1">
+          <p class="text-[#4d4d4d] leading-relaxed break-words" data-mrb-t="pagefaq.tmpl.a1">
             Yes. When imported into Google Sheets or Excel, the layouts are formatted to fit cleanly on standard Letter or A4 paper. You can also export directly to PDF for offline tracking.
           </p>
         </div>
-        <div class="p-4 rounded-[8px] bg-white border border-[#ebebeb] space-y-1.5">
+        <div class="p-4 rounded-[8px] bg-white border border-[#ebebeb] space-y-1.5 min-w-0">
           <h3 class="font-semibold text-sm text-[#171717]" data-mrb-t="pagefaq.tmpl.q2">Do I need to pay or provide an email to download?</h3>
-          <p class="text-[#4d4d4d] leading-relaxed" data-mrb-t="pagefaq.tmpl.a2">
+          <p class="text-[#4d4d4d] leading-relaxed break-words" data-mrb-t="pagefaq.tmpl.a2">
             No. All templates on My Real Budget are completely free, open, and instant. We believe practical personal finance tools should be accessible to everyone without friction.
           </p>
         </div>
@@ -217,9 +217,9 @@ const faqSchema = {
     </section>
 
     <!-- Cross-Linking -->
-    <div class="pt-8 border-t border-[#ebebeb] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8f8f8f]">
-      <span data-mrb-t="pagefaq.tmpl.nav_label">Prefer an interactive budgeting tool?</span>
-      <div class="flex items-center gap-3">
+    <div class="pt-8 border-t border-[#ebebeb] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8f8f8f] w-full min-w-0">
+      <span class="text-center sm:text-left" data-mrb-t="pagefaq.tmpl.nav_label">Prefer an interactive budgeting tool?</span>
+      <div class="flex flex-wrap items-center justify-center sm:justify-end gap-3">
         <a href="/budget-planner/" class="text-[#171717] font-medium underline hover:text-[#0070f3]" data-mrb-t="pagefaq.tmpl.nav_gbp">General Budget Planner →</a>
         <a href="/50-30-20-budget/" class="text-[#171717] font-medium underline hover:text-[#0070f3]" data-mrb-t="pagefaq.tmpl.nav_f3020">50/30/20 Planner →</a>
         <a href="/zero-based-budget/" class="text-[#171717] font-medium underline hover:text-[#0070f3]" data-mrb-t="pagefaq.tmpl.nav_zbb">Zero-Based Tool →</a>

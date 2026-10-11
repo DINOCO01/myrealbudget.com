@@ -94,14 +94,14 @@ const navLinks = isZh
 ---
 
 <header class="sticky top-0 z-50 w-full bg-[var(--bg-page)]/90 backdrop-blur-md border-b border-[var(--border-main)]">
-  <div class="max-w-7xl mx-auto px-3 sm:px-6 h-16 flex items-center justify-between gap-2 sm:gap-3">
+  <div class="max-w-7xl mx-auto px-2.5 sm:px-6 h-16 flex items-center justify-between gap-1 sm:gap-3">
     <!-- Brand Wordmark -->
     <a
       href={homeHref}
-      class="flex items-center gap-2 text-[var(--text-primary)] hover:opacity-90 transition group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--focus-ring)] rounded-[6px] shrink-0"
+      class="flex items-center gap-1.5 sm:gap-2 text-[var(--text-primary)] hover:opacity-90 transition group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--focus-ring)] rounded-[6px] shrink-0"
     >
       <Logo class="w-6 h-6 sm:w-7 sm:h-7 rounded-[6px] shadow-sm shrink-0" />
-      <span class="font-semibold text-[15px] sm:text-[17px] tracking-tight text-[var(--text-primary)] whitespace-nowrap">
+      <span class="font-semibold text-[14px] xs:text-[15px] sm:text-[17px] tracking-tight text-[var(--text-primary)] whitespace-nowrap">
         My Real Budget
       </span>
     </a>
@@ -144,12 +144,12 @@ const navLinks = isZh
     </div>
 
     <!-- Mobile / Tablet Header Controls: [Currency] [Language] [Menu] (Visible below xl) -->
-    <div class="flex items-center gap-1.5 sm:gap-2 xl:hidden shrink-0">
+    <div class="flex items-center gap-1 sm:gap-2 xl:hidden shrink-0">
       <CurrencyLanguageControls idPrefix="mobile-header" compact={true} />
       <button
         type="button"
         id="mobile-menu-toggle"
-        class="flex items-center justify-center w-8.5 h-8.5 rounded-[6px] border border-[var(--border-main)] bg-[var(--surface)] text-[var(--text-primary)] hover:bg-[var(--surface-subtle)] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--focus-ring)] shrink-0"
+        class="flex items-center justify-center w-8 h-8 sm:w-8.5 sm:h-8.5 rounded-[6px] border border-[var(--border-main)] bg-[var(--surface)] text-[var(--text-primary)] hover:bg-[var(--surface-subtle)] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--focus-ring)] shrink-0"
         aria-label="Toggle navigation menu"
         aria-expanded="false"
         aria-controls="mobile-nav"
