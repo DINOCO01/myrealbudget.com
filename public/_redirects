@@ -1,0 +1,13 @@
+# Cloudflare Pages Redirects
+# Sitemap consolidation: redirect legacy /sitemap.xml to canonical /sitemap-index.xml
+/sitemap.xml /sitemap-index.xml 301
+
+# Legacy alias redirects
+/about-us /about/ 301
+/about-us/ /about/ 301
+/contact-us /contact/ 301
+/contact-us/ /contact/ 301
+/privacy-policy /privacy/ 301
+/privacy-policy/ /privacy/ 301
+/terms-and-conditions /terms/ 301
+/terms-and-conditions/ /terms/ 301

@@ -200,6 +200,13 @@ const finalJsonLd = {
 <!doctype html>
 <html lang={htmlLang} class="scroll-smooth">
   <head>
+    <!-- Canonical Hostname Enforcement Fallback -->
+    <script is:inline>
+      if (typeof window !== 'undefined' && window.location.hostname === 'www.myrealbudget.com') {
+        window.location.replace('https://myrealbudget.com' + window.location.pathname + window.location.search + window.location.hash);
+      }
+    </script>
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4RNEV5QNR0"></script>
     <script is:inline>

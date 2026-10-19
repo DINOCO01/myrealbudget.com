@@ -9,4 +9,3 @@ Disallow: /500.html
 # Host & Sitemaps
 Host: myrealbudget.com
 Sitemap: https://myrealbudget.com/sitemap-index.xml
-Sitemap: https://myrealbudget.com/sitemap.xml
