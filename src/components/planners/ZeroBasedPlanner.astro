@@ -1,6 +1,12 @@
 ---
 import { FREQUENCY_OPTIONS } from "../../utils/frequency";
 import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
+
+interface Props {
+  switchMethodsHeading?: string;
+  switchMethodsDesc?: string;
+}
+const { switchMethodsHeading, switchMethodsDesc } = Astro.props;
 ---
 
 <div id="zero-based-planner" class="w-full">
@@ -384,21 +390,25 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
           class="font-medium text-[#171717]"
           data-mrb-t="common.try_another_method"
         >
-          Want to try another budgeting method?
+          {switchMethodsHeading || "Want to try another budgeting method?"}
         </p>
         <p
           class="text-[11px] sm:text-[12px] text-[#8f8f8f]"
           data-mrb-t-html="zbb.switch_methods_desc"
         >
-          Switch to the <a
-            href="/budget-planner/"
-            class="text-[#0070f3] underline hover:text-[#0761d1]"
-            >General Budget</a
-          > for flexible categories, or the <a
-            href="/50-30-20-budget/"
-            class="text-[#0070f3] underline hover:text-[#0761d1]"
-            >50/30/20 Method</a
-          > for percentage-based targets.
+          {switchMethodsDesc ? (
+            <Fragment set:html={switchMethodsDesc} />
+          ) : (
+            <>Switch to the <a
+              href="/budget-planner/"
+              class="text-[#0070f3] underline hover:text-[#0761d1]"
+              >General Budget</a
+            > for flexible categories, or the <a
+              href="/50-30-20-budget/"
+              class="text-[#0070f3] underline hover:text-[#0761d1]"
+              >50/30/20 Method</a
+            > for percentage-based targets.</>
+          )}
         </p>
       </div>
     </div>
