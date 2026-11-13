@@ -52,7 +52,7 @@ const resolvedOgTitle = ogTitle || title;
 const resolvedOgDescription = ogDescription || description;
 
 // Hreflang alternates for the 5 supported English-Simplified-Traditional page triplets
-const HREFLANG_PAIRS: Record<string, { en: string; zhHans: string; zhHant: string }> = {
+const HREFLANG_PAIRS: Record<string, { en: string; zhHans: string | null; zhHant: string | null }> = {
   '/': { en: `${siteUrl}/`, zhHans: `${siteUrl}/zh/`, zhHant: `${siteUrl}/zh-hant/` },
   '/zh/': { en: `${siteUrl}/`, zhHans: `${siteUrl}/zh/`, zhHant: `${siteUrl}/zh-hant/` },
   '/zh-hant/': { en: `${siteUrl}/`, zhHans: `${siteUrl}/zh/`, zhHant: `${siteUrl}/zh-hant/` },
@@ -70,7 +70,7 @@ const HREFLANG_PAIRS: Record<string, { en: string; zhHans: string; zhHant: strin
   '/zh-hant/zero-based-budget/': { en: `${siteUrl}/zero-based-budget/`, zhHans: `${siteUrl}/zh/zero-based-budget/`, zhHant: `${siteUrl}/zh-hant/zero-based-budget/` },
 
   '/budget-templates/': { en: `${siteUrl}/budget-templates/`, zhHans: `${siteUrl}/zh/templates/`, zhHant: `${siteUrl}/zh-hant/templates/` },
-  '/budget-planner-template/': { en: `${siteUrl}/budget-planner-template/`, zhHans: `${siteUrl}/zh/templates/`, zhHant: `${siteUrl}/zh-hant/templates/` },
+  '/budget-planner-template/': { en: `${siteUrl}/budget-planner-template/`, zhHans: null, zhHant: null },
   '/zh/templates/': { en: `${siteUrl}/budget-templates/`, zhHans: `${siteUrl}/zh/templates/`, zhHant: `${siteUrl}/zh-hant/templates/` },
   '/zh-hant/templates/': { en: `${siteUrl}/budget-templates/`, zhHans: `${siteUrl}/zh/templates/`, zhHant: `${siteUrl}/zh-hant/templates/` },
 };
@@ -271,8 +271,8 @@ const finalJsonLd = {
     {hreflangData && (
       <>
         <link rel="alternate" hreflang="en" href={hreflangData.en} />
-        <link rel="alternate" hreflang="zh-Hans" href={hreflangData.zhHans} />
-        <link rel="alternate" hreflang="zh-Hant" href={hreflangData.zhHant} />
+        {hreflangData.zhHans && <link rel="alternate" hreflang="zh-Hans" href={hreflangData.zhHans} />}
+        {hreflangData.zhHant && <link rel="alternate" hreflang="zh-Hant" href={hreflangData.zhHant} />}
         <link rel="alternate" hreflang="x-default" href={hreflangData.en} />
       </>
     )}

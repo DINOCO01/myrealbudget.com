@@ -5,6 +5,11 @@ import {
 } from "../../data/budgetCategories";
 import { FREQUENCY_OPTIONS } from "../../utils/frequency";
 import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
+
+interface Props {
+  switchMethodsDesc?: string;
+}
+const { switchMethodsDesc } = Astro.props;
 ---
 
 <div id="general-budget-planner" class="w-full">
@@ -526,15 +531,19 @@ import CurrencyLanguageControls from "../ui/CurrencyLanguageControls.astro";
           class="text-[11px] sm:text-[12px] text-[#8f8f8f]"
           data-mrb-t-html="gbp.switch_methods_desc"
         >
-          Switch to the <a
-            href="/50-30-20-budget/"
-            class="text-[#0070f3] underline hover:text-[#0761d1]"
-            >50/30/20 Method</a
-          > for percentage-based targets, or the <a
-            href="/zero-based-budget/"
-            class="text-[#0070f3] underline hover:text-[#0761d1]"
-            >Zero-Based Method</a
-          > to allocate every dollar to zero.
+          {switchMethodsDesc ? (
+            <Fragment set:html={switchMethodsDesc} />
+          ) : (
+            <>Switch to the <a
+              href="/50-30-20-budget/"
+              class="text-[#0070f3] underline hover:text-[#0761d1]"
+              >50/30/20 Method</a
+            > for percentage-based targets, or the <a
+              href="/zero-based-budget/"
+              class="text-[#0070f3] underline hover:text-[#0761d1]"
+              >Zero-Based Method</a
+            > to allocate every dollar to zero.</>
+          )}
         </p>
       </div>
     </div>

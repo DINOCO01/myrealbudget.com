@@ -2359,7 +2359,7 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
     'gbp.expense_flag': '生活支出',
     'gbp.is_savings_hint': '已标记为储蓄与投资。点击可切换。',
     'gbp.is_expense_hint': '已标记为日常生活支出。点击可切换。',
-    'gbp.switch_methods_desc': '切换至 <a href="/50-30-20-budget/" class="text-[#0070f3] underline hover:text-[#0761d1]">50/30/20 法则</a> 进行百分比规划，或使用 <a href="/zero-based-budget/" class="text-[#0070f3] underline hover:text-[#0761d1]">零基预算方法</a> 让每一分钱归零。',
+    'gbp.switch_methods_desc': '切换至 <a href="/zh/50-30-20-budget/" class="text-[#0070f3] underline hover:text-[#0761d1]">50/30/20 法则</a> 进行百分比规划，或使用 <a href="/zh/zero-based-budget/" class="text-[#0070f3] underline hover:text-[#0761d1]">零基预算方法</a> 让每一分钱归零。',
     'f3020.heading': '50/30/20 预算计算器与规划工具',
     'f3020.take_home_label': '月度税后到手薪资',
     'f3020.take_home_desc': '输入您的月度税后净收入。如果是双周发薪，将单次金额乘以26再除以12。',
