@@ -5,7 +5,9 @@ interface Props {
 }
 
 const { currentPath = Astro.url.pathname } = Astro.props;
-const isZh = currentPath.startsWith('/zh/');
+const isZhHant = currentPath.startsWith('/zh-hant/');
+const isZhHans = currentPath.startsWith('/zh/') && !isZhHant;
+const isZh = isZhHant || isZhHans;
 const currentYear = new Date().getFullYear();
 ---
 
@@ -14,19 +16,19 @@ const currentYear = new Date().getFullYear();
     <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
       <!-- Brand & Mission -->
       <div class="md:col-span-1 space-y-3">
-        <a href={isZh ? '/zh/' : '/'} class="flex items-center gap-2 text-[var(--text-primary)] hover:opacity-90 transition">
+        <a href={isZhHant ? '/zh-hant/' : (isZhHans ? '/zh/' : '/')} class="flex items-center gap-2 text-[var(--text-primary)] hover:opacity-90 transition">
           <Logo class="w-6 h-6 rounded-[6px] shadow-sm" />
           <span class="font-semibold text-[16px] tracking-tight" data-mrb-t="nav.brand">My Real Budget</span>
         </a>
         <p class="text-sm text-[var(--text-secondary)] leading-relaxed" data-mrb-t="footer.mission">
-          {isZh ? '打造真正适合您的预算方案。用真实的数字规划现金流，统一账单支付频次，告别盲目揣测。' : 'Build a budget that actually works for you. Plan your cash flow with real numbers, normalized payment frequencies, and zero guesswork.'}
+          {isZhHant ? '打造真正適合您的預算方案。用真實的數字規劃現金流，統一帳單支付頻次，告別盲目揣測。' : (isZhHans ? '打造真正适合您的预算方案。用真实的数字规划现金流，统一账单支付频次，告别盲目揣测。' : 'Build a budget that actually works for you. Plan your cash flow with real numbers, normalized payment frequencies, and zero guesswork.')}
         </p>
         <div class="pt-2">
           <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[6px] bg-[var(--surface)] border border-[var(--border-main)] text-[var(--text-secondary)] text-xs font-mono shadow-whisper">
             <svg class="w-3.5 h-3.5 text-[var(--btn-primary-bg)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
             </svg>
-            <span data-mrb-t="common.private_local">{isZh ? '100% 本地隐私保存' : '100% Private & Local'}</span>
+            <span data-mrb-t="common.private_local">{isZhHant ? '100% 本地隱私儲存' : (isZhHans ? '100% 本地隐私保存' : '100% Private & Local')}</span>
           </span>
         </div>
       </div>
@@ -34,27 +36,27 @@ const currentYear = new Date().getFullYear();
       <!-- Budget Methods -->
       <div class="space-y-3">
         <h4 class="font-mono text-xs font-medium uppercase tracking-wider text-[var(--text-muted)]" data-mrb-t="footer.budget_methods">
-          {isZh ? '预算方法' : 'Budget Methods'}
+          {isZhHant ? '預算方法' : (isZhHans ? '预算方法' : 'Budget Methods')}
         </h4>
         <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
           <li>
-            <a href={isZh ? '/zh/budget-planner/' : '/budget-planner/'} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.general_planner">
-              {isZh ? '通用预算规划器' : 'General Budget Planner'}
+            <a href={isZhHant ? '/zh-hant/budget-planner/' : (isZhHans ? '/zh/budget-planner/' : '/budget-planner/')} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.general_planner">
+              {isZhHant ? '個人預算計算機' : (isZhHans ? '通用预算规划器' : 'General Budget Planner')}
             </a>
           </li>
           <li>
-            <a href={isZh ? '/zh/50-30-20-budget/' : '/50-30-20-budget/'} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.f3020_rule">
-              {isZh ? '50/30/20预算规则' : '50/30/20 Budget Rule'}
+            <a href={isZhHant ? '/zh-hant/50-30-20-budget/' : (isZhHans ? '/zh/50-30-20-budget/' : '/50-30-20-budget/')} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.f3020_rule">
+              {isZhHant ? '50/30/20預算規則' : (isZhHans ? '50/30/20预算规则' : '50/30/20 Budget Rule')}
             </a>
           </li>
           <li>
-            <a href={isZh ? '/zh/zero-based-budget/' : '/zero-based-budget/'} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.zero_based">
-              {isZh ? '零基预算规划器' : 'Zero-Based Budget'}
+            <a href={isZhHant ? '/zh-hant/zero-based-budget/' : (isZhHans ? '/zh/zero-based-budget/' : '/zero-based-budget/')} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.zero_based">
+              {isZhHant ? '零基預算規劃器' : (isZhHans ? '零基预算规划器' : 'Zero-Based Budget')}
             </a>
           </li>
           <li>
-            <a href={isZh ? '/zh/budget-planner/#frequency' : '/budget-planner/#frequency'} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.freq_normalization">
-              {isZh ? '频次归一化原理' : 'Frequency Normalization'}
+            <a href={isZhHant ? '/zh-hant/budget-planner/#frequency' : (isZhHans ? '/zh/budget-planner/#frequency' : '/budget-planner/#frequency')} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.freq_normalization">
+              {isZhHant ? '頻率正規化原理' : (isZhHans ? '频次归一化原理' : 'Frequency Normalization')}
             </a>
           </li>
         </ul>
@@ -63,32 +65,32 @@ const currentYear = new Date().getFullYear();
       <!-- Templates & Tools -->
       <div class="space-y-3">
         <h4 class="font-mono text-xs font-medium uppercase tracking-wider text-[var(--text-muted)]" data-mrb-t="footer.templates_tools">
-          {isZh ? '模板与工具' : 'Templates & Tools'}
+          {isZhHant ? '範本與工具' : (isZhHans ? '模板与工具' : 'Templates & Tools')}
         </h4>
         <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
           <li>
-            <a href={isZh ? '/zh/templates/' : '/budget-planner-template/'} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.planner_template">
-              {isZh ? '预算规划表模板' : 'Budget Planner Template'}
+            <a href={isZhHant ? '/zh-hant/templates/' : (isZhHans ? '/zh/templates/' : '/budget-planner-template/')} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.planner_template">
+              {isZhHant ? '預算規劃表範本' : (isZhHans ? '预算规划表模板' : 'Budget Planner Template')}
             </a>
           </li>
           <li>
-            <a href={isZh ? '/zh/templates/' : '/budget-templates/'} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.all_templates">
-              {isZh ? '全部免费预算模板' : 'All Budget Templates'}
+            <a href={isZhHant ? '/zh-hant/templates/' : (isZhHans ? '/zh/templates/' : '/budget-templates/')} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.all_templates">
+              {isZhHant ? '全部免費預算範本' : (isZhHans ? '全部免费预算模板' : 'All Budget Templates')}
             </a>
           </li>
           <li>
-            <a href={isZh ? '/zh/templates/#simple-monthly' : '/budget-planner-template/#simple-monthly'} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.simple_monthly">
-              {isZh ? '极简月度预算模板' : 'Simple Monthly Template'}
+            <a href={isZhHant ? '/zh-hant/templates/#simple-monthly' : (isZhHans ? '/zh/templates/#simple-monthly' : '/budget-planner-template/#simple-monthly')} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.simple_monthly">
+              {isZhHant ? '極簡每月預算範本' : (isZhHans ? '极简月度预算模板' : 'Simple Monthly Template')}
             </a>
           </li>
           <li>
-            <a href={isZh ? '/zh/templates/#student' : '/budget-planner-template/#student'} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.student_template">
-              {isZh ? '大学生预算模板' : 'Student Budget Template'}
+            <a href={isZhHant ? '/zh-hant/templates/#student' : (isZhHans ? '/zh/templates/#student' : '/budget-planner-template/#student')} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.student_template">
+              {isZhHant ? '大學生預算範本' : (isZhHans ? '大学生预算模板' : 'Student Budget Template')}
             </a>
           </li>
           <li>
-            <a href={isZh ? '/zh/templates/#household' : '/budget-planner-template/#household'} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.household_template">
-              {isZh ? '家庭与伴侣预算模板' : 'Couples & Household Template'}
+            <a href={isZhHant ? '/zh-hant/templates/#household' : (isZhHans ? '/zh/templates/#household' : '/budget-planner-template/#household')} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.household_template">
+              {isZhHant ? '家庭與伴侶預算範本' : (isZhHans ? '家庭与伴侣预算模板' : 'Couples & Household Template')}
             </a>
           </li>
         </ul>
@@ -97,32 +99,32 @@ const currentYear = new Date().getFullYear();
       <!-- Learning Center -->
       <div class="space-y-3">
         <h4 class="font-mono text-xs font-medium uppercase tracking-wider text-[var(--text-muted)]" data-mrb-t="footer.learn_guides">
-          {isZh ? '学习指南' : 'Learn & Guides'}
+          {isZhHant ? '學習指南' : (isZhHans ? '学习指南' : 'Learn & Guides')}
         </h4>
         <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
           <li>
-            <a href={isZh ? '/zh/' : '/learn/'} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.learning_hub">
-              {isZh ? '理财规划首页' : 'Learning Hub'}
+            <a href={isZhHant ? '/zh-hant/' : (isZhHans ? '/zh/' : '/learn/')} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.learning_hub">
+              {isZhHant ? '財務規劃首頁' : (isZhHans ? '理财规划首页' : 'Learning Hub')}
             </a>
           </li>
           <li>
-            <a href={isZh ? '/zh/budget-planner/' : '/learn/what-is-a-budget/'} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.what_is_budget">
-              {isZh ? '什么是预算？' : 'What Is a Budget?'}
+            <a href={isZhHant ? '/zh-hant/budget-planner/' : (isZhHans ? '/zh/budget-planner/' : '/learn/what-is-a-budget/')} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.what_is_budget">
+              {isZhHant ? '什麼是預算？' : (isZhHans ? '什么是预算？' : 'What Is a Budget?')}
             </a>
           </li>
           <li>
-            <a href={isZh ? '/zh/budget-planner/' : '/learn/how-to-create-a-monthly-budget/'} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.how_to_create">
-              {isZh ? '如何制定月度预算' : 'How to Create a Monthly Budget'}
+            <a href={isZhHant ? '/zh-hant/budget-planner/' : (isZhHans ? '/zh/budget-planner/' : '/learn/how-to-create-a-monthly-budget/')} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.how_to_create">
+              {isZhHant ? '如何制定每月預算' : (isZhHans ? '如何制定月度预算' : 'How to Create a Monthly Budget')}
             </a>
           </li>
           <li>
-            <a href={isZh ? '/zh/50-30-20-budget/' : '/learn/50-30-20-budget-explained/'} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.f3020_explained">
-              {isZh ? '50/30/20规则详解' : '50/30/20 Explained'}
+            <a href={isZhHant ? '/zh-hant/50-30-20-budget/' : (isZhHans ? '/zh/50-30-20-budget/' : '/learn/50-30-20-budget-explained/')} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.f3020_explained">
+              {isZhHant ? '50/30/20規則詳解' : (isZhHans ? '50/30/20规则详解' : '50/30/20 Explained')}
             </a>
           </li>
           <li>
-            <a href={isZh ? '/zh/zero-based-budget/' : '/learn/zero-based-budget-explained/'} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.zbb_explained">
-              {isZh ? '零基预算方法详解' : 'Zero-Based Explained'}
+            <a href={isZhHant ? '/zh-hant/zero-based-budget/' : (isZhHans ? '/zh/zero-based-budget/' : '/learn/zero-based-budget-explained/')} class="hover:text-[var(--text-primary)] transition-colors" data-mrb-t="footer.zbb_explained">
+              {isZhHant ? '零基預算方法詳解' : (isZhHans ? '零基预算方法详解' : 'Zero-Based Explained')}
             </a>
           </li>
         </ul>
@@ -144,7 +146,7 @@ const currentYear = new Date().getFullYear();
         </div>
       </div>
       <p class="text-center md:text-right" data-mrb-t="footer.disclaimer">
-        {isZh ? '教育与个人理财规划工具。不构成专业投资、税务或法律建议。' : 'Educational budgeting tools. Not intended as formal investment, tax, or legal advisory.'}
+        {isZhHant ? '教育與個人財務規劃工具。不構成專業投資、稅務或法律建議。' : (isZhHans ? '教育与个人理财规划工具。不构成专业投资、税务或法律建议。' : 'Educational budgeting tools. Not intended as formal investment, tax, or legal advisory.')}
       </p>
     </div>
   </div>

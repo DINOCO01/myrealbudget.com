@@ -3,8 +3,8 @@ import Layout from '../../layouts/Layout.astro';
 import Eyebrow from '../../components/ui/Eyebrow.astro';
 import GeneralBudgetPlanner from '../../components/planners/GeneralBudgetPlanner.astro';
 
-const title = '预算规划器：免费制定个人预算 | My Real Budget';
-const description = '免费易用的在线个人预算规划器。清晰梳理您的月度收入与支出流向，支持多频次账单自动折算，为个人与家庭预算提供精准收支平衡计算，数据100%本地保存。';
+const title = '个人预算计算器：免费月度预算计划与支出分配 | My Real Budget';
+const description = '免费个人预算计算器，几分钟做好月度预算计划。输入收入和支出，自动分配每月预算，每周费用一键转月度，数据只保存在你的浏览器。';
 const canonical = 'https://myrealbudget.com/zh/budget-planner/';
 
 const faqSchema = {
@@ -60,7 +60,7 @@ const faqSchema = {
       <div class="max-w-3xl space-y-4">
         <Eyebrow text="在线交互工具" />
         <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-[#171717] dark:text-[#f8fafc] leading-tight">
-          在线个人预算规划器
+          个人预算计算器
         </h1>
         <p class="text-base sm:text-lg text-[#4d4d4d] dark:text-[#94a3b8] leading-relaxed">
           科学规划个人与家庭的月度收支。内置账单支付频次自动归一化换算，助您厘清资金走向，打造符合真实生活节奏的预算计划。
@@ -118,20 +118,25 @@ const faqSchema = {
       </div>
 
       <!-- Section 2: Frequency Normalization in Depth -->
-      <div id="frequency" class="bg-white dark:bg-[#111827] p-6 sm:p-8 rounded-[14px] border border-[#e5e0d8] dark:border-[#1e293b] space-y-4">
-        <h2 class="text-xl sm:text-2xl font-semibold text-[#0f172a] dark:text-[#f8fafc]">
-          为什么要严格采用“账单频次归一化”？
+      <div class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+          每周费用转月度，自动折算
         </h2>
-        <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
-          许多个人预算失败的隐蔽根源在于计算周期的粗糙估算。大部分人习惯把每周¥500的伙食费简单乘以4，得出每月¥2,000。然而，一年实际有52个自然周，真正的月平均周数是 <strong>52 ÷ 12 ≈ 4.333 周</strong>。
-        </p>
-        <div class="p-4 rounded-[8px] bg-[#faf8f5] dark:bg-[#0b1220] border border-[#e5e0d8] dark:border-[#1e293b] font-mono text-xs text-[#0f172a] dark:text-[#f8fafc] space-y-1">
-          <div>错误算法：¥500 × 4 = ¥2,000 / 月（每年低估了将近整整一整月的伙食开销！）</div>
-          <div class="text-[#0e6e55] dark:text-[#10b981] font-semibold">科学年化算法：¥500 × 52 ÷ 12 = ¥2,166.67 / 月（精准反映真实消耗）</div>
+        <div id="frequency" class="bg-white dark:bg-[#111827] p-6 sm:p-8 rounded-[14px] border border-[#e5e0d8] dark:border-[#1e293b] space-y-4">
+          <h2 class="text-xl sm:text-2xl font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+            为什么要严格采用“账单频次归一化”？
+          </h2>
+          <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+            许多个人预算失败的隐蔽根源在于计算周期的粗糙估算。大部分人习惯把每周¥500的伙食费简单乘以4，得出每月¥2,000。然而，一年实际有52个自然周，真正的月平均周数是 <strong>52 ÷ 12 ≈ 4.333 周</strong>。
+          </p>
+          <div class="p-4 rounded-[8px] bg-[#faf8f5] dark:bg-[#0b1220] border border-[#e5e0d8] dark:border-[#1e293b] font-mono text-xs text-[#0f172a] dark:text-[#f8fafc] space-y-1">
+            <div>错误算法：¥500 × 4 = ¥2,000 / 月（每年低估了将近整整一整月的伙食开销！）</div>
+            <div class="text-[#0e6e55] dark:text-[#10b981] font-semibold">科学年化算法：¥500 × 52 ÷ 12 = ¥2,166.67 / 月（精准反映真实消耗）</div>
+          </div>
+          <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+            同理，年度商业保险、节假日消费和汽车保养如果不在平时按月均摊储备，年末集中扣费就会引发断崖式赤字。本预算规划器正是通过统一算法杜绝此类隐患。
+          </p>
         </div>
-        <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
-          同理，年度商业保险、节假日消费和汽车保养如果不在平时按月均摊储备，年末集中扣费就会引发断崖式赤字。本预算规划器正是通过统一算法杜绝此类隐患。
-        </p>
       </div>
 
       <!-- FAQ Section -->

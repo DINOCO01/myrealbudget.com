@@ -1,0 +1,372 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Eyebrow from '../../components/ui/Eyebrow.astro';
+import { BUDGET_TEMPLATES } from '../../data/templatesData';
+
+const title = '免費個人預算計算機與每月預算規劃工具 | My Real Budget';
+const description = '免費線上個人預算計算與每月預算規劃。支援50/30/20和零基預算分配，幫你算清每月收支，無需註冊。';
+const canonical = 'https://myrealbudget.com/zh-hant/';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '什麼是預算規劃器？它與普通記帳軟體有什麼區別？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '普通記帳軟體通常是在消費發生後進行被動記錄，往往無法阻止超支。而預算規劃器是一種前瞻性的財務工具，它幫助您在每月或發薪週期開始之前，根據真實收入預先規劃房租、飲食、儲蓄與投資等各專案的支出限額，從而主動掌控資金流向。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '初學者應該選擇50/30/20預算還是零基預算？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '如果您剛開始規劃預算，希望規則簡單清晰且不想繁瑣追蹤每筆細微開銷，推薦使用“50/30/20預算方法”（50%必需支出、30%想要支出、20%儲蓄）。如果您希望徹底杜絕無意識消費、加速償還債務或資金較為緊張，推薦使用“零基預算”，將每分錢都指定明確用途直至餘額為零。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '我的個人財務資料安全嗎？需要註冊帳號嗎？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '絕對安全。My Real Budget 堅持“本地優先”原則，無需註冊帳號、無需繫結銀行卡或手機號。您輸入的預算資料僅儲存在您的瀏覽器本地儲存（localStorage）中，絕不會上傳至任何雲端伺服器。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '工具支援新臺幣（TWD NT$）或港幣（HKD HK$）顯示與結算嗎？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '支援。本站支援完整的多幣種體系，您可以直接在頂部選單將貨幣切換為新臺幣（TWD NT$）或港幣（HKD HK$），且語言與貨幣完全獨立，滿足多元化的財務管理習慣。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '除了線上規劃工具，是否提供可下載的Excel預算表？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '提供。我們提供了覆蓋通用每月預算、50/30/20規則與零基預算的免費Excel與Google 試算表範本，無需註冊即可直接免費下載使用。',
+      },
+    },
+  ],
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  lang="zh-Hant"
+  jsonLd={faqSchema}
+>
+  <!-- HERO SECTION -->
+  <section class="relative pt-10 pb-14 sm:pt-16 sm:pb-20 border-b border-[#e5e0d8] dark:border-[#1e293b] bg-[#faf8f5] dark:bg-[#0b1220] transition-colors">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <!-- Hero Copy -->
+        <div class="lg:col-span-7 space-y-5 sm:space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-[#111827] border border-[#e5e0d8] dark:border-[#1e293b] text-xs font-mono font-medium text-[#475569] dark:text-[#94a3b8] shadow-whisper">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#0e6e55] dark:bg-[#10b981]"></span>
+            <span>科學現金流規劃工具</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl md:text-[48px] font-semibold tracking-[-0.035em] text-[#0f172a] dark:text-[#f8fafc] leading-[1.18]">
+            免費個人預算計算機
+          </h1>
+
+          <p class="text-base sm:text-lg text-[#475569] dark:text-[#94a3b8] leading-relaxed max-w-xl font-normal">
+            告別被動記帳與月末財務焦慮。My Real Budget 提供直觀好用的<strong>免費預算規劃器</strong>，支援每月現金流收支評估、50/30/20法則與零基預算體系，幫助個人與家庭建立健康充裕的財務儲備。
+          </p>
+
+          <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+            常用工具：<a href="/zh-hant/budget-planner/" class="text-[#0e6e55] dark:text-[#10b981] hover:underline font-medium">個人預算計算機</a> · <a href="/zh-hant/50-30-20-budget/" class="text-[#0e6e55] dark:text-[#10b981] hover:underline font-medium">50/30/20預算計算</a> · <a href="/zh-hant/zero-based-budget/" class="text-[#0e6e55] dark:text-[#10b981] hover:underline font-medium">零基預算規劃</a> · <a href="/zh-hant/templates/" class="text-[#0e6e55] dark:text-[#10b981] hover:underline font-medium">免費預算範本</a>
+          </p>
+
+          <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+            <a
+              href="/zh-hant/budget-planner/"
+              class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-[#0e6e55] hover:bg-[#0a5240] text-white text-sm font-medium transition shadow-sm"
+            >
+              開始制定個人預算
+            </a>
+            <a
+              href="/zh-hant/templates/"
+              class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white dark:bg-[#111827] hover:bg-[#f1efe9] dark:hover:bg-[#1e293b] border border-[#d6cfc5] dark:border-[#334155] text-[#0f172a] dark:text-[#f8fafc] text-sm font-medium transition shadow-whisper"
+            >
+              下載免費預算範本
+            </a>
+          </div>
+
+          <div class="pt-4 flex flex-wrap items-center gap-6 text-xs text-[#64748b] dark:text-[#94a3b8] font-mono">
+            <span class="flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-[#0e6e55] dark:text-[#10b981]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              100% 瀏覽器本地儲存
+            </span>
+            <span class="flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-[#0e6e55] dark:text-[#10b981]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              無需註冊登入
+            </span>
+            <span class="flex items-center gap-1.5">
+              <svg class="w-4 h-4 text-[#0e6e55] dark:text-[#10b981]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              支援新臺幣（TWD NT$）或港幣（HKD HK$）
+            </span>
+          </div>
+        </div>
+
+        <!-- Right: Feature Highlights Box -->
+        <div class="lg:col-span-5 bg-white dark:bg-[#111827] rounded-[16px] border border-[#e5e0d8] dark:border-[#1e293b] p-6 sm:p-8 shadow-whisper space-y-5">
+          <h2 class="text-lg font-semibold text-[#0f172a] dark:text-[#f8fafc] border-b border-[#f1efe9] dark:border-[#1e293b] pb-3">
+            為什麼選擇科學預算規劃？
+          </h2>
+          <div class="space-y-4 text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8]">
+            <div class="flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-[#0e6e55]/10 text-[#0e6e55] dark:text-[#10b981] flex items-center justify-center shrink-0 font-bold text-xs mt-0.5">1</div>
+              <div>
+                <strong class="text-[#0f172a] dark:text-[#f8fafc] block">帳單週期科學歸一化：</strong>
+                按周買菜、按季度繳費、按年付保費？系統自動統一年化折算為每月標準，杜絕收支誤判。
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-[#0e6e55]/10 text-[#0e6e55] dark:text-[#10b981] flex items-center justify-center shrink-0 font-bold text-xs mt-0.5">2</div>
+              <div>
+                <strong class="text-[#0f172a] dark:text-[#f8fafc] block">三種經典模型隨心選：</strong>
+                自由分類規劃、50/30/20黃金比例、零基預算分配，滿足人生各階段財務需求。
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-[#0e6e55]/10 text-[#0e6e55] dark:text-[#10b981] flex items-center justify-center shrink-0 font-bold text-xs mt-0.5">3</div>
+              <div>
+                <strong class="text-[#0f172a] dark:text-[#f8fafc] block">純粹安全與私密：</strong>
+                沒有任何第三方追蹤程式碼，不索取個人敏感資訊，您的賬本屬於且僅屬於您自己。
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METHOD SUITE CARDS -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
+    <div class="text-center max-w-2xl mx-auto space-y-3 mb-12">
+      <Eyebrow text="財務規劃體系" />
+      <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#0f172a] dark:text-[#f8fafc]">
+        三大核心預算方法：選擇最契合您的規劃模式
+      </h2>
+      <p class="text-sm sm:text-base text-[#475569] dark:text-[#94a3b8]">
+        無論您追求簡單明晰還是極致掌控，都能在這裡找到行之有效的預算工具。
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Card 1: General Budget Planner -->
+      <div class="bg-white dark:bg-[#111827] rounded-[14px] border border-[#ebebeb] dark:border-[#1e293b] p-6 shadow-whisper flex flex-col justify-between hover:border-[#0e6e55] dark:hover:border-[#10b981] transition group">
+        <div class="space-y-4">
+          <span class="inline-block px-2.5 py-1 rounded-[6px] bg-[#f4f2ee] dark:bg-[#1e293b] text-xs font-mono font-medium text-[#0e6e55] dark:text-[#10b981]">
+            靈活全能
+          </span>
+          <h3 class="text-lg font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+            通用每月預算規劃器
+          </h3>
+          <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+            自由自定義收入來源與各類支出開銷。自動統一年化收支週期，即時測算每月淨儲蓄盈餘與健康儲蓄率。
+          </p>
+        </div>
+        <div class="pt-6 border-t border-[#f1efe9] dark:border-[#1e293b] mt-6">
+          <a
+            href="/zh-hant/budget-planner/"
+            class="inline-flex items-center text-xs font-semibold text-[#0e6e55] dark:text-[#10b981] group-hover:underline gap-1"
+          >
+            開啟預算規劃器 →
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 2: 50/30/20 Budget -->
+      <div class="bg-white dark:bg-[#111827] rounded-[14px] border border-[#ebebeb] dark:border-[#1e293b] p-6 shadow-whisper flex flex-col justify-between hover:border-[#0e6e55] dark:hover:border-[#10b981] transition group">
+        <div class="space-y-4">
+          <span class="inline-block px-2.5 py-1 rounded-[6px] bg-[#f4f2ee] dark:bg-[#1e293b] text-xs font-mono font-medium text-[#0e6e55] dark:text-[#10b981]">
+            黃金比例
+          </span>
+          <h3 class="text-lg font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+            50/30/20 預算規劃器
+          </h3>
+          <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+            經典的三分法則：50%必需生活開支、30%彈性享受消費、20%用於儲蓄與加速償債。免去繁雜記帳，掌握宏觀平衡。
+          </p>
+        </div>
+        <div class="pt-6 border-t border-[#f1efe9] dark:border-[#1e293b] mt-6">
+          <a
+            href="/zh-hant/50-30-20-budget/"
+            class="inline-flex items-center text-xs font-semibold text-[#0e6e55] dark:text-[#10b981] group-hover:underline gap-1"
+          >
+            開啟50/30/20計算機 →
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 3: Zero-Based Budget -->
+      <div class="bg-white dark:bg-[#111827] rounded-[14px] border border-[#ebebeb] dark:border-[#1e293b] p-6 shadow-whisper flex flex-col justify-between hover:border-[#0e6e55] dark:hover:border-[#10b981] transition group">
+        <div class="space-y-4">
+          <span class="inline-block px-2.5 py-1 rounded-[6px] bg-[#f4f2ee] dark:bg-[#1e293b] text-xs font-mono font-medium text-[#0e6e55] dark:text-[#10b981]">
+            精準歸零
+          </span>
+          <h3 class="text-lg font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+            零基預算規劃器
+          </h3>
+          <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+            讓每一分收入都有具體的使命。通過將月收入完整分配到剛需、債務、儲蓄及緩衝金中，達到收入減支出等於零。
+          </p>
+        </div>
+        <div class="pt-6 border-t border-[#f1efe9] dark:border-[#1e293b] mt-6">
+          <a
+            href="/zh-hant/zero-based-budget/"
+            class="inline-flex items-center text-xs font-semibold text-[#0e6e55] dark:text-[#10b981] group-hover:underline gap-1"
+          >
+            開啟零基預算工具 →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO BUDGET SECTION -->
+  <section class="border-t border-[#ebebeb] dark:border-[#1e293b] bg-[#faf8f5] dark:bg-[#0b1220] py-14 sm:py-20 transition-colors">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="max-w-3xl mx-auto space-y-10">
+        <div class="text-center space-y-3">
+          <Eyebrow text="實戰方法論" />
+          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#0f172a] dark:text-[#f8fafc]">
+            科學制定個人與家庭預算的四個步驟
+          </h2>
+          <p class="text-sm text-[#475569] dark:text-[#94a3b8]">
+            掌握這套經過時間檢驗的預算流程，讓財務規劃真正融入日常生活。
+          </p>
+        </div>
+
+        <div class="space-y-6">
+          <div class="bg-white dark:bg-[#111827] rounded-[12px] p-6 border border-[#e5e0d8] dark:border-[#1e293b] space-y-2">
+            <h3 class="text-base font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+              第一步：明確真實的每月稅後淨收入
+            </h3>
+            <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+              預算的基石是能夠真正支配的資金，而非稅前名義薪資。統計您和家庭每月實際到賬的薪資淨額、兼職副業報酬及穩定的投資利息。如果有浮動收入，建議以過去6個月的保守最低值作為起點。
+            </p>
+          </div>
+
+          <div class="bg-white dark:bg-[#111827] rounded-[12px] p-6 border border-[#e5e0d8] dark:border-[#1e293b] space-y-2">
+            <h3 class="text-base font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+              第二步：梳理剛性必需支出與週期性帳單
+            </h3>
+            <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+              列出房租或房貸、水電燃氣物業費、基礎超市買菜、通勤交通、家庭醫療保險等維持基本生活不可或缺的費用。特別要注意將年付或季度付的帳單按月均攤拆解，避免集中繳費時造成現金流斷裂。
+            </p>
+          </div>
+
+          <div class="bg-white dark:bg-[#111827] rounded-[12px] p-6 border border-[#e5e0d8] dark:border-[#1e293b] space-y-2">
+            <h3 class="text-base font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+              第三步：優先劃撥儲蓄投資與應急備用金
+            </h3>
+            <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+              實踐“先付錢給自己”的理財法則。在規劃娛樂和享樂支出之前，先將收入的10%至20%劃入不可動用的獨立帳戶，用於積累至少3至6個月生活費的應急備用金，以及長期的穩健理財與個人養老定投。
+            </p>
+          </div>
+
+          <div class="bg-white dark:bg-[#111827] rounded-[12px] p-6 border border-[#e5e0d8] dark:border-[#1e293b] space-y-2">
+            <h3 class="text-base font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+              第四步：設定彈性生活與品質消費限額
+            </h3>
+            <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+              預算不是為了痛苦節衣縮食，而是為了有底氣地享受生活。為外出就餐、週末娛樂、旅行度假及個人愛好設定合理的額度。在額度內可以自由消費，一旦達到限額便自覺暫停，以此保障財務平衡。
+            </p>
+          </div>
+        </div>
+
+        <div class="text-center pt-4">
+          <a
+            href="/zh-hant/templates/"
+            class="inline-flex items-center gap-1.5 text-sm font-semibold text-[#0e6e55] dark:text-[#10b981] hover:underline"
+          >
+            檢視我們製作的免費預算表範本與下載資源 →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ ACCORDION SECTION -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
+    <div class="text-center space-y-3 mb-10">
+      <Eyebrow text="常見疑問解答" />
+      <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#0f172a] dark:text-[#f8fafc]">
+        關於預算規劃的常見問題
+      </h2>
+    </div>
+
+    <div class="space-y-4">
+      {faqSchema.mainEntity.map((item, idx) => (
+        <details class="bg-white dark:bg-[#111827] rounded-[12px] border border-[#ebebeb] dark:border-[#1e293b] p-5 shadow-whisper group cursor-pointer">
+          <summary class="font-semibold text-sm sm:text-base text-[#0f172a] dark:text-[#f8fafc] flex items-center justify-between list-none select-none">
+            <span>{item.name}</span>
+            <span class="text-[#8f8f8f] group-open:rotate-180 transition-transform text-xs ml-2">▼</span>
+          </summary>
+          <div class="pt-3 text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed border-t border-[#f1efe9] dark:border-[#1e293b] mt-3">
+            {item.acceptedAnswer.text}
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <!-- BOTTOM CTA BANNER -->
+  <section class="border-t border-[#ebebeb] dark:border-[#1e293b] bg-white dark:bg-[#111827] py-14 sm:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-5">
+      <h2 class="text-2xl sm:text-3xl font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+        立即開啟您的家庭與個人預算規劃
+      </h2>
+      <p class="text-sm text-[#475569] dark:text-[#94a3b8] max-w-xl mx-auto">
+        零門檻、免註冊、純本地儲存。今天就用真實數字梳理現金流，走向財務從容。
+      </p>
+      <div class="pt-2 flex flex-wrap items-center justify-center gap-3">
+        <a
+          href="/zh-hant/budget-planner/"
+          class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#0e6e55] hover:bg-[#0a5240] text-white text-xs sm:text-sm font-medium transition"
+        >
+          免費進入預算規劃器
+        </a>
+        <a
+          href="/zh-hant/50-30-20-budget/"
+          class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#f4f2ee] dark:bg-[#1e293b] text-[#171717] dark:text-[#f8fafc] text-xs sm:text-sm font-medium hover:bg-[#ebebeb] transition"
+        >
+          使用50/30/20分配法
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED TOOLS SECTION -->
+  <section class="border-t border-[#ebebeb] dark:border-[#1e293b] bg-[#faf8f5] dark:bg-[#0b1220] py-10 transition-colors">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 space-y-3 text-xs sm:text-sm">
+      <h2 class="text-base sm:text-lg font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+        相關工具
+      </h2>
+      <div class="flex flex-wrap items-center gap-4 sm:gap-6">
+        <a href="/zh-hant/budget-planner/" class="text-[#0e6e55] dark:text-[#10b981] font-medium hover:underline">
+          個人預算計算機
+        </a>
+        <a href="/zh-hant/50-30-20-budget/" class="text-[#0e6e55] dark:text-[#10b981] font-medium hover:underline">
+          50/30/20預算計算
+        </a>
+        <a href="/zh-hant/zero-based-budget/" class="text-[#0e6e55] dark:text-[#10b981] font-medium hover:underline">
+          零基預算規劃
+        </a>
+        <a href="/zh-hant/templates/" class="text-[#0e6e55] dark:text-[#10b981] font-medium hover:underline">
+          免費預算範本
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

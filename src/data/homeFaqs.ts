@@ -4,7 +4,8 @@ export interface LocalizedString {
   fr: string;
   de: string;
   pt: string;
-  zh: string;
+  zh?: string;
+  'zh-hant'?: string;
 }
 
 export interface HomeFAQ {
@@ -436,11 +437,12 @@ export const HOME_FAQ_TRANSLATIONS: Record<string, Record<string, string>> = {
   de: {},
   pt: {},
   zh: {},
+  'zh-hant': {},
 };
 
-(['en', 'es', 'fr', 'de', 'pt', 'zh'] as const).forEach((lang) => {
+(['en', 'es', 'fr', 'de', 'pt', 'zh', 'zh-hant'] as const).forEach((lang) => {
   HOME_FAQS.forEach((faq) => {
-    HOME_FAQ_TRANSLATIONS[lang][`faq.${faq.id}.q`] = faq.question[lang];
-    HOME_FAQ_TRANSLATIONS[lang][`faq.${faq.id}.a`] = faq.answerHtml[lang];
+    if (faq.question[lang]) HOME_FAQ_TRANSLATIONS[lang][`faq.${faq.id}.q`] = faq.question[lang];
+    if (faq.answerHtml[lang]) HOME_FAQ_TRANSLATIONS[lang][`faq.${faq.id}.a`] = faq.answerHtml[lang];
   });
 });

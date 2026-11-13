@@ -22,6 +22,7 @@
     "esbuild": true
   },
   "devDependencies": {
+    "opencc-js": "^1.4.2",
     "wrangler": "^4.148.0"
   }
 }

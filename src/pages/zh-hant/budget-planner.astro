@@ -1,0 +1,200 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Eyebrow from '../../components/ui/Eyebrow.astro';
+import GeneralBudgetPlanner from '../../components/planners/GeneralBudgetPlanner.astro';
+
+const title = '個人預算計算機：免費每月預算計劃與開支分配 | My Real Budget';
+const description = '免費個人預算計算機，幾分鐘做好每月預算計劃。輸入收入和開支，自動分配每月預算，每週費用一鍵轉每月，資料只保存在你的瀏覽器。';
+const canonical = 'https://myrealbudget.com/zh-hant/budget-planner/';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '本預算規劃器如何處理不同週期的帳單歸一化換算？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '許多人在計算每月開支時習慣簡單地把每週支出乘以4，這會導致約8.3%的嚴重低估（因為一年有52周，平均每月4.33周）。本規劃器採用精準年化折算公式：每週支出乘以52併除以12，每雙週支出乘以26併除以12，季度帳單除以3，年度保費除以12，從而真實還原您全年的月均現金流成本。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '我的預算資料會上傳至網路伺服器嗎？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '絕不會。My Real Budget 堅持純本地儲存架構。您在預算規劃器中輸入的所有數字與自定義專案，均只儲存在當前瀏覽器的 localStorage 中，沒有任何後端資料庫，保證您財務隱私的絕對安全。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '可以隨意新增自定義收入和支出類別嗎？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '完全可以。規劃器支援自由新增自定義收入來源、自定義支出大類及無限個明細子項，您可以隨時修改分類名稱、金額、帳單週期或刪除預設分類。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '如果希望將預算匯出或使用試算表，有對應資源嗎？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '有。如果您更喜歡在 Microsoft Excel 或 Google 試算表中離線記帳，可以直接訪問我們的預算範本頁面，免費下載對應的 .xlsx 格式通用預算表範本。',
+      },
+    },
+  ],
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  lang="zh-Hant"
+  jsonLd={faqSchema}
+>
+  <!-- HEADER INTRO -->
+  <section class="border-b border-[#ebebeb] dark:border-[#1e293b] bg-white dark:bg-[#111827] pt-8 pb-10 sm:pt-12 sm:pb-14 transition-colors">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="max-w-3xl space-y-4">
+        <Eyebrow text="線上互動工具" />
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-[#171717] dark:text-[#f8fafc] leading-tight">
+          個人預算計算機
+        </h1>
+        <p class="text-base sm:text-lg text-[#4d4d4d] dark:text-[#94a3b8] leading-relaxed">
+          科學規劃個人與家庭的每月收支。內建帳單支付頻次自動歸一化換算，助您釐清資金走向，打造符合真實生活節奏的預算計劃。
+        </p>
+      </div>
+
+      <!-- Budgeting Method Switcher Bar -->
+      <div class="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-[#f2f2f2] dark:border-[#1e293b] flex flex-wrap items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs">
+        <span class="text-[#8f8f8f] dark:text-[#64748b] font-mono mr-1 sm:mr-2">預算規劃方法：</span>
+        <span class="px-3 py-1.5 rounded-full bg-[#171717] text-white font-medium">通用預算規劃器</span>
+        <a href="/zh-hant/50-30-20-budget/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] dark:bg-[#1e293b] text-[#4d4d4d] dark:text-[#94a3b8] hover:text-[#171717] dark:hover:text-[#f8fafc] hover:bg-[#ebebeb] transition">
+          50/30/20 比例法
+        </a>
+        <a href="/zh-hant/zero-based-budget/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] dark:bg-[#1e293b] text-[#4d4d4d] dark:text-[#94a3b8] hover:text-[#171717] dark:hover:text-[#f8fafc] hover:bg-[#ebebeb] transition">
+          零基預算分配法
+        </a>
+        <a href="/zh-hant/templates/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] dark:bg-[#1e293b] text-[#4d4d4d] dark:text-[#94a3b8] hover:text-[#171717] dark:hover:text-[#f8fafc] hover:bg-[#ebebeb] transition">
+          免費預算範本
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE BUDGET PLANNER COMPONENT -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+    <GeneralBudgetPlanner />
+  </main>
+
+  <!-- EDUCATIONAL EDITORIAL SECTION -->
+  <section class="border-t border-[#ebebeb] dark:border-[#1e293b] bg-[#faf8f5] dark:bg-[#0b1220] py-14 sm:py-18 transition-colors">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 space-y-12">
+      <!-- Section 1: How to use this planner -->
+      <div class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+          如何高效使用本預算規劃器制定每月預算
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8]">
+          <div class="bg-white dark:bg-[#111827] p-5 rounded-[12px] border border-[#e5e0d8] dark:border-[#1e293b] space-y-2">
+            <h3 class="font-semibold text-[#0f172a] dark:text-[#f8fafc]">1. 錄入所有實際到手收入</h3>
+            <p>在收入板塊填寫您的主職稅後月薪、兼職酬勞、投資分紅等。如果存在副業收入波動，填入過去幾個月的穩定基線。</p>
+          </div>
+          <div class="bg-white dark:bg-[#111827] p-5 rounded-[12px] border border-[#e5e0d8] dark:border-[#1e293b] space-y-2">
+            <h3 class="font-semibold text-[#0f172a] dark:text-[#f8fafc]">2. 細分各生活支出類目</h3>
+            <p>依次梳理住房房租、水電煤氣、日常飲食、交通通勤、醫療保險與品質娛樂。可根據家庭實際需求任意新增自定義子項。</p>
+          </div>
+          <div class="bg-white dark:bg-[#111827] p-5 rounded-[12px] border border-[#e5e0d8] dark:border-[#1e293b] space-y-2">
+            <h3 class="font-semibold text-[#0f172a] dark:text-[#f8fafc]">3. 選擇真實的帳單支付頻次</h3>
+            <p>這是保證預算準確的關鍵步驟。買菜選每週，物業選每月，車險保費選年度。無需手動除算，規劃器會自動年化折算。</p>
+          </div>
+          <div class="bg-white dark:bg-[#111827] p-5 rounded-[12px] border border-[#e5e0d8] dark:border-[#1e293b] space-y-2">
+            <h3 class="font-semibold text-[#0f172a] dark:text-[#f8fafc]">4. 關注淨現金流與儲蓄率指標</h3>
+            <p>規劃器右上角將動態呈現淨現金流盈餘與儲蓄率。如果出現赤字，及時回溯非剛需消費並進行結構性最佳化調整。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Frequency Normalization in Depth -->
+      <div class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+          每週費用轉每月，自動折算
+        </h2>
+        <div id="frequency" class="bg-white dark:bg-[#111827] p-6 sm:p-8 rounded-[14px] border border-[#e5e0d8] dark:border-[#1e293b] space-y-4">
+          <h2 class="text-xl sm:text-2xl font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+            為什麼要嚴格採用“帳單頻次歸一化”？
+          </h2>
+          <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+            許多個人預算失敗的隱蔽根源在於計算週期的粗糙估算。大部分人習慣把每週$500的伙食費簡單乘以4，得出每月$2,000。然而，一年實際有52個自然周，真正的月平均週數是 <strong>52 ÷ 12 ≈ 4.333 周</strong>。
+          </p>
+          <div class="p-4 rounded-[8px] bg-[#faf8f5] dark:bg-[#0b1220] border border-[#e5e0d8] dark:border-[#1e293b] font-mono text-xs text-[#0f172a] dark:text-[#f8fafc] space-y-1">
+            <div>錯誤演算法：$500 × 4 = $2,000 / 月（每年低估了將近整整一整月的伙食開銷！）</div>
+            <div class="text-[#0e6e55] dark:text-[#10b981] font-semibold">科學年化演算法：$500 × 52 ÷ 12 = $2,166.67 / 月（精準反映真實消耗）</div>
+          </div>
+          <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+            同理，年度商業保險、節假日消費和汽車保養如果不在平時按月均攤儲備，年末集中扣費就會引發斷崖式赤字。本預算規劃器正是通過統一演算法杜絕此類隱患。
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <div class="space-y-4">
+        <h2 class="text-xl sm:text-2xl font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+          預算規劃器常見問題解答
+        </h2>
+        <div class="space-y-3">
+          {faqSchema.mainEntity.map((item) => (
+            <details class="bg-white dark:bg-[#111827] rounded-[10px] border border-[#ebebeb] dark:border-[#1e293b] p-4 shadow-whisper group cursor-pointer">
+              <summary class="font-semibold text-xs sm:text-sm text-[#0f172a] dark:text-[#f8fafc] flex items-center justify-between list-none select-none">
+                <span>{item.name}</span>
+                <span class="text-[#8f8f8f] group-open:rotate-180 transition-transform text-xs ml-2">▼</span>
+              </summary>
+              <div class="pt-3 text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed border-t border-[#f1efe9] dark:border-[#1e293b] mt-3">
+                {item.acceptedAnswer.text}
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- Internal Link Bridges -->
+      <div class="pt-6 border-t border-[#ebebeb] dark:border-[#1e293b] flex flex-wrap items-center justify-between gap-4 text-xs">
+        <span class="text-[#8f8f8f] dark:text-[#64748b]">探索更多預算方法：</span>
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="/zh-hant/50-30-20-budget/" class="text-[#0e6e55] dark:text-[#10b981] font-medium hover:underline">
+            50/30/20比例預算規劃器 →
+          </a>
+          <a href="/zh-hant/zero-based-budget/" class="text-[#0e6e55] dark:text-[#10b981] font-medium hover:underline">
+            零基預算規劃器 →
+          </a>
+          <a href="/zh-hant/templates/" class="text-[#0e6e55] dark:text-[#10b981] font-medium hover:underline">
+            下載Excel預算表範本 →
+          </a>
+        </div>
+      </div>
+      
+      <!-- Related Tools Section -->
+      <div class="pt-6 border-t border-[#ebebeb] dark:border-[#1e293b] space-y-3 text-xs sm:text-sm">
+        <h2 class="text-base sm:text-lg font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+          相關工具
+        </h2>
+        <div class="flex flex-wrap items-center gap-4 sm:gap-6">
+          <a href="/zh-hant/50-30-20-budget/" class="text-[#0e6e55] dark:text-[#10b981] font-medium hover:underline">
+            50/30/20預算計算
+          </a>
+          <a href="/zh-hant/zero-based-budget/" class="text-[#0e6e55] dark:text-[#10b981] font-medium hover:underline">
+            零基預算規劃
+          </a>
+          <a href="/zh-hant/templates/" class="text-[#0e6e55] dark:text-[#10b981] font-medium hover:underline">
+            免費預算範本
+          </a>
+          <a href="/zh-hant/" class="text-[#0e6e55] dark:text-[#10b981] font-medium hover:underline">
+            首頁
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

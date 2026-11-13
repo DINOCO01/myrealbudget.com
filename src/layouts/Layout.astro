@@ -40,27 +40,39 @@ if (!normalizedPath.endsWith('/')) {
   normalizedPath = `${normalizedPath}/`;
 }
 
-const isZh = normalizedPath.startsWith('/zh/') || lang === 'zh-CN' || lang === 'zh';
-const htmlLang = isZh ? 'zh-CN' : (lang || 'en');
-const ogLocale = isZh ? 'zh_CN' : 'en_US';
+const isZhHant = normalizedPath.startsWith('/zh-hant/') || lang === 'zh-Hant';
+const isZhHans = (normalizedPath.startsWith('/zh/') && !isZhHant) || lang === 'zh-Hans' || lang === 'zh-CN' || (lang === 'zh' && !isZhHant);
+const isZh = isZhHant || isZhHans;
+const htmlLang = isZhHant ? 'zh-Hant' : (isZhHans ? 'zh-Hans' : (lang || 'en'));
+const ogLocale = isZhHant ? 'zh_TW' : (isZhHans ? 'zh_CN' : 'en_US');
 
 const canonicalUrl = canonical || (normalizedPath === '/' ? `${siteUrl}/` : `${siteUrl}${normalizedPath}`);
 const resolvedOgImage = ogImage || `${siteUrl}/og-image.png`;
 const resolvedOgTitle = ogTitle || title;
 const resolvedOgDescription = ogDescription || description;
 
-// Hreflang alternates for the 5 supported English-Chinese page pairs
-const HREFLANG_PAIRS: Record<string, { en: string; zh: string }> = {
-  '/': { en: `${siteUrl}/`, zh: `${siteUrl}/zh/` },
-  '/zh/': { en: `${siteUrl}/`, zh: `${siteUrl}/zh/` },
-  '/budget-planner/': { en: `${siteUrl}/budget-planner/`, zh: `${siteUrl}/zh/budget-planner/` },
-  '/zh/budget-planner/': { en: `${siteUrl}/budget-planner/`, zh: `${siteUrl}/zh/budget-planner/` },
-  '/50-30-20-budget/': { en: `${siteUrl}/50-30-20-budget/`, zh: `${siteUrl}/zh/50-30-20-budget/` },
-  '/zh/50-30-20-budget/': { en: `${siteUrl}/50-30-20-budget/`, zh: `${siteUrl}/zh/50-30-20-budget/` },
-  '/zero-based-budget/': { en: `${siteUrl}/zero-based-budget/`, zh: `${siteUrl}/zh/zero-based-budget/` },
-  '/zh/zero-based-budget/': { en: `${siteUrl}/zero-based-budget/`, zh: `${siteUrl}/zh/zero-based-budget/` },
-  '/budget-templates/': { en: `${siteUrl}/budget-templates/`, zh: `${siteUrl}/zh/templates/` },
-  '/zh/templates/': { en: `${siteUrl}/budget-templates/`, zh: `${siteUrl}/zh/templates/` },
+// Hreflang alternates for the 5 supported English-Simplified-Traditional page triplets
+const HREFLANG_PAIRS: Record<string, { en: string; zhHans: string; zhHant: string }> = {
+  '/': { en: `${siteUrl}/`, zhHans: `${siteUrl}/zh/`, zhHant: `${siteUrl}/zh-hant/` },
+  '/zh/': { en: `${siteUrl}/`, zhHans: `${siteUrl}/zh/`, zhHant: `${siteUrl}/zh-hant/` },
+  '/zh-hant/': { en: `${siteUrl}/`, zhHans: `${siteUrl}/zh/`, zhHant: `${siteUrl}/zh-hant/` },
+
+  '/budget-planner/': { en: `${siteUrl}/budget-planner/`, zhHans: `${siteUrl}/zh/budget-planner/`, zhHant: `${siteUrl}/zh-hant/budget-planner/` },
+  '/zh/budget-planner/': { en: `${siteUrl}/budget-planner/`, zhHans: `${siteUrl}/zh/budget-planner/`, zhHant: `${siteUrl}/zh-hant/budget-planner/` },
+  '/zh-hant/budget-planner/': { en: `${siteUrl}/budget-planner/`, zhHans: `${siteUrl}/zh/budget-planner/`, zhHant: `${siteUrl}/zh-hant/budget-planner/` },
+
+  '/50-30-20-budget/': { en: `${siteUrl}/50-30-20-budget/`, zhHans: `${siteUrl}/zh/50-30-20-budget/`, zhHant: `${siteUrl}/zh-hant/50-30-20-budget/` },
+  '/zh/50-30-20-budget/': { en: `${siteUrl}/50-30-20-budget/`, zhHans: `${siteUrl}/zh/50-30-20-budget/`, zhHant: `${siteUrl}/zh-hant/50-30-20-budget/` },
+  '/zh-hant/50-30-20-budget/': { en: `${siteUrl}/50-30-20-budget/`, zhHans: `${siteUrl}/zh/50-30-20-budget/`, zhHant: `${siteUrl}/zh-hant/50-30-20-budget/` },
+
+  '/zero-based-budget/': { en: `${siteUrl}/zero-based-budget/`, zhHans: `${siteUrl}/zh/zero-based-budget/`, zhHant: `${siteUrl}/zh-hant/zero-based-budget/` },
+  '/zh/zero-based-budget/': { en: `${siteUrl}/zero-based-budget/`, zhHans: `${siteUrl}/zh/zero-based-budget/`, zhHant: `${siteUrl}/zh-hant/zero-based-budget/` },
+  '/zh-hant/zero-based-budget/': { en: `${siteUrl}/zero-based-budget/`, zhHans: `${siteUrl}/zh/zero-based-budget/`, zhHant: `${siteUrl}/zh-hant/zero-based-budget/` },
+
+  '/budget-templates/': { en: `${siteUrl}/budget-templates/`, zhHans: `${siteUrl}/zh/templates/`, zhHant: `${siteUrl}/zh-hant/templates/` },
+  '/budget-planner-template/': { en: `${siteUrl}/budget-planner-template/`, zhHans: `${siteUrl}/zh/templates/`, zhHant: `${siteUrl}/zh-hant/templates/` },
+  '/zh/templates/': { en: `${siteUrl}/budget-templates/`, zhHans: `${siteUrl}/zh/templates/`, zhHant: `${siteUrl}/zh-hant/templates/` },
+  '/zh-hant/templates/': { en: `${siteUrl}/budget-templates/`, zhHans: `${siteUrl}/zh/templates/`, zhHant: `${siteUrl}/zh-hant/templates/` },
 };
 const hreflangData = HREFLANG_PAIRS[normalizedPath];
 
@@ -69,11 +81,13 @@ const baseGraph: Record<string, any>[] = [
   {
     '@type': 'WebSite',
     '@id': `${siteUrl}/#website`,
-    url: isZh ? `${siteUrl}/zh/` : `${siteUrl}/`,
+    url: isZhHant ? `${siteUrl}/zh-hant/` : (isZhHans ? `${siteUrl}/zh/` : `${siteUrl}/`),
     name: 'My Real Budget',
-    description: isZh
-      ? '免费在线预算规划器，提供月度预算规划、50/30/20法则、零基预算及电子表格预算模板。'
-      : 'Online budget planner for monthly budgeting, the 50/30/20 rule, zero-based budgeting, and spreadsheet templates.',
+    description: isZhHant
+      ? '免費線上預算規劃工具，提供每月預算規劃、50/30/20法則、零基預算及試算表預算範本。'
+      : (isZhHans
+        ? '免费在线预算规划器，提供月度预算规划、50/30/20法则、零基预算及电子表格预算模板。'
+        : 'Online budget planner for monthly budgeting, the 50/30/20 rule, zero-based budgeting, and spreadsheet templates.'),
     publisher: {
       '@id': `${siteUrl}/#organization`,
     },
@@ -97,14 +111,20 @@ const isPlannerRoute = [
   '/zh/budget-planner/',
   '/zh/50-30-20-budget/',
   '/zh/zero-based-budget/',
+  '/zh-hant/',
+  '/zh-hant/budget-planner/',
+  '/zh-hant/50-30-20-budget/',
+  '/zh-hant/zero-based-budget/',
 ].includes(normalizedPath);
 
 if (isPlannerRoute) {
   baseGraph.push({
     '@type': 'WebApplication',
     '@id': `${siteUrl}/#webapp`,
-    name: isZh ? 'My Real Budget 预算规划器' : 'My Real Budget Planner',
-    url: isZh ? `${siteUrl}/zh/budget-planner/` : `${siteUrl}/budget-planner/`,
+    name: isZhHant ? 'My Real Budget 個人預算計算機' : (isZhHans ? 'My Real Budget 预算规划器' : 'My Real Budget Planner'),
+    url: isZhHant
+      ? `${siteUrl}/zh-hant/budget-planner/`
+      : (isZhHans ? `${siteUrl}/zh/budget-planner/` : `${siteUrl}/budget-planner/`),
     applicationCategory: 'FinanceApplication',
     operatingSystem: 'All',
     browserRequirements: 'Requires modern web browser with HTML5 and JavaScript enabled.',
@@ -118,25 +138,41 @@ if (isPlannerRoute) {
           price: '0',
           priceCurrency: 'USD',
         },
-    description: isZh
-      ? '免费在线预算规划器，支持月度现金流规划、50/30/20预算分配与零基预算。'
-      : 'Free online budget planner for monthly cash flow planning, 50/30/20 budgets, and zero-based budgeting.',
+    description: isZhHant
+      ? '免費線上預算規劃工具，支援每月現金流規劃、50/30/20預算分配與零基預算。'
+      : (isZhHans
+        ? '免费在线预算规划器，支持月度现金流规划、50/30/20预算分配与零基预算。'
+        : 'Free online budget planner for monthly cash flow planning, 50/30/20 budgets, and zero-based budgeting.'),
   });
 }
 
 // Add BreadcrumbList for indexable subpages
-if (normalizedPath !== '/' && normalizedPath !== '/zh/' && !noIndex) {
+if (normalizedPath !== '/' && normalizedPath !== '/zh/' && normalizedPath !== '/zh-hant/' && !noIndex) {
   const pathSegments = normalizedPath.split('/').filter(Boolean);
   const breadcrumbItems: Record<string, any>[] = [
     {
       '@type': 'ListItem',
       position: 1,
-      name: isZh ? '首页' : 'Home',
-      item: isZh ? `${siteUrl}/zh/` : `${siteUrl}/`,
+      name: isZhHant ? '首頁' : (isZhHans ? '首页' : 'Home'),
+      item: isZhHant ? `${siteUrl}/zh-hant/` : (isZhHans ? `${siteUrl}/zh/` : `${siteUrl}/`),
     },
   ];
 
-  if (isZh) {
+  if (isZhHant) {
+    const zhHantNames: Record<string, string> = {
+      'budget-planner': '個人預算計算機',
+      '50-30-20-budget': '50/30/20預算',
+      'zero-based-budget': '零基預算',
+      'templates': '預算範本',
+    };
+    const sub = pathSegments[1] || '';
+    breadcrumbItems.push({
+      '@type': 'ListItem',
+      position: 2,
+      name: zhHantNames[sub] || title.split('|')[0].split('—')[0].split(':')[0].trim(),
+      item: canonicalUrl,
+    });
+  } else if (isZhHans) {
     const zhNames: Record<string, string> = {
       'budget-planner': '预算规划器',
       '50-30-20-budget': '50/30/20预算',
@@ -235,7 +271,8 @@ const finalJsonLd = {
     {hreflangData && (
       <>
         <link rel="alternate" hreflang="en" href={hreflangData.en} />
-        <link rel="alternate" hreflang="zh-CN" href={hreflangData.zh} />
+        <link rel="alternate" hreflang="zh-Hans" href={hreflangData.zhHans} />
+        <link rel="alternate" hreflang="zh-Hant" href={hreflangData.zhHant} />
         <link rel="alternate" hreflang="x-default" href={hreflangData.en} />
       </>
     )}

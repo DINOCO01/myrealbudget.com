@@ -5,6 +5,7 @@ export interface LocalizedString {
   de: string;
   pt: string;
   zh: string;
+  'zh-hant'?: string;
 }
 
 export interface LearnArticleDef {
@@ -292,13 +293,15 @@ export const LEARN_TRANSLATIONS: Record<string, Record<string, string>> = {
   de: {},
   pt: {},
   zh: {},
+  'zh-hant': {},
 };
 
-(['en', 'es', 'fr', 'de', 'pt', 'zh'] as const).forEach((lang) => {
+(['en', 'es', 'fr', 'de', 'pt', 'zh', 'zh-hant'] as const).forEach((lang) => {
   LEARN_ARTICLES.forEach((article) => {
-    LEARN_TRANSLATIONS[lang][`learn.${article.slug}.title`] = article.title[lang];
-    LEARN_TRANSLATIONS[lang][`learn.${article.slug}.summary`] = article.summary[lang];
-    LEARN_TRANSLATIONS[lang][`learn.${article.slug}.category`] = article.category[lang];
-    LEARN_TRANSLATIONS[lang][`learn.${article.slug}.read_time`] = article.readTime[lang];
+    const t = (obj: any) => obj[lang] || (lang === 'zh-hant' && obj.zh ? obj.zh : undefined);
+    LEARN_TRANSLATIONS[lang][`learn.${article.slug}.title`] = t(article.title);
+    LEARN_TRANSLATIONS[lang][`learn.${article.slug}.summary`] = t(article.summary);
+    LEARN_TRANSLATIONS[lang][`learn.${article.slug}.category`] = t(article.category);
+    LEARN_TRANSLATIONS[lang][`learn.${article.slug}.read_time`] = t(article.readTime);
   });
 });

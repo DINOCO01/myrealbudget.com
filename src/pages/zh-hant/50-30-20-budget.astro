@@ -1,0 +1,231 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Eyebrow from '../../components/ui/Eyebrow.astro';
+import FiftyThirtyTwentyPlanner from '../../components/planners/FiftyThirtyTwentyPlanner.astro';
+
+const title = '50/30/20預算：規則、計算方法與規劃器 | My Real Budget';
+const description = '50/30/20預算規則詳解與線上計算機。科學分配50%必需開支、30%想要開支與20%儲蓄投資，包含典型收入分配參考表與高生活成本城市微調策略。';
+const canonical = 'https://myrealbudget.com/zh-hant/50-30-20-budget/';
+
+const incomeExamples = [
+  { income: 5000, needs: 2500, wants: 1500, savings: 1000 },
+  { income: 10000, needs: 5000, wants: 3000, savings: 2000 },
+  { income: 20000, needs: 10000, wants: 6000, savings: 4000 },
+  { income: 30000, needs: 15000, wants: 9000, savings: 6000 },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '什麼是50/30/20預算規則？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '50/30/20預算是一種直觀易行的個人收支分配法則。它將您的稅後到手月收入劃分為三大區塊：50%用於滿足日常生活必需支出（Needs），30%用於非必要的彈性享受支出（Wants），20%專門用於儲蓄積累與加速還清債務（Savings & Debt）。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '房租房貸太高導致必需支出超過50%怎麼辦？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '在高生活成本城市或高生活成本地區，房租或房貸往往直接佔據月收入的40%以上，使必需支出上升至55%甚至65%。50/30/20規則的精髓在於建立比例意識，您可以根據實際情況微調為 60/20/20 或 55/25/20，關鍵是保持儲蓄底線並控制非必要開支。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '信用卡最低還款額算在“必需支出”還是“儲蓄債務”？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '債務的最低應還款額（例如信用卡帳單最低還款額、房貸本息月供）屬於“必需支出”，因為若未按期償還，將直接產生高額罰息並損害個人徵信。而超出最低還款額的加速本金償還部分，則計入20%的“儲蓄與額外還債”區塊。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '如果不喜歡每天記帳，50/30/20法則適合我嗎？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '非常適合。50/30/20正是為厭惡繁瑣記帳的人群量身定製的宏觀分配法。您只需每月發薪後將20%轉入儲蓄帳戶，留足50%扣繳固定帳單，剩下的30%即可放心用於日常消費，無需對每一杯咖啡反覆記帳。',
+      },
+    },
+  ],
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  lang="zh-Hant"
+  jsonLd={faqSchema}
+>
+  <!-- HEADER INTRO -->
+  <section class="border-b border-[#ebebeb] dark:border-[#1e293b] bg-white dark:bg-[#111827] pt-8 pb-10 sm:pt-12 sm:pb-14 transition-colors">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="max-w-3xl space-y-4">
+        <Eyebrow text="比例分配法則" />
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-[#171717] dark:text-[#f8fafc] leading-tight">
+          50/30/20 預算規劃器
+        </h1>
+        <p class="text-base sm:text-lg text-[#4d4d4d] dark:text-[#94a3b8] leading-relaxed">
+          簡單而科學的每月開支預算分配模式：遵循50%必要開支、30%想要開支、20%儲蓄與投資的三分法，平衡當下品質生活與未來財務安全。
+        </p>
+      </div>
+
+      <!-- Budgeting Method Switcher Bar -->
+      <div class="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-[#f2f2f2] dark:border-[#1e293b] flex flex-wrap items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs">
+        <span class="text-[#8f8f8f] dark:text-[#64748b] font-mono mr-1 sm:mr-2">預算規劃方法：</span>
+        <a href="/zh-hant/budget-planner/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] dark:bg-[#1e293b] text-[#4d4d4d] dark:text-[#94a3b8] hover:text-[#171717] dark:hover:text-[#f8fafc] hover:bg-[#ebebeb] transition">
+          通用預算規劃器
+        </a>
+        <span class="px-3 py-1.5 rounded-full bg-[#171717] text-white font-medium">50/30/20 比例法</span>
+        <a href="/zh-hant/zero-based-budget/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] dark:bg-[#1e293b] text-[#4d4d4d] dark:text-[#94a3b8] hover:text-[#171717] dark:hover:text-[#f8fafc] hover:bg-[#ebebeb] transition">
+          零基預算分配法
+        </a>
+        <a href="/zh-hant/templates/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] dark:bg-[#1e293b] text-[#4d4d4d] dark:text-[#94a3b8] hover:text-[#171717] dark:hover:text-[#f8fafc] hover:bg-[#ebebeb] transition">
+          免費預算範本
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE 50/30/20 PLANNER COMPONENT -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+    <FiftyThirtyTwentyPlanner />
+  </main>
+
+  <!-- EDITORIAL GUIDE SECTION -->
+  <section class="border-t border-[#ebebeb] dark:border-[#1e293b] bg-[#faf8f5] dark:bg-[#0b1220] py-14 sm:py-18 transition-colors">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 space-y-12">
+      <!-- Section 1: The Three Buckets -->
+      <div class="space-y-6">
+        <h2 class="text-2xl sm:text-3xl font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+          50/30/20 規則三大核心分類詳解
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div class="bg-white dark:bg-[#111827] rounded-[12px] p-5 border border-[#e5e0d8] dark:border-[#1e293b] space-y-3">
+            <div class="inline-block px-2.5 py-0.5 rounded-[4px] bg-[#0e6e55]/10 text-[#0e6e55] dark:text-[#10b981] font-mono text-xs font-bold">
+              50% 必需支出
+            </div>
+            <h3 class="font-semibold text-sm sm:text-base text-[#0f172a] dark:text-[#f8fafc]">維持生存與基本生活</h3>
+            <p class="text-xs text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+              不可妥協的剛性開支。包括房租或房貸月供、水電煤氣寬頻、基礎食材雜貨、通勤交通費、基礎商業與社會醫療保險、債務最低還款額。
+            </p>
+          </div>
+
+          <div class="bg-white dark:bg-[#111827] rounded-[12px] p-5 border border-[#e5e0d8] dark:border-[#1e293b] space-y-3">
+            <div class="inline-block px-2.5 py-0.5 rounded-[4px] bg-[#3b82f6]/10 text-[#3b82f6] font-mono text-xs font-bold">
+              30% 想要支出
+            </div>
+            <h3 class="font-semibold text-sm sm:text-base text-[#0f172a] dark:text-[#f8fafc]">享受生活與品質追求</h3>
+            <p class="text-xs text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+              提升生活幸福感的可選消費。包括週末聚餐外賣、咖啡下午茶、旅行度假、影音訂閱、健身娛樂、個人服飾煥新與數碼愛好。
+            </p>
+          </div>
+
+          <div class="bg-white dark:bg-[#111827] rounded-[12px] p-5 border border-[#e5e0d8] dark:border-[#1e293b] space-y-3">
+            <div class="inline-block px-2.5 py-0.5 rounded-[4px] bg-[#8b5cf6]/10 text-[#8b5cf6] font-mono text-xs font-bold">
+              20% 儲蓄與還債
+            </div>
+            <h3 class="font-semibold text-sm sm:text-base text-[#0f172a] dark:text-[#f8fafc]">守護未來與資產積累</h3>
+            <p class="text-xs text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+              構築財務護城河的基石。包括3至6個月應急備用金、指數基金與穩健理財定投、個人養老儲備金、以及提前償還高息債務。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Income Example Table -->
+      <div class="bg-white dark:bg-[#111827] p-6 sm:p-8 rounded-[14px] border border-[#e5e0d8] dark:border-[#1e293b] space-y-4">
+        <h2 class="text-xl sm:text-2xl font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+          常見收入水平 50/30/20 預算分配參考表（新臺幣/港幣）
+        </h2>
+        <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8]">
+          以下為不同月到手收入標準下的黃金分割比例對照，可作為您制定計劃的基準：
+        </p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs sm:text-sm text-left border-collapse">
+            <thead>
+              <tr class="border-b border-[#e5e0d8] dark:border-[#1e293b] text-[#64748b] font-mono">
+                <th class="py-2.5 pr-4 font-semibold">月到手淨收入</th>
+                <th class="py-2.5 px-4 font-semibold text-[#0e6e55] dark:text-[#10b981]">50% 必需支出上限</th>
+                <th class="py-2.5 px-4 font-semibold text-[#3b82f6]">30% 想要支出限額</th>
+                <th class="py-2.5 pl-4 font-semibold text-[#8b5cf6]">20% 儲蓄還債目標</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[#f1efe9] dark:divide-[#1e293b] font-mono text-[#0f172a] dark:text-[#f8fafc]">
+              {incomeExamples.map((row) => (
+                <tr>
+                  <td class="py-3 pr-4 font-semibold">${row.income.toLocaleString()}</td>
+                  <td class="py-3 px-4">${row.needs.toLocaleString()}</td>
+                  <td class="py-3 px-4">${row.wants.toLocaleString()}</td>
+                  <td class="py-3 pl-4">${row.savings.toLocaleString()}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Section 3: High Cost of Living Adjustments -->
+      <div class="bg-white dark:bg-[#111827] p-6 sm:p-8 rounded-[14px] border border-[#e5e0d8] dark:border-[#1e293b] space-y-4">
+        <h2 class="text-xl sm:text-2xl font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+          高生活成本城市生活成本過高？如何靈活變通比例
+        </h2>
+        <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+          很多生活在高物價都會區等高生活成本城市的朋友會發現，單是房租一項就可能佔掉月薪的35%以上，導致必需支出輕鬆突破50%。請記住，50/30/20是<strong>指導原則，而非教條枷鎖</strong>。
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 text-xs text-[#475569] dark:text-[#94a3b8]">
+          <div class="p-4 rounded-[8px] bg-[#faf8f5] dark:bg-[#0b1220] border border-[#e5e0d8] dark:border-[#1e293b] space-y-1.5">
+            <strong class="text-[#0f172a] dark:text-[#f8fafc] block font-mono text-sm">60 / 20 / 20 適配方案</strong>
+            <p>適用於初入大城市、房租剛性較重的青年白領。必需支出放寬到60%，適度壓縮想要支出至20%，但依然守住20%的儲蓄底線。</p>
+          </div>
+          <div class="p-4 rounded-[8px] bg-[#faf8f5] dark:bg-[#0b1220] border border-[#e5e0d8] dark:border-[#1e293b] space-y-1.5">
+            <strong class="text-[#0f172a] dark:text-[#f8fafc] block font-mono text-sm">70 / 20 / 10 承壓過渡方案</strong>
+            <p>適用於正在撫養子女、揹負較高房貸月供或處於特殊經濟週期的家庭。先以10%維持基本儲蓄習慣，後續隨著收入增長逐步回撥。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <div class="space-y-4">
+        <h2 class="text-xl sm:text-2xl font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+          50/30/20 預算常見問題
+        </h2>
+        <div class="space-y-3">
+          {faqSchema.mainEntity.map((item) => (
+            <details class="bg-white dark:bg-[#111827] rounded-[10px] border border-[#ebebeb] dark:border-[#1e293b] p-4 shadow-whisper group cursor-pointer">
+              <summary class="font-semibold text-xs sm:text-sm text-[#0f172a] dark:text-[#f8fafc] flex items-center justify-between list-none select-none">
+                <span>{item.name}</span>
+                <span class="text-[#8f8f8f] group-open:rotate-180 transition-transform text-xs ml-2">▼</span>
+              </summary>
+              <div class="pt-3 text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed border-t border-[#f1efe9] dark:border-[#1e293b] mt-3">
+                {item.acceptedAnswer.text}
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- Related Tools Section -->
+      <div class="pt-6 border-t border-[#ebebeb] dark:border-[#1e293b] space-y-3 text-xs sm:text-sm">
+        <h2 class="text-base sm:text-lg font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+          相關工具
+        </h2>
+        <div class="flex flex-wrap items-center gap-4 sm:gap-6">
+          <a href="/zh-hant/zero-based-budget/" class="text-[#0e6e55] dark:text-[#10b981] font-medium hover:underline">
+            零基預算規劃
+          </a>
+          <a href="/zh-hant/templates/" class="text-[#0e6e55] dark:text-[#10b981] font-medium hover:underline">
+            免費預算範本
+          </a>
+          <a href="/zh-hant/budget-planner/" class="text-[#0e6e55] dark:text-[#10b981] font-medium hover:underline">
+            個人預算計算機
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

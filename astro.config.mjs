@@ -31,6 +31,11 @@ const routeToFileMap = {
 	'/zh/budget-planner/': 'src/pages/zh/budget-planner.astro',
 	'/zh/templates/': 'src/pages/zh/templates.astro',
 	'/zh/zero-based-budget/': 'src/pages/zh/zero-based-budget.astro',
+	'/zh-hant/': 'src/pages/zh-hant/index.astro',
+	'/zh-hant/50-30-20-budget/': 'src/pages/zh-hant/50-30-20-budget.astro',
+	'/zh-hant/budget-planner/': 'src/pages/zh-hant/budget-planner.astro',
+	'/zh-hant/templates/': 'src/pages/zh-hant/templates.astro',
+	'/zh-hant/zero-based-budget/': 'src/pages/zh-hant/zero-based-budget.astro',
 };
 
 const lastmodCache = new Map();
@@ -108,7 +113,7 @@ export default defineConfig({
 					item.lastmod = lastmod;
 				}
 
-				if (item.url === 'https://myrealbudget.com/' || item.url === 'https://myrealbudget.com/zh/') {
+				if (item.url === 'https://myrealbudget.com/' || item.url === 'https://myrealbudget.com/zh/' || item.url === 'https://myrealbudget.com/zh-hant/') {
 					item.changefreq = ChangeFreqEnum.WEEKLY;
 					item.priority = 1.0;
 				} else if (

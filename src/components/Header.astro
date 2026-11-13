@@ -11,10 +11,47 @@ interface Props {
 
 const { currentPath = Astro.url.pathname } = Astro.props;
 
-const isZh = currentPath.startsWith('/zh/');
-const homeHref = isZh ? '/zh/' : '/';
+const isZhHant = currentPath.startsWith('/zh-hant/');
+const isZhHans = currentPath.startsWith('/zh/') && !isZhHant;
+const isZh = isZhHant || isZhHans;
+const homeHref = isZhHant ? '/zh-hant/' : (isZhHans ? '/zh/' : '/');
 
-const navLinks = isZh
+const navLinks = isZhHant
+  ? [
+      {
+        href: '/zh-hant/budget-planner/',
+        label: '個人預算計算機',
+        compactLabel: '預算計算機',
+        tKey: 'nav.budget_planner',
+        tKeyCompact: 'nav.budget_planner',
+        ariaLabel: '個人預算計算機',
+      },
+      {
+        href: '/zh-hant/50-30-20-budget/',
+        label: '50/30/20預算',
+        compactLabel: '50/30/20',
+        tKey: 'nav.f3020_budget',
+        tKeyCompact: 'nav.f3020_compact',
+        ariaLabel: '50/30/20 預算規劃器',
+      },
+      {
+        href: '/zh-hant/zero-based-budget/',
+        label: '零基預算',
+        compactLabel: '零基預算',
+        tKey: 'nav.zero_based_budget',
+        tKeyCompact: 'nav.zero_based_compact',
+        ariaLabel: '零基預算規劃器',
+      },
+      {
+        href: '/zh-hant/templates/',
+        label: '預算範本',
+        compactLabel: '預算範本',
+        tKey: 'nav.templates',
+        tKeyCompact: 'nav.templates',
+        ariaLabel: '免費預算範本',
+      },
+    ]
+  : isZhHans
   ? [
       {
         href: '/zh/budget-planner/',
@@ -135,11 +172,11 @@ const navLinks = isZh
       <CurrencyLanguageControls idPrefix="header-desktop" />
       <ThemeToggle id="desktop-theme-toggle" />
       <a
-        href={isZh ? '/zh/budget-planner/' : '/budget-planner/'}
+        href={isZhHant ? '/zh-hant/budget-planner/' : (isZhHans ? '/zh/budget-planner/' : '/budget-planner/')}
         data-mrb-t="nav.start_budget"
         class="inline-flex items-center justify-center h-9 px-4 rounded-full bg-[var(--btn-primary-bg)] text-[var(--btn-primary-fg)] text-[13px] font-medium hover:opacity-90 transition shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--focus-ring)] whitespace-nowrap shrink-0"
       >
-        {isZh ? '开始规划' : 'Start Budget Planner'}
+        {isZhHant ? '開始規劃' : (isZhHans ? '开始规划' : 'Start Budget Planner')}
       </a>
     </div>
 
@@ -261,11 +298,11 @@ const navLinks = isZh
     <!-- SECTION 3: PRIMARY ACTION -->
     <div class="pt-1">
       <a
-        href={isZh ? '/zh/budget-planner/' : '/budget-planner/'}
+        href={isZhHant ? '/zh-hant/budget-planner/' : (isZhHans ? '/zh/budget-planner/' : '/budget-planner/')}
         data-mrb-t="nav.start_budget"
         class="block w-full text-center py-2.5 rounded-full bg-[var(--btn-primary-bg)] text-[var(--btn-primary-fg)] text-[14px] font-medium hover:opacity-90 transition shadow-sm"
       >
-        {isZh ? '开始规划' : 'Start Budget Planner'}
+        {isZhHant ? '開始規劃' : (isZhHans ? '开始规划' : 'Start Budget Planner')}
       </a>
     </div>
   </div>

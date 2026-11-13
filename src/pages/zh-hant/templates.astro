@@ -1,0 +1,348 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Eyebrow from '../../components/ui/Eyebrow.astro';
+import { BUDGET_TEMPLATES } from '../../data/templatesData';
+
+const title = '免費預算範本：個人、50/30/20與零基預算 | My Real Budget';
+const description = '免費下載精美個人與家庭預算表範本。包含通用每月預算表、50/30/20規則預算表及零基預算Excel試算表，支援Microsoft Excel與Google試算表即下即用。';
+const canonical = 'https://myrealbudget.com/zh-hant/templates/';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '這些預算範本是完全免費下載的嗎？需要註冊帳號嗎？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '是的，My Real Budget 提供的所有預算範本均為100%永久免費。無需填寫電子郵箱、無需註冊登入帳號、無任何隱藏付費或功能鎖。您可以一鍵直接下載 .xlsx 格式的試算表文件。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '下載的 Excel 預算範本可以在 Apple Numbers 或 Google 試算表中使用嗎？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '完全相容。範本採用通用開放的 Microsoft Excel (.xlsx) 與 CSV 格式製作，無論您是在 Windows/Mac 上使用 Microsoft Excel、Apple Numbers、蘋果 Numbers，還是將檔案匯入 Google 試算表或Apple Numbers，均可完美相容並保留全部公式結構。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '範本包含預置的自動計算求和公式嗎？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '包含。每個範本均已預先配置好總收入自動彙總、各類開支年化折算、結餘差額計算及百分比進度條公式，您只需在指定單元格填入自己的真實收支數字即可即時看到結果。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '線上規劃器與下載的 Excel 範本之間有什麼區別？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '線上預算規劃器更適合在手機或電腦瀏覽器中隨時進行即時計算、週期折算與快速推演，資料自動儲存在本地；而下載的 Excel 預算範本更適合需要深度歸檔、進行長期歷史對比或對單元格有重度定製需求的財務愛好者。兩者可以相互配合使用。',
+      },
+    },
+  ],
+};
+
+const ZH_TEMPLATES = [
+  {
+    id: 'general-budget',
+    name: '通用每月個人預算表範本',
+    method: '通用預算',
+    shortDescription: '全面的每月收支跟蹤表格，支援收入來源明細、固定必需開支、彈性生活費用及儲蓄彙總自動核算。',
+    targetAudience: '適合希望全面掌握收支、建立系統化每月財務底賬的個人與上班族。',
+    downloadUrl: '/templates/my-real-budget-general-budget-template.xlsx',
+    plannerUrl: '/zh/budget-planner/',
+  },
+  {
+    id: '50-30-20',
+    name: '50/30/20 比例規則預算表範本',
+    method: '50/30/20 規則',
+    shortDescription: '基於經典比例法則構建的極簡模型，自動計算50%必需支出、30%品質享受與20%儲蓄投資目標限額。',
+    targetAudience: '適合追求宏觀平衡、討厭繁雜流水賬記帳的初學者與年輕白領。',
+    downloadUrl: '/templates/my-real-budget-50-30-20-template.xlsx',
+    plannerUrl: '/zh/50-30-20-budget/',
+  },
+  {
+    id: 'zero-based',
+    name: '零基預算分配工作表範本',
+    method: '零基預算',
+    shortDescription: '嚴格執行“收入減去支出等於零”的專業表格，讓每一元錢帶著明確任務工作，杜絕無意識漏財。',
+    targetAudience: '適合希望加速清償債務、衝刺儲蓄目標或需要精細化把控現金流的使用者。',
+    downloadUrl: '/templates/my-real-budget-zero-based-budget-template.xlsx',
+    plannerUrl: '/zh/zero-based-budget/',
+  },
+  {
+    id: 'simple-monthly',
+    name: '極簡每月收支對照表範本',
+    method: '極簡模式',
+    shortDescription: '去除複雜子項，僅保留核心收入與四大支出分類的高效表格，五分鐘即可完成每月預算梳理。',
+    targetAudience: '適合記帳新手、時間緊張人士以及只需掌握基礎收支平衡的人群。',
+    downloadUrl: '/templates/my-real-budget-general-budget-template.xlsx',
+    plannerUrl: '/zh/budget-planner/',
+  },
+  {
+    id: 'student',
+    name: '大學生與青年生活預算表範本',
+    method: '學生青年',
+    shortDescription: '專為校園與剛畢業青年設計，涵蓋生活費、獎學金、兼職、餐飲、數碼文娛與學習培訓開支。',
+    targetAudience: '在校大學生、應屆畢業生及正在培養獨立理財意識的年輕人。',
+    downloadUrl: '/templates/my-real-budget-general-budget-template.xlsx',
+    plannerUrl: '/zh/budget-planner/',
+  },
+  {
+    id: 'household',
+    name: '伴侶與家庭聯合收支預算表範本',
+    method: '家庭聯合',
+    shortDescription: '支援雙人或多收入來源合併預算，清晰分離個人自主零花與家庭公共支出（房貸、育兒、人情等）。',
+    targetAudience: '同居伴侶、已婚家庭以及共同管理家庭財務儲備的夫妻雙方。',
+    downloadUrl: '/templates/my-real-budget-general-budget-template.xlsx',
+    plannerUrl: '/zh/budget-planner/',
+  },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  lang="zh-Hant"
+  jsonLd={faqSchema}
+>
+  <!-- HEADER INTRO -->
+  <section class="border-b border-[#ebebeb] dark:border-[#1e293b] bg-white dark:bg-[#111827] pt-12 pb-14 transition-colors">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="max-w-3xl space-y-4">
+        <Eyebrow text="免費試算表目錄" />
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-[#171717] dark:text-[#f8fafc] leading-tight">
+          免費預算範本目錄
+        </h1>
+        <p class="text-base sm:text-lg text-[#4d4d4d] dark:text-[#94a3b8] leading-relaxed">
+          為不同財務場景量身定製的免費 Excel 與 Google 試算表預算表範本。無需註冊郵箱或付費，一鍵免費下載，直接匯入 Microsoft Excel、Apple Numbers 或 Google 試算表中使用。
+        </p>
+      </div>
+
+      <!-- Quick Nav Strip -->
+      <div class="mt-8 pt-6 border-t border-[#f2f2f2] dark:border-[#1e293b] flex flex-wrap items-center gap-2 text-xs">
+        <span class="text-[#8f8f8f] dark:text-[#64748b] font-mono mr-2">快速跳轉：</span>
+        {ZH_TEMPLATES.map((t) => (
+          <a
+            href={`#${t.id}`}
+            class="px-2.5 py-1 rounded-[6px] bg-[#fafafa] dark:bg-[#1e293b] hover:bg-[#f2f2f2] dark:hover:bg-[#334155] border border-[#ebebeb] dark:border-[#334155] text-[#171717] dark:text-[#f8fafc] transition"
+          >
+            {t.name.split('範本')[0]}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- DIRECTORY GRID -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {ZH_TEMPLATES.map((template) => (
+        <article id={template.id} class="bg-white dark:bg-[#111827] rounded-[12px] border border-[#ebebeb] dark:border-[#1e293b] p-6 shadow-whisper flex flex-col justify-between hover:border-[#0e6e55] dark:hover:border-[#10b981] transition group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="inline-block px-2.5 py-0.5 rounded-[6px] bg-[#f2f2f2] dark:bg-[#1e293b] text-xs font-mono text-[#0e6e55] dark:text-[#10b981] font-medium">
+                {template.method}
+              </span>
+              <span class="text-xs text-[#8f8f8f] dark:text-[#64748b] font-mono">.XLSX / 表格</span>
+            </div>
+
+            <h2 class="text-lg font-semibold text-[#171717] dark:text-[#f8fafc] tracking-tight">
+              {template.name}
+            </h2>
+
+            <p class="text-xs text-[#4d4d4d] dark:text-[#94a3b8] leading-relaxed">
+              {template.shortDescription}
+            </p>
+
+            <div class="pt-2 border-t border-[#f2f2f2] dark:border-[#1e293b] space-y-1">
+              <span class="text-[11px] font-mono uppercase text-[#8f8f8f] dark:text-[#64748b] block">適用人群：</span>
+              <p class="text-xs text-[#171717] dark:text-[#f8fafc]">
+                {template.targetAudience}
+              </p>
+            </div>
+          </div>
+
+          <div class="pt-6 border-t border-[#ebebeb] dark:border-[#1e293b] mt-6 flex flex-col sm:flex-row gap-2">
+            <a
+              href={template.downloadUrl}
+              download
+              class="flex-1 inline-flex items-center justify-center h-9 px-4 rounded-full bg-[#171717] text-white text-xs font-medium hover:bg-neutral-800 transition text-center shadow-sm"
+            >
+              下載 Excel 範本 (.xlsx)
+            </a>
+            <a
+              href={template.plannerUrl}
+              class="inline-flex items-center justify-center h-9 px-3 rounded-full bg-[#f2f2f2] dark:bg-[#1e293b] text-[#171717] dark:text-[#f8fafc] text-xs font-medium hover:bg-[#ebebeb] transition text-center"
+            >
+              線上規劃
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- 預算方法深度解析與範本選擇指南 -->
+    <section class="mt-20 border-t border-[#ebebeb] dark:border-[#1e293b] pt-16 space-y-14">
+      <div class="max-w-4xl mx-auto space-y-6">
+        <Eyebrow text="深入指南" />
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-[-0.02em] text-[#0f172a] dark:text-[#f8fafc]">
+          什麼是預算範本？如何建立可持續的個人財務秩序
+        </h2>
+        <div class="space-y-4 text-sm sm:text-base text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+          <p>
+            預算範本是一套預先配置好收支結構、邏輯分類與計算公式的財務工作表。許多人在嘗試理財時容易陷入兩個極端：要麼面對空白的表格無從下手，要麼被市面上複雜的商業記帳軟體過度捆綁。一份專業的預算範本能夠為您搭建好堅實的底層框架，將零散的銀行帳單、信用卡消費和不規則開支歸整為邏輯嚴密的收支檢視。
+          </p>
+          <p>
+            使用預算範本的核心目的絕非為了剋扣生活品質，而是為了消除盲目消費帶來的心理焦慮。通過在月初對薪資與固定開支進行預先規劃，您能夠清晰預見月末的真實結餘，從而在日常生活中充滿底氣地進行合理的非必要消費。
+          </p>
+        </div>
+      </div>
+
+      <!-- 三大核心預算方法對比 -->
+      <div class="max-w-4xl mx-auto space-y-6">
+        <h3 class="text-xl sm:text-2xl font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+          核心預算方法對比：哪一種最契合您的生活節奏？
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-[#475569] dark:text-[#94a3b8]">
+          <div class="bg-white dark:bg-[#111827] p-6 rounded-[12px] border border-[#e5e0d8] dark:border-[#1e293b] space-y-3 shadow-whisper">
+            <h4 class="font-semibold text-base text-[#0f172a] dark:text-[#f8fafc]">50/30/20 比例預算體系</h4>
+            <p class="leading-relaxed">
+              將稅後收入劃分為三大核心板塊：<strong>50% 必要生活開支</strong>（房租房貸、飲食、通勤、水電）、<strong>30% 個人品質支出</strong>（外出就餐、娛樂、個人愛好）與 <strong>20% 儲蓄與還債</strong>。
+            </p>
+            <p class="text-xs text-[#0e6e55] dark:text-[#10b981]">
+              <strong>適合人群：</strong> 追求宏觀財務平衡、不願陷入日常瑣碎記帳的職場人士與初學者。您可以直接通過我們的 <a href="/zh-hant/50-30-20-budget/" class="font-medium underline hover:opacity-80">50/30/20預算規劃器</a> 快速核算自己的三項限額。
+            </p>
+          </div>
+
+          <div class="bg-white dark:bg-[#111827] p-6 rounded-[12px] border border-[#e5e0d8] dark:border-[#1e293b] space-y-3 shadow-whisper">
+            <h4 class="font-semibold text-base text-[#0f172a] dark:text-[#f8fafc]">零基預算分配模式 (ZBB)</h4>
+            <p class="leading-relaxed">
+              嚴格貫徹 <strong>“總收入 - 總支出 = 0”</strong> 的財務紀律。這裡的“零”並不是指花光全部薪水，而是指讓每一元錢在月初都帶著明確的職責上崗（包括應急金儲備與定向投資）。
+            </p>
+            <p class="text-xs text-[#0e6e55] dark:text-[#10b981]">
+              <strong>適合人群：</strong> 想要快速擺脫債務、有大額存錢計劃或希望徹底消除無意識漏財的使用者。歡迎結合 <a href="/zh-hant/zero-based-budget/" class="font-medium underline hover:opacity-80">零基預算規劃器</a> 體驗資金精準歸零的掌控感。
+            </p>
+          </div>
+
+          <div class="bg-white dark:bg-[#111827] p-6 rounded-[12px] border border-[#e5e0d8] dark:border-[#1e293b] space-y-3 shadow-whisper">
+            <h4 class="font-semibold text-base text-[#0f172a] dark:text-[#f8fafc]">通用每月全面預算表</h4>
+            <p class="leading-relaxed">
+              覆蓋從多渠道收入彙總、各類固定與變動生活費用細分，到年化均攤大額帳單（如商業車險、物業費、體檢費）的系統化賬本。
+            </p>
+            <p class="text-xs text-[#0e6e55] dark:text-[#10b981]">
+              <strong>適合人群：</strong> 擁有複雜帳單週期的家庭或個人。推薦使用 <a href="/zh-hant/budget-planner/" class="font-medium underline hover:opacity-80">通用每月預算規劃器</a> 自動折算周/月/年支付頻次。
+            </p>
+          </div>
+
+          <div class="bg-white dark:bg-[#111827] p-6 rounded-[12px] border border-[#e5e0d8] dark:border-[#1e293b] space-y-3 shadow-whisper">
+            <h4 class="font-semibold text-base text-[#0f172a] dark:text-[#f8fafc]">極簡每月與學生青年範本</h4>
+            <p class="leading-relaxed">
+              剔除繁瑣子項，僅保留核心四大開支類別。學生版更針對兼職收入、學期生活費與實習支出做出專屬適配。
+            </p>
+            <p class="text-xs text-[#0e6e55] dark:text-[#10b981]">
+              <strong>適合人群：</strong> 首次獨立理財的青年學生或時間精力有限的記帳新手，僅需5分鐘即可理清收支。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 試算表與線上規劃器的互補結合 -->
+      <div class="max-w-4xl mx-auto p-7 rounded-[14px] bg-white dark:bg-[#111827] border border-[#e5e0d8] dark:border-[#1e293b] space-y-4 shadow-whisper">
+        <h3 class="text-lg sm:text-xl font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+          本地試算表與線上互動工具的協同工作流
+        </h3>
+        <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+          試算表與網頁端工具並非相互替代，而是相輔相成的最佳搭檔：
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-[#475569] dark:text-[#94a3b8]">
+          <div class="p-4 rounded-[8px] bg-[#f8f7f4] dark:bg-[#172033] border border-[#e5e0d8] dark:border-[#1e293b] space-y-2">
+            <strong class="text-[#0f172a] dark:text-[#f8fafc] block font-semibold text-sm">階段一：線上快速推演與頻次換算</strong>
+            <p>在瀏覽器中隨時呼叫 <a href="/zh-hant/budget-planner/" class="text-[#0e6e55] dark:text-[#10b981] underline">通用預算規劃器</a>，無需安裝軟體。自動把季繳或年繳開銷歸一化為每月均攤數值，推演多種收支情景。</p>
+          </div>
+          <div class="p-4 rounded-[8px] bg-[#f8f7f4] dark:bg-[#172033] border border-[#e5e0d8] dark:border-[#1e293b] space-y-2">
+            <strong class="text-[#0f172a] dark:text-[#f8fafc] block font-semibold text-sm">階段二：下載 Excel 表格進行歷史歸檔</strong>
+            <p>確定好穩定常態的每月收支指標後，下載本頁提供的對應 .xlsx 檔案，儲存在個人電腦或雲端硬碟中，建立長期跨年度的家庭財務資產庫。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- SPREADSHEET BEST PRACTICES SECTION -->
+  <section class="border-t border-[#ebebeb] dark:border-[#1e293b] bg-[#faf8f5] dark:bg-[#0b1220] py-14 sm:py-18 transition-colors">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 space-y-10">
+      <div class="text-center space-y-3">
+        <Eyebrow text="使用技巧與指南" />
+        <h2 class="text-2xl sm:text-3xl font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+          如何高效使用試算表管理個人預算
+        </h2>
+        <p class="text-sm text-[#475569] dark:text-[#94a3b8]">
+          將試算表的自由度與嚴謹的財務紀律相結合。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8]">
+        <div class="bg-white dark:bg-[#111827] p-5 rounded-[12px] border border-[#e5e0d8] dark:border-[#1e293b] space-y-2">
+          <strong class="text-[#0f172a] dark:text-[#f8fafc] block font-semibold text-base">第一步：下載並妥善儲存範本</strong>
+          <p>下載 .xlsx 檔案後，建議在雲端硬碟（如 Google Drive、OneDrive 或 iCloud）另存一份空白副本作為範本，每月初複製一份填寫當月資料。</p>
+        </div>
+        <div class="bg-white dark:bg-[#111827] p-5 rounded-[12px] border border-[#e5e0d8] dark:border-[#1e293b] space-y-2">
+          <strong class="text-[#0f172a] dark:text-[#f8fafc] block font-semibold text-base">第二步：僅需填寫數字輸入列</strong>
+          <p>範本中的求和彙總、盈餘計算與百分比列均已寫入公式，請儘量避免手動覆蓋公式單元格，只需按需修改分類名稱與金額數值。</p>
+        </div>
+        <div class="bg-white dark:bg-[#111827] p-5 rounded-[12px] border border-[#e5e0d8] dark:border-[#1e293b] space-y-2">
+          <strong class="text-[#0f172a] dark:text-[#f8fafc] block font-semibold text-base">第三步：月末進行一次性復盤</strong>
+          <p>無需每天高壓輸入，建議在每月最後一個週末花15分鐘核對實際帳單與預算預設值的偏差，並適度調優下月指標。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
+    <div class="text-center space-y-3 mb-10">
+      <Eyebrow text="常見疑問" />
+      <h2 class="text-2xl sm:text-3xl font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+        預算範本常見問題解答
+      </h2>
+    </div>
+
+    <div class="space-y-3">
+      {faqSchema.mainEntity.map((item) => (
+        <details class="bg-white dark:bg-[#111827] rounded-[10px] border border-[#ebebeb] dark:border-[#1e293b] p-4 shadow-whisper group cursor-pointer">
+          <summary class="font-semibold text-xs sm:text-sm text-[#0f172a] dark:text-[#f8fafc] flex items-center justify-between list-none select-none">
+            <span>{item.name}</span>
+            <span class="text-[#8f8f8f] group-open:rotate-180 transition-transform text-xs ml-2">▼</span>
+          </summary>
+          <div class="pt-3 text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed border-t border-[#f1efe9] dark:border-[#1e293b] mt-3">
+            {item.acceptedAnswer.text}
+          </div>
+        </details>
+      ))}
+    </div>
+
+    <!-- Related Tools Section -->
+    <div class="pt-10 border-t border-[#ebebeb] dark:border-[#1e293b] mt-12 space-y-3 text-xs sm:text-sm">
+      <h2 class="text-base sm:text-lg font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+        相關工具
+      </h2>
+      <div class="flex flex-wrap items-center gap-4 sm:gap-6">
+        <a href="/zh-hant/50-30-20-budget/" class="text-[#0e6e55] dark:text-[#10b981] font-medium hover:underline">
+          50/30/20預算計算
+        </a>
+        <a href="/zh-hant/zero-based-budget/" class="text-[#0e6e55] dark:text-[#10b981] font-medium hover:underline">
+          零基預算規劃
+        </a>
+        <a href="/zh-hant/budget-planner/" class="text-[#0e6e55] dark:text-[#10b981] font-medium hover:underline">
+          個人預算計算機
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

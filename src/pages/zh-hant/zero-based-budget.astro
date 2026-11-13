@@ -1,0 +1,206 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Eyebrow from '../../components/ui/Eyebrow.astro';
+import ZeroBasedPlanner from '../../components/planners/ZeroBasedPlanner.astro';
+
+const title = '零基預算：方法、步驟與預算規劃器 | My Real Budget';
+const description = '零基預算方法詳解與免費線上規劃器。賦予每分錢明確使命，使每月總收入減去全部開支與儲蓄分配等於零，徹底消除無意識消費。';
+const canonical = 'https://myrealbudget.com/zh-hant/zero-based-budget/';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '什麼是零基預算？它的核心公式是什麼？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '零基預算（Zero-Based Budgeting，簡稱 ZBB）是一種極其嚴謹的目標導向型預算方法。其核心邏輯是“收入 − 全部支出與儲蓄分配 = 0”。在月初，您將稅後收入的每一分錢都預先分配至特定用途（必需帳單、債務償還、儲蓄目標、娛樂開銷或緩衝資金），直到“待分配金額”恰好歸零。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '“收入減支出等於零”意味著要把銀行卡里的錢全部花光嗎？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '絕對不是。零基預算的“歸零”指的是未分配差額歸零，而非帳戶存款清零。儲蓄、投資、應急基金甚至活期帳戶防透支安全墊，都是被正式命名的“分配專案”。每一筆資金在賬面上都有歸宿，避免閒置資金在無意識中流失。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '如果月末有結餘資金，應該如何處理？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '如果在執行過程中某項開支低於預期產生結餘，絕不能讓資金無序遊蕩。您可以將其主動分配到加速償還高息債務、補充應急備用金、或者存入下一季度的旅行心願專項基金中，重新實現零基平衡。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '自由職業者或收入波動較大的人群適合零基預算嗎？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '非常適合，但需建立基線機制。波動收入者應以過去半年收入的“最低月份基線”作為當月起點，確保剛需全覆蓋；高收入月份的多餘資金則全額劃入“收入平滑緩衝池”，用於在低收入月份提取貼補。',
+      },
+    },
+  ],
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  lang="zh-Hant"
+  jsonLd={faqSchema}
+>
+  <!-- HEADER INTRO -->
+  <section class="border-b border-[#ebebeb] dark:border-[#1e293b] bg-white dark:bg-[#111827] pt-8 pb-10 sm:pt-12 sm:pb-14 transition-colors">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="max-w-3xl space-y-4">
+        <Eyebrow text="目標導向預算" />
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[-0.03em] text-[#171717] dark:text-[#f8fafc] leading-tight">
+          零基預算規劃器
+        </h1>
+        <p class="text-base sm:text-lg text-[#4d4d4d] dark:text-[#94a3b8] leading-relaxed">
+          “賦予每一分錢明確的使命。”將您的總收入完整分配至剛需開銷、債務清償、儲蓄目標與緩衝基金，直至未分配差額精準歸零。
+        </p>
+      </div>
+
+      <!-- Budgeting Method Switcher Bar -->
+      <div class="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-[#f2f2f2] dark:border-[#1e293b] flex flex-wrap items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs">
+        <span class="text-[#8f8f8f] dark:text-[#64748b] font-mono mr-1 sm:mr-2">預算規劃方法：</span>
+        <a href="/zh-hant/budget-planner/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] dark:bg-[#1e293b] text-[#4d4d4d] dark:text-[#94a3b8] hover:text-[#171717] dark:hover:text-[#f8fafc] hover:bg-[#ebebeb] transition">
+          通用預算規劃器
+        </a>
+        <a href="/zh-hant/50-30-20-budget/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] dark:bg-[#1e293b] text-[#4d4d4d] dark:text-[#94a3b8] hover:text-[#171717] dark:hover:text-[#f8fafc] hover:bg-[#ebebeb] transition">
+          50/30/20 比例法
+        </a>
+        <span class="px-3 py-1.5 rounded-full bg-[#171717] text-white font-medium">零基預算分配法</span>
+        <a href="/zh-hant/templates/" class="px-3 py-1.5 rounded-full bg-[#f2f2f2] dark:bg-[#1e293b] text-[#4d4d4d] dark:text-[#94a3b8] hover:text-[#171717] dark:hover:text-[#f8fafc] hover:bg-[#ebebeb] transition">
+          免費預算範本
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE ZERO-BASED PLANNER COMPONENT -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+    <ZeroBasedPlanner />
+  </main>
+
+  <!-- EDITORIAL GUIDE SECTION -->
+  <section class="border-t border-[#ebebeb] dark:border-[#1e293b] bg-[#faf8f5] dark:bg-[#0b1220] py-14 sm:py-18 transition-colors">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 space-y-12">
+      <!-- Section 1: The Core Philosophy -->
+      <div class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+          零基預算的核心哲學：讓每一元錢帶著任務工作
+        </h2>
+        <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+          許多人在月末經常感到困惑：“我明明沒有買什麼奢侈品，為什麼存款還是沒增加？”其根本原因在於帳戶中的閒散流動資金缺乏明確歸屬，容易在碎片化的外賣、衝動網購與小額消費中被無聲侵蝕。
+        </p>
+        <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+          <strong>零基預算徹底逆轉了這一過程。</strong>在薪資到賬的第一天，您就為全部資金寫好劇本：哪些去交房租，哪些買菜，哪些定投，甚至專門劃出一筆“自由享樂金”。當您知道每一筆錢的歸宿時，您花錢時將沒有罪惡感，省錢時將充滿目標感。
+        </p>
+      </div>
+
+      <!-- Section 2: 5 Steps to Zero -->
+      <div class="bg-white dark:bg-[#111827] p-6 sm:p-8 rounded-[14px] border border-[#e5e0d8] dark:border-[#1e293b] space-y-5">
+        <h2 class="text-xl sm:text-2xl font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+          零基預算落地的五個實操步驟
+        </h2>
+        <div class="space-y-4 text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8]">
+          <div class="flex items-start gap-3">
+            <span class="w-6 h-6 rounded-full bg-[#0e6e55]/10 text-[#0e6e55] dark:text-[#10b981] flex items-center justify-center shrink-0 font-bold text-xs mt-0.5">1</span>
+            <div>
+              <strong class="text-[#0f172a] dark:text-[#f8fafc] block">計算當月確切總資金池：</strong>
+              統計稅後薪資、預計津貼及其他已知到賬款項，明確本月總分配額（例如$18,000）。
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="w-6 h-6 rounded-full bg-[#0e6e55]/10 text-[#0e6e55] dark:text-[#10b981] flex items-center justify-center shrink-0 font-bold text-xs mt-0.5">2</span>
+            <div>
+              <strong class="text-[#0f172a] dark:text-[#f8fafc] block">優先分配生存剛性支出（四道防線）：</strong>
+              住房（房租房貸）、飲食、公用事業（水電通訊）與出行交通。確保基礎生活堅不可摧。
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="w-6 h-6 rounded-full bg-[#0e6e55]/10 text-[#0e6e55] dark:text-[#10b981] flex items-center justify-center shrink-0 font-bold text-xs mt-0.5">3</span>
+            <div>
+              <strong class="text-[#0f172a] dark:text-[#f8fafc] block">劃撥儲蓄目標與下沉專項基金（Sinking Funds）：</strong>
+              為年度車險、人情往來禮金、節日旅行提前設立按月儲蓄槽位，避免帳單來臨時措手不及。
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="w-6 h-6 rounded-full bg-[#0e6e55]/10 text-[#0e6e55] dark:text-[#10b981] flex items-center justify-center shrink-0 font-bold text-xs mt-0.5">4</span>
+            <div>
+              <strong class="text-[#0f172a] dark:text-[#f8fafc] block">安排品質生活與自由零花預算：</strong>
+              外出就餐、聚會看電影、個人購物等。在此限額內開銷完全合規，無需自我懷疑。
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="w-6 h-6 rounded-full bg-[#0e6e55]/10 text-[#0e6e55] dark:text-[#10b981] flex items-center justify-center shrink-0 font-bold text-xs mt-0.5">5</span>
+            <div>
+              <strong class="text-[#0f172a] dark:text-[#f8fafc] block">設定“安全緩衝池”直至差額歸零：</strong>
+              若最後還剩$500無法歸類，將其填入“意外緩衝基金”，確保總分配與總收入完全相等（差額為$0）。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Sinking Funds Explanation -->
+      <div class="bg-white dark:bg-[#111827] p-6 sm:p-8 rounded-[14px] border border-[#e5e0d8] dark:border-[#1e293b] space-y-4">
+        <h2 class="text-xl sm:text-2xl font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+          零基預算的致勝秘訣：下沉基金（Sinking Funds）
+        </h2>
+        <p class="text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed">
+          許多預算在執行到第三或第四個月時破裂，通常不是因為超支買奶茶，而是遇到“已知但非每月發生的大額帳單”（例如：一年一次的商業車險$4,800，或是年檢換胎$2,400）。
+        </p>
+        <div class="p-4 rounded-[8px] bg-[#faf8f5] dark:bg-[#0b1220] border border-[#e5e0d8] dark:border-[#1e293b] text-xs text-[#0f172a] dark:text-[#f8fafc] space-y-2">
+          <p>
+            <strong>下沉基金的做法是：</strong>將年度$4,800的車險拆分為每個月$400的零基專項分配。每個月在賬面上劃撥$400存入專用小賬本。到了年底繳費時，帳戶中已有現成全款，完全不影響當月的現金流平衡。
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <div class="space-y-4">
+        <h2 class="text-xl sm:text-2xl font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+          零基預算常見問題解答
+        </h2>
+        <div class="space-y-3">
+          {faqSchema.mainEntity.map((item) => (
+            <details class="bg-white dark:bg-[#111827] rounded-[10px] border border-[#ebebeb] dark:border-[#1e293b] p-4 shadow-whisper group cursor-pointer">
+              <summary class="font-semibold text-xs sm:text-sm text-[#0f172a] dark:text-[#f8fafc] flex items-center justify-between list-none select-none">
+                <span>{item.name}</span>
+                <span class="text-[#8f8f8f] group-open:rotate-180 transition-transform text-xs ml-2">▼</span>
+              </summary>
+              <div class="pt-3 text-xs sm:text-sm text-[#475569] dark:text-[#94a3b8] leading-relaxed border-t border-[#f1efe9] dark:border-[#1e293b] mt-3">
+                {item.acceptedAnswer.text}
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <!-- Related Tools Section -->
+      <div class="pt-6 border-t border-[#ebebeb] dark:border-[#1e293b] space-y-3 text-xs sm:text-sm">
+        <h2 class="text-base sm:text-lg font-semibold text-[#0f172a] dark:text-[#f8fafc]">
+          相關工具
+        </h2>
+        <div class="flex flex-wrap items-center gap-4 sm:gap-6">
+          <a href="/zh-hant/50-30-20-budget/" class="text-[#0e6e55] dark:text-[#10b981] font-medium hover:underline">
+            50/30/20預算計算
+          </a>
+          <a href="/zh-hant/templates/" class="text-[#0e6e55] dark:text-[#10b981] font-medium hover:underline">
+            免費預算範本
+          </a>
+          <a href="/zh-hant/budget-planner/" class="text-[#0e6e55] dark:text-[#10b981] font-medium hover:underline">
+            個人預算計算機
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
