@@ -9,87 +9,146 @@ import { fileURLToPath } from 'node:url';
 
 const projectDir = path.dirname(fileURLToPath(import.meta.url));
 
-const routeToFileMap = {
-	'/': 'src/pages/index.astro',
-	'/50-30-20-budget/': 'src/pages/50-30-20-budget.astro',
-	'/about/': 'src/pages/about.astro',
-	'/budget-planner-template/': 'src/pages/budget-planner-template.astro',
-	'/budget-planner/': 'src/pages/budget-planner.astro',
-	'/budget-templates/': 'src/pages/budget-templates.astro',
-	'/contact/': 'src/pages/contact.astro',
-	'/learn/': 'src/pages/learn/index.astro',
-	'/learn/50-30-20-budget-explained/': 'src/pages/learn/50-30-20-budget-explained.astro',
-	'/learn/50-30-20-vs-zero-based-budget/': 'src/pages/learn/50-30-20-vs-zero-based-budget.astro',
-	'/learn/how-to-create-a-monthly-budget/': 'src/pages/learn/how-to-create-a-monthly-budget.astro',
-	'/learn/what-is-a-budget/': 'src/pages/learn/what-is-a-budget.astro',
-	'/learn/zero-based-budget-explained/': 'src/pages/learn/zero-based-budget-explained.astro',
-	'/privacy/': 'src/pages/privacy.astro',
-	'/terms/': 'src/pages/terms.astro',
-	'/zero-based-budget/': 'src/pages/zero-based-budget.astro',
-	'/zh/': 'src/pages/zh/index.astro',
-	'/zh/50-30-20-budget/': 'src/pages/zh/50-30-20-budget.astro',
-	'/zh/budget-planner/': 'src/pages/zh/budget-planner.astro',
-	'/zh/templates/': 'src/pages/zh/templates.astro',
-	'/zh/zero-based-budget/': 'src/pages/zh/zero-based-budget.astro',
-	'/zh-hant/': 'src/pages/zh-hant/index.astro',
-	'/zh-hant/50-30-20-budget/': 'src/pages/zh-hant/50-30-20-budget.astro',
-	'/zh-hant/budget-planner/': 'src/pages/zh-hant/budget-planner.astro',
-	'/zh-hant/templates/': 'src/pages/zh-hant/templates.astro',
-	'/zh-hant/zero-based-budget/': 'src/pages/zh-hant/zero-based-budget.astro',
+// Map each route to its primary source page (.astro/.md) and associated content/translation files
+const routeFilesMap = {
+	'/': ['src/pages/index.astro'],
+	'/50-30-20-budget/': ['src/pages/50-30-20-budget.astro'],
+	'/about/': ['src/pages/about.astro'],
+	'/budget-planner-template/': ['src/pages/budget-planner-template.astro', 'src/data/templatesData.ts'],
+	'/budget-planner/': ['src/pages/budget-planner.astro'],
+	'/budget-templates/': ['src/pages/budget-templates.astro', 'src/data/templatesData.ts'],
+	'/contact/': ['src/pages/contact.astro'],
+	'/learn/': ['src/pages/learn/index.astro', 'src/data/learnArticles.ts'],
+	'/learn/50-30-20-budget-explained/': ['src/pages/learn/50-30-20-budget-explained.astro', 'src/data/learnArticleContent.ts'],
+	'/learn/50-30-20-vs-zero-based-budget/': ['src/pages/learn/50-30-20-vs-zero-based-budget.astro', 'src/data/learnArticleContent.ts'],
+	'/learn/how-to-create-a-monthly-budget/': ['src/pages/learn/how-to-create-a-monthly-budget.astro', 'src/data/learnArticleContent.ts'],
+	'/learn/what-is-a-budget/': ['src/pages/learn/what-is-a-budget.astro', 'src/data/learnArticleContent.ts'],
+	'/learn/zero-based-budget-explained/': ['src/pages/learn/zero-based-budget-explained.astro', 'src/data/learnArticleContent.ts'],
+	'/privacy/': ['src/pages/privacy.astro'],
+	'/terms/': ['src/pages/terms.astro'],
+	'/zero-based-budget/': ['src/pages/zero-based-budget.astro'],
+	'/zh/': ['src/pages/zh/index.astro', 'src/data/editorialTranslations.ts'],
+	'/zh/50-30-20-budget/': ['src/pages/zh/50-30-20-budget.astro', 'src/data/editorialTranslations.ts'],
+	'/zh/budget-planner/': ['src/pages/zh/budget-planner.astro', 'src/data/editorialTranslations.ts'],
+	'/zh/templates/': ['src/pages/zh/templates.astro', 'src/data/templatesTranslations.ts'],
+	'/zh/zero-based-budget/': ['src/pages/zh/zero-based-budget.astro', 'src/data/editorialTranslations.ts'],
+	'/zh-hant/': ['src/pages/zh-hant/index.astro', 'src/data/editorialTranslations.ts'],
+	'/zh-hant/50-30-20-budget/': ['src/pages/zh-hant/50-30-20-budget.astro', 'src/data/editorialTranslations.ts'],
+	'/zh-hant/budget-planner/': ['src/pages/zh-hant/budget-planner.astro', 'src/data/editorialTranslations.ts'],
+	'/zh-hant/templates/': ['src/pages/zh-hant/templates.astro', 'src/data/templatesTranslations.ts'],
+	'/zh-hant/zero-based-budget/': ['src/pages/zh-hant/zero-based-budget.astro', 'src/data/editorialTranslations.ts'],
 };
+
+// Load manual fallback map from src/data/lastmod.json
+let lastmodFallback = {};
+try {
+	const lastmodPath = path.resolve(projectDir, 'src/data/lastmod.json');
+	if (fs.existsSync(lastmodPath)) {
+		lastmodFallback = JSON.parse(fs.readFileSync(lastmodPath, 'utf-8'));
+	}
+} catch (e) {
+	console.warn('[sitemap] Warning: Could not read src/data/lastmod.json:', e.message);
+}
+
+let gitHistoryChecked = false;
+function ensureFullGitHistory() {
+	if (gitHistoryChecked) return;
+	gitHistoryChecked = true;
+	try {
+		const isShallow = execSync('git rev-parse --is-shallow-repository', {
+			cwd: projectDir,
+			encoding: 'utf-8',
+			stdio: ['ignore', 'pipe', 'ignore'],
+		}).trim() === 'true';
+
+		if (isShallow) {
+			console.log('[sitemap] Shallow git clone detected. Fetching full git history with git fetch --unshallow...');
+			execSync('git fetch --unshallow', {
+				cwd: projectDir,
+				encoding: 'utf-8',
+				stdio: ['ignore', 'pipe', 'ignore'],
+			});
+			console.log('[sitemap] Successfully fetched full git history.');
+		}
+	} catch {
+		// Ignore if unshallow is not supported in the current environment
+	}
+}
 
 const lastmodCache = new Map();
 
 function getRouteLastmod(url) {
 	try {
+		ensureFullGitHistory();
+
 		const parsed = new URL(url);
 		let pathname = parsed.pathname;
 		if (!pathname.endsWith('/')) {
 			pathname += '/';
 		}
-		const relFile = routeToFileMap[pathname];
-		if (!relFile) return undefined;
-		if (lastmodCache.has(relFile)) return lastmodCache.get(relFile);
+		if (lastmodCache.has(pathname)) return lastmodCache.get(pathname);
 
-		const fullPath = path.resolve(projectDir, relFile);
-		if (!fs.existsSync(fullPath)) return undefined;
+		let resolvedDate = null;
+		const isChinese = pathname.startsWith('/zh/') || pathname.startsWith('/zh-hant/');
 
-		let isDirty = false;
-		try {
-			const status = execSync(`git status --porcelain -- "${relFile}"`, {
-				cwd: projectDir,
-				encoding: 'utf-8',
-				stdio: ['ignore', 'pipe', 'ignore'],
-			}).trim();
-			if (status) isDirty = true;
-		} catch {
-			// ignore git status error
-		}
-
-		if (isDirty) {
-			const mtime = fs.statSync(fullPath).mtime.toISOString();
-			lastmodCache.set(relFile, mtime);
-			return mtime;
-		}
-
-		try {
-			const gitDate = execSync(`git log -1 --format="%cI" -- "${relFile}"`, {
-				cwd: projectDir,
-				encoding: 'utf-8',
-				stdio: ['ignore', 'pipe', 'ignore'],
-			}).trim();
-			if (gitDate) {
-				lastmodCache.set(relFile, gitDate);
-				return gitDate;
+		if (isChinese) {
+			// Chinese pages: always use the corresponding date from src/data/lastmod.json
+			if (lastmodFallback) {
+				const fallbackRaw = lastmodFallback[url] || lastmodFallback[pathname] || lastmodFallback[pathname.replace(/\/$/, '')];
+				if (fallbackRaw) {
+					const parsedDate = new Date(fallbackRaw);
+					if (!isNaN(parsedDate.getTime())) {
+						resolvedDate = parsedDate.toISOString();
+					}
+				}
 			}
-		} catch {
-			// ignore git log error
+		} else {
+			// Non-Chinese pages: Git history first, fallback-map second
+			const files = routeFilesMap[pathname];
+			if (files && files.length > 0) {
+				const existingFiles = files.filter((f) => fs.existsSync(path.resolve(projectDir, f)));
+				if (existingFiles.length > 0) {
+					try {
+						const quoted = existingFiles.map((f) => `"${f.replace(/\\/g, '/')}"`).join(' ');
+						const gitDate = execSync(`git log -1 --format="%cI" -- ${quoted}`, {
+							cwd: projectDir,
+							encoding: 'utf-8',
+							stdio: ['ignore', 'pipe', 'ignore'],
+						}).trim();
+						if (gitDate) {
+							const parsedDate = new Date(gitDate);
+							if (!isNaN(parsedDate.getTime())) {
+								resolvedDate = parsedDate.toISOString();
+							}
+						}
+					} catch {
+						// Git history query failed, proceed to fallback
+					}
+				}
+			}
+
+			// If Git history is unavailable, use manual lastmod.json fallback
+			if (!resolvedDate && lastmodFallback) {
+				const fallbackRaw = lastmodFallback[url] || lastmodFallback[pathname] || lastmodFallback[pathname.replace(/\/$/, '')];
+				if (fallbackRaw) {
+					const parsedDate = new Date(fallbackRaw);
+					if (!isNaN(parsedDate.getTime())) {
+						resolvedDate = parsedDate.toISOString();
+					}
+				}
+			}
 		}
 
-		const mtime = fs.statSync(fullPath).mtime.toISOString();
-		lastmodCache.set(relFile, mtime);
-		return mtime;
-	} catch {
+		// 3. If neither source has a valid date, log a warning (never use build timestamp)
+		if (!resolvedDate) {
+			console.warn(`[sitemap] Warning: No valid lastmod date found for ${url} from Git or lastmod.json.`);
+		} else {
+			lastmodCache.set(pathname, resolvedDate);
+		}
+
+		return resolvedDate || undefined;
+	} catch (e) {
+		console.warn(`[sitemap] Error resolving lastmod for ${url}:`, e);
 		return undefined;
 	}
 }
@@ -141,4 +200,3 @@ export default defineConfig({
 		plugins: [tailwindcss()],
 	},
 });
-
